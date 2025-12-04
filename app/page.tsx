@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import Rules from './components/Rules';
+import DetailedExplanation from './components/DetailedExplanation';
 
 // ============================================
 // SPIRITUAL ROOTS SYSTEM
@@ -71,6 +73,10 @@ const GIVEN_NAMES = [
 const CLUE_TYPES = {
   PERSON_IS_DEMON: 'PERSON_IS_DEMON',
   PERSON_IS_CULTIVATOR: 'PERSON_IS_CULTIVATOR',
+  ONLY_DEMON_IN_ROW: 'ONLY_DEMON_IN_ROW',
+  ONLY_CULTIVATOR_IN_ROW: 'ONLY_CULTIVATOR_IN_ROW',
+  ONLY_DEMON_IN_COLUMN: 'ONLY_DEMON_IN_COLUMN',
+  ONLY_CULTIVATOR_IN_COLUMN: 'ONLY_CULTIVATOR_IN_COLUMN',
 };
 
 // ============================================
@@ -121,20 +127,83 @@ function generateValidPuzzle() {
 
   // Create solve order - random permutation
   const solveOrder = [...Array(20).keys()].sort(() => Math.random() - 0.5);
-  
+
+  // Helper function to get people in same row
+  const getPeopleInRow = (row) => people.filter(p => p.row === row);
+
+  // Helper function to get people in same column
+  const getPeopleInColumn = (col) => people.filter(p => p.col === col);
+
   // Each person's clue points to the NEXT person in solve order
   // This guarantees exactly ONE deducible person at each step
   for (let i = 0; i < 20; i++) {
     const currentId = solveOrder[i];
     const nextId = solveOrder[(i + 1) % 20];
-    
+
     const current = people[currentId];
     const next = people[nextId];
-    
-    // Clue directly identifies the next person
-    current.clue = `${next.name} is ${next.isDemon ? 'a demon' : 'a cultivator'}.`;
+
+    // Check what kind of clues we can generate for the next person
+    const possibleClueTypes = [];
+
+    // Check if next is only demon in row
+    const rowPeople = getPeopleInRow(next.row);
+    const demonsInRow = rowPeople.filter(p => p.isDemon);
+    const cultivatorsInRow = rowPeople.filter(p => !p.isDemon);
+
+    if (next.isDemon && demonsInRow.length === 1) {
+      possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_ROW);
+    }
+
+    if (!next.isDemon && cultivatorsInRow.length === 1) {
+      possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW);
+    }
+
+    // Check if next is only demon/cultivator in column
+    const colPeople = getPeopleInColumn(next.col);
+    const demonsInCol = colPeople.filter(p => p.isDemon);
+    const cultivatorsInCol = colPeople.filter(p => !p.isDemon);
+
+    if (next.isDemon && demonsInCol.length === 1) {
+      possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_COLUMN);
+    }
+
+    if (!next.isDemon && cultivatorsInCol.length === 1) {
+      possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN);
+    }
+
+    // Always add the basic clue type
+    possibleClueTypes.push(
+      next.isDemon ? CLUE_TYPES.PERSON_IS_DEMON : CLUE_TYPES.PERSON_IS_CULTIVATOR
+    );
+
+    // Randomly choose one of the possible clue types
+    const chosenType = possibleClueTypes[Math.floor(Math.random() * possibleClueTypes.length)];
+
+    // Generate clue text based on type
+    let clueText = '';
+    const COLS = ['A', 'B', 'C', 'D'];
+
+    switch (chosenType) {
+      case CLUE_TYPES.ONLY_DEMON_IN_ROW:
+        clueText = `${next.name} is the only demon in row ${next.row + 1}.`;
+        break;
+      case CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW:
+        clueText = `${next.name} is the only cultivator in row ${next.row + 1}.`;
+        break;
+      case CLUE_TYPES.ONLY_DEMON_IN_COLUMN:
+        clueText = `${next.name} is the only demon in column ${COLS[next.col]}.`;
+        break;
+      case CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN:
+        clueText = `${next.name} is the only cultivator in column ${COLS[next.col]}.`;
+        break;
+      default:
+        clueText = `${next.name} is ${next.isDemon ? 'a demon' : 'a cultivator'}.`;
+    }
+
+    current.clue = clueText;
     current.clueData = {
-      type: next.isDemon ? CLUE_TYPES.PERSON_IS_DEMON : CLUE_TYPES.PERSON_IS_CULTIVATOR,
+      type: chosenType,
       data: { personId: next.id }
     };
   }
@@ -149,21 +218,79 @@ function generateValidPuzzle() {
 // LOGIC ENGINE
 // ============================================
 function canDeduceIdentity(people, targetId) {
+  const target = people[targetId];
+
   // Check if any revealed clue directly identifies this person
   for (const person of people) {
     if (!person.isRevealed) continue;
     if (!person.clueData) continue;
-    
+
     const { type, data } = person.clueData;
-    
+
+    // Direct identification
     if (type === CLUE_TYPES.PERSON_IS_DEMON && data.personId === targetId) {
       return { canDeduce: true, isDemon: true };
     }
     if (type === CLUE_TYPES.PERSON_IS_CULTIVATOR && data.personId === targetId) {
       return { canDeduce: true, isDemon: false };
     }
+
+    // Check "only demon/cultivator in row" clues
+    if (type === CLUE_TYPES.ONLY_DEMON_IN_ROW) {
+      const clueSubject = people[data.personId];
+      // If target is in the same row as the clue subject
+      if (target.row === clueSubject.row) {
+        if (target.id === clueSubject.id) {
+          // This person is the demon
+          return { canDeduce: true, isDemon: true };
+        } else {
+          // Everyone else in the row is a cultivator
+          return { canDeduce: true, isDemon: false };
+        }
+      }
+    }
+
+    if (type === CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW) {
+      const clueSubject = people[data.personId];
+      if (target.row === clueSubject.row) {
+        if (target.id === clueSubject.id) {
+          // This person is the cultivator
+          return { canDeduce: true, isDemon: false };
+        } else {
+          // Everyone else in the row is a demon
+          return { canDeduce: true, isDemon: true };
+        }
+      }
+    }
+
+    // Check "only demon/cultivator in column" clues
+    if (type === CLUE_TYPES.ONLY_DEMON_IN_COLUMN) {
+      const clueSubject = people[data.personId];
+      if (target.col === clueSubject.col) {
+        if (target.id === clueSubject.id) {
+          // This person is the demon
+          return { canDeduce: true, isDemon: true };
+        } else {
+          // Everyone else in the column is a cultivator
+          return { canDeduce: true, isDemon: false };
+        }
+      }
+    }
+
+    if (type === CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN) {
+      const clueSubject = people[data.personId];
+      if (target.col === clueSubject.col) {
+        if (target.id === clueSubject.id) {
+          // This person is the cultivator
+          return { canDeduce: true, isDemon: false };
+        } else {
+          // Everyone else in the column is a demon
+          return { canDeduce: true, isDemon: true };
+        }
+      }
+    }
   }
-  
+
   return { canDeduce: false, isDemon: null };
 }
 
@@ -412,7 +539,9 @@ export default function CultivatorsGame() {
               // Parse clue to highlight name
               const renderClue = () => {
                 if (!person.clue) return null;
-                const match = person.clue.match(/^(.+?) is (a demon|a cultivator)\.$/);
+
+                // Try to match simple "X is a demon/cultivator" format
+                let match = person.clue.match(/^(.+?) is (a demon|a cultivator)\.$/);
                 if (match) {
                   return (
                     <>
@@ -420,6 +549,28 @@ export default function CultivatorsGame() {
                     </>
                   );
                 }
+
+                // Try to match "X is the only demon/cultivator in row N" format
+                match = person.clue.match(/^(.+?) is the only (demon|cultivator) in row (\d+)\.$/);
+                if (match) {
+                  return (
+                    <>
+                      "<span className="name-highlight">{match[1]}</span> is the only {match[2]} in row {match[3]}."
+                    </>
+                  );
+                }
+
+                // Try to match "X is the only demon/cultivator in column Y" format
+                match = person.clue.match(/^(.+?) is the only (demon|cultivator) in column ([A-D])\.$/);
+                if (match) {
+                  return (
+                    <>
+                      "<span className="name-highlight">{match[1]}</span> is the only {match[2]} in column {match[3]}."
+                    </>
+                  );
+                }
+
+                // Fallback: just return the clue with quotes
                 return `"${person.clue}"`;
               };
 
@@ -739,15 +890,19 @@ export default function CultivatorsGame() {
         </div>
       )}
 
+      <Rules />
+
+      <DetailedExplanation />
+
       <footer style={{
         textAlign: 'center',
         color: '#555',
         fontSize: '0.7rem',
         marginTop: '16px'
       }}>
-        Inspired by <a 
-          href="https://cluesbysam.com" 
-          target="_blank" 
+        Inspired by <a
+          href="https://cluesbysam.com"
+          target="_blank"
           rel="noopener noreferrer"
           style={{ color: '#7c3aed', textDecoration: 'none' }}
         >Clues by Sam</a>
