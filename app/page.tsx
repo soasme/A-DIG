@@ -77,7 +77,63 @@ const CLUE_TYPES = {
   ONLY_CULTIVATOR_IN_ROW: 'ONLY_CULTIVATOR_IN_ROW',
   ONLY_DEMON_IN_COLUMN: 'ONLY_DEMON_IN_COLUMN',
   ONLY_CULTIVATOR_IN_COLUMN: 'ONLY_CULTIVATOR_IN_COLUMN',
+  N_NEIGHBORS_A_DAEMON: 'N_NEIGHBORS_A_DAEMON',
+  N_NEIGHBORS_A_CULTIVATOR: 'N_NEIGHBORS_A_CULTIVATOR',
 };
+
+// ============================================
+// CLUE CONFIGURATION
+// ============================================
+// Configure which clue types can appear in puzzles by setting them to true/false
+//
+// Usage examples:
+//   - To disable neighbor clues, set N_NEIGHBORS_A_DAEMON and N_NEIGHBORS_A_CULTIVATOR to false
+//   - To only use simple clues, set all to false except PERSON_IS_DEMON and PERSON_IS_CULTIVATOR
+//
+// IMPORTANT: Not all clue types are available in every situation:
+//   - ONLY_X_IN_ROW/COLUMN: Only works when someone is the ONLY demon/cultivator in their row/column
+//   - N_NEIGHBORS_A_X: Only works when the speaker is a NEIGHBOR of the person being identified
+//
+//   If NO enabled clue types are available for a specific situation, the game will fall back
+//   to using basic clues (PERSON_IS_DEMON/CULTIVATOR) even if disabled. Check console for warnings.
+//
+//   To minimize fallback usage, enable multiple clue types or adjust demon count/distribution.
+//
+// Clue type descriptions:
+//   - PERSON_IS_DEMON/CULTIVATOR: "X is a demon/cultivator"
+//   - ONLY_DEMON/CULTIVATOR_IN_ROW: "X is the only demon/cultivator in row N"
+//   - ONLY_DEMON/CULTIVATOR_IN_COLUMN: "X is the only demon/cultivator in column Y"
+//   - N_NEIGHBORS_A_DAEMON: "I have exactly N demon neighbors and X is one of them"
+//   - N_NEIGHBORS_A_CULTIVATOR: "I have exactly N cultivator neighbors and X is one of them"
+// ============================================
+const CLUE_CONFIG = {
+  [CLUE_TYPES.PERSON_IS_DEMON]: false,
+  [CLUE_TYPES.PERSON_IS_CULTIVATOR]: false,
+  [CLUE_TYPES.ONLY_DEMON_IN_ROW]: true,
+  [CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW]: true,
+  [CLUE_TYPES.ONLY_DEMON_IN_COLUMN]: true,
+  [CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN]: true,
+  [CLUE_TYPES.N_NEIGHBORS_A_DAEMON]: true,
+  [CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR]: true,
+};
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+function areNeighbors(person1, person2) {
+  const rowDiff = Math.abs(person1.row - person2.row);
+  const colDiff = Math.abs(person1.col - person2.col);
+  // Neighbors include diagonal, so max distance is 1 in both directions
+  return rowDiff <= 1 && colDiff <= 1 && !(rowDiff === 0 && colDiff === 0);
+}
+
+function getNeighbors(person, people) {
+  return people.filter(p => areNeighbors(person, p));
+}
+
+function countNeighbors(person, people) {
+  return getNeighbors(person, people).length;
+}
 
 // ============================================
 // PUZZLE GENERATOR - Chain-based for guaranteed solvability
@@ -146,16 +202,19 @@ function generateValidPuzzle() {
     // Check what kind of clues we can generate for the next person
     const possibleClueTypes = [];
 
+    // Check if next is a neighbor of current
+    const isNeighbor = areNeighbors(current, next);
+
     // Check if next is only demon in row
     const rowPeople = getPeopleInRow(next.row);
     const demonsInRow = rowPeople.filter(p => p.isDemon);
     const cultivatorsInRow = rowPeople.filter(p => !p.isDemon);
 
-    if (next.isDemon && demonsInRow.length === 1) {
+    if (next.isDemon && demonsInRow.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_DEMON_IN_ROW] !== false) {
       possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_ROW);
     }
 
-    if (!next.isDemon && cultivatorsInRow.length === 1) {
+    if (!next.isDemon && cultivatorsInRow.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW] !== false) {
       possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW);
     }
 
@@ -164,21 +223,39 @@ function generateValidPuzzle() {
     const demonsInCol = colPeople.filter(p => p.isDemon);
     const cultivatorsInCol = colPeople.filter(p => !p.isDemon);
 
-    if (next.isDemon && demonsInCol.length === 1) {
+    if (next.isDemon && demonsInCol.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_DEMON_IN_COLUMN] !== false) {
       possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_COLUMN);
     }
 
-    if (!next.isDemon && cultivatorsInCol.length === 1) {
+    if (!next.isDemon && cultivatorsInCol.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN] !== false) {
       possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN);
     }
 
-    // Always add the basic clue type
-    possibleClueTypes.push(
-      next.isDemon ? CLUE_TYPES.PERSON_IS_DEMON : CLUE_TYPES.PERSON_IS_CULTIVATOR
-    );
+    // Check if we can use neighbor-based clue
+    if (isNeighbor) {
+      if (next.isDemon && CLUE_CONFIG[CLUE_TYPES.N_NEIGHBORS_A_DAEMON] !== false) {
+        possibleClueTypes.push(CLUE_TYPES.N_NEIGHBORS_A_DAEMON);
+      } else if (!next.isDemon && CLUE_CONFIG[CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR] !== false) {
+        possibleClueTypes.push(CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR);
+      }
+    }
 
-    // Randomly choose one of the possible clue types
-    const chosenType = possibleClueTypes[Math.floor(Math.random() * possibleClueTypes.length)];
+    // Add the basic clue type as an option if enabled
+    const basicClueType = next.isDemon ? CLUE_TYPES.PERSON_IS_DEMON : CLUE_TYPES.PERSON_IS_CULTIVATOR;
+    if (CLUE_CONFIG[basicClueType] !== false) {
+      possibleClueTypes.push(basicClueType);
+    }
+
+    // If no clue types are available after checking configuration,
+    // use the basic type as absolute fallback to prevent puzzle generation failure
+    let availableClueTypes = possibleClueTypes;
+    if (availableClueTypes.length === 0) {
+      console.warn(`No enabled clue types available for ${current.name} -> ${next.name}. Using basic clue despite configuration.`);
+      availableClueTypes = [basicClueType];
+    }
+
+    // Randomly choose one of the available clue types
+    const chosenType = availableClueTypes[Math.floor(Math.random() * availableClueTypes.length)];
 
     // Generate clue text based on type
     let clueText = '';
@@ -196,6 +273,14 @@ function generateValidPuzzle() {
         break;
       case CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN:
         clueText = `${next.name} is the only cultivator in column ${COLS[next.col]}.`;
+        break;
+      case CLUE_TYPES.N_NEIGHBORS_A_DAEMON:
+        const demonNeighbors = getNeighbors(current, people).filter(p => p.isDemon);
+        clueText = `I have exactly ${demonNeighbors.length} demon neighbors and ${next.name} is one of them.`;
+        break;
+      case CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR:
+        const cultivatorNeighbors = getNeighbors(current, people).filter(p => !p.isDemon);
+        clueText = `I have exactly ${cultivatorNeighbors.length} cultivator neighbors and ${next.name} is one of them.`;
         break;
       default:
         clueText = `${next.name} is ${next.isDemon ? 'a demon' : 'a cultivator'}.`;
@@ -233,6 +318,91 @@ function canDeduceIdentity(people, targetId) {
     }
     if (type === CLUE_TYPES.PERSON_IS_CULTIVATOR && data.personId === targetId) {
       return { canDeduce: true, isDemon: false };
+    }
+
+    // Neighbor-based identification - direct mention
+    if (type === CLUE_TYPES.N_NEIGHBORS_A_DAEMON && data.personId === targetId) {
+      return { canDeduce: true, isDemon: true };
+    }
+    if (type === CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR && data.personId === targetId) {
+      return { canDeduce: true, isDemon: false };
+    }
+
+    // Neighbor-based identification - deduce from count
+    // If someone says "I have exactly N demon neighbors" and we've revealed all N demons,
+    // then all other neighbors must be cultivators
+    if (type === CLUE_TYPES.N_NEIGHBORS_A_DAEMON) {
+      const speaker = person;
+      const speakerNeighbors = getNeighbors(speaker, people);
+
+      // Check if target is a neighbor of the speaker
+      if (speakerNeighbors.some(n => n.id === targetId)) {
+        // Count revealed demon neighbors
+        const revealedDemonNeighbors = speakerNeighbors.filter(n => n.isRevealed && n.isDemon);
+
+        // Parse the clue to get the expected count
+        const clueMatch = speaker.clue.match(/I have exactly (\d+) demon neighbors/);
+        if (clueMatch) {
+          const expectedDemonCount = parseInt(clueMatch[1]);
+
+          // If we've already revealed all the demon neighbors
+          if (revealedDemonNeighbors.length === expectedDemonCount) {
+            // And target is not one of them, target must be a cultivator
+            if (!revealedDemonNeighbors.some(n => n.id === targetId)) {
+              return { canDeduce: true, isDemon: false };
+            }
+          }
+
+          // Count revealed cultivator neighbors
+          const revealedCultivatorNeighbors = speakerNeighbors.filter(n => n.isRevealed && !n.isDemon);
+          const totalNeighbors = speakerNeighbors.length;
+          const expectedCultivatorCount = totalNeighbors - expectedDemonCount;
+
+          // If we've revealed all the cultivator neighbors
+          if (revealedCultivatorNeighbors.length === expectedCultivatorCount) {
+            // And target is not one of them, target must be a demon
+            if (!revealedCultivatorNeighbors.some(n => n.id === targetId)) {
+              return { canDeduce: true, isDemon: true };
+            }
+          }
+        }
+      }
+    }
+
+    // Similar logic for cultivator neighbors
+    if (type === CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR) {
+      const speaker = person;
+      const speakerNeighbors = getNeighbors(speaker, people);
+
+      if (speakerNeighbors.some(n => n.id === targetId)) {
+        const revealedCultivatorNeighbors = speakerNeighbors.filter(n => n.isRevealed && !n.isDemon);
+
+        const clueMatch = speaker.clue.match(/I have exactly (\d+) cultivator neighbors/);
+        if (clueMatch) {
+          const expectedCultivatorCount = parseInt(clueMatch[1]);
+
+          // If we've revealed all the cultivator neighbors
+          if (revealedCultivatorNeighbors.length === expectedCultivatorCount) {
+            // And target is not one of them, target must be a demon
+            if (!revealedCultivatorNeighbors.some(n => n.id === targetId)) {
+              return { canDeduce: true, isDemon: true };
+            }
+          }
+
+          // Count revealed demon neighbors
+          const revealedDemonNeighbors = speakerNeighbors.filter(n => n.isRevealed && n.isDemon);
+          const totalNeighbors = speakerNeighbors.length;
+          const expectedDemonCount = totalNeighbors - expectedCultivatorCount;
+
+          // If we've revealed all the demon neighbors
+          if (revealedDemonNeighbors.length === expectedDemonCount) {
+            // And target is not one of them, target must be a cultivator
+            if (!revealedDemonNeighbors.some(n => n.id === targetId)) {
+              return { canDeduce: true, isDemon: false };
+            }
+          }
+        }
+      }
     }
 
     // Check "only demon/cultivator in row" clues
@@ -566,6 +736,16 @@ export default function CultivatorsGame() {
                   return (
                     <>
                       "<span className="name-highlight">{match[1]}</span> is the only {match[2]} in column {match[3]}."
+                    </>
+                  );
+                }
+
+                // Try to match "I have exactly N demon/cultivator neighbors and X is one of them" format
+                match = person.clue.match(/^I have exactly (\d+) (demon|cultivator) neighbors and (.+?) is one of them\.$/);
+                if (match) {
+                  return (
+                    <>
+                      "I have exactly {match[1]} {match[2]} neighbors and <span className="name-highlight">{match[3]}</span> is one of them."
                     </>
                   );
                 }
