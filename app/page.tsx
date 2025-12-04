@@ -1,933 +1,1312 @@
-"use client"
+"use client";
 
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import Rules from './components/Rules';
-import DetailedExplanation from './components/DetailedExplanation';
+import React, { useMemo, useState } from "react";
+import DetailedExplanation from "./components/DetailedExplanation";
+import Rules from "./components/Rules";
 
-// ============================================
-// SPIRITUAL ROOTS SYSTEM
-// ============================================
-const ELEMENTS = {
-  metal: { cn: '金', en: 'Metal' },
-  wood: { cn: '木', en: 'Wood' },
-  water: { cn: '水', en: 'Water' },
-  fire: { cn: '火', en: 'Fire' },
-  earth: { cn: '土', en: 'Earth' }
+type Identity = "DEMON" | "CULTIVATOR";
+type Element = "Metal" | "Wood" | "Water" | "Fire" | "Earth";
+
+type ClueType =
+  | "PERSON_IS_DEMON"
+  | "PERSON_IS_CULTIVATOR"
+  | "ONLY_DEMON_IN_ROW"
+  | "ONLY_CULTIVATOR_IN_ROW"
+  | "ONLY_DEMON_IN_COLUMN"
+  | "ONLY_CULTIVATOR_IN_COLUMN"
+  | "N_NEIGHBORS_A_DAEMON"
+  | "N_NEIGHBORS_A_CULTIVATOR"
+  | "M_OF_N_DEMONS_NEIGHBORING_IN_ROW"
+  | "M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN"
+  | "M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW"
+  | "M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN"
+  | "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON"
+  | "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR";
+
+type ClueParams = {
+  targetId?: number;
+  subjectId?: number;
+  mentionedId?: number;
+  row?: number;
+  col?: number;
+  N?: number;
+  M?: number;
+  element?: Element;
 };
 
-const ROOT_TYPES = {
-  1: { cn: '单灵根', en: 'Single Root' },
-  2: { cn: '双灵根', en: 'Dual Root' },
-  3: { cn: '三灵根', en: 'Triple Root' },
-  4: { cn: '四灵根', en: 'Quad Root' },
-  5: { cn: '五灵根', en: 'Penta Root' }
+type Clue = {
+  type: ClueType;
+  text: string;
+  params: ClueParams;
+  speakerId: number;
 };
 
-const ELEMENT_KEYS = ['metal', 'wood', 'water', 'fire', 'earth'];
+type Character = {
+  id: number;
+  name: string;
+  row: number;
+  col: number;
+  identity: Identity;
+  spiritualRoot: Element[];
+  clue: Clue | null;
+  isRevealed: boolean;
+};
 
-const ALL_SPIRITUAL_ROOTS = [];
-for (let count = 1; count <= 5; count++) {
-  const combinations = getCombinations(ELEMENT_KEYS, count);
-  combinations.forEach(combo => {
-    ALL_SPIRITUAL_ROOTS.push({
-      elements: combo,
-      type: ROOT_TYPES[count],
-      label: combo.map(e => ELEMENTS[e].en).join('-') + ' ' + ROOT_TYPES[count].en,
-      shortLabel: combo.map(e => ELEMENTS[e].cn).join('') + ' ' + ROOT_TYPES[count].cn
-    });
-  });
-}
+type PuzzleIndexes = {
+  rows: Record<number, number[]>;
+  cols: Record<number, number[]>;
+  neighbors: Record<number, number[]>;
+  elementGroups: Record<Element, number[]>;
+};
 
-function getCombinations(arr, k) {
-  if (k === 0) return [[]];
-  if (arr.length === 0) return [];
-  const [first, ...rest] = arr;
-  const withFirst = getCombinations(rest, k - 1).map(combo => [first, ...combo]);
-  const withoutFirst = getCombinations(rest, k);
-  return [...withFirst, ...withoutFirst];
-}
+type ClueCandidate = {
+  type: ClueType;
+  targetId?: number;
+  subjectId?: number;
+  mentionedId?: number;
+  row?: number;
+  col?: number;
+  N?: number;
+  M?: number;
+  element?: Element;
+};
 
-// ============================================
-// PINYIN NAME GENERATOR
-// ============================================
+type Puzzle = {
+  characters: Character[];
+  indexes: PuzzleIndexes;
+  startId: number;
+};
+
+const GRID_ROWS = 5;
+const GRID_COLS = 4;
+const TOTAL_CHARACTERS = GRID_ROWS * GRID_COLS; // 20
+const ELEMENTS: Element[] = ["Metal", "Wood", "Water", "Fire", "Earth"];
+const CLUE_CONFIG: Record<ClueType, boolean> = {
+  PERSON_IS_DEMON: true,
+  PERSON_IS_CULTIVATOR: true,
+  ONLY_DEMON_IN_ROW: true,
+  ONLY_CULTIVATOR_IN_ROW: true,
+  ONLY_DEMON_IN_COLUMN: true,
+  ONLY_CULTIVATOR_IN_COLUMN: true,
+  N_NEIGHBORS_A_DAEMON: true,
+  N_NEIGHBORS_A_CULTIVATOR: true,
+  M_OF_N_DEMONS_NEIGHBORING_IN_ROW: true,
+  M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN: true,
+  M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW: true,
+  M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN: true,
+  M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON: true,
+  M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR: true,
+};
+
 const SURNAMES = [
-  'Bai', 'Cao', 'Chen', 'Deng', 'Fang', 'Feng', 'Gao', 'Gu', 'Guo', 'Han',
-  'He', 'Hu', 'Huang', 'Jiang', 'Jin', 'Li', 'Liang', 'Lin', 'Liu', 'Lu',
-  'Luo', 'Ma', 'Meng', 'Mo', 'Mu', 'Nie', 'Pan', 'Pei', 'Qin', 'Qiu',
-  'Ren', 'Shen', 'Shi', 'Song', 'Su', 'Sun', 'Tan', 'Tang', 'Tian', 'Wang',
-  'Wei', 'Wu', 'Xia', 'Xiao', 'Xie', 'Xu', 'Yan', 'Yang', 'Ye', 'Yin',
-  'Yu', 'Yuan', 'Yun', 'Zhang', 'Zhao', 'Zheng', 'Zhou', 'Zhu'
+  "Bai",
+  "Cao",
+  "Chen",
+  "Deng",
+  "Fang",
+  "Feng",
+  "Gao",
+  "Gu",
+  "Guo",
+  "Han",
+  "He",
+  "Hu",
+  "Huang",
+  "Jiang",
+  "Jin",
+  "Li",
+  "Liang",
+  "Lin",
+  "Liu",
+  "Lu",
+  "Luo",
+  "Ma",
+  "Meng",
+  "Mo",
+  "Mu",
+  "Nie",
+  "Pan",
+  "Pei",
+  "Qin",
+  "Qiu",
+  "Ren",
+  "Shen",
+  "Shi",
+  "Song",
+  "Su",
+  "Sun",
+  "Tan",
+  "Tang",
+  "Tian",
+  "Wang",
+  "Wei",
+  "Wu",
+  "Xia",
+  "Xiao",
+  "Xie",
+  "Xu",
+  "Yan",
+  "Yang",
+  "Ye",
+  "Yin",
+  "Yu",
+  "Yuan",
+  "Yun",
+  "Zhang",
+  "Zhao",
+  "Zheng",
+  "Zhou",
+  "Zhu",
 ];
 
 const GIVEN_NAMES = [
-  'Ao', 'Chen', 'Cheng', 'Chi', 'Chuan', 'Feng', 'Han', 'Hao', 'Hong', 'Hua',
-  'Hui', 'Jian', 'Jing', 'Jun', 'Kai', 'Lan', 'Lei', 'Lian', 'Ling', 'Long',
-  'Mei', 'Ming', 'Nan', 'Ning', 'Peng', 'Qi', 'Qian', 'Qing', 'Rong', 'Shan',
-  'Shuang', 'Tao', 'Wen', 'Xi', 'Xiang', 'Xiao', 'Xin', 'Xiu', 'Xuan', 'Yan',
-  'Yang', 'Yi', 'Ying', 'Yong', 'Yu', 'Yuan', 'Yue', 'Yun', 'Zhen', 'Zhi'
+  "Ao",
+  "Chen",
+  "Cheng",
+  "Chi",
+  "Chuan",
+  "Feng",
+  "Han",
+  "Hao",
+  "Hong",
+  "Hua",
+  "Hui",
+  "Jian",
+  "Jing",
+  "Jun",
+  "Kai",
+  "Lan",
+  "Lei",
+  "Lian",
+  "Ling",
+  "Long",
+  "Mei",
+  "Ming",
+  "Nan",
+  "Ning",
+  "Peng",
+  "Qi",
+  "Qian",
+  "Qing",
+  "Rong",
+  "Shan",
+  "Shuang",
+  "Tao",
+  "Wen",
+  "Xi",
+  "Xiang",
+  "Xiao",
+  "Xin",
+  "Xiu",
+  "Xuan",
+  "Yan",
+  "Yang",
+  "Yi",
+  "Ying",
+  "Yong",
+  "Yu",
+  "Yuan",
+  "Yue",
+  "Yun",
+  "Zhen",
+  "Zhi",
 ];
 
-// ============================================
-// CLUE TYPES
-// ============================================
-const CLUE_TYPES = {
-  PERSON_IS_DEMON: 'PERSON_IS_DEMON',
-  PERSON_IS_CULTIVATOR: 'PERSON_IS_CULTIVATOR',
-  ONLY_DEMON_IN_ROW: 'ONLY_DEMON_IN_ROW',
-  ONLY_CULTIVATOR_IN_ROW: 'ONLY_CULTIVATOR_IN_ROW',
-  ONLY_DEMON_IN_COLUMN: 'ONLY_DEMON_IN_COLUMN',
-  ONLY_CULTIVATOR_IN_COLUMN: 'ONLY_CULTIVATOR_IN_COLUMN',
-  N_NEIGHBORS_A_DAEMON: 'N_NEIGHBORS_A_DAEMON',
-  N_NEIGHBORS_A_CULTIVATOR: 'N_NEIGHBORS_A_CULTIVATOR',
-};
+const CORNER_COLORS = ["transparent", "#22c55e", "#ef4444", "#eab308"];
 
-// ============================================
-// CLUE CONFIGURATION
-// ============================================
-// Configure which clue types can appear in puzzles by setting them to true/false
-//
-// Usage examples:
-//   - To disable neighbor clues, set N_NEIGHBORS_A_DAEMON and N_NEIGHBORS_A_CULTIVATOR to false
-//   - To only use simple clues, set all to false except PERSON_IS_DEMON and PERSON_IS_CULTIVATOR
-//
-// IMPORTANT: Not all clue types are available in every situation:
-//   - ONLY_X_IN_ROW/COLUMN: Only works when someone is the ONLY demon/cultivator in their row/column
-//   - N_NEIGHBORS_A_X: Only works when the speaker is a NEIGHBOR of the person being identified
-//
-//   If NO enabled clue types are available for a specific situation, the game will fall back
-//   to using basic clues (PERSON_IS_DEMON/CULTIVATOR) even if disabled. Check console for warnings.
-//
-//   To minimize fallback usage, enable multiple clue types or adjust demon count/distribution.
-//
-// Clue type descriptions:
-//   - PERSON_IS_DEMON/CULTIVATOR: "X is a demon/cultivator"
-//   - ONLY_DEMON/CULTIVATOR_IN_ROW: "X is the only demon/cultivator in row N"
-//   - ONLY_DEMON/CULTIVATOR_IN_COLUMN: "X is the only demon/cultivator in column Y"
-//   - N_NEIGHBORS_A_DAEMON: "I have exactly N demon neighbors and X is one of them"
-//   - N_NEIGHBORS_A_CULTIVATOR: "I have exactly N cultivator neighbors and X is one of them"
-// ============================================
-const CLUE_CONFIG = {
-  [CLUE_TYPES.PERSON_IS_DEMON]: false,
-  [CLUE_TYPES.PERSON_IS_CULTIVATOR]: false,
-  [CLUE_TYPES.ONLY_DEMON_IN_ROW]: true,
-  [CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW]: true,
-  [CLUE_TYPES.ONLY_DEMON_IN_COLUMN]: true,
-  [CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN]: true,
-  [CLUE_TYPES.N_NEIGHBORS_A_DAEMON]: true,
-  [CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR]: true,
-};
+function shuffle<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-function areNeighbors(person1, person2) {
-  const rowDiff = Math.abs(person1.row - person2.row);
-  const colDiff = Math.abs(person1.col - person2.col);
-  // Neighbors include diagonal, so max distance is 1 in both directions
+function sample<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function areNeighbors(a: Character, b: Character): boolean {
+  const rowDiff = Math.abs(a.row - b.row);
+  const colDiff = Math.abs(a.col - b.col);
   return rowDiff <= 1 && colDiff <= 1 && !(rowDiff === 0 && colDiff === 0);
 }
 
-function getNeighbors(person, people) {
-  return people.filter(p => areNeighbors(person, p));
+function generateNames(count: number): string[] {
+  const names = new Set<string>();
+  while (names.size < count) {
+    names.add(`${sample(SURNAMES)} ${sample(GIVEN_NAMES)}`);
+  }
+  return Array.from(names).sort((a, b) => a.localeCompare(b));
 }
 
-function countNeighbors(person, people) {
-  return getNeighbors(person, people).length;
+function buildSpiritualRoot(): Element[] {
+  const size = Math.floor(Math.random() * ELEMENTS.length) + 1;
+  return shuffle(ELEMENTS).slice(0, size);
 }
 
-// ============================================
-// PUZZLE GENERATOR - Chain-based for guaranteed solvability
-// ============================================
-function generateValidPuzzle() {
-  // Generate base people
-  const usedNames = new Set();
-  const people = [];
+function buildCharacters(): Character[] {
+  const names = generateNames(TOTAL_CHARACTERS);
+  const demonCount = 6 + Math.floor(Math.random() * 3);
+  const demonIds = new Set(shuffle([...Array(TOTAL_CHARACTERS).keys()]).slice(0, demonCount));
 
-  while (people.length < 20) {
-    const surname = SURNAMES[Math.floor(Math.random() * SURNAMES.length)];
-    const given = GIVEN_NAMES[Math.floor(Math.random() * GIVEN_NAMES.length)];
-    const name = `${surname} ${given}`;
-    
-    if (usedNames.has(name)) continue;
-    usedNames.add(name);
-
-    const root = ALL_SPIRITUAL_ROOTS[Math.floor(Math.random() * ALL_SPIRITUAL_ROOTS.length)];
-
-    people.push({
+  return names.map((name, idx) => {
+    const row = Math.floor(idx / GRID_COLS);
+    const col = idx % GRID_COLS;
+    const identity: Identity = demonIds.has(idx) ? "DEMON" : "CULTIVATOR";
+    return {
+      id: idx,
       name,
-      spiritualRoot: root,
-      isDemon: false,
-      isRevealed: false,
+      row,
+      col,
+      identity,
+      spiritualRoot: buildSpiritualRoot(),
       clue: null,
-      clueData: null,
-      cornerTag: 0
+      isRevealed: false,
+    };
+  });
+}
+
+function buildIndexes(characters: Character[]): PuzzleIndexes {
+  const rows: Record<number, number[]> = {};
+  const cols: Record<number, number[]> = {};
+  const neighbors: Record<number, number[]> = {};
+  const elementGroups: Record<Element, number[]> = {
+    Metal: [],
+    Wood: [],
+    Water: [],
+    Fire: [],
+    Earth: [],
+  };
+
+  for (let r = 0; r < GRID_ROWS; r += 1) rows[r] = [];
+  for (let c = 0; c < GRID_COLS; c += 1) cols[c] = [];
+
+  characters.forEach((person) => {
+    rows[person.row].push(person.id);
+    cols[person.col].push(person.id);
+    person.spiritualRoot.forEach((element) => {
+      elementGroups[element].push(person.id);
+    });
+  });
+
+  characters.forEach((person) => {
+    neighbors[person.id] = characters
+      .filter((p) => p.id !== person.id && areNeighbors(person, p))
+      .map((p) => p.id);
+  });
+
+  return { rows, cols, neighbors, elementGroups };
+}
+
+function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Record<number, ClueCandidate[]> {
+  const rowDemons: Record<number, number[]> = {};
+  const rowCultivators: Record<number, number[]> = {};
+  const colDemons: Record<number, number[]> = {};
+  const colCultivators: Record<number, number[]> = {};
+  const demonNeighbors: Record<number, number[]> = {};
+  const cultivatorNeighbors: Record<number, number[]> = {};
+
+  for (let r = 0; r < GRID_ROWS; r += 1) {
+    rowDemons[r] = [];
+    rowCultivators[r] = [];
+  }
+  for (let c = 0; c < GRID_COLS; c += 1) {
+    colDemons[c] = [];
+    colCultivators[c] = [];
+  }
+
+  characters.forEach((person) => {
+    if (person.identity === "DEMON") {
+      rowDemons[person.row].push(person.id);
+      colDemons[person.col].push(person.id);
+    } else {
+      rowCultivators[person.row].push(person.id);
+      colCultivators[person.col].push(person.id);
+    }
+  });
+
+  characters.forEach((person) => {
+    const neighborIds = indexes.neighbors[person.id];
+    demonNeighbors[person.id] = neighborIds.filter((id) => characters[id].identity === "DEMON");
+    cultivatorNeighbors[person.id] = neighborIds.filter((id) => characters[id].identity === "CULTIVATOR");
+  });
+
+  const candidates: Record<number, ClueCandidate[]> = {};
+
+  characters.forEach((speaker) => {
+    const list: ClueCandidate[] = [];
+
+    characters.forEach((target) => {
+      if (target.id === speaker.id) return;
+      if (target.identity === "DEMON" && CLUE_CONFIG.PERSON_IS_DEMON) {
+        list.push({ type: "PERSON_IS_DEMON", targetId: target.id });
+      }
+      if (target.identity === "CULTIVATOR" && CLUE_CONFIG.PERSON_IS_CULTIVATOR) {
+        list.push({ type: "PERSON_IS_CULTIVATOR", targetId: target.id });
+      }
+    });
+
+    Object.keys(rowDemons).forEach((rowKey) => {
+      const r = Number(rowKey);
+      if (rowDemons[r].length === 1 && CLUE_CONFIG.ONLY_DEMON_IN_ROW) {
+        list.push({ type: "ONLY_DEMON_IN_ROW", subjectId: rowDemons[r][0], row: r });
+      }
+      if (rowCultivators[r].length === 1 && CLUE_CONFIG.ONLY_CULTIVATOR_IN_ROW) {
+        list.push({ type: "ONLY_CULTIVATOR_IN_ROW", subjectId: rowCultivators[r][0], row: r });
+      }
+    });
+
+    Object.keys(colDemons).forEach((colKey) => {
+      const c = Number(colKey);
+      if (colDemons[c].length === 1 && CLUE_CONFIG.ONLY_DEMON_IN_COLUMN) {
+        list.push({ type: "ONLY_DEMON_IN_COLUMN", subjectId: colDemons[c][0], col: c });
+      }
+      if (colCultivators[c].length === 1 && CLUE_CONFIG.ONLY_CULTIVATOR_IN_COLUMN) {
+        list.push({ type: "ONLY_CULTIVATOR_IN_COLUMN", subjectId: colCultivators[c][0], col: c });
+      }
+    });
+
+    const demonN = demonNeighbors[speaker.id].length;
+    const cultivatorN = cultivatorNeighbors[speaker.id].length;
+
+    if (demonN > 0 && CLUE_CONFIG.N_NEIGHBORS_A_DAEMON) {
+      demonNeighbors[speaker.id].forEach((neighborId) => {
+        list.push({ type: "N_NEIGHBORS_A_DAEMON", mentionedId: neighborId, N: demonN, subjectId: speaker.id });
+      });
+    }
+
+    if (cultivatorN > 0 && CLUE_CONFIG.N_NEIGHBORS_A_CULTIVATOR) {
+      cultivatorNeighbors[speaker.id].forEach((neighborId) => {
+        list.push({ type: "N_NEIGHBORS_A_CULTIVATOR", mentionedId: neighborId, N: cultivatorN, subjectId: speaker.id });
+      });
+    }
+
+    if (CLUE_CONFIG.M_OF_N_DEMONS_NEIGHBORING_IN_ROW && demonN > 0) {
+      for (let r = 0; r < GRID_ROWS; r += 1) {
+        const m = demonNeighbors[speaker.id].filter((id) => characters[id].row === r).length;
+        if (m > 0) {
+          list.push({
+            type: "M_OF_N_DEMONS_NEIGHBORING_IN_ROW",
+            M: m,
+            N: demonN,
+            row: r,
+            subjectId: speaker.id,
+          });
+        }
+      }
+    }
+
+    if (CLUE_CONFIG.M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN && demonN > 0) {
+      for (let c = 0; c < GRID_COLS; c += 1) {
+        const m = demonNeighbors[speaker.id].filter((id) => characters[id].col === c).length;
+        if (m > 0) {
+          list.push({
+            type: "M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN",
+            M: m,
+            N: demonN,
+            col: c,
+            subjectId: speaker.id,
+          });
+        }
+      }
+    }
+
+    if (CLUE_CONFIG.M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW && cultivatorN > 0) {
+      for (let r = 0; r < GRID_ROWS; r += 1) {
+        const m = cultivatorNeighbors[speaker.id].filter((id) => characters[id].row === r).length;
+        if (m > 0) {
+          list.push({
+            type: "M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW",
+            M: m,
+            N: cultivatorN,
+            row: r,
+            subjectId: speaker.id,
+          });
+        }
+      }
+    }
+
+    if (CLUE_CONFIG.M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN && cultivatorN > 0) {
+      for (let c = 0; c < GRID_COLS; c += 1) {
+        const m = cultivatorNeighbors[speaker.id].filter((id) => characters[id].col === c).length;
+        if (m > 0) {
+          list.push({
+            type: "M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN",
+            M: m,
+            N: cultivatorN,
+            col: c,
+            subjectId: speaker.id,
+          });
+        }
+      }
+    }
+
+    ELEMENTS.forEach((element) => {
+      const group = indexes.elementGroups[element];
+      const total = group.length;
+      if (total === 0) return;
+
+      const demonCount = group.filter((id) => characters[id].identity === "DEMON").length;
+      const cultivatorCount = total - demonCount;
+
+      if (demonCount > 0 && CLUE_CONFIG.M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON) {
+        list.push({
+          type: "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON",
+          element,
+          M: demonCount,
+          N: total,
+        });
+      }
+
+      if (cultivatorCount > 0 && CLUE_CONFIG.M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR) {
+        list.push({
+          type: "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR",
+          element,
+          M: cultivatorCount,
+          N: total,
+        });
+      }
+    });
+
+    candidates[speaker.id] = list;
+  });
+
+  return candidates;
+}
+
+function clueText(candidate: ClueCandidate, speaker: Character, characters: Character[]): string {
+  const COLS = ["A", "B", "C", "D"];
+  const verb = (value: number | undefined) => (value === 0 || value === 1 ? "is" : "are");
+  const targetName = (id?: number) => (id === undefined ? "" : characters[id].name);
+  const subjectName = targetName(candidate.subjectId ?? speaker.id);
+
+  switch (candidate.type) {
+    case "PERSON_IS_DEMON":
+      return `${targetName(candidate.targetId)} is a demon.`;
+    case "PERSON_IS_CULTIVATOR":
+      return `${targetName(candidate.targetId)} is a cultivator.`;
+    case "ONLY_DEMON_IN_ROW":
+      return `${targetName(candidate.subjectId)} is the only demon in row ${(candidate.row ?? 0) + 1}.`;
+    case "ONLY_CULTIVATOR_IN_ROW":
+      return `${targetName(candidate.subjectId)} is the only cultivator in row ${(candidate.row ?? 0) + 1}.`;
+    case "ONLY_DEMON_IN_COLUMN":
+      return `${targetName(candidate.subjectId)} is the only demon in column ${COLS[candidate.col ?? 0]}.`;
+    case "ONLY_CULTIVATOR_IN_COLUMN":
+      return `${targetName(candidate.subjectId)} is the only cultivator in column ${COLS[candidate.col ?? 0]}.`;
+    case "N_NEIGHBORS_A_DAEMON":
+      return `I have exactly ${candidate.N} demon neighbors and ${targetName(candidate.mentionedId)} is one of them.`;
+    case "N_NEIGHBORS_A_CULTIVATOR":
+      return `I have exactly ${candidate.N} cultivator neighbors and ${targetName(candidate.mentionedId)} is one of them.`;
+    case "M_OF_N_DEMONS_NEIGHBORING_IN_ROW":
+      return `Exactly ${candidate.M} of ${candidate.N} demon neighbors of ${subjectName} ${verb(candidate.M)} in row ${(candidate.row ?? 0) + 1}.`;
+    case "M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN":
+      return `Exactly ${candidate.M} of ${candidate.N} demon neighbors of ${subjectName} ${verb(candidate.M)} in column ${COLS[candidate.col ?? 0]}.`;
+    case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW":
+      return `Exactly ${candidate.M} of ${candidate.N} cultivator neighbors of ${subjectName} ${verb(candidate.M)} in row ${(candidate.row ?? 0) + 1}.`;
+    case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN":
+      return `Exactly ${candidate.M} of ${candidate.N} cultivator neighbors of ${subjectName} ${verb(candidate.M)} in column ${COLS[candidate.col ?? 0]}.`;
+    case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON":
+      return `Exactly ${candidate.M} of ${candidate.N} people with ${candidate.element} spiritual root ${verb(candidate.M)} demons.`;
+    case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR":
+      return `Exactly ${candidate.M} of ${candidate.N} people with ${candidate.element} spiritual root ${verb(candidate.M)} cultivators.`;
+    default:
+      return "";
+  }
+}
+
+function applyCluesToCharacters(characters: Character[], candidates: Record<number, ClueCandidate[]>): Character[] {
+  return characters.map((character) => {
+    const speakerCandidates = candidates[character.id];
+    const candidate = sample(speakerCandidates);
+    const text = clueText(candidate, character, characters);
+    const params: ClueParams = {
+      targetId: candidate.targetId,
+      subjectId: candidate.subjectId,
+      mentionedId: candidate.mentionedId,
+      row: candidate.row,
+      col: candidate.col,
+      N: candidate.N,
+      M: candidate.M,
+      element: candidate.element,
+    };
+    const clue: Clue = {
+      type: candidate.type,
+      text,
+      params,
+      speakerId: character.id,
+    };
+    return { ...character, clue };
+  });
+}
+
+function minMaxDemons(ids: number[], assignment: Array<boolean | null>) {
+  let min = 0;
+  let max = 0;
+  ids.forEach((id) => {
+    const val = assignment[id];
+    if (val === true) {
+      min += 1;
+      max += 1;
+    } else if (val === null) {
+      max += 1;
+    }
+  });
+  return { min, max };
+}
+
+function cluesConsistent(characters: Character[], indexes: PuzzleIndexes, assignment: Array<boolean | null>): boolean {
+  const clues = characters.map((c) => c.clue).filter(Boolean) as Clue[];
+
+  const equalityHolds = (ids: number[], expectedDemons: number) => {
+    const { min, max } = minMaxDemons(ids, assignment);
+    return expectedDemons >= min && expectedDemons <= max;
+  };
+
+  for (const clue of clues) {
+    const { params, type, speakerId } = clue;
+
+    switch (type) {
+      case "PERSON_IS_DEMON":
+        if (assignment[params.targetId!] === false) return false;
+        break;
+      case "PERSON_IS_CULTIVATOR":
+        if (assignment[params.targetId!] === true) return false;
+        break;
+      case "ONLY_DEMON_IN_ROW": {
+        const rowIds = indexes.rows[params.row!];
+        if (!equalityHolds([params.subjectId!], 1)) return false;
+        if (!equalityHolds(rowIds.filter((id) => id !== params.subjectId), 0)) return false;
+        break;
+      }
+      case "ONLY_CULTIVATOR_IN_ROW": {
+        const rowIds = indexes.rows[params.row!];
+        if (!equalityHolds([params.subjectId!], 0)) return false;
+        if (!equalityHolds(rowIds.filter((id) => id !== params.subjectId), rowIds.length - 1)) return false;
+        break;
+      }
+      case "ONLY_DEMON_IN_COLUMN": {
+        const colIds = indexes.cols[params.col!];
+        if (!equalityHolds([params.subjectId!], 1)) return false;
+        if (!equalityHolds(colIds.filter((id) => id !== params.subjectId), 0)) return false;
+        break;
+      }
+      case "ONLY_CULTIVATOR_IN_COLUMN": {
+        const colIds = indexes.cols[params.col!];
+        if (!equalityHolds([params.subjectId!], 0)) return false;
+        if (!equalityHolds(colIds.filter((id) => id !== params.subjectId), colIds.length - 1)) return false;
+        break;
+      }
+      case "N_NEIGHBORS_A_DAEMON": {
+        const neighborIds = indexes.neighbors[speakerId];
+        if (!equalityHolds(neighborIds, params.N!)) return false;
+        if (assignment[params.mentionedId!] === false) return false;
+        break;
+      }
+      case "N_NEIGHBORS_A_CULTIVATOR": {
+        const neighborIds = indexes.neighbors[speakerId];
+        const expectedDemons = neighborIds.length - (params.N ?? 0);
+        if (!equalityHolds(neighborIds, expectedDemons)) return false;
+        if (assignment[params.mentionedId!] === true) return false;
+        break;
+      }
+      case "M_OF_N_DEMONS_NEIGHBORING_IN_ROW": {
+        const neighborIds = indexes.neighbors[params.subjectId!];
+        const inRow = neighborIds.filter((id) => characters[id].row === params.row);
+        if (!equalityHolds(neighborIds, params.N!)) return false;
+        if (!equalityHolds(inRow, params.M!)) return false;
+        break;
+      }
+      case "M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN": {
+        const neighborIds = indexes.neighbors[params.subjectId!];
+        const inCol = neighborIds.filter((id) => characters[id].col === params.col);
+        if (!equalityHolds(neighborIds, params.N!)) return false;
+        if (!equalityHolds(inCol, params.M!)) return false;
+        break;
+      }
+      case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW": {
+        const neighborIds = indexes.neighbors[params.subjectId!];
+        const inRow = neighborIds.filter((id) => characters[id].row === params.row);
+        const expectedDemons = neighborIds.length - (params.N ?? 0);
+        const expectedDemonsRow = inRow.length - (params.M ?? 0);
+        if (!equalityHolds(neighborIds, expectedDemons)) return false;
+        if (!equalityHolds(inRow, expectedDemonsRow)) return false;
+        break;
+      }
+      case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN": {
+        const neighborIds = indexes.neighbors[params.subjectId!];
+        const inCol = neighborIds.filter((id) => characters[id].col === params.col);
+        const expectedDemons = neighborIds.length - (params.N ?? 0);
+        const expectedDemonsCol = inCol.length - (params.M ?? 0);
+        if (!equalityHolds(neighborIds, expectedDemons)) return false;
+        if (!equalityHolds(inCol, expectedDemonsCol)) return false;
+        break;
+      }
+      case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON": {
+        const group = indexes.elementGroups[params.element!];
+        if (!equalityHolds(group, params.M!)) return false;
+        break;
+      }
+      case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR": {
+        const group = indexes.elementGroups[params.element!];
+        const expectedDemons = group.length - (params.M ?? 0);
+        if (!equalityHolds(group, expectedDemons)) return false;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  return true;
+}
+
+function hasUniqueSolution(characters: Character[], indexes: PuzzleIndexes): boolean {
+  const truth = characters.map((c) => c.identity === "DEMON");
+  const assignment: Array<boolean | null> = Array(characters.length).fill(null);
+
+  const cluesValid = cluesConsistent(characters, indexes, assignment);
+  if (!cluesValid) return false;
+
+  let foundAlternative = false;
+
+  function backtrack(nextIdx: number) {
+    if (foundAlternative) return;
+    if (nextIdx === characters.length) {
+      const matchesTruth = assignment.every((val, idx) => val === truth[idx]);
+      if (!matchesTruth) foundAlternative = true;
+      return;
+    }
+
+    if (assignment[nextIdx] !== null) {
+      backtrack(nextIdx + 1);
+      return;
+    }
+
+    [true, false].forEach((val) => {
+      if (foundAlternative) return;
+      assignment[nextIdx] = val;
+      if (cluesConsistent(characters, indexes, assignment)) {
+        backtrack(nextIdx + 1);
+      }
+      assignment[nextIdx] = null;
     });
   }
 
-  // Sort alphabetically
-  people.sort((a, b) => a.name.localeCompare(b.name));
+  backtrack(0);
+  return !foundAlternative;
+}
 
-  // Assign positions
-  people.forEach((person, idx) => {
-    person.id = idx;
-    person.row = Math.floor(idx / 4);
-    person.col = idx % 4;
+function runDeduction(
+  characters: Character[],
+  indexes: PuzzleIndexes,
+  revealed: Set<number>,
+): Array<Identity | "UNKNOWN"> {
+  const state: Array<Identity | "UNKNOWN"> = Array(characters.length).fill("UNKNOWN");
+  revealed.forEach((id) => {
+    state[id] = characters[id].identity;
   });
 
-  // Assign demons (6-8)
-  const demonCount = Math.floor(Math.random() * 3) + 6;
-  const shuffledIndices = [...Array(20).keys()].sort(() => Math.random() - 0.5);
-  for (let i = 0; i < demonCount; i++) {
-    people[shuffledIndices[i]].isDemon = true;
+  const setState = (id: number, identity: Identity) => {
+    if (state[id] === "UNKNOWN") {
+      state[id] = identity;
+      return true;
+    }
+    return false;
+  };
+
+  let progress = true;
+  while (progress) {
+    progress = false;
+
+    characters.forEach((speaker) => {
+      if (!revealed.has(speaker.id) || !speaker.clue) return;
+      const { type, params } = speaker.clue;
+
+      switch (type) {
+        case "PERSON_IS_DEMON":
+          progress = setState(params.targetId!, "DEMON") || progress;
+          break;
+        case "PERSON_IS_CULTIVATOR":
+          progress = setState(params.targetId!, "CULTIVATOR") || progress;
+          break;
+        case "ONLY_DEMON_IN_ROW": {
+          const rowIds = indexes.rows[params.row!];
+          rowIds.forEach((id) => {
+            if (id === params.subjectId) {
+              progress = setState(id, "DEMON") || progress;
+            } else {
+              progress = setState(id, "CULTIVATOR") || progress;
+            }
+          });
+          break;
+        }
+        case "ONLY_CULTIVATOR_IN_ROW": {
+          const rowIds = indexes.rows[params.row!];
+          rowIds.forEach((id) => {
+            if (id === params.subjectId) {
+              progress = setState(id, "CULTIVATOR") || progress;
+            } else {
+              progress = setState(id, "DEMON") || progress;
+            }
+          });
+          break;
+        }
+        case "ONLY_DEMON_IN_COLUMN": {
+          const colIds = indexes.cols[params.col!];
+          colIds.forEach((id) => {
+            if (id === params.subjectId) {
+              progress = setState(id, "DEMON") || progress;
+            } else {
+              progress = setState(id, "CULTIVATOR") || progress;
+            }
+          });
+          break;
+        }
+        case "ONLY_CULTIVATOR_IN_COLUMN": {
+          const colIds = indexes.cols[params.col!];
+          colIds.forEach((id) => {
+            if (id === params.subjectId) {
+              progress = setState(id, "CULTIVATOR") || progress;
+            } else {
+              progress = setState(id, "DEMON") || progress;
+            }
+          });
+          break;
+        }
+        case "N_NEIGHBORS_A_DAEMON": {
+          const neighbors = indexes.neighbors[speaker.id];
+          progress = setState(params.mentionedId!, "DEMON") || progress;
+
+          const knownDemons = neighbors.filter((id) => state[id] === "DEMON");
+          const knownCultivators = neighbors.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = neighbors.filter((id) => state[id] === "UNKNOWN");
+          const expectedDemons = params.N ?? 0;
+
+          if (knownDemons.length === expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          if (knownCultivators.length === neighbors.length - expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          break;
+        }
+        case "N_NEIGHBORS_A_CULTIVATOR": {
+          const neighbors = indexes.neighbors[speaker.id];
+          progress = setState(params.mentionedId!, "CULTIVATOR") || progress;
+
+          const knownCultivators = neighbors.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemons = neighbors.filter((id) => state[id] === "DEMON");
+          const unknown = neighbors.filter((id) => state[id] === "UNKNOWN");
+          const expectedCultivators = params.N ?? 0;
+
+          if (knownCultivators.length === expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          if (knownDemons.length === neighbors.length - expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "M_OF_N_DEMONS_NEIGHBORING_IN_ROW": {
+          const subjectNeighbors = indexes.neighbors[params.subjectId!];
+          const rowNeighbors = subjectNeighbors.filter((id) => characters[id].row === params.row);
+          const knownDemonsRow = rowNeighbors.filter((id) => state[id] === "DEMON");
+          const unknownRow = rowNeighbors.filter((id) => state[id] === "UNKNOWN");
+          const knownDemonsOther = subjectNeighbors.filter(
+            (id) => characters[id].row !== params.row && state[id] === "DEMON",
+          );
+          const expectedRowDemons = params.M ?? 0;
+          const expectedTotalDemons = params.N ?? 0;
+
+          if (knownDemonsRow.length >= expectedRowDemons) {
+            unknownRow.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+
+          if (
+            knownDemonsOther.length >= expectedTotalDemons - expectedRowDemons &&
+            knownDemonsRow.length === expectedRowDemons - 1 &&
+            unknownRow.length === 1
+          ) {
+            progress = setState(unknownRow[0], "DEMON") || progress;
+          }
+          break;
+        }
+        case "M_OF_N_DEMONS_NEIGHBORING_IN_COLUMN": {
+          const subjectNeighbors = indexes.neighbors[params.subjectId!];
+          const colNeighbors = subjectNeighbors.filter((id) => characters[id].col === params.col);
+          const knownDemonsCol = colNeighbors.filter((id) => state[id] === "DEMON");
+          const unknownCol = colNeighbors.filter((id) => state[id] === "UNKNOWN");
+          const knownDemonsOther = subjectNeighbors.filter(
+            (id) => characters[id].col !== params.col && state[id] === "DEMON",
+          );
+          const expectedColDemons = params.M ?? 0;
+          const expectedTotalDemons = params.N ?? 0;
+
+          if (knownDemonsCol.length >= expectedColDemons) {
+            unknownCol.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+
+          if (
+            knownDemonsOther.length >= expectedTotalDemons - expectedColDemons &&
+            knownDemonsCol.length === expectedColDemons - 1 &&
+            unknownCol.length === 1
+          ) {
+            progress = setState(unknownCol[0], "DEMON") || progress;
+          }
+          break;
+        }
+        case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_ROW": {
+          const subjectNeighbors = indexes.neighbors[params.subjectId!];
+          const rowNeighbors = subjectNeighbors.filter((id) => characters[id].row === params.row);
+          const knownCultivatorsRow = rowNeighbors.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemonsRow = rowNeighbors.filter((id) => state[id] === "DEMON");
+          const unknownRow = rowNeighbors.filter((id) => state[id] === "UNKNOWN");
+          const knownCultivatorsOther = subjectNeighbors.filter(
+            (id) => characters[id].row !== params.row && state[id] === "CULTIVATOR",
+          );
+          const expectedRowCultivators = params.M ?? 0;
+          const expectedTotalCultivators = params.N ?? 0;
+
+          if (knownCultivatorsRow.length >= expectedRowCultivators) {
+            unknownRow.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+
+          if (
+            knownCultivatorsOther.length >= expectedTotalCultivators - expectedRowCultivators &&
+            knownCultivatorsRow.length === expectedRowCultivators - 1 &&
+            unknownRow.length === 1
+          ) {
+            progress = setState(unknownRow[0], "CULTIVATOR") || progress;
+          }
+
+          if (knownDemonsRow.length === rowNeighbors.length - expectedRowCultivators) {
+            unknownRow.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "M_OF_N_CULTIVATORS_NEIGHBORING_IN_COLUMN": {
+          const subjectNeighbors = indexes.neighbors[params.subjectId!];
+          const colNeighbors = subjectNeighbors.filter((id) => characters[id].col === params.col);
+          const knownCultivatorsCol = colNeighbors.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemonsCol = colNeighbors.filter((id) => state[id] === "DEMON");
+          const unknownCol = colNeighbors.filter((id) => state[id] === "UNKNOWN");
+          const knownCultivatorsOther = subjectNeighbors.filter(
+            (id) => characters[id].col !== params.col && state[id] === "CULTIVATOR",
+          );
+          const expectedColCultivators = params.M ?? 0;
+          const expectedTotalCultivators = params.N ?? 0;
+
+          if (knownCultivatorsCol.length >= expectedColCultivators) {
+            unknownCol.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+
+          if (
+            knownCultivatorsOther.length >= expectedTotalCultivators - expectedColCultivators &&
+            knownCultivatorsCol.length === expectedColCultivators - 1 &&
+            unknownCol.length === 1
+          ) {
+            progress = setState(unknownCol[0], "CULTIVATOR") || progress;
+          }
+
+          if (knownDemonsCol.length === colNeighbors.length - expectedColCultivators) {
+            unknownCol.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_DEMON": {
+          const group = indexes.elementGroups[params.element!];
+          const knownDemons = group.filter((id) => state[id] === "DEMON");
+          const knownCultivators = group.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = group.filter((id) => state[id] === "UNKNOWN");
+          const demonQuota = params.M ?? 0;
+          const cultivatorQuota = (params.N ?? 0) - demonQuota;
+
+          if (knownDemons.length >= demonQuota) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          if (knownCultivators.length >= cultivatorQuota) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          break;
+        }
+        case "M_OF_N_SPIRITUAL_ROOT_ELEMENT_BE_CULTIVATOR": {
+          const group = indexes.elementGroups[params.element!];
+          const knownDemons = group.filter((id) => state[id] === "DEMON");
+          const knownCultivators = group.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = group.filter((id) => state[id] === "UNKNOWN");
+          const cultivatorQuota = params.M ?? 0;
+          const demonQuota = (params.N ?? 0) - cultivatorQuota;
+
+          if (knownCultivators.length >= cultivatorQuota) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          if (knownDemons.length >= demonQuota) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    });
   }
 
-  // Create solve order - random permutation
-  const solveOrder = [...Array(20).keys()].sort(() => Math.random() - 0.5);
+  return state;
+}
 
-  // Helper function to get people in same row
-  const getPeopleInRow = (row) => people.filter(p => p.row === row);
+function findDeducible(characters: Character[], indexes: PuzzleIndexes, revealed: Set<number>) {
+  const state = runDeduction(characters, indexes, revealed);
+  return characters
+    .filter((c) => !revealed.has(c.id) && state[c.id] !== "UNKNOWN")
+    .map((c) => ({ id: c.id, identity: state[c.id] as Identity }));
+}
 
-  // Helper function to get people in same column
-  const getPeopleInColumn = (col) => people.filter(p => p.col === col);
+function simulateSequentialSolve(characters: Character[], indexes: PuzzleIndexes, startId: number): boolean {
+  const revealed = new Set<number>([startId]);
+  let guard = 0;
 
-  // Each person's clue points to the NEXT person in solve order
-  // This guarantees exactly ONE deducible person at each step
-  for (let i = 0; i < 20; i++) {
-    const currentId = solveOrder[i];
-    const nextId = solveOrder[(i + 1) % 20];
+  while (revealed.size < characters.length && guard < characters.length * 3) {
+    guard += 1;
+    const deducible = findDeducible(characters, indexes, revealed);
+    if (deducible.length === 0) return false;
+    revealed.add(deducible[0].id);
+  }
 
-    const current = people[currentId];
-    const next = people[nextId];
+  return revealed.size === characters.length;
+}
 
-    // Check what kind of clues we can generate for the next person
-    const possibleClueTypes = [];
+function validatePuzzle(puzzle: Puzzle): boolean {
+  const { characters, indexes, startId } = puzzle;
+  if (!cluesConsistent(characters, indexes, Array(characters.length).fill(null))) return false;
+  if (!hasUniqueSolution(characters, indexes)) return false;
+  if (!simulateSequentialSolve(characters, indexes, startId)) return false;
+  return true;
+}
 
-    // Check if next is a neighbor of current
-    const isNeighbor = areNeighbors(current, next);
+function generatePuzzle(): Puzzle {
+  let attempts = 0;
+  const maxAttempts = 120;
 
-    // Check if next is only demon in row
-    const rowPeople = getPeopleInRow(next.row);
-    const demonsInRow = rowPeople.filter(p => p.isDemon);
-    const cultivatorsInRow = rowPeople.filter(p => !p.isDemon);
-
-    if (next.isDemon && demonsInRow.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_DEMON_IN_ROW] !== false) {
-      possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_ROW);
-    }
-
-    if (!next.isDemon && cultivatorsInRow.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW] !== false) {
-      possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW);
-    }
-
-    // Check if next is only demon/cultivator in column
-    const colPeople = getPeopleInColumn(next.col);
-    const demonsInCol = colPeople.filter(p => p.isDemon);
-    const cultivatorsInCol = colPeople.filter(p => !p.isDemon);
-
-    if (next.isDemon && demonsInCol.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_DEMON_IN_COLUMN] !== false) {
-      possibleClueTypes.push(CLUE_TYPES.ONLY_DEMON_IN_COLUMN);
-    }
-
-    if (!next.isDemon && cultivatorsInCol.length === 1 && CLUE_CONFIG[CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN] !== false) {
-      possibleClueTypes.push(CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN);
-    }
-
-    // Check if we can use neighbor-based clue
-    if (isNeighbor) {
-      if (next.isDemon && CLUE_CONFIG[CLUE_TYPES.N_NEIGHBORS_A_DAEMON] !== false) {
-        possibleClueTypes.push(CLUE_TYPES.N_NEIGHBORS_A_DAEMON);
-      } else if (!next.isDemon && CLUE_CONFIG[CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR] !== false) {
-        possibleClueTypes.push(CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR);
-      }
-    }
-
-    // Add the basic clue type as an option if enabled
-    const basicClueType = next.isDemon ? CLUE_TYPES.PERSON_IS_DEMON : CLUE_TYPES.PERSON_IS_CULTIVATOR;
-    if (CLUE_CONFIG[basicClueType] !== false) {
-      possibleClueTypes.push(basicClueType);
-    }
-
-    // If no clue types are available after checking configuration,
-    // use the basic type as absolute fallback to prevent puzzle generation failure
-    let availableClueTypes = possibleClueTypes;
-    if (availableClueTypes.length === 0) {
-      console.warn(`No enabled clue types available for ${current.name} -> ${next.name}. Using basic clue despite configuration.`);
-      availableClueTypes = [basicClueType];
-    }
-
-    // Randomly choose one of the available clue types
-    const chosenType = availableClueTypes[Math.floor(Math.random() * availableClueTypes.length)];
-
-    // Generate clue text based on type
-    let clueText = '';
-    const COLS = ['A', 'B', 'C', 'D'];
-
-    switch (chosenType) {
-      case CLUE_TYPES.ONLY_DEMON_IN_ROW:
-        clueText = `${next.name} is the only demon in row ${next.row + 1}.`;
-        break;
-      case CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW:
-        clueText = `${next.name} is the only cultivator in row ${next.row + 1}.`;
-        break;
-      case CLUE_TYPES.ONLY_DEMON_IN_COLUMN:
-        clueText = `${next.name} is the only demon in column ${COLS[next.col]}.`;
-        break;
-      case CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN:
-        clueText = `${next.name} is the only cultivator in column ${COLS[next.col]}.`;
-        break;
-      case CLUE_TYPES.N_NEIGHBORS_A_DAEMON:
-        const demonNeighbors = getNeighbors(current, people).filter(p => p.isDemon);
-        clueText = `I have exactly ${demonNeighbors.length} demon neighbors and ${next.name} is one of them.`;
-        break;
-      case CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR:
-        const cultivatorNeighbors = getNeighbors(current, people).filter(p => !p.isDemon);
-        clueText = `I have exactly ${cultivatorNeighbors.length} cultivator neighbors and ${next.name} is one of them.`;
-        break;
-      default:
-        clueText = `${next.name} is ${next.isDemon ? 'a demon' : 'a cultivator'}.`;
-    }
-
-    current.clue = clueText;
-    current.clueData = {
-      type: chosenType,
-      data: { personId: next.id }
+  while (attempts < maxAttempts) {
+    attempts += 1;
+    const baseCharacters = buildCharacters();
+    const indexes = buildIndexes(baseCharacters);
+    const candidates = buildCandidates(baseCharacters, indexes);
+    const withClues = applyCluesToCharacters(baseCharacters, candidates);
+    const startId = Math.floor(Math.random() * TOTAL_CHARACTERS);
+    const puzzle: Puzzle = {
+      characters: withClues,
+      indexes,
+      startId,
     };
-  }
-
-  // First person in solve order is revealed
-  people[solveOrder[0]].isRevealed = true;
-
-  return people;
-}
-
-// ============================================
-// LOGIC ENGINE
-// ============================================
-function canDeduceIdentity(people, targetId) {
-  const target = people[targetId];
-
-  // Check if any revealed clue directly identifies this person
-  for (const person of people) {
-    if (!person.isRevealed) continue;
-    if (!person.clueData) continue;
-
-    const { type, data } = person.clueData;
-
-    // Direct identification
-    if (type === CLUE_TYPES.PERSON_IS_DEMON && data.personId === targetId) {
-      return { canDeduce: true, isDemon: true };
-    }
-    if (type === CLUE_TYPES.PERSON_IS_CULTIVATOR && data.personId === targetId) {
-      return { canDeduce: true, isDemon: false };
-    }
-
-    // Neighbor-based identification - direct mention
-    if (type === CLUE_TYPES.N_NEIGHBORS_A_DAEMON && data.personId === targetId) {
-      return { canDeduce: true, isDemon: true };
-    }
-    if (type === CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR && data.personId === targetId) {
-      return { canDeduce: true, isDemon: false };
-    }
-
-    // Neighbor-based identification - deduce from count
-    // If someone says "I have exactly N demon neighbors" and we've revealed all N demons,
-    // then all other neighbors must be cultivators
-    if (type === CLUE_TYPES.N_NEIGHBORS_A_DAEMON) {
-      const speaker = person;
-      const speakerNeighbors = getNeighbors(speaker, people);
-
-      // Check if target is a neighbor of the speaker
-      if (speakerNeighbors.some(n => n.id === targetId)) {
-        // Count revealed demon neighbors
-        const revealedDemonNeighbors = speakerNeighbors.filter(n => n.isRevealed && n.isDemon);
-
-        // Parse the clue to get the expected count
-        const clueMatch = speaker.clue.match(/I have exactly (\d+) demon neighbors/);
-        if (clueMatch) {
-          const expectedDemonCount = parseInt(clueMatch[1]);
-
-          // If we've already revealed all the demon neighbors
-          if (revealedDemonNeighbors.length === expectedDemonCount) {
-            // And target is not one of them, target must be a cultivator
-            if (!revealedDemonNeighbors.some(n => n.id === targetId)) {
-              return { canDeduce: true, isDemon: false };
-            }
-          }
-
-          // Count revealed cultivator neighbors
-          const revealedCultivatorNeighbors = speakerNeighbors.filter(n => n.isRevealed && !n.isDemon);
-          const totalNeighbors = speakerNeighbors.length;
-          const expectedCultivatorCount = totalNeighbors - expectedDemonCount;
-
-          // If we've revealed all the cultivator neighbors
-          if (revealedCultivatorNeighbors.length === expectedCultivatorCount) {
-            // And target is not one of them, target must be a demon
-            if (!revealedCultivatorNeighbors.some(n => n.id === targetId)) {
-              return { canDeduce: true, isDemon: true };
-            }
-          }
-        }
-      }
-    }
-
-    // Similar logic for cultivator neighbors
-    if (type === CLUE_TYPES.N_NEIGHBORS_A_CULTIVATOR) {
-      const speaker = person;
-      const speakerNeighbors = getNeighbors(speaker, people);
-
-      if (speakerNeighbors.some(n => n.id === targetId)) {
-        const revealedCultivatorNeighbors = speakerNeighbors.filter(n => n.isRevealed && !n.isDemon);
-
-        const clueMatch = speaker.clue.match(/I have exactly (\d+) cultivator neighbors/);
-        if (clueMatch) {
-          const expectedCultivatorCount = parseInt(clueMatch[1]);
-
-          // If we've revealed all the cultivator neighbors
-          if (revealedCultivatorNeighbors.length === expectedCultivatorCount) {
-            // And target is not one of them, target must be a demon
-            if (!revealedCultivatorNeighbors.some(n => n.id === targetId)) {
-              return { canDeduce: true, isDemon: true };
-            }
-          }
-
-          // Count revealed demon neighbors
-          const revealedDemonNeighbors = speakerNeighbors.filter(n => n.isRevealed && n.isDemon);
-          const totalNeighbors = speakerNeighbors.length;
-          const expectedDemonCount = totalNeighbors - expectedCultivatorCount;
-
-          // If we've revealed all the demon neighbors
-          if (revealedDemonNeighbors.length === expectedDemonCount) {
-            // And target is not one of them, target must be a cultivator
-            if (!revealedDemonNeighbors.some(n => n.id === targetId)) {
-              return { canDeduce: true, isDemon: false };
-            }
-          }
-        }
-      }
-    }
-
-    // Check "only demon/cultivator in row" clues
-    if (type === CLUE_TYPES.ONLY_DEMON_IN_ROW) {
-      const clueSubject = people[data.personId];
-      // If target is in the same row as the clue subject
-      if (target.row === clueSubject.row) {
-        if (target.id === clueSubject.id) {
-          // This person is the demon
-          return { canDeduce: true, isDemon: true };
-        } else {
-          // Everyone else in the row is a cultivator
-          return { canDeduce: true, isDemon: false };
-        }
-      }
-    }
-
-    if (type === CLUE_TYPES.ONLY_CULTIVATOR_IN_ROW) {
-      const clueSubject = people[data.personId];
-      if (target.row === clueSubject.row) {
-        if (target.id === clueSubject.id) {
-          // This person is the cultivator
-          return { canDeduce: true, isDemon: false };
-        } else {
-          // Everyone else in the row is a demon
-          return { canDeduce: true, isDemon: true };
-        }
-      }
-    }
-
-    // Check "only demon/cultivator in column" clues
-    if (type === CLUE_TYPES.ONLY_DEMON_IN_COLUMN) {
-      const clueSubject = people[data.personId];
-      if (target.col === clueSubject.col) {
-        if (target.id === clueSubject.id) {
-          // This person is the demon
-          return { canDeduce: true, isDemon: true };
-        } else {
-          // Everyone else in the column is a cultivator
-          return { canDeduce: true, isDemon: false };
-        }
-      }
-    }
-
-    if (type === CLUE_TYPES.ONLY_CULTIVATOR_IN_COLUMN) {
-      const clueSubject = people[data.personId];
-      if (target.col === clueSubject.col) {
-        if (target.id === clueSubject.id) {
-          // This person is the cultivator
-          return { canDeduce: true, isDemon: false };
-        } else {
-          // Everyone else in the column is a demon
-          return { canDeduce: true, isDemon: true };
-        }
-      }
+    if (validatePuzzle(puzzle)) {
+      return puzzle;
     }
   }
 
-  return { canDeduce: false, isDemon: null };
+  throw new Error("Failed to generate a valid puzzle after multiple attempts");
 }
 
-// ============================================
-// MAIN GAME COMPONENT
-// ============================================
-export default function CultivatorsGame() {
-  const [people, setPeople] = useState(null);
-  const [selectedPerson, setSelectedPerson] = useState(null);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
-  const [showHowToPlay, setShowHowToPlay] = useState(false);
-  const [showWarning, setShowWarning] = useState(false);
+type GameCharacter = Character & { cornerTag: number };
 
-  useEffect(() => {
-    startNewGame();
-  }, []);
+function formatTime(ms: number) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
 
-  const startNewGame = useCallback(() => {
-    const newPeople = generateValidPuzzle();
-    setPeople(newPeople);
-    setSelectedPerson(null);
+function canDeduceIdentity(
+  characters: GameCharacter[],
+  indexes: PuzzleIndexes,
+  targetId: number,
+): { canDeduce: boolean; identity: Identity | null } {
+  const revealed = new Set<number>(characters.filter((c) => c.isRevealed).map((c) => c.id));
+  const state = runDeduction(characters, indexes, revealed);
+  if (state[targetId] === "UNKNOWN") return { canDeduce: false, identity: null };
+  return { canDeduce: true, identity: state[targetId] as Identity };
+}
+
+export default function Page() {
+  const createPuzzleState = useMemo(
+    () => () => {
+      const puzzle = generatePuzzle();
+      return {
+        indexes: puzzle.indexes,
+        characters: puzzle.characters.map((c) => ({
+          ...c,
+          isRevealed: c.id === puzzle.startId,
+          cornerTag: 0,
+        })),
+      };
+    },
+    [],
+  );
+
+  const [puzzleState, setPuzzleState] = useState(createPuzzleState);
+  const { characters, indexes } = puzzleState;
+  const [selected, setSelected] = useState<GameCharacter | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
+  const [debugRevealAll, setDebugRevealAll] = useState(false);
+  const [startTime, setStartTime] = useState<number>(() => Date.now());
+  const [endTime, setEndTime] = useState<number | null>(null);
+
+  const isReady = indexes !== null;
+  const isComplete = useMemo(() => characters.every((c) => c.isRevealed), [characters]);
+
+  const updateCharacters = (updater: (prev: GameCharacter[]) => GameCharacter[]) => {
+    setPuzzleState((prev) => ({
+      ...prev,
+      characters: updater(prev.characters),
+    }));
+  };
+
+  const regenerate = () => {
+    setPuzzleState(createPuzzleState());
+    setWarning(null);
+    setSelected(null);
+    setDebugRevealAll(false);
     setStartTime(Date.now());
     setEndTime(null);
-  }, []);
-
-  const isGameComplete = useMemo(() => {
-    if (!people) return false;
-    return people.every(p => p.isRevealed);
-  }, [people]);
-
-  useEffect(() => {
-    if (isGameComplete && !endTime) {
-      setEndTime(Date.now());
-    }
-  }, [isGameComplete, endTime]);
-
-  const handleCardClick = (e, person) => {
-    if (e.target.closest('.corner-tag')) return;
-    if (isGameComplete || person.isRevealed) return;
-    setSelectedPerson(person);
   };
 
-  const handleCornerTag = (e, personId) => {
-    e.stopPropagation();
-    setPeople(prev => prev.map(p =>
-      p.id === personId ? { ...p, cornerTag: (p.cornerTag + 1) % 4 } : p
-    ));
-  };
-
-  const handleIdentify = (guessIsDemon) => {
-    if (!selectedPerson) return;
-    
-    // Check if this person can be deduced
-    const { canDeduce, isDemon } = canDeduceIdentity(people, selectedPerson.id);
-    
-    if (!canDeduce) {
-      // No clue identifies this person yet
-      setShowWarning(true);
-      setSelectedPerson(null);
-      return;
-    }
-    
-    // Check if the guess matches what can be deduced
-    if (guessIsDemon !== isDemon) {
-      // Wrong guess - the clue says otherwise
-      setShowWarning(true);
-      setSelectedPerson(null);
+  const handleIdentify = (guess: Identity) => {
+    if (!selected || !indexes) return;
+    const { canDeduce, identity } = canDeduceIdentity(characters, indexes, selected.id);
+    if (!canDeduce || identity !== guess) {
+      setWarning("Not enough evidence for that choice yet.");
+      setSelected(null);
       return;
     }
 
-    // Correct deduction!
-    setPeople(prev => prev.map(p =>
-      p.id === selectedPerson.id ? { ...p, isRevealed: true } : p
-    ));
-
-    setSelectedPerson(null);
+    updateCharacters((prev) => {
+      const next = prev.map((p) => (p.id === selected.id ? { ...p, isRevealed: true } : p));
+      if (next.every((p) => p.isRevealed) && !endTime) {
+        setEndTime(Date.now());
+      }
+      return next;
+    });
+    setSelected(null);
   };
 
-  const formatTime = (ms) => {
-    const totalSeconds = Math.floor(ms / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    if (minutes < 6) {
-      return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-    return `${minutes} min`;
-  };
+  const deducibleList = useMemo(() => {
+    if (!indexes) return [];
+    const revealed = new Set<number>(characters.filter((c) => c.isRevealed).map((c) => c.id));
+    return findDeducible(characters, indexes, revealed);
+  }, [characters, indexes]);
 
-  const getShareText = () => {
-    if (!people || !endTime) return '';
-    const time = formatTime(endTime - startTime);
-    const grid = [];
-    for (let row = 0; row < 5; row++) {
-      const rowText = people
-        .filter(p => p.row === row)
-        .sort((a, b) => a.col - b.col)
-        .map(() => '🟩')
-        .join('');
-      grid.push(rowText);
-    }
-    return `Cultivators or Demon? - ${time}\n${grid.join('\n')}`;
-  };
+  const shareText = useMemo(() => {
+    if (!startTime || !endTime) return "";
+    return `Cultivators or Demon-In-Disguise? - ${formatTime(endTime - startTime)}`;
+  }, [startTime, endTime]);
 
-  if (!people) return null;
+  if (!isReady) return null;
 
-  const CORNER_COLORS = ['transparent', '#22c55e', '#ef4444', '#eab308'];
-  const COLS = ['A', 'B', 'C', 'D'];
+  const COL_LABELS = ["A", "B", "C", "D"];
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%)',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      color: '#e8e8e8',
-      padding: '16px',
-      boxSizing: 'border-box'
-    }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%)",
+        color: "#e8e8e8",
+        padding: "16px",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      }}
+    >
       <style>{`
         * { box-sizing: border-box; }
-        .card {
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-          user-select: none;
-        }
-        .card:hover:not(.revealed) {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        }
-        .btn {
-          border: none;
-          padding: 12px 24px;
-          border-radius: 8px;
-          font-size: 15px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.15s ease;
-        }
-        .btn:hover {
-          transform: translateY(-1px);
-          filter: brightness(1.1);
-        }
-        .btn:active {
-          transform: translateY(0);
-        }
-        .modal-overlay {
-          position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(0,0,0,0.85);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          padding: 20px;
-        }
-        .modal {
-          background: linear-gradient(145deg, #1e1e2f, #252538);
-          border-radius: 16px;
-          padding: 24px;
-          max-width: 360px;
-          width: 100%;
-          border: 1px solid rgba(255,255,255,0.1);
-          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          20%, 60% { transform: translateX(-8px); }
-          40%, 80% { transform: translateX(8px); }
-        }
-        .animate-in {
-          animation: fadeIn 0.2s ease;
-        }
-        .shake {
-          animation: shake 0.4s ease;
-        }
-        .clue-text {
-          font-size: 0.6rem;
-          line-height: 1.3;
-          color: #d1d5db;
-          margin-top: 6px;
-          padding-top: 6px;
-          border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .name-highlight {
-          color: #f472b6;
-          font-weight: 600;
-        }
+        .card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .card:hover:not(.revealed) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+        .btn { border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 100; }
+        .modal { background: linear-gradient(145deg, #1e1e2f, #252538); border-radius: 16px; padding: 20px; max-width: 360px; width: 100%; border: 1px solid rgba(255,255,255,0.1); }
+        .clue-text { font-size: 0.65rem; color: #d1d5db; margin-top: 6px; line-height: 1.3; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px; }
       `}</style>
 
-      <header style={{ textAlign: 'center', marginBottom: '16px' }}>
-        <h1 style={{
-          fontSize: '1.4rem',
-          fontWeight: 700,
-          margin: '0 0 4px',
-          background: 'linear-gradient(135deg, #c084fc, #60a5fa)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
+      <header style={{ textAlign: "center", marginBottom: 16 }}>
+        <h1
+          style={{
+            fontSize: "1.4rem",
+            margin: 0,
+            background: "linear-gradient(135deg, #c084fc, #60a5fa)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
           Cultivators or Demon-In-Disguise?
         </h1>
-        <p style={{ color: '#888', fontSize: '0.8rem', margin: 0 }}>
-          Identify who is a true cultivator and who is a demon
+        <p style={{ margin: 0, color: "#9ca3af", fontSize: "0.85rem" }}>
+          Deduce every identity using the truth-bound clues.
         </p>
       </header>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '20px repeat(4, 1fr)',
-        gap: '6px',
-        maxWidth: '520px',
-        margin: '0 auto 4px',
-      }}>
+      <div style={{ display: "grid", gridTemplateColumns: "20px repeat(4, 1fr)", gap: 6, maxWidth: 520, margin: "0 auto 6px" }}>
         <div />
-        {COLS.map(col => (
-          <div key={col} style={{
-            textAlign: 'center',
-            color: '#666',
-            fontSize: '0.75rem',
-            fontWeight: 600
-          }}>{col}</div>
+        {COL_LABELS.map((col) => (
+          <div key={col} style={{ textAlign: "center", color: "#666", fontSize: "0.75rem", fontWeight: 700 }}>
+            {col}
+          </div>
         ))}
       </div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '20px repeat(4, 1fr)',
-        gap: '6px',
-        maxWidth: '520px',
-        margin: '0 auto 20px'
-      }}>
-        {[0, 1, 2, 3, 4].map(row => (
+      <div style={{ display: "grid", gridTemplateColumns: "20px repeat(4, 1fr)", gap: 6, maxWidth: 520, margin: "0 auto 16px" }}>
+        {[0, 1, 2, 3, 4].map((row) => (
           <React.Fragment key={row}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#666',
-              fontSize: '0.75rem',
-              fontWeight: 600
-            }}>{row + 1}</div>
-            
-            {people.filter(p => p.row === row).sort((a, b) => a.col - b.col).map(person => {
-              // Parse clue to highlight name
-              const renderClue = () => {
-                if (!person.clue) return null;
-
-                // Try to match simple "X is a demon/cultivator" format
-                let match = person.clue.match(/^(.+?) is (a demon|a cultivator)\.$/);
-                if (match) {
-                  return (
-                    <>
-                      "<span className="name-highlight">{match[1]}</span> is {match[2]}."
-                    </>
-                  );
-                }
-
-                // Try to match "X is the only demon/cultivator in row N" format
-                match = person.clue.match(/^(.+?) is the only (demon|cultivator) in row (\d+)\.$/);
-                if (match) {
-                  return (
-                    <>
-                      "<span className="name-highlight">{match[1]}</span> is the only {match[2]} in row {match[3]}."
-                    </>
-                  );
-                }
-
-                // Try to match "X is the only demon/cultivator in column Y" format
-                match = person.clue.match(/^(.+?) is the only (demon|cultivator) in column ([A-D])\.$/);
-                if (match) {
-                  return (
-                    <>
-                      "<span className="name-highlight">{match[1]}</span> is the only {match[2]} in column {match[3]}."
-                    </>
-                  );
-                }
-
-                // Try to match "I have exactly N demon/cultivator neighbors and X is one of them" format
-                match = person.clue.match(/^I have exactly (\d+) (demon|cultivator) neighbors and (.+?) is one of them\.$/);
-                if (match) {
-                  return (
-                    <>
-                      "I have exactly {match[1]} {match[2]} neighbors and <span className="name-highlight">{match[3]}</span> is one of them."
-                    </>
-                  );
-                }
-
-                // Fallback: just return the clue with quotes
-                return `"${person.clue}"`;
-              };
-
-              return (
-                <div
-                  key={person.id}
-                  className={`card ${person.isRevealed ? 'revealed' : ''}`}
-                  onClick={(e) => handleCardClick(e, person)}
-                  style={{
-                    background: person.isRevealed
-                      ? person.isDemon
-                        ? 'linear-gradient(145deg, #7f1d1d, #991b1b)'
-                        : 'linear-gradient(145deg, #14532d, #166534)'
-                      : 'linear-gradient(145deg, #2a2a3d, #1e1e2f)',
-                    borderRadius: '10px',
-                    padding: '8px',
-                    cursor: person.isRevealed ? 'default' : 'pointer',
-                    position: 'relative',
-                    minHeight: person.isRevealed ? '105px' : '75px',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}
-                >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#666", fontSize: "0.75rem", fontWeight: 700 }}>
+              {row + 1}
+            </div>
+            {characters
+              .filter((p) => p.row === row)
+              .sort((a, b) => a.col - b.col)
+              .map((person) => {
+                const revealed = person.isRevealed || debugRevealAll;
+                return (
                   <div
-                    className="corner-tag"
-                    onClick={(e) => handleCornerTag(e, person.id)}
+                    key={person.id}
+                    className="card"
+                    onClick={() => (!revealed ? setSelected(person) : null)}
                     style={{
-                      position: 'absolute',
-                      top: '4px',
-                      right: '4px',
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
-                      background: CORNER_COLORS[person.cornerTag],
-                      border: person.cornerTag === 0 ? '1px dashed rgba(255,255,255,0.2)' : 'none',
-                      cursor: 'pointer',
-                      zIndex: 10
+                      padding: 8,
+                      borderRadius: 10,
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      background: revealed
+                        ? person.identity === "DEMON"
+                          ? "linear-gradient(145deg, #7f1d1d, #991b1b)"
+                          : "linear-gradient(145deg, #14532d, #166534)"
+                        : "linear-gradient(145deg, #2a2a3d, #1e1e2f)",
+                      cursor: revealed ? "default" : "pointer",
+                      position: "relative",
+                      minHeight: revealed ? 110 : 80,
                     }}
-                  />
-
-                  {person.isRevealed && (
-                    <div style={{
-                      position: 'absolute',
-                      top: '4px',
-                      left: '6px',
-                      fontSize: '0.8rem'
-                    }}>
-                      {person.isDemon ? '👹' : '🧘'}
+                  >
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCharacters((prev) =>
+                          prev.map((p) =>
+                            p.id === person.id ? { ...p, cornerTag: (p.cornerTag + 1) % CORNER_COLORS.length } : p,
+                          ),
+                        );
+                      }}
+                      style={{
+                        position: "absolute",
+                        top: 4,
+                        right: 4,
+                        width: 14,
+                        height: 14,
+                        borderRadius: 3,
+                        background: CORNER_COLORS[person.cornerTag],
+                        border: person.cornerTag === 0 ? "1px dashed rgba(255,255,255,0.2)" : "none",
+                        cursor: "pointer",
+                      }}
+                    />
+                    {revealed && (
+                      <div style={{ position: "absolute", top: 4, left: 6, fontSize: "0.85rem" }}>
+                        {person.identity === "DEMON" ? "👹" : "🧘"}
+                      </div>
+                    )}
+                    <div style={{ fontWeight: 700, fontSize: "0.75rem", marginTop: revealed ? 16 : 0 }}>{person.name}</div>
+                    <div style={{ color: "#9ca3af", fontSize: "0.65rem", marginTop: 2 }}>
+                      {person.spiritualRoot.join("-")}
                     </div>
-                  )}
-
-                  <div style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 600,
-                    marginTop: person.isRevealed ? '14px' : '0',
-                    marginBottom: '2px',
-                    color: '#f0f0f0',
-                    lineHeight: 1.2,
-                    wordBreak: 'break-word'
-                  }}>
-                    {person.name}
+                    {revealed && person.clue && <div className="clue-text">{person.clue.text}</div>}
                   </div>
-
-                  <div style={{
-                    fontSize: '0.58rem',
-                    color: '#9ca3af',
-                    lineHeight: 1.2
-                  }}>
-                    {person.spiritualRoot.shortLabel}
-                  </div>
-
-                  {person.isRevealed && (
-                    <div className="clue-text">
-                      {renderClue()}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
           </React.Fragment>
         ))}
       </div>
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '10px',
-        marginBottom: '20px'
-      }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 10, marginBottom: 16 }}>
         <button
           className="btn"
-          onClick={() => setShowHowToPlay(true)}
+          onClick={() => setDebugRevealAll((v) => !v)}
           style={{
-            background: 'rgba(255,255,255,0.1)',
-            color: '#aaa',
-            padding: '8px 16px',
-            fontSize: '0.85rem'
+            background: debugRevealAll ? "linear-gradient(135deg, #ef4444, #dc2626)" : "rgba(255,255,255,0.12)",
+            color: debugRevealAll ? "white" : "#d1d5db",
           }}
         >
-          How to Play
+          {debugRevealAll ? "Hide All" : "Debug Reveal"}
         </button>
         <button
           className="btn"
-          onClick={startNewGame}
-          style={{
-            background: 'rgba(255,255,255,0.1)',
-            color: '#aaa',
-            padding: '8px 16px',
-            fontSize: '0.85rem'
+          onClick={() => {
+            regenerate();
+            setWarning(null);
+            setSelected(null);
+            setStartTime(Date.now());
+            setEndTime(null);
           }}
+          style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "white" }}
         >
           New Puzzle
         </button>
       </div>
 
-      {selectedPerson && !isGameComplete && (
-        <div className="modal-overlay" onClick={() => setSelectedPerson(null)}>
-          <div className="modal animate-in" onClick={e => e.stopPropagation()}>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-              <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🔍</div>
-              <h3 style={{ margin: '0 0 4px', color: '#e0e0e0', fontSize: '1.1rem' }}>
-                {selectedPerson.name}
-              </h3>
-              <p style={{ margin: 0, color: '#888', fontSize: '0.85rem' }}>
-                {selectedPerson.spiritualRoot.label}
-              </p>
+      {selected && (
+        <div className="modal-overlay" onClick={() => setSelected(null)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <div style={{ textAlign: "center", marginBottom: 12 }}>
+              <div style={{ fontSize: "2rem", marginBottom: 6 }}>🔍</div>
+              <div style={{ fontWeight: 700, fontSize: "1.05rem" }}>{selected.name}</div>
+              <div style={{ color: "#9ca3af", fontSize: "0.85rem" }}>{selected.spiritualRoot.join("-")}</div>
             </div>
-            
-            <p style={{ 
-              textAlign: 'center', 
-              color: '#aaa', 
-              marginBottom: '20px',
-              fontSize: '0.9rem'
-            }}>
-              What is this person's true identity?
-            </p>
-
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <p style={{ textAlign: "center", color: "#d1d5db", marginBottom: 14 }}>What is this person&apos;s identity?</p>
+            <div style={{ display: "flex", gap: 10 }}>
               <button
                 className="btn"
-                onClick={() => handleIdentify(false)}
-                style={{
-                  flex: 1,
-                  background: 'linear-gradient(135deg, #166534, #22c55e)',
-                  color: 'white',
-                  boxShadow: '0 4px 16px rgba(34,197,94,0.3)'
-                }}
+                onClick={() => handleIdentify("CULTIVATOR")}
+                style={{ flex: 1, background: "linear-gradient(135deg, #14532d, #22c55e)", color: "white" }}
               >
                 🧘 Cultivator
               </button>
               <button
                 className="btn"
-                onClick={() => handleIdentify(true)}
-                style={{
-                  flex: 1,
-                  background: 'linear-gradient(135deg, #991b1b, #ef4444)',
-                  color: 'white',
-                  boxShadow: '0 4px 16px rgba(239,68,68,0.3)'
-                }}
+                onClick={() => handleIdentify("DEMON")}
+                style={{ flex: 1, background: "linear-gradient(135deg, #7f1d1d, #ef4444)", color: "white" }}
               >
                 👹 Demon
               </button>
             </div>
-            
             <button
-              onClick={() => setSelectedPerson(null)}
+              className="btn"
+              onClick={() => setSelected(null)}
               style={{
-                width: '100%',
-                marginTop: '12px',
-                background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.2)',
-                color: '#888',
-                padding: '10px',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontSize: '0.85rem'
+                marginTop: 10,
+                width: "100%",
+                background: "rgba(255,255,255,0.08)",
+                color: "#d1d5db",
               }}
             >
               Cancel
@@ -936,132 +1315,49 @@ export default function CultivatorsGame() {
         </div>
       )}
 
-      {showWarning && (
-        <div className="modal-overlay" onClick={() => setShowWarning(false)}>
-          <div className="modal shake" onClick={e => e.stopPropagation()}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>⚠️</div>
-              <h3 style={{ 
-                margin: '0 0 12px', 
-                color: '#fbbf24', 
-                fontSize: '1.2rem',
-                fontWeight: 700
-              }}>
-                Not enough evidence!
-              </h3>
-              <p style={{ 
-                color: '#aaa', 
-                marginBottom: '20px',
-                fontSize: '0.9rem',
-                lineHeight: 1.5
-              }}>
-                You cannot make this deduction yet. Read the clues carefully - exactly ONE person can be identified at each step.
-              </p>
-              <button
-                className="btn"
-                onClick={() => setShowWarning(false)}
-                style={{
-                  background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                  color: 'white',
-                  width: '100%'
-                }}
-              >
-                I understand
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showHowToPlay && (
-        <div className="modal-overlay" onClick={() => setShowHowToPlay(false)}>
-          <div className="modal animate-in" onClick={e => e.stopPropagation()}>
-            <h2 style={{ margin: '0 0 16px', fontSize: '1.2rem', color: '#c4b5fd' }}>
-              How to Play
-            </h2>
-            <div style={{ color: '#bbb', fontSize: '0.85rem', lineHeight: 1.6 }}>
-              <p style={{ margin: '0 0 12px' }}>
-                Your goal is to figure out <strong style={{ color: '#22c55e' }}>who is a cultivator</strong> and <strong style={{ color: '#ef4444' }}>who is a demon in disguise</strong>.
-              </p>
-              <p style={{ margin: '0 0 12px' }}>
-                Tap on a person to make your deduction. Each revealed person shows a clue on their card.
-              </p>
-              <p style={{ margin: '0 0 12px', fontWeight: 600, color: '#fbbf24' }}>
-                You cannot guess! At each step, exactly ONE person can be identified based on the revealed clues.
-              </p>
-              <p style={{ margin: '0 0 16px', fontStyle: 'italic', color: '#999' }}>
-                Everyone speaks the truth, even the demons!
-              </p>
-              
-              <h4 style={{ margin: '0 0 8px', color: '#a0a0a0' }}>Tips:</h4>
-              <ul style={{ margin: '0 0 16px', paddingLeft: '20px', color: '#999' }}>
-                <li>Read each clue carefully - names are highlighted</li>
-                <li>Find the person mentioned in a revealed clue</li>
-                <li>Tap card corners to add color tags for tracking</li>
-              </ul>
-            </div>
+      {warning && (
+        <div className="modal-overlay" onClick={() => setWarning(null)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <h3 style={{ margin: "0 0 10px", color: "#fbbf24" }}>Not enough evidence!</h3>
+            <p style={{ color: "#d1d5db" }}>{warning}</p>
             <button
               className="btn"
-              onClick={() => setShowHowToPlay(false)}
-              style={{
-                background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                color: 'white',
-                width: '100%'
-              }}
+              onClick={() => setWarning(null)}
+              style={{ marginTop: 8, width: "100%", background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "white" }}
             >
-              Got it!
+              Understood
             </button>
           </div>
         </div>
       )}
 
-      {isGameComplete && (
+      {isComplete && (
         <div className="modal-overlay">
-          <div className="modal animate-in">
-            <h2 style={{ margin: '0 0 8px', fontSize: '1.3rem', color: '#22c55e', textAlign: 'center' }}>
-              🎊 Puzzle Complete!
-            </h2>
-            <p style={{ textAlign: 'center', color: '#888', margin: '0 0 16px' }}>
-              Time: {formatTime(endTime - startTime)}
-            </p>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '4px',
-              marginBottom: '20px',
-              maxWidth: '140px',
-              margin: '0 auto 20px'
-            }}>
-              {people.map(person => (
-                <div key={person.id} style={{ textAlign: 'center', fontSize: '1.1rem' }}>
-                  🟩
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '10px' }}>
+          <div className="modal">
+            <h2 style={{ margin: "0 0 8px", textAlign: "center", color: "#22c55e" }}>Puzzle complete!</h2>
+            {startTime && endTime && (
+              <p style={{ textAlign: "center", color: "#d1d5db" }}>
+                Time: {formatTime(endTime - startTime)}
+              </p>
+            )}
+            <div style={{ display: "flex", gap: 10 }}>
               <button
                 className="btn"
-                onClick={() => {
-                  navigator.clipboard.writeText(getShareText());
-                }}
-                style={{
-                  flex: 1,
-                  background: 'rgba(255,255,255,0.1)',
-                  color: '#ccc'
-                }}
+                onClick={() => navigator.clipboard?.writeText(shareText)}
+                style={{ flex: 1, background: "rgba(255,255,255,0.08)", color: "#d1d5db" }}
               >
                 Copy Result
               </button>
               <button
                 className="btn"
-                onClick={startNewGame}
-                style={{
-                  flex: 1,
-                  background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                  color: 'white'
+                onClick={() => {
+                  regenerate();
+                  setWarning(null);
+                  setSelected(null);
+                  setStartTime(Date.now());
+                  setEndTime(null);
                 }}
+                style={{ flex: 1, background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "white" }}
               >
                 Play Again
               </button>
@@ -1070,22 +1366,23 @@ export default function CultivatorsGame() {
         </div>
       )}
 
-      <Rules />
+      <section style={{ maxWidth: 720, margin: "18px auto" }}>
+        <div style={{ color: "#9ca3af", fontSize: "0.85rem", marginBottom: 8 }}>
+          Next deducible identities ({deducibleList.length}):{" "}
+          {deducibleList
+            .map(
+              (d) =>
+                `${characters[d.id].name} (${d.identity === "DEMON" ? "👹" : "🧘"})`,
+            )
+            .join(", ")}
+        </div>
+      </section>
 
+      <Rules />
       <DetailedExplanation />
 
-      <footer style={{
-        textAlign: 'center',
-        color: '#555',
-        fontSize: '0.7rem',
-        marginTop: '16px'
-      }}>
-        Inspired by <a
-          href="https://cluesbysam.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#7c3aed', textDecoration: 'none' }}
-        >Clues by Sam</a>
+      <footer style={{ textAlign: "center", color: "#555", fontSize: "0.75rem", marginTop: 16 }}>
+        Inspired by Clues by Sam
       </footer>
     </div>
   );
