@@ -71,10 +71,10 @@ Atoms are the smallest semantic units. A full clause is formed by chaining atoms
 | Atom | Meaning |
 |------|---------|
 | `exact(n)` | Exactly _n_ |
+| `of(m, n)` | Exactly _m_ of _n_ total (group must have exactly n people) |
 | `atLeast(n)` | At least _n_ |
 | `atMost(n)` | At most _n_ |
 | `oneof(k)` | Exactly one of the _k_ |
-| `of(i, j)` | Restrict the quantifier to positions i..j |
 | `inTotal(n)` | The total count is _n_ |
 | `even()` | An even number of |
 | `odd()` | An odd number of |
@@ -185,6 +185,31 @@ GROUP_REF  ::= IDENT ;
 LABEL      ::= IDENT ;
 IDENT      ::= [A-Za-z_][A-Za-z0-9_]* ;
 ```
+
+### **Compositional Patterns**
+
+Multiple group selectors can be composed to create intersection constraints:
+
+**Pattern: Neighbor + Location**
+```
+RootCall . QuantifierCall . NeighborCall . LocationCall
+```
+
+When both `neighbor(x)` and a location selector (`row(r)` or `column(c)`) appear in a chain, they define an intersection:
+- The affected group is: (neighbors of X) ∩ (people in location)
+- The quantifier applies to this intersection
+
+**Example:**
+```
+neg().of(2,4).neighbor(PersonX).row(3)
+```
+Meaning: "Of PersonX's neighbors who are in row 3 (4 people total), exactly 2 are demons"
+
+Natural language: "Exactly 2 of the 4 neighbors of PersonX in row 3 are demons-in-disguise."
+
+**Note:** The `of(m, n)` quantifier asserts both:
+1. The intersection has exactly n people
+2. Of those n people, exactly m match the polarity (demons or cultivators)
 
 ---
 
@@ -495,6 +520,30 @@ pos().exact(1).between(Li_Mu_id, Zhang_Wei_id)
 Output:
 ```
 "Exactly 1 cultivator is between Li Mu and me."
+```
+
+**Example 11: Composed neighbor + location (self-reference)**
+
+Input (where speaker is Chen Hao):
+```
+neg().of(2,5).neighbor(Chen_Hao_id).row(3)
+```
+
+Output:
+```
+"Exactly 2 of the 5 my neighbors in row 4 are demons-in-disguise."
+```
+
+**Example 12: Composed neighbor + location (other person)**
+
+Input:
+```
+pos().of(3,4).neighbor(Zhang_Wei_id).column(2)
+```
+
+Output:
+```
+"Exactly 3 of the 4 Zhang Wei's neighbors in column C are cultivators."
 ```
 
 ---

@@ -13,6 +13,7 @@ type QuantifierAtom =
   | { type: "exact"; n: number }
   | { type: "atLeast"; n: number }
   | { type: "atMost"; n: number }
+  | { type: "of"; m: number; n: number } // m of n total
   | { type: "all" }
   | { type: "even" }
   | { type: "odd" };
@@ -252,8 +253,28 @@ function exact(n: number): QuantifierAtom {
   return { type: "exact", n };
 }
 
+function of(m: number, n: number): QuantifierAtom {
+  return { type: "of", m, n };
+}
+
 function all(): QuantifierAtom {
   return { type: "all" };
+}
+
+function atLeast(n: number): QuantifierAtom {
+  return { type: "atLeast", n };
+}
+
+function atMost(n: number): QuantifierAtom {
+  return { type: "atMost", n };
+}
+
+function even(): QuantifierAtom {
+  return { type: "even" };
+}
+
+function odd(): QuantifierAtom {
+  return { type: "odd" };
 }
 
 function row(r: number): GroupSelectorAtom {
@@ -306,6 +327,7 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
   let count = 1;
   let needsPlural = false;
   let neighborPersonId: number | null = null;
+  let totalCount: number | null = null; // For "m of n" quantifier
 
   // Collect all atom information
   for (const step of atomChain.steps) {
@@ -314,6 +336,12 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
         quantifierPhrase = `exactly ${step.n}`;
         count = step.n;
         needsPlural = step.n !== 1;
+        break;
+      case "of":
+        quantifierPhrase = `exactly ${step.m} of the ${step.n}`;
+        count = step.m;
+        totalCount = step.n;
+        needsPlural = step.m !== 1;
         break;
       case "atLeast":
         quantifierPhrase = `at least ${step.n}`;
@@ -369,15 +397,27 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
   // Special handling for neighbor atoms
   if (neighborPersonId !== null) {
     const noun = needsPlural ? polarityNounPlural : polarityNoun;
-    const neighborWord = needsPlural || count > 1 ? "neighbors" : "neighbor";
+    const neighborWord = totalCount !== null ? "neighbors" : (needsPlural || count > 1 ? "neighbors" : "neighbor");
+    const personName = neighborPersonId === speakerId ? "my" : `${characters[neighborPersonId].name}'s`;
 
+    // If we also have a row/column selector, compose them
+    // e.g., "Exactly 2 of the 4 neighbors of X in row 5 are demons"
+    if (rowIndex !== null || colIndex !== null) {
+      const neighborPhrase = neighborPersonId === speakerId ? "my neighbors" : `${characters[neighborPersonId].name}'s neighbors`;
+      const locationPhrase = rowIndex !== null ? `in row ${rowIndex + 1}` : `in column ${COLS[colIndex!]}`;
+      const capitalizedQuantifier = quantifierPhrase.charAt(0).toUpperCase() + quantifierPhrase.slice(1);
+      const verb = needsPlural || count > 1 ? "are" : "is";
+
+      return `${capitalizedQuantifier} ${neighborPhrase} ${locationPhrase} ${verb} ${noun}.`;
+    }
+
+    // Simple neighbor clue without row/column composition
     // Use "I" if speaker is talking about themselves
     if (neighborPersonId === speakerId) {
       return `I have ${quantifierPhrase} ${noun} ${neighborWord}.`;
     }
 
-    const personName = characters[neighborPersonId].name;
-    return `${personName} has ${quantifierPhrase} ${noun} ${neighborWord}.`;
+    return `${characters[neighborPersonId].name} has ${quantifierPhrase} ${noun} ${neighborWord}.`;
   }
 
   // Build sentence: Subject + Verb + Predicate
@@ -573,6 +613,129 @@ function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Recor
       list.push(chain(pos(), all(), neighbor(speaker.id)));
     }
 
+    // Composed neighbor + row/column clues: ALL quantifier combinations
+    for (let r = 0; r < GRID_ROWS; r += 1) {
+      const rowIds = indexes.rows[r];
+      const intersection = neighborIds.filter((id) => rowIds.includes(id));
+      if (intersection.length >= 1) {
+        const demonsInIntersection = intersection.filter((id) => characters[id].identity === "DEMON").length;
+        const cultivatorsInIntersection = intersection.length - demonsInIntersection;
+
+        // Generate demon clues with various quantifiers
+        if (demonsInIntersection > 0) {
+          list.push(chain(neg(), exact(demonsInIntersection), neighbor(speaker.id), row(r)));
+          if (intersection.length >= 2) {
+            list.push(chain(neg(), of(demonsInIntersection, intersection.length), neighbor(speaker.id), row(r)));
+          }
+          // atLeast: can claim atLeast(1) through atLeast(demonsInIntersection)
+          for (let threshold = 1; threshold <= demonsInIntersection; threshold++) {
+            list.push(chain(neg(), atLeast(threshold), neighbor(speaker.id), row(r)));
+          }
+          // atMost: can claim atMost(demonsInIntersection) through atMost(intersection.length)
+          for (let threshold = demonsInIntersection; threshold <= intersection.length; threshold++) {
+            list.push(chain(neg(), atMost(threshold), neighbor(speaker.id), row(r)));
+          }
+        }
+        if (demonsInIntersection === intersection.length) {
+          list.push(chain(neg(), all(), neighbor(speaker.id), row(r)));
+        }
+        // even/odd based on demon count
+        if (demonsInIntersection % 2 === 0 && demonsInIntersection > 0) {
+          list.push(chain(neg(), even(), neighbor(speaker.id), row(r)));
+        }
+        if (demonsInIntersection % 2 === 1) {
+          list.push(chain(neg(), odd(), neighbor(speaker.id), row(r)));
+        }
+
+        // Generate cultivator clues with various quantifiers
+        if (cultivatorsInIntersection > 0) {
+          list.push(chain(pos(), exact(cultivatorsInIntersection), neighbor(speaker.id), row(r)));
+          if (intersection.length >= 2) {
+            list.push(chain(pos(), of(cultivatorsInIntersection, intersection.length), neighbor(speaker.id), row(r)));
+          }
+          // atLeast: can claim atLeast(1) through atLeast(cultivatorsInIntersection)
+          for (let threshold = 1; threshold <= cultivatorsInIntersection; threshold++) {
+            list.push(chain(pos(), atLeast(threshold), neighbor(speaker.id), row(r)));
+          }
+          // atMost: can claim atMost(cultivatorsInIntersection) through atMost(intersection.length)
+          for (let threshold = cultivatorsInIntersection; threshold <= intersection.length; threshold++) {
+            list.push(chain(pos(), atMost(threshold), neighbor(speaker.id), row(r)));
+          }
+        }
+        if (cultivatorsInIntersection === intersection.length) {
+          list.push(chain(pos(), all(), neighbor(speaker.id), row(r)));
+        }
+        // even/odd based on cultivator count
+        if (cultivatorsInIntersection % 2 === 0 && cultivatorsInIntersection > 0) {
+          list.push(chain(pos(), even(), neighbor(speaker.id), row(r)));
+        }
+        if (cultivatorsInIntersection % 2 === 1) {
+          list.push(chain(pos(), odd(), neighbor(speaker.id), row(r)));
+        }
+      }
+    }
+
+    for (let c = 0; c < GRID_COLS; c += 1) {
+      const colIds = indexes.cols[c];
+      const intersection = neighborIds.filter((id) => colIds.includes(id));
+      if (intersection.length >= 1) {
+        const demonsInIntersection = intersection.filter((id) => characters[id].identity === "DEMON").length;
+        const cultivatorsInIntersection = intersection.length - demonsInIntersection;
+
+        // Generate demon clues with various quantifiers
+        if (demonsInIntersection > 0) {
+          list.push(chain(neg(), exact(demonsInIntersection), neighbor(speaker.id), column(c)));
+          if (intersection.length >= 2) {
+            list.push(chain(neg(), of(demonsInIntersection, intersection.length), neighbor(speaker.id), column(c)));
+          }
+          // atLeast: can claim atLeast(1) through atLeast(demonsInIntersection)
+          for (let threshold = 1; threshold <= demonsInIntersection; threshold++) {
+            list.push(chain(neg(), atLeast(threshold), neighbor(speaker.id), column(c)));
+          }
+          // atMost: can claim atMost(demonsInIntersection) through atMost(intersection.length)
+          for (let threshold = demonsInIntersection; threshold <= intersection.length; threshold++) {
+            list.push(chain(neg(), atMost(threshold), neighbor(speaker.id), column(c)));
+          }
+        }
+        if (demonsInIntersection === intersection.length) {
+          list.push(chain(neg(), all(), neighbor(speaker.id), column(c)));
+        }
+        // even/odd based on demon count
+        if (demonsInIntersection % 2 === 0 && demonsInIntersection > 0) {
+          list.push(chain(neg(), even(), neighbor(speaker.id), column(c)));
+        }
+        if (demonsInIntersection % 2 === 1) {
+          list.push(chain(neg(), odd(), neighbor(speaker.id), column(c)));
+        }
+
+        // Generate cultivator clues with various quantifiers
+        if (cultivatorsInIntersection > 0) {
+          list.push(chain(pos(), exact(cultivatorsInIntersection), neighbor(speaker.id), column(c)));
+          if (intersection.length >= 2) {
+            list.push(chain(pos(), of(cultivatorsInIntersection, intersection.length), neighbor(speaker.id), column(c)));
+          }
+          // atLeast: can claim atLeast(1) through atLeast(cultivatorsInIntersection)
+          for (let threshold = 1; threshold <= cultivatorsInIntersection; threshold++) {
+            list.push(chain(pos(), atLeast(threshold), neighbor(speaker.id), column(c)));
+          }
+          // atMost: can claim atMost(cultivatorsInIntersection) through atMost(intersection.length)
+          for (let threshold = cultivatorsInIntersection; threshold <= intersection.length; threshold++) {
+            list.push(chain(pos(), atMost(threshold), neighbor(speaker.id), column(c)));
+          }
+        }
+        if (cultivatorsInIntersection === intersection.length) {
+          list.push(chain(pos(), all(), neighbor(speaker.id), column(c)));
+        }
+        // even/odd based on cultivator count
+        if (cultivatorsInIntersection % 2 === 0 && cultivatorsInIntersection > 0) {
+          list.push(chain(pos(), even(), neighbor(speaker.id), column(c)));
+        }
+        if (cultivatorsInIntersection % 2 === 1) {
+          list.push(chain(pos(), odd(), neighbor(speaker.id), column(c)));
+        }
+      }
+    }
+
     // Spiritual root element clues
     ELEMENTS.forEach((element) => {
       const group = indexes.elementGroups[element];
@@ -680,39 +843,52 @@ function minMaxDemons(ids: number[], assignment: Array<boolean | null>) {
 
 function getAffectedIds(atomChain: AtomChain, characters: Character[], indexes: PuzzleIndexes, speakerId: number): number[] {
   let affected: number[] = [];
+  const groups: number[][] = []; // Collect all group constraints
 
   for (const step of atomChain.steps) {
     switch (step.type) {
       case "row":
-        affected = indexes.rows[step.r];
+        groups.push(indexes.rows[step.r]);
         break;
       case "column":
-        affected = indexes.cols[step.c];
+        groups.push(indexes.cols[step.c]);
         break;
       case "neighbor":
-        affected = indexes.neighbors[step.personId];
+        groups.push(indexes.neighbors[step.personId]);
         break;
       case "be":
-        affected = indexes.elementGroups[step.label as Element] || [];
+        groups.push(indexes.elementGroups[step.label as Element] || []);
         break;
       case "above": {
         const anchor = characters[step.personId];
-        affected = characters.filter((p) => p.col === anchor.col && p.row < anchor.row).map((p) => p.id);
+        groups.push(characters.filter((p) => p.col === anchor.col && p.row < anchor.row).map((p) => p.id));
         break;
       }
       case "below": {
         const anchor = characters[step.personId];
-        affected = characters.filter((p) => p.col === anchor.col && p.row > anchor.row).map((p) => p.id);
+        groups.push(characters.filter((p) => p.col === anchor.col && p.row > anchor.row).map((p) => p.id));
         break;
       }
       case "between": {
-        affected = betweenIds(characters, step.person1Id, step.person2Id);
+        groups.push(betweenIds(characters, step.person1Id, step.person2Id));
         break;
       }
     }
   }
 
-  return affected.length > 0 ? affected : [speakerId];
+  // Compute intersection of all groups
+  if (groups.length === 0) {
+    return [speakerId];
+  } else if (groups.length === 1) {
+    return groups[0];
+  } else {
+    // Intersection of all groups
+    affected = groups[0];
+    for (let i = 1; i < groups.length; i++) {
+      affected = affected.filter((id) => groups[i].includes(id));
+    }
+    return affected;
+  }
 }
 
 function getExpectedDemonCount(atomChain: AtomChain, affectedIds: number[]): { min: number; max: number } | null {
@@ -721,6 +897,15 @@ function getExpectedDemonCount(atomChain: AtomChain, affectedIds: number[]): { m
   for (const step of atomChain.steps) {
     if (step.type === "exact") {
       const count = isDemon ? step.n : affectedIds.length - step.n;
+      return { min: count, max: count };
+    }
+    if (step.type === "of") {
+      // m of n total: the group must have exactly n people, and m of them match polarity
+      if (affectedIds.length !== step.n) {
+        // Group size doesn't match - this clue is invalid for this group
+        return null;
+      }
+      const count = isDemon ? step.m : step.n - step.m;
       return { min: count, max: count };
     }
     if (step.type === "all") {
@@ -903,7 +1088,7 @@ function validatePuzzle(puzzle: Puzzle): boolean {
 
 function generatePuzzle(): Puzzle {
   let attempts = 0;
-  const maxAttempts = 120;
+  const maxAttempts = 1024;
 
   while (attempts < maxAttempts) {
     attempts += 1;
