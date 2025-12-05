@@ -699,171 +699,208 @@ function generateGroupClues(
   return clues;
 }
 
+function countByIdentity(ids: number[], characters: Character[]) {
+  const demons = ids.filter((id) => characters[id].identity === "DEMON").length;
+  return { demons, cultivators: ids.length - demons };
+}
+
+function buildCandidatesForLocations(characters: Character[], indexes: PuzzleIndexes): AtomChain[] {
+  const list: AtomChain[] = [];
+
+  // Rows
+  for (let r = 0; r < GRID_ROWS; r += 1) {
+    const groupIds = indexes.rows[r];
+    const { demons, cultivators } = countByIdentity(groupIds, characters);
+
+    list.push(...generateGroupClues(neg(), row(r), groupIds, demons));
+    list.push(...generateGroupClues(pos(), row(r), groupIds, cultivators));
+  }
+
+  // Columns
+  for (let c = 0; c < GRID_COLS; c += 1) {
+    const groupIds = indexes.cols[c];
+    const { demons, cultivators } = countByIdentity(groupIds, characters);
+
+    list.push(...generateGroupClues(neg(), column(c), groupIds, demons));
+    list.push(...generateGroupClues(pos(), column(c), groupIds, cultivators));
+  }
+
+  // Corners
+  const cornerIds = indexes.corners;
+  const { demons: demonsInCorners, cultivators: cultivatorsInCorners } = countByIdentity(cornerIds, characters);
+  list.push(...generateGroupClues(neg(), corner(), cornerIds, demonsInCorners));
+  list.push(...generateGroupClues(pos(), corner(), cornerIds, cultivatorsInCorners));
+
+  // Edges
+  const edgeIds = indexes.edges;
+  const { demons: demonsOnEdge, cultivators: cultivatorsOnEdge } = countByIdentity(edgeIds, characters);
+  list.push(...generateGroupClues(neg(), edge(), edgeIds, demonsOnEdge));
+  list.push(...generateGroupClues(pos(), edge(), edgeIds, cultivatorsOnEdge));
+
+  return list;
+}
+
+function buildCandidatesForNeighbors(
+  speaker: Character,
+  characters: Character[],
+  indexes: PuzzleIndexes,
+): AtomChain[] {
+  const list: AtomChain[] = [];
+  const neighborIds = indexes.neighbors[speaker.id];
+  const { demons, cultivators } = countByIdentity(neighborIds, characters);
+
+  list.push(...generateGroupClues(neg(), neighbor(speaker.id), neighborIds, demons));
+  list.push(...generateGroupClues(pos(), neighbor(speaker.id), neighborIds, cultivators));
+
+  return list;
+}
+
+function buildCandidatesForNeighborLocations(
+  speaker: Character,
+  characters: Character[],
+  indexes: PuzzleIndexes,
+): AtomChain[] {
+  const list: AtomChain[] = [];
+  const neighborIds = indexes.neighbors[speaker.id];
+
+  // Neighbor + Row intersections
+  for (let r = 0; r < GRID_ROWS; r += 1) {
+    const intersection = neighborIds.filter((id) => indexes.rows[r].includes(id));
+    if (intersection.length >= 1) {
+      const { demons, cultivators } = countByIdentity(intersection, characters);
+
+      list.push(...generateGroupClues(neg(), [neighbor(speaker.id), row(r)], intersection, demons));
+      list.push(...generateGroupClues(pos(), [neighbor(speaker.id), row(r)], intersection, cultivators));
+    }
+  }
+
+  // Neighbor + Column intersections
+  for (let c = 0; c < GRID_COLS; c += 1) {
+    const intersection = neighborIds.filter((id) => indexes.cols[c].includes(id));
+    if (intersection.length >= 1) {
+      const { demons, cultivators } = countByIdentity(intersection, characters);
+
+      list.push(...generateGroupClues(neg(), [neighbor(speaker.id), column(c)], intersection, demons));
+      list.push(...generateGroupClues(pos(), [neighbor(speaker.id), column(c)], intersection, cultivators));
+    }
+  }
+
+  // Neighbor + Corner intersections
+  const neighborCornerIntersection = neighborIds.filter((id) => indexes.corners.includes(id));
+  if (neighborCornerIntersection.length >= 1) {
+    const { demons, cultivators } = countByIdentity(neighborCornerIntersection, characters);
+
+    list.push(
+      ...generateGroupClues(neg(), [neighbor(speaker.id), corner()], neighborCornerIntersection, demons),
+    );
+    list.push(
+      ...generateGroupClues(pos(), [neighbor(speaker.id), corner()], neighborCornerIntersection, cultivators),
+    );
+  }
+
+  // Neighbor + Edge intersections
+  const neighborEdgeIntersection = neighborIds.filter((id) => indexes.edges.includes(id));
+  if (neighborEdgeIntersection.length >= 1) {
+    const { demons, cultivators } = countByIdentity(neighborEdgeIntersection, characters);
+
+    list.push(...generateGroupClues(neg(), [neighbor(speaker.id), edge()], neighborEdgeIntersection, demons));
+    list.push(...generateGroupClues(pos(), [neighbor(speaker.id), edge()], neighborEdgeIntersection, cultivators));
+  }
+
+  return list;
+}
+
+function buildCandidatesForElements(characters: Character[], indexes: PuzzleIndexes): AtomChain[] {
+  const list: AtomChain[] = [];
+
+  ELEMENTS.forEach((element) => {
+    const group = indexes.elementGroups[element];
+    if (group.length === 0) return;
+    const { demons, cultivators } = countByIdentity(group, characters);
+
+    if (demons > 0) {
+      list.push(chain(neg(), exact(demons), be(element)));
+    }
+    if (cultivators > 0) {
+      list.push(chain(pos(), exact(cultivators), be(element)));
+    }
+    if (group.every((id) => characters[id].identity === "DEMON")) {
+      list.push(chain(neg(), all(), be(element)));
+    }
+    if (group.every((id) => characters[id].identity === "CULTIVATOR")) {
+      list.push(chain(pos(), all(), be(element)));
+    }
+  });
+
+  return list;
+}
+
+function buildCandidatesForPositional(speaker: Character, characters: Character[]): AtomChain[] {
+  const list: AtomChain[] = [];
+
+  characters.forEach((target) => {
+    if (target.id === speaker.id) return;
+
+    // Above
+    const aboveIds = characters.filter((p) => p.col === speaker.col && p.row < speaker.row).map((p) => p.id);
+    if (aboveIds.length > 0) {
+      const { demons, cultivators } = countByIdentity(aboveIds, characters);
+      if (demons > 0 && aboveIds.includes(target.id) && characters[target.id].identity === "DEMON") {
+        list.push(chain(neg(), exact(demons), above(speaker.id)));
+      }
+      if (cultivators > 0 && aboveIds.includes(target.id) && characters[target.id].identity === "CULTIVATOR") {
+        list.push(chain(pos(), exact(cultivators), above(speaker.id)));
+      }
+    }
+
+    // Below
+    const belowIds = characters.filter((p) => p.col === speaker.col && p.row > speaker.row).map((p) => p.id);
+    if (belowIds.length > 0) {
+      const { demons, cultivators } = countByIdentity(belowIds, characters);
+      if (demons > 0 && belowIds.includes(target.id) && characters[target.id].identity === "DEMON") {
+        list.push(chain(neg(), exact(demons), below(speaker.id)));
+      }
+      if (cultivators > 0 && belowIds.includes(target.id) && characters[target.id].identity === "CULTIVATOR") {
+        list.push(chain(pos(), exact(cultivators), below(speaker.id)));
+      }
+    }
+  });
+
+  return list;
+}
+
+function buildCandidatesForBetween(characters: Character[]): AtomChain[] {
+  const list: AtomChain[] = [];
+
+  for (let i = 0; i < characters.length; i += 1) {
+    for (let j = i + 1; j < characters.length; j += 1) {
+      const betweenList = betweenIds(characters, i, j);
+      if (betweenList.length === 0) continue;
+      const { demons, cultivators } = countByIdentity(betweenList, characters);
+      if (demons > 0) {
+        list.push(chain(neg(), exact(demons), between(i, j)));
+      }
+      if (cultivators > 0) {
+        list.push(chain(pos(), exact(cultivators), between(i, j)));
+      }
+    }
+  }
+
+  return list;
+}
+
 function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Record<number, AtomChain[]> {
   const candidates: Record<number, AtomChain[]> = {};
 
   characters.forEach((speaker) => {
     const list: AtomChain[] = [];
 
-    // Group location clues: RootCall QuantifierCall GroupSelectorCall
-    // For each group (rows, columns, corners, edges), generate clues for both polarities
-
-    // Rows
-    for (let r = 0; r < GRID_ROWS; r += 1) {
-      const groupIds = indexes.rows[r];
-      const demonsInGroup = groupIds.filter((id) => characters[id].identity === "DEMON").length;
-      const cultivatorsInGroup = groupIds.length - demonsInGroup;
-
-      list.push(...generateGroupClues(neg(), row(r), groupIds, demonsInGroup));
-      list.push(...generateGroupClues(pos(), row(r), groupIds, cultivatorsInGroup));
-    }
-
-    // Columns
-    for (let c = 0; c < GRID_COLS; c += 1) {
-      const groupIds = indexes.cols[c];
-      const demonsInGroup = groupIds.filter((id) => characters[id].identity === "DEMON").length;
-      const cultivatorsInGroup = groupIds.length - demonsInGroup;
-
-      list.push(...generateGroupClues(neg(), column(c), groupIds, demonsInGroup));
-      list.push(...generateGroupClues(pos(), column(c), groupIds, cultivatorsInGroup));
-    }
-
-    // Corners
-    const cornerIds = indexes.corners;
-    const demonsInCorners = cornerIds.filter((id) => characters[id].identity === "DEMON").length;
-    const cultivatorsInCorners = cornerIds.length - demonsInCorners;
-    list.push(...generateGroupClues(neg(), corner(), cornerIds, demonsInCorners));
-    list.push(...generateGroupClues(pos(), corner(), cornerIds, cultivatorsInCorners));
-
-    // Edges
-    const edgeIds = indexes.edges;
-    const demonsOnEdge = edgeIds.filter((id) => characters[id].identity === "DEMON").length;
-    const cultivatorsOnEdge = edgeIds.length - demonsOnEdge;
-    list.push(...generateGroupClues(neg(), edge(), edgeIds, demonsOnEdge));
-    list.push(...generateGroupClues(pos(), edge(), edgeIds, cultivatorsOnEdge));
-
-    // Neighbor clues: RootCall QuantifierCall NeighborCall
-    const neighborIds = indexes.neighbors[speaker.id];
-    const demonsInNeighbors = neighborIds.filter((id) => characters[id].identity === "DEMON").length;
-    const cultivatorsInNeighbors = neighborIds.length - demonsInNeighbors;
-
-    list.push(...generateGroupClues(neg(), neighbor(speaker.id), neighborIds, demonsInNeighbors));
-    list.push(...generateGroupClues(pos(), neighbor(speaker.id), neighborIds, cultivatorsInNeighbors));
-
-    // Composed neighbor + location clues: RootCall QuantifierCall NeighborCall LocationCall
-    // For each location type (rows, columns, corners, edges), compute intersection with neighbors
-
-    // Neighbor + Row intersections
-    for (let r = 0; r < GRID_ROWS; r += 1) {
-      const intersection = neighborIds.filter((id) => indexes.rows[r].includes(id));
-      if (intersection.length >= 1) {
-        const demonsInIntersection = intersection.filter((id) => characters[id].identity === "DEMON").length;
-        const cultivatorsInIntersection = intersection.length - demonsInIntersection;
-
-        list.push(...generateGroupClues(neg(), [neighbor(speaker.id), row(r)], intersection, demonsInIntersection));
-        list.push(...generateGroupClues(pos(), [neighbor(speaker.id), row(r)], intersection, cultivatorsInIntersection));
-      }
-    }
-
-    // Neighbor + Column intersections
-    for (let c = 0; c < GRID_COLS; c += 1) {
-      const intersection = neighborIds.filter((id) => indexes.cols[c].includes(id));
-      if (intersection.length >= 1) {
-        const demonsInIntersection = intersection.filter((id) => characters[id].identity === "DEMON").length;
-        const cultivatorsInIntersection = intersection.length - demonsInIntersection;
-
-        list.push(...generateGroupClues(neg(), [neighbor(speaker.id), column(c)], intersection, demonsInIntersection));
-        list.push(...generateGroupClues(pos(), [neighbor(speaker.id), column(c)], intersection, cultivatorsInIntersection));
-      }
-    }
-
-    // Neighbor + Corner intersections
-    const neighborCornerIntersection = neighborIds.filter((id) => indexes.corners.includes(id));
-    if (neighborCornerIntersection.length >= 1) {
-      const demonsInIntersection = neighborCornerIntersection.filter((id) => characters[id].identity === "DEMON").length;
-      const cultivatorsInIntersection = neighborCornerIntersection.length - demonsInIntersection;
-
-      list.push(...generateGroupClues(neg(), [neighbor(speaker.id), corner()], neighborCornerIntersection, demonsInIntersection));
-      list.push(...generateGroupClues(pos(), [neighbor(speaker.id), corner()], neighborCornerIntersection, cultivatorsInIntersection));
-    }
-
-    // Neighbor + Edge intersections
-    const neighborEdgeIntersection = neighborIds.filter((id) => indexes.edges.includes(id));
-    if (neighborEdgeIntersection.length >= 1) {
-      const demonsInIntersection = neighborEdgeIntersection.filter((id) => characters[id].identity === "DEMON").length;
-      const cultivatorsInIntersection = neighborEdgeIntersection.length - demonsInIntersection;
-
-      list.push(...generateGroupClues(neg(), [neighbor(speaker.id), edge()], neighborEdgeIntersection, demonsInIntersection));
-      list.push(...generateGroupClues(pos(), [neighbor(speaker.id), edge()], neighborEdgeIntersection, cultivatorsInIntersection));
-    }
-
-    // Spiritual root element clues
-    ELEMENTS.forEach((element) => {
-      const group = indexes.elementGroups[element];
-      if (group.length === 0) return;
-      const demonsWithElement = group.filter((id) => characters[id].identity === "DEMON").length;
-      const cultivatorsWithElement = group.length - demonsWithElement;
-
-      if (demonsWithElement > 0) {
-        list.push(chain(neg(), exact(demonsWithElement), be(element)));
-      }
-      if (cultivatorsWithElement > 0) {
-        list.push(chain(pos(), exact(cultivatorsWithElement), be(element)));
-      }
-      if (group.every((id) => characters[id].identity === "DEMON")) {
-        list.push(chain(neg(), all(), be(element)));
-      }
-      if (group.every((id) => characters[id].identity === "CULTIVATOR")) {
-        list.push(chain(pos(), all(), be(element)));
-      }
-    });
-
-    // Positional clues: above/below/between
-    characters.forEach((target) => {
-      if (target.id === speaker.id) return;
-
-      // Above
-      const aboveIds = characters.filter((p) => p.col === speaker.col && p.row < speaker.row).map((p) => p.id);
-      if (aboveIds.length > 0) {
-        const demonsAbove = aboveIds.filter((id) => characters[id].identity === "DEMON").length;
-        const cultivatorsAbove = aboveIds.length - demonsAbove;
-        if (demonsAbove > 0 && aboveIds.includes(target.id) && characters[target.id].identity === "DEMON") {
-          list.push(chain(neg(), exact(demonsAbove), above(speaker.id)));
-        }
-        if (cultivatorsAbove > 0 && aboveIds.includes(target.id) && characters[target.id].identity === "CULTIVATOR") {
-          list.push(chain(pos(), exact(cultivatorsAbove), above(speaker.id)));
-        }
-      }
-
-      // Below
-      const belowIds = characters.filter((p) => p.col === speaker.col && p.row > speaker.row).map((p) => p.id);
-      if (belowIds.length > 0) {
-        const demonsBelow = belowIds.filter((id) => characters[id].identity === "DEMON").length;
-        const cultivatorsBelow = belowIds.length - demonsBelow;
-        if (demonsBelow > 0 && belowIds.includes(target.id) && characters[target.id].identity === "DEMON") {
-          list.push(chain(neg(), exact(demonsBelow), below(speaker.id)));
-        }
-        if (cultivatorsBelow > 0 && belowIds.includes(target.id) && characters[target.id].identity === "CULTIVATOR") {
-          list.push(chain(pos(), exact(cultivatorsBelow), below(speaker.id)));
-        }
-      }
-    });
-
-    // Between clues
-    for (let i = 0; i < characters.length; i += 1) {
-      for (let j = i + 1; j < characters.length; j += 1) {
-        const betweenList = betweenIds(characters, i, j);
-        if (betweenList.length === 0) continue;
-        const demonsBetween = betweenList.filter((id) => characters[id].identity === "DEMON").length;
-        const cultivatorsBetween = betweenList.length - demonsBetween;
-        if (demonsBetween > 0) {
-          list.push(chain(neg(), exact(demonsBetween), between(i, j)));
-        }
-        if (cultivatorsBetween > 0) {
-          list.push(chain(pos(), exact(cultivatorsBetween), between(i, j)));
-        }
-      }
-    }
+    list.push(...buildCandidatesForLocations(characters, indexes));
+    list.push(...buildCandidatesForNeighbors(speaker, characters, indexes));
+    list.push(...buildCandidatesForNeighborLocations(speaker, characters, indexes));
+    list.push(...buildCandidatesForElements(characters, indexes));
+    list.push(...buildCandidatesForPositional(speaker, characters));
+    list.push(...buildCandidatesForBetween(characters));
 
     candidates[speaker.id] = list;
   });
@@ -1155,7 +1192,7 @@ function validatePuzzle(puzzle: Puzzle): boolean {
 
 function generatePuzzle(): Puzzle {
   let attempts = 0;
-  const maxAttempts = 1024;
+  const maxAttempts = 1024 * 100;
 
   while (attempts < maxAttempts) {
     attempts += 1;
