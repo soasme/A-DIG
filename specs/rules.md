@@ -270,12 +270,18 @@ Examples:
 
 `be(label)` →
 
-- `"are <label>"`
+**For spiritual root elements (Metal, Wood, Water, Fire, Earth):**
+- Change verb from "are/is" to "have/has"
+- Append "spiritual root" after the element name
+- `"have/has <element> spiritual root"`
 
-Example:
+**For other properties:**
+- `"are/is <label>"`
 
-- `be(fire)` → "are fire"
-- `be(cultivator)` → "are cultivators"
+Examples:
+- `be(Fire)` → "have Fire spiritual root" (spiritual root element)
+- `be(Water)` → "has Water spiritual root" (singular)
+- `be(cultivator)` → "are cultivators" (other property)
 
 ----------
 
@@ -283,13 +289,22 @@ Example:
 
 | Atom | Natural Language |
 |------|------------------|
-| `between(a,b)` | "are between A and B" |
+| `between(a,b)` | "are between A and B" (use "me" if speaker is a or b) |
 | `leftOf(x)` | "are to the left of X" |
 | `rightOf(x)` | "are to the right of X" |
 | `above(x)` | "are somewhere above X" |
 | `below(x)` | "are somewhere below X" |
 | `directlyLeftOf(x)` | "are directly left of X" |
 | … | etc. |
+
+**First-person substitution for `between(a,b)`:**
+- If the speaker is person `a`, use "me" instead of the speaker's name
+- If the speaker is person `b`, use "me" instead of the speaker's name
+
+Examples:
+- Speaker is Li Mu: `between(Li_Mu, Zhang_Wei)` → "between me and Zhang Wei"
+- Speaker is Zhang Wei: `between(Li_Mu, Zhang_Wei)` → "between Li Mu and me"
+- Speaker is Chen Hao: `between(Li_Mu, Zhang_Wei)` → "between Li Mu and Zhang Wei"
 
 ----------
 
@@ -324,45 +339,56 @@ Where:
 
 **Special case: Location-only clues**
 
-When there is only a group modifier and no other predicate:
+When there is only a group modifier and no other predicate, flip subject and predicate to emphasize location:
 ```
-Sentence = Quantifier + " " + PolarityNoun + " " + Verb + " " + GroupModifier + "."
+Sentence = Quantifier + " " + LocationPhrase + " " + Verb + " " + PolarityNoun + "."
 ```
-Example: "Exactly 1 demon is in row 3."
+Examples:
+- "All in row 5 are cultivators."
+- "Exactly 1 in column B is demon."
+- "Exactly 3 in row 2 are demons-in-disguise."
 
 **Special structure for `neighbor(x)` atom:**
 ```
-PersonName = name of person referenced by neighbor(x)
 QuantifierPhrase = "exactly N" | "all" | etc.
 PolarityNoun = "cultivator" | "demon" (with plural as needed)
 
+// If speaker is talking about themselves (speakerId === x):
+Sentence = "I have " + QuantifierPhrase + " " + PolarityNoun + " neighbor(s)."
+
+// If speaker is talking about someone else:
+PersonName = name of person referenced by neighbor(x)
 Sentence = PersonName + " has " + QuantifierPhrase + " " + PolarityNoun + " neighbor(s)."
 ```
 
+Examples:
+- "I have exactly 3 cultivator neighbors." (when speaker talks about themselves)
+- "Zhang Wei has all demon neighbors." (when speaker talks about someone else)
+
 ### **3.9 Example Conversions**
 
-**Example 1: Property only**
+**Example 1: Spiritual root only**
 
 Input:
 ```
-neg().exact(2).be(fire)
+neg().exact(2).be(Fire)
 ```
 
 Output:
 ```
-"Exactly 2 demons-in-disguise are fire."
+"Exactly 2 demons-in-disguise have Fire spiritual root."
 ```
 
-**Example 2: Property with position**
+**Example 2: Spiritual root with position**
 
 Input:
 ```
-neg().exact(2).be(fire).below(a)
+neg().exact(2).be(Fire).below(a)
 ```
 
 Output:
 ```
-"Exactly 2 demons-in-disguise are fire and somewhere below A."
+"Exactly 2 demons-in-disguise have Fire spiritual root and are somewhere below A."
 ```
 
 **Example 3: Location only**
@@ -374,7 +400,7 @@ neg().exact(1).row(2)
 
 Output:
 ```
-"Exactly 1 demon is in row 3."
+"Exactly 1 in row 3 is demon."
 ```
 
 **Example 4: Property with group modifier**
@@ -398,43 +424,77 @@ pos().all().column(0)
 
 Output:
 ```
-"All cultivators are in column A."
+"All in column A are cultivators."
 ```
 
-**Example 6: Neighbor count**
+**Example 6: Neighbor count (self-reference)**
 
-Input:
+Input (where speaker is Yuan Jun):
 ```
-pos().exact(3).neighbor(Yuan_Jun)
-```
-
-Output:
-```
-"Yuan Jun has exactly 3 cultivator neighbors."
-```
-
-**Example 7: All neighbors**
-
-Input:
-```
-neg().all().neighbor(Chen_Hao)
+pos().exact(3).neighbor(Yuan_Jun_id)
 ```
 
 Output:
 ```
-"Chen Hao has all demon neighbors."
+"I have exactly 3 cultivator neighbors."
 ```
 
-**Example 8: Between positions**
+**Example 7: Neighbor count (other person)**
 
 Input:
 ```
-neg().exact(2).between(person_a, person_b)
+pos().exact(3).neighbor(Zhang_Wei_id)
 ```
 
 Output:
+```
+"Zhang Wei has exactly 3 cultivator neighbors."
+```
+
+**Example 8: All neighbors (self-reference)**
+
+Input (where speaker is Chen Hao):
+```
+neg().all().neighbor(Chen_Hao_id)
+```
+
+Output:
+```
+"I have all demon neighbors."
+```
+
+**Example 9: Between positions**
+
+Input:
+```
+neg().exact(2).between(Li_Mu_id, Zhang_Wei_id)
+```
+
+Output (speaker is not Li Mu or Zhang Wei):
 ```
 "Exactly 2 demons-in-disguise are between Li Mu and Zhang Wei."
+```
+
+**Example 10: Between positions (with self-reference)**
+
+Input (where speaker is Li Mu):
+```
+pos().exact(1).between(Li_Mu_id, Zhang_Wei_id)
+```
+
+Output:
+```
+"Exactly 1 cultivator is between me and Zhang Wei."
+```
+
+Input (where speaker is Zhang Wei):
+```
+pos().exact(1).between(Li_Mu_id, Zhang_Wei_id)
+```
+
+Output:
+```
+"Exactly 1 cultivator is between Li Mu and me."
 ```
 
 ---
@@ -737,13 +797,53 @@ const ATOM_CONFIG = {
 ### DEBUG Mode
 
 ```javascript
-const DEBUG = true/false;
+const DEBUG = true; // Set to false to disable debug logging
 ```
 
-When enabled, console logs:
-- Next deducible moves during gameplay
-- Detailed deduction attempts when clicking characters
-- Validation failures with reasons
+When enabled (`DEBUG = true`), the game prints detailed state information to the browser console:
+
+**On Game Start:**
+- Full list of all 20 characters with their true identities
+- Each character's clue text
+- Initially revealed character
+- List of immediately deducible characters
+
+**After Each Choice:**
+- Updated game state showing revealed characters
+- All character identities and clues
+- Current deducible characters and their identities
+- Progress tracking (revealed count)
+
+**Console Output Format:**
+```
+================================================================================
+🎮 DEBUG: GAME STARTED
+================================================================================
+
+📊 GAME STATE:
+  Revealed: 1/20 characters
+  Deducible: 3 characters
+
+👥 ALL CHARACTERS:
+  🧘 [ 0] Chen Hao        | CULTIVATOR | ✅ REVEALED
+      💬 "Exactly 2 demons-in-disguise are fire."
+  👹 [ 1] Li Mu           | DEMON      | ❌ Hidden 🔍 DEDUCIBLE as DEMON
+      💬 "Zhang Wei has exactly 3 cultivator neighbors."
+  ...
+
+🔍 NEXT DEDUCIBLE:
+  👹 Li Mu → DEMON
+  🧘 Wang Hua → CULTIVATOR
+  👹 Zhao Yan → DEMON
+
+================================================================================
+```
+
+This debug output helps developers:
+- Verify puzzle generation correctness
+- Test deduction logic
+- Understand the solve path
+- Debug clue generation issues
 
 ---
 

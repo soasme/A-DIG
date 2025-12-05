@@ -70,6 +70,7 @@ const GRID_ROWS = 5;
 const GRID_COLS = 4;
 const TOTAL_CHARACTERS = GRID_ROWS * GRID_COLS; // 20
 const ELEMENTS: Element[] = ["Metal", "Wood", "Water", "Fire", "Earth"];
+const DEBUG = true; // Set to false to disable debug logging
 
 const SURNAMES = [
   "Bai",
@@ -289,7 +290,7 @@ function chain(polarity: PolarityAtom, ...steps: Atom[]): AtomChain {
 
 // ========== Natural Language Converter ==========
 
-function atomChainToText(atomChain: AtomChain, characters: Character[]): string {
+function atomChainToText(atomChain: AtomChain, characters: Character[], speakerId: number): string {
   const COLS = ["A", "B", "C", "D"];
 
   const polarityNoun = atomChain.polarity.type === "pos" ? "cultivator" : "demon";
@@ -297,6 +298,8 @@ function atomChainToText(atomChain: AtomChain, characters: Character[]): string 
 
   let quantifierPhrase = "";
   let groupModifier = ""; // Restricts subject domain (e.g., "in row 3")
+  let rowIndex: number | null = null;
+  let colIndex: number | null = null;
   let property = ""; // From be() atom
   const predicates: string[] = []; // Positional predicates
 
@@ -335,9 +338,11 @@ function atomChainToText(atomChain: AtomChain, characters: Character[]): string 
         needsPlural = true;
         break;
       case "row":
+        rowIndex = step.r;
         groupModifier = ` in row ${step.r + 1}`;
         break;
       case "column":
+        colIndex = step.c;
         groupModifier = ` in column ${COLS[step.c]}`;
         break;
       case "neighbor":
@@ -352,44 +357,64 @@ function atomChainToText(atomChain: AtomChain, characters: Character[]): string 
       case "below":
         predicates.push(`somewhere below ${characters[step.personId].name}`);
         break;
-      case "between":
-        predicates.push(`between ${characters[step.person1Id].name} and ${characters[step.person2Id].name}`);
+      case "between": {
+        const name1 = step.person1Id === speakerId ? "me" : characters[step.person1Id].name;
+        const name2 = step.person2Id === speakerId ? "me" : characters[step.person2Id].name;
+        predicates.push(`between ${name1} and ${name2}`);
         break;
+      }
     }
   }
 
   // Special handling for neighbor atoms
   if (neighborPersonId !== null) {
-    const personName = characters[neighborPersonId].name;
     const noun = needsPlural ? polarityNounPlural : polarityNoun;
     const neighborWord = needsPlural || count > 1 ? "neighbors" : "neighbor";
+
+    // Use "I" if speaker is talking about themselves
+    if (neighborPersonId === speakerId) {
+      return `I have ${quantifierPhrase} ${noun} ${neighborWord}.`;
+    }
+
+    const personName = characters[neighborPersonId].name;
     return `${personName} has ${quantifierPhrase} ${noun} ${neighborWord}.`;
   }
 
   // Build sentence: Subject + Verb + Predicate
   const noun = needsPlural ? polarityNounPlural : polarityNoun;
-  const verb = needsPlural || count > 1 ? "are" : "is";
-
-  // Subject = Quantifier + Noun + GroupModifier
-  const subject = quantifierPhrase
-    ? `${quantifierPhrase.charAt(0).toUpperCase() + quantifierPhrase.slice(1)} ${noun}${groupModifier}`
-    : `${noun}${groupModifier}`;
+  let verb = needsPlural || count > 1 ? "are" : "is";
 
   // Build predicate parts
   const predicateParts: string[] = [];
 
   if (property) {
-    predicateParts.push(property);
+    // Check if property is a spiritual root element
+    const isSpiritualRoot = ELEMENTS.includes(property as Element);
+    if (isSpiritualRoot) {
+      // Use "have X spiritual root" instead of "are X"
+      verb = needsPlural || count > 1 ? "have" : "has";
+      predicateParts.push(`${property} spiritual root`);
+    } else {
+      predicateParts.push(property);
+    }
   }
 
   if (predicates.length > 0) {
     predicateParts.push(...predicates);
   }
 
-  // If no predicate parts and we have a group modifier, make it the predicate
+  // Special case: Location-only clues - flip subject and predicate
+  // "All cultivators are in row 5" -> "All in row 5 are cultivators"
   if (predicateParts.length === 0 && groupModifier) {
-    return `${quantifierPhrase.charAt(0).toUpperCase() + quantifierPhrase.slice(1)} ${noun} ${verb}${groupModifier}.`;
+    const locationPhrase = groupModifier.trim(); // "in row 5" or "in column A"
+    const capitalizedQuantifier = quantifierPhrase.charAt(0).toUpperCase() + quantifierPhrase.slice(1);
+    return `${capitalizedQuantifier} ${locationPhrase} ${verb} ${noun}.`;
   }
+
+  // Subject = Quantifier + Noun + GroupModifier
+  const subject = quantifierPhrase
+    ? `${quantifierPhrase.charAt(0).toUpperCase() + quantifierPhrase.slice(1)} ${noun}${groupModifier}`
+    : `${noun}${groupModifier}`;
 
   // Join predicate parts
   const predicate = predicateParts.join(" and ");
@@ -485,14 +510,6 @@ function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Recor
 
   characters.forEach((speaker) => {
     const list: AtomChain[] = [];
-
-    // Direct person clues: pos().exact(1).neighbor(targetId) or neg().exact(1).neighbor(targetId)
-    characters.forEach((target) => {
-      if (target.id === speaker.id) return;
-      const targetIdentity = target.identity === "DEMON" ? "neg" : "pos";
-      // Simple direct reference: "Exactly 1 cultivator/demon neighbor of X" where X is the target
-      list.push(chain(targetIdentity === "pos" ? pos() : neg(), exact(1), neighbor(target.id)));
-    });
 
     // Row/Column "only one" clues
     Object.keys(rowDemons).forEach((rowKey) => {
@@ -634,7 +651,7 @@ function applyCluesToCharacters(characters: Character[], candidates: Record<numb
   return characters.map((character) => {
     const speakerCandidates = candidates[character.id];
     const selectedChain = sample(speakerCandidates);
-    const text = atomChainToText(selectedChain, characters);
+    const text = atomChainToText(selectedChain, characters, character.id);
     const clue: Clue = {
       chain: selectedChain,
       text,
@@ -781,17 +798,29 @@ function runDeduction(
     state[id] = characters[id].identity;
   });
 
+  if (DEBUG) {
+    console.log("\n🔬 DEDUCTION ENGINE START");
+    console.log(`   Revealed characters: ${Array.from(revealed).map(id => characters[id].name).join(", ")}`);
+  }
+
   const setState = (id: number, identity: Identity) => {
     if (state[id] === "UNKNOWN") {
       state[id] = identity;
+      if (DEBUG) {
+        console.log(`   ✓ Deduced: ${characters[id].name} → ${identity}`);
+      }
       return true;
     }
     return false;
   };
 
   let progress = true;
+  let iteration = 0;
   while (progress) {
     progress = false;
+    iteration++;
+
+    if (DEBUG) console.log(`\n   Iteration ${iteration}:`);
 
     characters.forEach((speaker) => {
       if (!revealed.has(speaker.id) || !speaker.clue) return;
@@ -807,8 +836,18 @@ function runDeduction(
       const knownCultivators = affectedIds.filter((id) => state[id] === "CULTIVATOR");
       const unknown = affectedIds.filter((id) => state[id] === "UNKNOWN");
 
+      if (DEBUG && (unknown.length > 0 || knownDemons.length > 0 || knownCultivators.length > 0)) {
+        console.log(`   📝 Clue from ${speaker.name}: "${speaker.clue.text}"`);
+        console.log(`      Affected: ${affectedIds.length} people`);
+        console.log(`      Expected demons: ${expected.min}-${expected.max}`);
+        console.log(`      Known: ${knownDemons.length} demons, ${knownCultivators.length} cultivators, ${unknown.length} unknown`);
+      }
+
       // If we've reached the demon quota, mark the rest as cultivators
       if (knownDemons.length >= expected.max) {
+        if (DEBUG && unknown.length > 0) {
+          console.log(`      → Demon quota reached, marking ${unknown.length} as CULTIVATOR`);
+        }
         unknown.forEach((id) => {
           progress = setState(id, "CULTIVATOR") || progress;
         });
@@ -816,11 +855,18 @@ function runDeduction(
 
       // If we've reached the cultivator quota, mark the rest as demons
       if (knownCultivators.length >= affectedIds.length - expected.min) {
+        if (DEBUG && unknown.length > 0) {
+          console.log(`      → Cultivator quota reached, marking ${unknown.length} as DEMON`);
+        }
         unknown.forEach((id) => {
           progress = setState(id, "DEMON") || progress;
         });
       }
     });
+  }
+
+  if (DEBUG) {
+    console.log(`\n   Deduction complete after ${iteration} iterations\n`);
   }
 
   return state;
@@ -901,6 +947,45 @@ function canDeduceIdentity(
   return { canDeduce: true, identity: state[targetId] as Identity };
 }
 
+function debugLogGameState(characters: GameCharacter[], indexes: PuzzleIndexes, action: string) {
+  if (!DEBUG) return;
+
+  console.log("\n" + "=".repeat(80));
+  console.log(`🎮 DEBUG: ${action}`);
+  console.log("=".repeat(80));
+
+  const revealed = new Set<number>(characters.filter((c) => c.isRevealed).map((c) => c.id));
+  const deducible = findDeducible(characters, indexes, revealed);
+
+  console.log("\n📊 GAME STATE:");
+  console.log(`  Revealed: ${revealed.size}/${characters.length} characters`);
+  console.log(`  Deducible: ${deducible.length} characters`);
+
+  console.log("\n👥 ALL CHARACTERS:");
+  characters.forEach((char) => {
+    const icon = char.identity === "DEMON" ? "👹" : "🧘";
+    const status = char.isRevealed ? "✅ REVEALED" : "❌ Hidden";
+    const canDeduce = deducible.find((d) => d.id === char.id);
+    const deduceStatus = canDeduce ? ` 🔍 DEDUCIBLE as ${canDeduce.identity}` : "";
+
+    console.log(`  ${icon} [${char.id.toString().padStart(2, " ")}] ${char.name.padEnd(15)} | ${char.identity.padEnd(10)} | ${status}${deduceStatus}`);
+    if (char.clue) {
+      console.log(`      💬 "${char.clue.text}"`);
+    }
+  });
+
+  if (deducible.length > 0) {
+    console.log("\n🔍 NEXT DEDUCIBLE:");
+    deducible.forEach((d) => {
+      const char = characters[d.id];
+      const icon = d.identity === "DEMON" ? "👹" : "🧘";
+      console.log(`  ${icon} ${char.name} → ${d.identity}`);
+    });
+  }
+
+  console.log("\n" + "=".repeat(80) + "\n");
+}
+
 export default function Game() {
   const createPuzzleState = useMemo(
     () => () => {
@@ -950,6 +1035,13 @@ export default function Game() {
     bootPuzzle();
   }, [bootPuzzle]);
 
+  // Debug logging on game start
+  useEffect(() => {
+    if (puzzleState && indexes) {
+      debugLogGameState(puzzleState.characters, indexes, "GAME STARTED");
+    }
+  }, [puzzleState, indexes]);
+
   const regenerate = () => {
     setPuzzleState(null);
     setTimeout(bootPuzzle, 0);
@@ -964,11 +1056,20 @@ export default function Game() {
       return;
     }
 
+    const selectedName = selected.name;
+    const selectedId = selected.id;
+
     updateCharacters((prev) => {
-      const next = prev.map((p) => (p.id === selected.id ? { ...p, isRevealed: true } : p));
+      const next = prev.map((p) => (p.id === selectedId ? { ...p, isRevealed: true } : p));
       if (next.every((p) => p.isRevealed) && !endTime) {
         setEndTime(Date.now());
       }
+
+      // Debug logging after successful choice
+      if (indexes) {
+        debugLogGameState(next, indexes, `REVEALED: ${selectedName} as ${guess}`);
+      }
+
       return next;
     });
     setSelected(null);
