@@ -190,7 +190,49 @@ IDENT      ::= [A-Za-z_][A-Za-z0-9_]* ;
 
 Multiple group selectors can be composed to create intersection constraints:
 
-**Pattern: Neighbor + Location**
+----------
+
+**Pattern 1: Location-Only Clues**
+```
+RootCall . QuantifierCall . GroupSelectorCall
+```
+
+Specifies how many demons/cultivators are in a specific location (row or column).
+The quantifier applies to the people in that location.
+
+**Supported Quantifiers:**
+- `exact(n)` - Exactly n demons/cultivators
+- `of(m,n)` - Exactly m of n total in the location
+- `all()` - All in the location
+- `atLeast(n)` - At least n
+- `atMost(n)` - At most n
+- `even()` - An even number
+- `odd()` - An odd number
+
+**Examples:**
+```
+neg().exact(2).row(3)
+→ "Exactly 2 in row 3 are demons-in-disguise."
+
+pos().all().column(1)
+→ "All in column B are cultivators."
+
+neg().atLeast(3).row(2)
+→ "At least 3 in row 2 are demons-in-disguise."
+
+pos().even().column(3)
+→ "An even number in column D are cultivators."
+
+neg().exact(3).corner()
+→ "Exactly 3 in the corners are demons-in-disguise."
+
+pos().odd().edge()
+→ "An odd number on the edge are cultivators."
+```
+
+----------
+
+**Pattern 2: Neighbor + Location Intersection**
 ```
 RootCall . QuantifierCall . NeighborCall . LocationCall
 ```
@@ -199,13 +241,28 @@ When both `neighbor(x)` and a location selector (`row(r)` or `column(c)`) appear
 - The affected group is: (neighbors of X) ∩ (people in location)
 - The quantifier applies to this intersection
 
-**Example:**
+**Supported Quantifiers:** All quantifiers listed in Pattern 1 work with neighbor + location intersections.
+
+**Examples:**
 ```
 neg().of(2,4).neighbor(PersonX).row(3)
-```
-Meaning: "Of PersonX's neighbors who are in row 3 (4 people total), exactly 2 are demons"
+→ "Exactly 2 of the 4 neighbors of PersonX in row 3 are demons-in-disguise."
 
-Natural language: "Exactly 2 of the 4 neighbors of PersonX in row 3 are demons-in-disguise."
+pos().exact(1).neighbor(PersonY).column(2)
+→ "PersonY has exactly 1 cultivator neighbor in column C."
+
+neg().atLeast(2).neighbor(PersonZ).row(1)
+→ "PersonZ has at least 2 demon neighbors in row 1."
+
+pos().all().neighbor(PersonW).column(0)
+→ "All of PersonW's neighbors in column A are cultivators."
+
+neg().atMost(2).neighbor(PersonX).corner()
+→ "PersonX has at most 2 demon neighbors in the corners."
+
+pos().even().neighbor(PersonY).edge()
+→ "An even number of PersonY's cultivator neighbors are on the edge."
+```
 
 **Note:** The `of(m, n)` quantifier asserts both:
 1. The intersection has exactly n people
