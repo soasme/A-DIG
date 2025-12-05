@@ -8,6 +8,12 @@ type Element = "Metal" | "Wood" | "Water" | "Fire" | "Earth";
 type ClueType =
   | "PERSON_IS_DEMON"
   | "PERSON_IS_CULTIVATOR"
+  | "SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER"
+  | "SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER"
+  | "SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER"
+  | "SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER"
+  | "N_DEMON_BETWEEN_SOME_AND_ANOTHER"
+  | "N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER"
   | "ONLY_DEMON_IN_ROW"
   | "ONLY_CULTIVATOR_IN_ROW"
   | "ONLY_DEMON_IN_COLUMN"
@@ -82,6 +88,12 @@ const ELEMENTS: Element[] = ["Metal", "Wood", "Water", "Fire", "Earth"];
 const CLUE_CONFIG: Record<ClueType, boolean> = {
   PERSON_IS_DEMON: true,
   PERSON_IS_CULTIVATOR: true,
+  SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER: true,
+  SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER: true,
+  SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER: true,
+  SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER: true,
+  N_DEMON_BETWEEN_SOME_AND_ANOTHER: true,
+  N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER: true,
   ONLY_DEMON_IN_ROW: true,
   ONLY_CULTIVATOR_IN_ROW: true,
   ONLY_DEMON_IN_COLUMN: true,
@@ -231,6 +243,22 @@ function areNeighbors(a: Character, b: Character): boolean {
   return rowDiff <= 1 && colDiff <= 1 && !(rowDiff === 0 && colDiff === 0);
 }
 
+function betweenIds(characters: Character[], a: number, b: number): number[] {
+  const personA = characters[a];
+  const personB = characters[b];
+  if (personA.row === personB.row) {
+    const minCol = Math.min(personA.col, personB.col);
+    const maxCol = Math.max(personA.col, personB.col);
+    return characters.filter((p) => p.row === personA.row && p.col > minCol && p.col < maxCol).map((p) => p.id);
+  }
+  if (personA.col === personB.col) {
+    const minRow = Math.min(personA.row, personB.row);
+    const maxRow = Math.max(personA.row, personB.row);
+    return characters.filter((p) => p.col === personA.col && p.row > minRow && p.row < maxRow).map((p) => p.id);
+  }
+  return [];
+}
+
 function generateNames(count: number): string[] {
   const names = new Set<string>();
   while (names.size < count) {
@@ -305,6 +333,14 @@ function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Recor
   const colCultivators: Record<number, number[]> = {};
   const demonNeighbors: Record<number, number[]> = {};
   const cultivatorNeighbors: Record<number, number[]> = {};
+  const belowIds: Record<number, number[]> = {};
+  const aboveIds: Record<number, number[]> = {};
+  const demonsBelow: Record<number, number[]> = {};
+  const cultivatorsBelow: Record<number, number[]> = {};
+  const demonsAbove: Record<number, number[]> = {};
+  const cultivatorsAbove: Record<number, number[]> = {};
+  const betweenPairsDemons: { a: number; b: number; count: number }[] = [];
+  const betweenPairsCultivators: { a: number; b: number; count: number }[] = [];
 
   for (let r = 0; r < GRID_ROWS; r += 1) {
     rowDemons[r] = [];
@@ -329,7 +365,24 @@ function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Recor
     const neighborIds = indexes.neighbors[person.id];
     demonNeighbors[person.id] = neighborIds.filter((id) => characters[id].identity === "DEMON");
     cultivatorNeighbors[person.id] = neighborIds.filter((id) => characters[id].identity === "CULTIVATOR");
+    belowIds[person.id] = characters.filter((p) => p.row > person.row).map((p) => p.id);
+    aboveIds[person.id] = characters.filter((p) => p.row < person.row).map((p) => p.id);
+    demonsBelow[person.id] = belowIds[person.id].filter((id) => characters[id].identity === "DEMON");
+    cultivatorsBelow[person.id] = belowIds[person.id].filter((id) => characters[id].identity === "CULTIVATOR");
+    demonsAbove[person.id] = aboveIds[person.id].filter((id) => characters[id].identity === "DEMON");
+    cultivatorsAbove[person.id] = aboveIds[person.id].filter((id) => characters[id].identity === "CULTIVATOR");
   });
+
+  for (let i = 0; i < characters.length; i += 1) {
+    for (let j = i + 1; j < characters.length; j += 1) {
+      const between = betweenIds(characters, i, j);
+      if (between.length === 0) continue;
+      const demonCount = between.filter((id) => characters[id].identity === "DEMON").length;
+      const cultivatorCount = between.length - demonCount;
+      if (demonCount > 0) betweenPairsDemons.push({ a: i, b: j, count: demonCount });
+      if (cultivatorCount > 0) betweenPairsCultivators.push({ a: i, b: j, count: cultivatorCount });
+    }
+  }
 
   const candidates: Record<number, ClueCandidate[]> = {};
 
@@ -468,6 +521,79 @@ function buildCandidates(characters: Character[], indexes: PuzzleIndexes): Recor
       }
     });
 
+    characters.forEach((anchor) => {
+      const demonBelowCount = demonsBelow[anchor.id].length;
+      const cultivatorBelowCount = cultivatorsBelow[anchor.id].length;
+      const demonAboveCount = demonsAbove[anchor.id].length;
+      const cultivatorAboveCount = cultivatorsAbove[anchor.id].length;
+
+      if (demonBelowCount > 0 && CLUE_CONFIG.SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER) {
+        demonsBelow[anchor.id].forEach((targetId) => {
+          list.push({
+            type: "SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER",
+            targetId,
+            subjectId: anchor.id,
+            N: demonBelowCount,
+          });
+        });
+      }
+
+      if (cultivatorBelowCount > 0 && CLUE_CONFIG.SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER) {
+        cultivatorsBelow[anchor.id].forEach((targetId) => {
+          list.push({
+            type: "SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER",
+            targetId,
+            subjectId: anchor.id,
+            N: cultivatorBelowCount,
+          });
+        });
+      }
+
+      if (demonAboveCount > 0 && CLUE_CONFIG.SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER) {
+        demonsAbove[anchor.id].forEach((targetId) => {
+          list.push({
+            type: "SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER",
+            targetId,
+            subjectId: anchor.id,
+            N: demonAboveCount,
+          });
+        });
+      }
+
+      if (cultivatorAboveCount > 0 && CLUE_CONFIG.SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER) {
+        cultivatorsAbove[anchor.id].forEach((targetId) => {
+          list.push({
+            type: "SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER",
+            targetId,
+            subjectId: anchor.id,
+            N: cultivatorAboveCount,
+          });
+        });
+      }
+    });
+
+    betweenPairsDemons.forEach(({ a, b, count }) => {
+      if (CLUE_CONFIG.N_DEMON_BETWEEN_SOME_AND_ANOTHER) {
+        list.push({
+          type: "N_DEMON_BETWEEN_SOME_AND_ANOTHER",
+          subjectId: a,
+          mentionedId: b,
+          N: count,
+        });
+      }
+    });
+
+    betweenPairsCultivators.forEach(({ a, b, count }) => {
+      if (CLUE_CONFIG.N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER) {
+        list.push({
+          type: "N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER",
+          subjectId: a,
+          mentionedId: b,
+          N: count,
+        });
+      }
+    });
+
     candidates[speaker.id] = list;
   });
 
@@ -485,6 +611,18 @@ function clueText(candidate: ClueCandidate, speaker: Character, characters: Char
       return `${targetName(candidate.targetId)} is a demon.`;
     case "PERSON_IS_CULTIVATOR":
       return `${targetName(candidate.targetId)} is a cultivator.`;
+    case "SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER":
+      return `${targetName(candidate.targetId)} is 1 of ${candidate.N} demons below ${targetName(candidate.subjectId)}.`;
+    case "SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER":
+      return `${targetName(candidate.targetId)} is 1 of ${candidate.N} cultivators below ${targetName(candidate.subjectId)}.`;
+    case "SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER":
+      return `${targetName(candidate.targetId)} is 1 of ${candidate.N} demons above ${targetName(candidate.subjectId)}.`;
+    case "SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER":
+      return `${targetName(candidate.targetId)} is 1 of ${candidate.N} cultivators above ${targetName(candidate.subjectId)}.`;
+    case "N_DEMON_BETWEEN_SOME_AND_ANOTHER":
+      return `There ${verb(candidate.N)} exactly ${candidate.N} demon${candidate.N === 1 ? "" : "s"} between ${targetName(candidate.subjectId)} and ${targetName(candidate.mentionedId)}.`;
+    case "N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER":
+      return `There ${verb(candidate.N)} exactly ${candidate.N} cultivator${candidate.N === 1 ? "" : "s"} between ${targetName(candidate.subjectId)} and ${targetName(candidate.mentionedId)}.`;
     case "ONLY_DEMON_IN_ROW":
       return `${targetName(candidate.subjectId)} is the only demon in row ${(candidate.row ?? 0) + 1}.`;
     case "ONLY_CULTIVATOR_IN_ROW":
@@ -607,6 +745,54 @@ function cluesConsistent(characters: Character[], indexes: PuzzleIndexes, assign
         const expectedDemons = neighborIds.length - (params.N ?? 0);
         if (!equalityHolds(neighborIds, expectedDemons)) return false;
         if (assignment[params.mentionedId!] === true) return false;
+        break;
+      }
+      case "N_DEMON_BETWEEN_SOME_AND_ANOTHER": {
+        const between = betweenIds(characters, params.subjectId!, params.mentionedId!);
+        if (between.length === 0) return false;
+        if (!equalityHolds(between, params.N!)) return false;
+        break;
+      }
+      case "N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER": {
+        const between = betweenIds(characters, params.subjectId!, params.mentionedId!);
+        if (between.length === 0) return false;
+        if (!equalityHolds(between, between.length - (params.N ?? 0))) return false;
+        break;
+      }
+      case "SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER": {
+        const anchor = characters[params.subjectId!];
+        const below = characters.filter((p) => p.row > anchor.row).map((p) => p.id);
+        if (below.length === 0) return false;
+        if (!below.includes(params.targetId!)) return false;
+        if (!equalityHolds(below, params.N!)) return false;
+        if (assignment[params.targetId!] === false) return false;
+        break;
+      }
+      case "SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER": {
+        const anchor = characters[params.subjectId!];
+        const below = characters.filter((p) => p.row > anchor.row).map((p) => p.id);
+        if (below.length === 0) return false;
+        if (!below.includes(params.targetId!)) return false;
+        if (!equalityHolds(below, below.length - (params.N ?? 0))) return false;
+        if (assignment[params.targetId!] === true) return false;
+        break;
+      }
+      case "SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER": {
+        const anchor = characters[params.subjectId!];
+        const above = characters.filter((p) => p.row < anchor.row).map((p) => p.id);
+        if (above.length === 0) return false;
+        if (!above.includes(params.targetId!)) return false;
+        if (!equalityHolds(above, params.N!)) return false;
+        if (assignment[params.targetId!] === false) return false;
+        break;
+      }
+      case "SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER": {
+        const anchor = characters[params.subjectId!];
+        const above = characters.filter((p) => p.row < anchor.row).map((p) => p.id);
+        if (above.length === 0) return false;
+        if (!above.includes(params.targetId!)) return false;
+        if (!equalityHolds(above, above.length - (params.N ?? 0))) return false;
+        if (assignment[params.targetId!] === true) return false;
         break;
       }
       case "M_OF_N_DEMONS_NEIGHBORING_IN_ROW": {
@@ -809,6 +995,124 @@ function runDeduction(
             });
           }
           if (knownDemons.length === neighbors.length - expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "N_DEMON_BETWEEN_SOME_AND_ANOTHER": {
+          const between = betweenIds(characters, params.subjectId!, params.mentionedId!);
+          const knownDemons = between.filter((id) => state[id] === "DEMON");
+          const knownCultivators = between.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = between.filter((id) => state[id] === "UNKNOWN");
+          const expectedDemons = params.N ?? 0;
+
+          if (knownDemons.length === expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          if (knownCultivators.length === between.length - expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          break;
+        }
+        case "N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER": {
+          const between = betweenIds(characters, params.subjectId!, params.mentionedId!);
+          const knownCultivators = between.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemons = between.filter((id) => state[id] === "DEMON");
+          const unknown = between.filter((id) => state[id] === "UNKNOWN");
+          const expectedCultivators = params.N ?? 0;
+
+          if (knownCultivators.length === expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          if (knownDemons.length === between.length - expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER": {
+          const anchor = characters[params.subjectId!];
+          const below = characters.filter((p) => p.row > anchor.row).map((p) => p.id);
+          progress = setState(params.targetId!, "DEMON") || progress;
+          const knownDemons = below.filter((id) => state[id] === "DEMON");
+          const knownCultivators = below.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = below.filter((id) => state[id] === "UNKNOWN");
+          const expectedDemons = params.N ?? 0;
+          if (knownDemons.length === expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          if (knownCultivators.length === below.length - expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          break;
+        }
+        case "SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER": {
+          const anchor = characters[params.subjectId!];
+          const below = characters.filter((p) => p.row > anchor.row).map((p) => p.id);
+          progress = setState(params.targetId!, "CULTIVATOR") || progress;
+          const knownCultivators = below.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemons = below.filter((id) => state[id] === "DEMON");
+          const unknown = below.filter((id) => state[id] === "UNKNOWN");
+          const expectedCultivators = params.N ?? 0;
+          if (knownCultivators.length === expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          if (knownDemons.length === below.length - expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          break;
+        }
+        case "SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER": {
+          const anchor = characters[params.subjectId!];
+          const above = characters.filter((p) => p.row < anchor.row).map((p) => p.id);
+          progress = setState(params.targetId!, "DEMON") || progress;
+          const knownDemons = above.filter((id) => state[id] === "DEMON");
+          const knownCultivators = above.filter((id) => state[id] === "CULTIVATOR");
+          const unknown = above.filter((id) => state[id] === "UNKNOWN");
+          const expectedDemons = params.N ?? 0;
+          if (knownDemons.length === expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "CULTIVATOR") || progress;
+            });
+          }
+          if (knownCultivators.length === above.length - expectedDemons) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          break;
+        }
+        case "SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER": {
+          const anchor = characters[params.subjectId!];
+          const above = characters.filter((p) => p.row < anchor.row).map((p) => p.id);
+          progress = setState(params.targetId!, "CULTIVATOR") || progress;
+          const knownCultivators = above.filter((id) => state[id] === "CULTIVATOR");
+          const knownDemons = above.filter((id) => state[id] === "DEMON");
+          const unknown = above.filter((id) => state[id] === "UNKNOWN");
+          const expectedCultivators = params.N ?? 0;
+          if (knownCultivators.length === expectedCultivators) {
+            unknown.forEach((id) => {
+              progress = setState(id, "DEMON") || progress;
+            });
+          }
+          if (knownDemons.length === above.length - expectedCultivators) {
             unknown.forEach((id) => {
               progress = setState(id, "CULTIVATOR") || progress;
             });

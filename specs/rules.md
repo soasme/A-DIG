@@ -372,6 +372,118 @@ areNeighbors(person1, person2) =
 - And target has this element but is not one of the demons
 - Then target must be a cultivator
 
+---
+
+### 15. SOME_IS_ONE_OF_N_DEMON_BELOW_ANOTHER
+**Format**: `"{NameA} is 1 of {N} demons below {NameB}."`
+
+**Behavior**:
+- Looks at everyone in rows strictly below NameB
+- Exactly N of those people are demons
+- NameA is guaranteed to be one of those demons
+
+**Requirements**:
+- NameA must be in a lower row than NameB
+- There must be at least one row below NameB
+
+**Deduction Logic**:
+- Set NameA to demon immediately
+- If we've already revealed N demons below NameB → all other people below NameB are cultivators
+- If we've revealed (total_below - N) cultivators below NameB → all remaining people below NameB are demons
+
+---
+
+### 16. SOME_IS_ONE_OF_N_CULTIVATOR_BELOW_ANOTHER
+**Format**: `"{NameA} is 1 of {N} cultivators below {NameB}."`
+
+**Behavior**:
+- Looks at everyone in rows strictly below NameB
+- Exactly N of those people are cultivators
+- NameA is guaranteed to be one of those cultivators
+
+**Requirements**:
+- NameA must be in a lower row than NameB
+- There must be at least one row below NameB
+
+**Deduction Logic**:
+- Set NameA to cultivator immediately
+- If we've already revealed N cultivators below NameB → all other people below NameB are demons
+- If we've revealed (total_below - N) demons below NameB → all remaining people below NameB are cultivators
+
+---
+
+### 17. SOME_IS_ONE_OF_N_DEMON_ABOVE_ANOTHER
+**Format**: `"{NameA} is 1 of {N} demons above {NameB}."`
+
+**Behavior**:
+- Looks at everyone in rows strictly above NameB
+- Exactly N of those people are demons
+- NameA is guaranteed to be one of those demons
+
+**Requirements**:
+- NameA must be in a higher row than NameB
+- There must be at least one row above NameB
+
+**Deduction Logic**:
+- Set NameA to demon immediately
+- If we've already revealed N demons above NameB → all other people above NameB are cultivators
+- If we've revealed (total_above - N) cultivators above NameB → all remaining people above NameB are demons
+
+---
+
+### 18. SOME_IS_ONE_OF_N_CULTIVATOR_ABOVE_ANOTHER
+**Format**: `"{NameA} is 1 of {N} cultivators above {NameB}."`
+
+**Behavior**:
+- Looks at everyone in rows strictly above NameB
+- Exactly N of those people are cultivators
+- NameA is guaranteed to be one of those cultivators
+
+**Requirements**:
+- NameA must be in a higher row than NameB
+- There must be at least one row above NameB
+
+**Deduction Logic**:
+- Set NameA to cultivator immediately
+- If we've already revealed N cultivators above NameB → all other people above NameB are demons
+- If we've revealed (total_above - N) demons above NameB → all remaining people above NameB are cultivators
+
+---
+
+### 19. N_DEMON_BETWEEN_SOME_AND_ANOTHER
+**Format**: `"There is/are exactly {N} demon(s) between {NameA} and {NameB}."`
+
+**Behavior**:
+- NameA and NameB must share the same row or column
+- Considers only the people strictly between them along that line
+- Exactly N of those in-between people are demons
+
+**Requirements**:
+- NameA and NameB are in the same row or column
+- There is at least one person between them (not adjacent)
+
+**Deduction Logic**:
+- If we've already revealed N demons between the pair → all other between-people are cultivators
+- If we've revealed (total_between - N) cultivators between the pair → all other between-people are demons
+
+---
+
+### 20. N_CULTIVATOR_BETWEEN_SOME_AND_ANOTHER
+**Format**: `"There is/are exactly {N} cultivator(s) between {NameA} and {NameB}."`
+
+**Behavior**:
+- NameA and NameB must share the same row or column
+- Considers only the people strictly between them along that line
+- Exactly N of those in-between people are cultivators
+
+**Requirements**:
+- NameA and NameB are in the same row or column
+- There is at least one person between them (not adjacent)
+
+**Deduction Logic**:
+- If we've already revealed N cultivators between the pair → all other between-people are demons
+- If we've revealed (total_between - N) demons between the pair → all other between-people are cultivators
+
 ## Puzzle Generation Algorithm
 
 ### Phase 1: Initialize Characters
