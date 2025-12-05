@@ -14,22 +14,33 @@ type QuantifierAtom =
   | { type: "atLeast"; n: number }
   | { type: "atMost"; n: number }
   | { type: "of"; m: number; n: number } // m of n total
+  | { type: "oneof"; k: number } // exactly one of k
+  | { type: "inTotal"; n: number }
+  | { type: "most" } // uniquely largest number
   | { type: "all" }
   | { type: "even" }
-  | { type: "odd" };
+  | { type: "odd" }
+  | { type: "any" }; // conditional
 
 type GroupSelectorAtom =
   | { type: "row"; r: number }
   | { type: "column"; c: number }
   | { type: "corner" }
   | { type: "edge" }
-  | { type: "neighbor"; personId: number };
+  | { type: "neighbor"; personId: number }
+  | { type: "commonNeighbors"; person1Id: number; person2Id: number };
 
 type RoleAtom = { type: "be"; label: string };
 
 type PositionAtom =
   | { type: "above"; personId: number }
   | { type: "below"; personId: number }
+  | { type: "leftOf"; personId: number }
+  | { type: "rightOf"; personId: number }
+  | { type: "directlyAbove"; personId: number }
+  | { type: "directlyBelow"; personId: number }
+  | { type: "directlyLeftOf"; personId: number }
+  | { type: "directlyRightOf"; personId: number }
   | { type: "between"; person1Id: number; person2Id: number };
 
 type Atom = QuantifierAtom | GroupSelectorAtom | RoleAtom | PositionAtom;
@@ -281,6 +292,22 @@ function odd(): QuantifierAtom {
   return { type: "odd" };
 }
 
+function oneof(k: number): QuantifierAtom {
+  return { type: "oneof", k };
+}
+
+function inTotal(n: number): QuantifierAtom {
+  return { type: "inTotal", n };
+}
+
+function most(): QuantifierAtom {
+  return { type: "most" };
+}
+
+function any(): QuantifierAtom {
+  return { type: "any" };
+}
+
 function row(r: number): GroupSelectorAtom {
   return { type: "row", r };
 }
@@ -301,6 +328,10 @@ function neighbor(personId: number): GroupSelectorAtom {
   return { type: "neighbor", personId };
 }
 
+function commonNeighbors(person1Id: number, person2Id: number): GroupSelectorAtom {
+  return { type: "commonNeighbors", person1Id, person2Id };
+}
+
 function be(label: string): RoleAtom {
   return { type: "be", label };
 }
@@ -311,6 +342,30 @@ function above(personId: number): PositionAtom {
 
 function below(personId: number): PositionAtom {
   return { type: "below", personId };
+}
+
+function leftOf(personId: number): PositionAtom {
+  return { type: "leftOf", personId };
+}
+
+function rightOf(personId: number): PositionAtom {
+  return { type: "rightOf", personId };
+}
+
+function directlyAbove(personId: number): PositionAtom {
+  return { type: "directlyAbove", personId };
+}
+
+function directlyBelow(personId: number): PositionAtom {
+  return { type: "directlyBelow", personId };
+}
+
+function directlyLeftOf(personId: number): PositionAtom {
+  return { type: "directlyLeftOf", personId };
+}
+
+function directlyRightOf(personId: number): PositionAtom {
+  return { type: "directlyRightOf", personId };
 }
 
 function between(person1Id: number, person2Id: number): PositionAtom {
@@ -377,6 +432,25 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
         quantifierPhrase = "an odd number of";
         needsPlural = true;
         break;
+      case "oneof":
+        quantifierPhrase = `exactly one of the ${step.k}`;
+        count = 1;
+        needsPlural = false;
+        totalCount = step.k;
+        break;
+      case "inTotal":
+        quantifierPhrase = `in total, ${step.n}`;
+        count = step.n;
+        needsPlural = step.n !== 1;
+        break;
+      case "most":
+        quantifierPhrase = "the uniquely largest number of";
+        needsPlural = true;
+        break;
+      case "any":
+        quantifierPhrase = "any";
+        needsPlural = false;
+        break;
       case "row":
         rowIndex = step.r;
         groupModifier = ` in row ${step.r + 1}`;
@@ -394,6 +468,10 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
       case "neighbor":
         neighborPersonId = step.personId;
         break;
+      case "commonNeighbors":
+        // Handle common neighbors - for now treat as group modifier
+        groupModifier = ` who are common neighbors of ${characters[step.person1Id].name} and ${characters[step.person2Id].name}`;
+        break;
       case "be":
         property = step.label;
         break;
@@ -402,6 +480,24 @@ function atomChainToText(atomChain: AtomChain, characters: Character[], speakerI
         break;
       case "below":
         predicates.push(`somewhere below ${characters[step.personId].name}`);
+        break;
+      case "leftOf":
+        predicates.push(`to the left of ${characters[step.personId].name}`);
+        break;
+      case "rightOf":
+        predicates.push(`to the right of ${characters[step.personId].name}`);
+        break;
+      case "directlyAbove":
+        predicates.push(`directly above ${characters[step.personId].name}`);
+        break;
+      case "directlyBelow":
+        predicates.push(`directly below ${characters[step.personId].name}`);
+        break;
+      case "directlyLeftOf":
+        predicates.push(`directly left of ${characters[step.personId].name}`);
+        break;
+      case "directlyRightOf":
+        predicates.push(`directly right of ${characters[step.personId].name}`);
         break;
       case "between": {
         const name1 = step.person1Id === speakerId ? "me" : characters[step.person1Id].name;
