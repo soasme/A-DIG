@@ -1,4 +1,5 @@
 import logic from 'logicjs';
+
 var or = logic.or,
 	and = logic.and,
 	not = logic.not,
@@ -6,7 +7,6 @@ var or = logic.or,
 	run = logic.run,
 	lvar = logic.lvar,
 	between = logic.between
-	
 
 var g1_rule = `
    a      b
@@ -79,3 +79,4 @@ var g3 = and(
   eq(dave, 'villager')
 )
 console.log(run(g3, [alice, bob, charlie, dave]))
+
