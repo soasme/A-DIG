@@ -19,7 +19,7 @@ export default function Rules() {
         WebkitTextFillColor: 'transparent',
         textAlign: 'center'
       }}>
-        How to Play Cultivators or Demon-In-Disguise?
+        How to Play Who Are Werewolves?
       </h2>
 
       <div style={{
@@ -28,11 +28,11 @@ export default function Rules() {
         lineHeight: 1.7
       }}>
         <p style={{ marginBottom: '12px' }}>
-          Your goal is to figure out who is cultivator and who is demon-in-disguise.
+          Your goal is to figure out who is villager and who is werewolf.
         </p>
 
         <p style={{ marginBottom: '12px' }}>
-          Based on the known evidence, tap on a suspect to choose cultivator or demon-in-disguise. They might reveal a new evidence.
+          Based on the known evidence, tap on a suspect to choose villager or werewolf. They might reveal a new evidence.
         </p>
 
         <p style={{

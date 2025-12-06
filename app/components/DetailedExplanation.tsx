@@ -29,11 +29,11 @@ export default function DetailedExplanation() {
       }}>
         <ul style={{ margin: 0, paddingLeft: '20px', listStyleType: 'disc' }}>
           <li style={{ marginBottom: '12px' }}>
-            Everyone is either a <strong style={{ color: '#22c55e' }}>cultivator</strong> or a <strong style={{ color: '#ef4444' }}>demon-in-disguise</strong>.
+            Everyone is either a <strong style={{ color: '#22c55e' }}>villager</strong> or a <strong style={{ color: '#ef4444' }}>werewolf</strong>.
           </li>
 
           <li style={{ marginBottom: '12px' }}>
-            Everyone speaks the truth, even the demon-in-disguise.
+            Everyone speaks the truth, even the werewolf.
           </li>
 
           <li style={{ marginBottom: '12px' }}>
@@ -45,7 +45,7 @@ export default function DetailedExplanation() {
           </li>
 
           <li style={{ marginBottom: '12px' }}>
-            <strong>Connected</strong> means a chain of orthogonal adjacency. For example "all criminals in row 1 are connected" means there are no innocents between any two criminals in that row.
+            <strong>Connected</strong> means a chain of orthogonal adjacency. For example "all werewolves in row 1 are connected" means there are no villagers between any two werewolves in that row.
           </li>
 
           <li style={{ marginBottom: '12px' }}>
@@ -65,11 +65,11 @@ export default function DetailedExplanation() {
           </li>
 
           <li style={{ marginBottom: '12px' }}>
-            <strong>Any</strong> doesn't tell anything about the number of criminals/innocents. "Any criminal on row 2 is..." means "If there are any criminals on row 2, they would be..."
+            <strong>Any</strong> doesn't tell anything about the number of werewolves/villagers. "Any werewolf on row 2 is..." means "If there are any werewolves on row 2, they would be..."
           </li>
 
           <li style={{ marginBottom: '12px' }}>
-            <strong>One of the ...</strong>, or <strong>one of several ...</strong>, or <strong>one of multiple ...</strong>, always means there's at least two cultivators/demon-in-disguises.
+            <strong>One of the ...</strong>, or <strong>one of several ...</strong>, or <strong>one of multiple ...</strong>, always means there's at least two villagers/werewolves.
           </li>
 
           <li style={{ marginBottom: '12px' }}>
@@ -89,7 +89,7 @@ export default function DetailedExplanation() {
           </li>
 
           <li style={{ marginBottom: '12px' }}>
-            <strong>... the most</strong> always means uniquely the most. If John has the most cultivator neighbors, no one can have as many demon-in-disguise neighbors as John.
+            <strong>... the most</strong> always means uniquely the most. If John has the most villager neighbors, no one can have as many werewolf neighbors as John.
           </li>
 
           <li style={{ marginBottom: '12px' }}>
