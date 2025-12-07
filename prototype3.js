@@ -202,6 +202,25 @@ function formatClue(text) {
         : 'right of';
     return `exactly ${count} ${plural} ${target} the character at row ${row} column ${col}`;
   }
+  if (fn === 'exactlyKRoleBetweenTheTwo') {
+    if (rest.length !== 6) return text;
+    const [role, r1Str, c1Str, r2Str, c2Str, countStr] = rest;
+    const r1 = Number(r1Str);
+    const c1 = Number(c1Str);
+    const r2 = Number(r2Str);
+    const c2 = Number(c2Str);
+    const count = Number(countStr);
+    if (
+      !Number.isFinite(r1) ||
+      !Number.isFinite(c1) ||
+      !Number.isFinite(r2) ||
+      !Number.isFinite(c2) ||
+      !Number.isFinite(count)
+    )
+      return text;
+    const plural = pluralizeRole(role, count);
+    return `exactly ${count} ${plural} between row ${r1} column ${c1} and row ${r2} column ${c2}`;
+  }
   return text;
 }
 
@@ -275,6 +294,37 @@ export function exactlyKRoleRightOfSomeone(roleList, row, col, k, role, rows = R
   for (let c = col + 1; c <= cols; c++) {
     vars.push(roleList[cellIndex(row, c, cols)]);
   }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleBetweenTheTwo(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  const vars = [];
+  if (r1 === r2 && Math.abs(c1 - c2) > 1) {
+    const minC = Math.min(c1, c2);
+    const maxC = Math.max(c1, c2);
+    for (let c = minC + 1; c <= maxC - 1; c++) {
+      vars.push(roleList[cellIndex(r1, c, cols)]);
+    }
+  } else if (c1 === c2 && Math.abs(r1 - r2) > 1) {
+    const minR = Math.min(r1, r2);
+    const maxR = Math.max(r1, r2);
+    for (let r = minR + 1; r <= maxR - 1; r++) {
+      vars.push(roleList[cellIndex(r, c1, cols)]);
+    }
+  } else {
+    return logic.fail; // must be same row/col and not adjacent
+  }
+
   return exactlyK(vars, k, role);
 }
 
@@ -400,11 +450,19 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
       const belowVals = [];
       const leftVals = [];
       const rightVals = [];
+      const betweenPairs = [];
 
       for (let rr = 1; rr < r; rr++) aboveVals.push(targetSolution[cellIndex(rr, c, cols)]);
       for (let rr = r + 1; rr <= rows; rr++) belowVals.push(targetSolution[cellIndex(rr, c, cols)]);
       for (let cc = 1; cc < c; cc++) leftVals.push(targetSolution[cellIndex(r, cc, cols)]);
       for (let cc = c + 1; cc <= cols; cc++) rightVals.push(targetSolution[cellIndex(r, cc, cols)]);
+      // gather pairs in same row/col with at least one cell between
+      for (let cc = c + 2; cc <= cols; cc++) {
+        betweenPairs.push({ r1: r, c1: c, r2: r, c2: cc });
+      }
+      for (let rr = r + 2; rr <= rows; rr++) {
+        betweenPairs.push({ r1: r, c1: c, r2: rr, c2: c });
+      }
 
       const directional = [
         {
@@ -449,6 +507,40 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
             key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
             goal: fn(roles, r, c, count, role, rows, cols),
             statement: formatClue(`${formatter(role)} ${count}`),
+          });
+        });
+      });
+
+      // Between-two clues
+      betweenPairs.forEach(({ r1, c1, r2, c2 }) => {
+        const cellsBetween = [];
+        if (r1 === r2) {
+          const minC = Math.min(c1, c2);
+          const maxC = Math.max(c1, c2);
+          for (let cc = minC + 1; cc <= maxC - 1; cc++) {
+            cellsBetween.push(targetSolution[cellIndex(r1, cc, cols)]);
+          }
+        } else if (c1 === c2) {
+          const minR = Math.min(r1, r2);
+          const maxR = Math.max(r1, r2);
+          for (let rr = minR + 1; rr <= maxR - 1; rr++) {
+            cellsBetween.push(targetSolution[cellIndex(rr, c1, cols)]);
+          }
+        }
+        if (cellsBetween.length === 0) return;
+        const werewolfBetween = cellsBetween.filter(v => v === WEREWOLF).length;
+        const villagerBetween = cellsBetween.length - werewolfBetween;
+        [
+          { role: WEREWOLF, count: werewolfBetween },
+          { role: VILLAGER, count: villagerBetween },
+        ].forEach(({ role, count }) => {
+          const key = `between-${r1}-${c1}-${r2}-${c2}-${role}-${count}`;
+          clues.push({
+            key,
+            goal: exactlyKRoleBetweenTheTwo(roles, r1, c1, r2, c2, count, role, rows, cols),
+            statement: formatClue(
+              `exactlyKRoleBetweenTheTwo ${role} ${r1} ${c1} ${r2} ${c2} ${count}`
+            ),
           });
         });
       });
