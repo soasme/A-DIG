@@ -368,6 +368,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
 
   let currentSpeakerIdx = initialIdx;
   const puzzle = [];
+  const coveredSpeakerIdxs = new Set();
 
   const maxSteps = rows * cols * 6;
   let steps = 0;
@@ -381,6 +382,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
     let nextStatement = '';
 
     // Try to find a clue that yields exactly the desired number of new deduced cells (not yet known).
+    let relaxedCandidate = null;
     for (const clue of clueTemplates) {
       if (usedClueKeys.has(clue.key)) continue;
 
@@ -394,10 +396,10 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         if (!deduced.has(idx)) newDeductions.push([idx, value]);
       }
 
-      if (
-        newDeductions.length === desiredNewDeductions &&
-        newDeductions.every(([idx]) => idx !== currentSpeakerIdx)
-      ) {
+      const acceptable = newDeductions.length > 0 && newDeductions.every(([idx]) => idx !== currentSpeakerIdx);
+      if (!acceptable) continue;
+
+      if (newDeductions.length === desiredNewDeductions) {
         const [newIdx] = newDeductions[0];
 
         nextIdx = newIdx;
@@ -410,6 +412,29 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         added = true;
         break;
       }
+
+      if (!relaxedCandidate) {
+        const [newIdx] = newDeductions[0];
+        relaxedCandidate = {
+          newIdx,
+          candidateSolutions,
+          candidateDeductions,
+          statement: clue.statement,
+          goal: clue.goal,
+          clueKey: clue.key,
+        };
+      }
+    }
+
+    if (!added && relaxedCandidate) {
+      nextIdx = relaxedCandidate.newIdx;
+      nextSolutions = relaxedCandidate.candidateSolutions;
+      nextDeductions = relaxedCandidate.candidateDeductions;
+      nextStatement = relaxedCandidate.statement;
+
+      goals.push(relaxedCandidate.goal);
+      usedClueKeys.add(relaxedCandidate.clueKey);
+      added = true;
     }
 
     // If no template clue works, have the current speaker reveal another character directly.
@@ -431,10 +456,9 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         if (!deduced.has(idx)) newDeductions.push([idx, value]);
       }
 
-      if (
-        newDeductions.length === desiredNewDeductions &&
-        newDeductions.every(([idx]) => idx !== currentSpeakerIdx)
-      ) {
+      const acceptable = newDeductions.length > 0 && newDeductions.every(([idx]) => idx !== currentSpeakerIdx);
+
+      if (acceptable) {
         const [newIdx, value] = newDeductions[0];
         const { row, col } = indexToRowCol(newIdx, cols);
         nextIdx = newIdx;
@@ -459,6 +483,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
       role: targetSolution[currentSpeakerIdx],
       statement: nextStatement,
     });
+    coveredSpeakerIdxs.add(currentSpeakerIdx);
 
     solutions = nextSolutions;
     deduced = nextDeductions;
@@ -481,7 +506,20 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         role: targetSolution[currentSpeakerIdx],
         statement: formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx]),
       });
+      coveredSpeakerIdxs.add(currentSpeakerIdx);
     }
+  }
+
+  // Ensure we always have at least one entry per cell by revealing any missing speakers directly.
+  for (let i = 0; i < rows * cols && puzzle.length < rows * cols; i++) {
+    if (coveredSpeakerIdxs.has(i)) continue;
+    const { row, col } = indexToRowCol(i, cols);
+    puzzle.push({
+      row,
+      column: col,
+      role: targetSolution[i],
+      statement: formatOtherRole(row, col, targetSolution[i]),
+    });
   }
 
   return puzzle;
