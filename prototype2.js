@@ -118,23 +118,299 @@ export function exactlyKWerewolvesInRow(roleList, row, k, cols = COLS) {
   return exactlyK(rowVars, k, WEREWOLF);
 }
 
-// 5×4 grid of role variables
-const roles = makeRoleGrid(2, 2);
-console.log(roles);
+function randInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
-var g1_rule = `
-   a      b
-1 [alice]  [bob]
-2 [charlie][dave]
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = randInt(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
-alice: row 1 has one werewolf, but i'm not.
-`
+function formatClue(text) {
+  const parts = text.split(' ');
+  if (parts.length !== 3) return text;
+  const [fn, axisStr, countStr] = parts;
+  const axis = Number(axisStr);
+  const count = Number(countStr);
+  if (!Number.isFinite(axis) || !Number.isFinite(count)) return text;
 
-// create a goal
-var g1 = and(
-  // exactly one werewolf in row 1
-  exactlyKWerewolvesInRow(roles, 1, 1),
-  // alice is not werewolf
-  isVillager(roles[cellIndex(1, 1)])
-)
-console.log(run(g1, roles));
+  if (fn === 'exactlyKWerewolvesInRow') {
+    const word = count === 1 ? 'werewolf' : 'werewolves';
+    return `exactly ${count} ${word} in row ${axis}`;
+  }
+  if (fn === 'exactlyKVillagersInRow') {
+    const word = count === 1 ? 'villager' : 'villagers';
+    return `exactly ${count} ${word} in row ${axis}`;
+  }
+  if (fn === 'exactlyKWerewolvesInColumn') {
+    const word = count === 1 ? 'werewolf' : 'werewolves';
+    return `exactly ${count} ${word} in column ${axis}`;
+  }
+  if (fn === 'exactlyKVillagersInColumn') {
+    const word = count === 1 ? 'villager' : 'villagers';
+    return `exactly ${count} ${word} in column ${axis}`;
+  }
+  return text;
+}
+
+function formatOtherRole(row, col, value) {
+  const valueWord = value === VILLAGER ? 'villager' : 'werewolf';
+  return `The character at row ${row} column ${String(col).padStart(2, '0')} is a ${valueWord}.`;
+}
+
+function indexToRowCol(idx, cols = COLS) {
+  return {
+    row: Math.floor(idx / cols) + 1,
+    col: (idx % cols) + 1,
+  };
+}
+
+// Column helpers
+export function exactlyKVillagersInColumn(roleList, col, k, rows = ROWS, cols = COLS) {
+  const colVars = [];
+  for (let r = 1; r <= rows; r++) {
+    colVars.push(roleList[cellIndex(r, col, cols)]);
+  }
+  return exactlyK(colVars, k, VILLAGER);
+}
+
+export function exactlyKWerewolvesInColumn(roleList, col, k, rows = ROWS, cols = COLS) {
+  const colVars = [];
+  for (let r = 1; r <= rows; r++) {
+    colVars.push(roleList[cellIndex(r, col, cols)]);
+  }
+  return exactlyK(colVars, k, WEREWOLF);
+}
+
+function deducedCellsFromSolutions(solutions) {
+  const deduced = new Map();
+  if (solutions.length === 0) return deduced;
+
+  const totalCells = solutions[0].length;
+  for (let i = 0; i < totalCells; i++) {
+    const values = new Set(solutions.map(sol => sol[i]));
+    if (values.size === 1) {
+      deduced.set(i, solutions[0][i]);
+    }
+  }
+  return deduced;
+}
+
+function buildClueTemplates(targetSolution, roles, rows, cols) {
+  const clues = [];
+
+  for (let r = 1; r <= rows; r++) {
+    const start = cellIndex(r, 1, cols);
+    const slice = targetSolution.slice(start, start + cols);
+    const werewolfCount = slice.filter(v => v === WEREWOLF).length;
+    const villagerCount = cols - werewolfCount;
+
+    clues.push({
+      key: `row-${r}-w-${werewolfCount}`,
+      goal: exactlyKWerewolvesInRow(roles, r, werewolfCount, cols),
+      statement: formatClue(`exactlyKWerewolvesInRow ${r} ${werewolfCount}`),
+    });
+    clues.push({
+      key: `row-${r}-v-${villagerCount}`,
+      goal: exactlyKVillagersInRow(roles, r, villagerCount, cols),
+      statement: formatClue(`exactlyKVillagersInRow ${r} ${villagerCount}`),
+    });
+  }
+
+  for (let c = 1; c <= cols; c++) {
+    const colSlice = [];
+    for (let r = 1; r <= rows; r++) {
+      colSlice.push(targetSolution[cellIndex(r, c, cols)]);
+    }
+    const werewolfCount = colSlice.filter(v => v === WEREWOLF).length;
+    const villagerCount = rows - werewolfCount;
+
+    clues.push({
+      key: `col-${c}-w-${werewolfCount}`,
+      goal: exactlyKWerewolvesInColumn(roles, c, werewolfCount, rows, cols),
+      statement: formatClue(`exactlyKWerewolvesInColumn ${c} ${werewolfCount}`),
+    });
+    clues.push({
+      key: `col-${c}-v-${villagerCount}`,
+      goal: exactlyKVillagersInColumn(roles, c, villagerCount, rows, cols),
+      statement: formatClue(`exactlyKVillagersInColumn ${c} ${villagerCount}`),
+    });
+  }
+
+  return clues;
+}
+
+// Puzzle generator:
+//   - Returns an array of steps: [{ row, column, role, statement }, ...]
+//   - Starts with a single revealed cell.
+//   - Iteratively adds one clue at a time (drawn from a template) that makes
+//     exactly one new cell become deducible across all valid solutions.
+//   - Falls back to a direct reveal if no template clue can yield a single
+//     deterministic deduction.
+export function generatePuzzle(rows = ROWS, cols = COLS) {
+  const roles = makeRoleGrid(rows, cols);
+  const targetSolution = Array.from({ length: rows * cols }, () =>
+    Math.random() < 0.5 ? VILLAGER : WEREWOLF
+  );
+
+  const clueTemplates = shuffle(buildClueTemplates(targetSolution, roles, rows, cols));
+  const usedClueKeys = new Set();
+
+  // Pick an initial revealed character (their role is known).
+  const initialIdx = randInt(rows * cols);
+  const initialGoal = eq(roles[initialIdx], targetSolution[initialIdx]);
+
+  const goals = [everyoneBinary(roles), initialGoal];
+  let solutions = run(and(...goals), roles);
+  let deduced = deducedCellsFromSolutions(solutions);
+
+  let currentSpeakerIdx = initialIdx;
+  const puzzle = [];
+
+  const maxSteps = rows * cols * 6;
+  let steps = 0;
+
+  while (deduced.size < rows * cols && steps < maxSteps) {
+    steps++;
+    let added = false;
+    let nextIdx = -1;
+    let nextSolutions = solutions;
+    let nextDeductions = deduced;
+    let nextStatement = '';
+
+    // Try to find a clue that yields exactly one new deduced cell (not yet known).
+    for (const clue of clueTemplates) {
+      if (usedClueKeys.has(clue.key)) continue;
+
+      const candidateGoal = and(...goals, clue.goal);
+      const candidateSolutions = run(candidateGoal, roles);
+      if (candidateSolutions.length === 0) continue;
+
+      const candidateDeductions = deducedCellsFromSolutions(candidateSolutions);
+      const newDeductions = [];
+      for (const [idx, value] of candidateDeductions.entries()) {
+        if (!deduced.has(idx)) newDeductions.push([idx, value]);
+      }
+
+      if (newDeductions.length === 1) {
+        const [newIdx] = newDeductions[0];
+        if (newIdx === currentSpeakerIdx) continue; // avoid self-pointing
+
+        nextIdx = newIdx;
+        nextSolutions = candidateSolutions;
+        nextDeductions = candidateDeductions;
+        nextStatement = clue.statement;
+
+        goals.push(clue.goal);
+        usedClueKeys.add(clue.key);
+        added = true;
+        break;
+      }
+    }
+
+    // If no template clue works, have the current speaker reveal another character directly.
+    if (!added) {
+      const unresolved = [];
+      for (let i = 0; i < rows * cols; i++) {
+        if (!deduced.has(i) && i !== currentSpeakerIdx) unresolved.push(i);
+      }
+
+      if (unresolved.length === 0) break;
+
+      const revealIdxFallback = unresolved[randInt(unresolved.length)];
+      const fallbackGoal = eq(roles[revealIdxFallback], targetSolution[revealIdxFallback]);
+      const candidateGoal = and(...goals, fallbackGoal);
+      const candidateSolutions = run(candidateGoal, roles);
+      const candidateDeductions = deducedCellsFromSolutions(candidateSolutions);
+      const newDeductions = [];
+      for (const [idx, value] of candidateDeductions.entries()) {
+        if (!deduced.has(idx)) newDeductions.push([idx, value]);
+      }
+
+      if (newDeductions.length === 1 && newDeductions[0][0] !== currentSpeakerIdx) {
+        const [newIdx, value] = newDeductions[0];
+        const { row, col } = indexToRowCol(newIdx, cols);
+        nextIdx = newIdx;
+        nextSolutions = candidateSolutions;
+        nextDeductions = candidateDeductions;
+        nextStatement = formatOtherRole(row, col, value);
+
+        goals.push(fallbackGoal);
+        added = true;
+      } else {
+        break;
+      }
+    }
+
+    if (!added) break;
+
+    // Record the current speaker's statement (about another character).
+    const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
+    puzzle.push({
+      row: speakerRow,
+      column: speakerCol,
+      role: targetSolution[currentSpeakerIdx],
+      statement: nextStatement,
+    });
+
+    solutions = nextSolutions;
+    deduced = nextDeductions;
+    currentSpeakerIdx = nextIdx;
+  }
+
+  // Add a final truthful statement from the last revealed character about someone else.
+  if (deduced.size === rows * cols) {
+    const others = [];
+    for (let i = 0; i < rows * cols; i++) {
+      if (i !== currentSpeakerIdx) others.push(i);
+    }
+    if (others.length > 0) {
+      const targetIdx = others[0];
+      const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
+      const { row: tgtRow, col: tgtCol } = indexToRowCol(targetIdx, cols);
+      puzzle.push({
+        row: speakerRow,
+        column: speakerCol,
+        role: targetSolution[currentSpeakerIdx],
+        statement: formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx]),
+      });
+    }
+  }
+
+  return puzzle;
+}
+
+
+/*
+± % pnpm exec node --input-type=module -e "import('./prototype2.js').then(m => console.log(JSON.stringify(m.generatePuzzle(), null, 2)));"
+[
+  {
+    "row": 2,
+    "column": 1,
+    "role": "werewolf",
+    "statement": "exactly 0 villagers in column 1"
+  },
+  {
+    "row": 1,
+    "column": 1,
+    "role": "werewolf",
+    "statement": "exactly 2 werewolves in row 2"
+  },
+  {
+    "row": 2,
+    "column": 2,
+    "role": "werewolf",
+    "statement": "exactly 0 villagers in column 2"
+  },
+  {
+    "row": 1,
+    "column": 2,
+    "role": "werewolf",
+    "statement": "The character at row 1 column 01 is a werewolf."
+  }
+]
+  */
