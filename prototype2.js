@@ -11,10 +11,13 @@ var or = logic.or,
 export const ROWS = 2;
 export const COLS = 2;
 
+export const VILLAGER = 'villager';
+export const WEREWOLF = 'werewolf';
+
 // 1-based indexing for rows/cols to match your puzzle spec.
 // grid[r][c] is the role variable for that cell.
-//   0 = cultivator (innocent)
-//   1 = demon-in-disguise (criminal)
+//   villager = innocent
+//   werewolf = criminal
 export function makeRoleGrid(rows = ROWS, cols = COLS) {
   const grid = [];
   for (let r = 1; r <= rows; r++) {
@@ -38,13 +41,13 @@ function anyOr(goals) {
   return goals.reduce((acc, g) => or(acc, g), logic.fail);
 }
 
-// Everyone is either 0 (cultivator) or 1 (demon)
+// Everyone is either villager or werewolf
 export function everyoneBinary(roleGrid) {
   const goals = [];
   for (let r = 1; r < roleGrid.length; r++) {
     for (let c = 1; c < roleGrid[r].length; c++) {
       const v = roleGrid[r][c];
-      goals.push(or(eq(v, 0), eq(v, 1)));
+      goals.push(or(eq(v, VILLAGER), eq(v, WEREWOLF)));
     }
   }
   return allAnd(goals);
@@ -52,11 +55,11 @@ export function everyoneBinary(roleGrid) {
 
 // Role helpers (just wrap eq so your “atoms” can use them)
 export function isVillager(roleVar) {
-  return eq(roleVar, 0);
+  return eq(roleVar, VILLAGER);
 }
 
 export function isWerewolf(roleVar) {
-  return eq(roleVar, 1);
+  return eq(roleVar, WEREWOLF);
 }
 
 // Generate all size-k subsets of given index array.
@@ -74,15 +77,15 @@ function kSubsets(indexes, k, start = 0, prefix = [], out = []) {
 }
 
 // exactlyK(vars, k, value)
-// vars: array of lvars (each will end up 0 or 1, if you also use everyoneBinary)
+// vars: array of lvars (each will end up villager or werewolf, if you also use everyoneBinary)
 // k: integer
-// value: 0 or 1 (e.g. 0 = cultivator, 1 = demon)
+// value: VILLAGER or WEREWOLF
 //
 // We implement this by enumerating all subsets of vars of size k
 // that have 'value', and forcing the rest to be 1-value.
 export function exactlyK(vars, k, value) {
   const n = vars.length;
-  const complement = (value === 0 ? 1 : 0);
+  const complement = (value === VILLAGER ? WEREWOLF : VILLAGER);
   const idxs = [];
   for (let i = 0; i < n; i++) idxs.push(i);
 
@@ -104,6 +107,24 @@ export function exactlyK(vars, k, value) {
   return anyOr(perSubsetGoals);
 }
 
+// Exactly K villagers in a given row
+export function exactlyKVillagersInRow(roleGrid, row, k) {
+  const rowVars = [];
+  for (let c = 1; c < roleGrid[row].length; c++) {
+    rowVars.push(roleGrid[row][c]);
+  }
+  return exactlyK(rowVars, k, VILLAGER);
+}
+
+// Exactly K werewolves in a given row
+export function exactlyKWerewolvesInRow(roleGrid, row, k) {
+  const rowVars = [];
+  for (let c = 1; c < roleGrid[row].length; c++) {
+    rowVars.push(roleGrid[row][c]);
+  }
+  return exactlyK(rowVars, k, WEREWOLF);
+}
+
 // 5×4 grid of role variables
 const roles = makeRoleGrid(2, 2);
 console.log(roles);
@@ -118,10 +139,10 @@ alice: row 1 has one werewolf, but i'm not.
 
 // create a goal
 var g1 = and(
-  or(
-    eq(roles[1][1], 'werewolf'),
-    eq(roles[1][2], 'werewolf')
-  ),
-  eq(roles[1][1], 'villager')
+  // exactly one werewolf in row 1
+  exactlyKWerewolvesInRow(roles, 1, 1),
+  // alice is not werewolf
+  isVillager(roles[1][1])
 )
-console.log(run(g1, roles[1]))
+console.log(run(g1, roles[1]));
+console.log(run(g1, roles[2]));
