@@ -111,6 +111,18 @@ export function exactlyKRoleInRow(roleList, row, k, role, cols = COLS) {
   return exactlyK(rowVars, k, role);
 }
 
+export function exactlyRoleAboveRow(roleList, row, k, role, cols = COLS) {
+  const start = cellIndex(row, 1, cols);
+  const vars = roleList.slice(0, start);
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyRoleBelowRow(roleList, row, k, role, rows = ROWS, cols = COLS) {
+  const start = cellIndex(row + 1, 1, cols);
+  const vars = roleList.slice(start, rows * cols);
+  return exactlyK(vars, k, role);
+}
+
 function randInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -127,6 +139,15 @@ function formatClue(text) {
   const parts = text.split(' ');
   const [fn, ...rest] = parts;
 
+  const pluralizeRole = (role, count) =>
+    count === 1
+      ? role
+      : role === WEREWOLF
+      ? 'werewolves'
+      : role === VILLAGER
+      ? 'villagers'
+      : `${role}s`;
+
   if (fn === 'exactlyKRoleInRow' || fn === 'exactlyKRoleInColumn') {
     if (rest.length !== 3) return text;
     const [role, axisStr, countStr] = rest;
@@ -134,16 +155,19 @@ function formatClue(text) {
     const count = Number(countStr);
     if (!Number.isFinite(axis) || !Number.isFinite(count)) return text;
 
-    const plural =
-      count === 1
-        ? role
-        : role === WEREWOLF
-        ? 'werewolves'
-        : role === VILLAGER
-        ? 'villagers'
-        : `${role}s`;
+    const plural = pluralizeRole(role, count);
     const target = fn === 'exactlyKRoleInRow' ? 'row' : 'column';
     return `exactly ${count} ${plural} in ${target} ${axis}`;
+  }
+  if (fn === 'exactlyRoleAboveRow' || fn === 'exactlyRoleBelowRow') {
+    if (rest.length !== 3) return text;
+    const [role, rowStr, countStr] = rest;
+    const row = Number(rowStr);
+    const count = Number(countStr);
+    if (!Number.isFinite(row) || !Number.isFinite(count)) return text;
+    const plural = pluralizeRole(role, count);
+    const target = fn === 'exactlyRoleAboveRow' ? 'above row' : 'below row';
+    return `exactly ${count} ${plural} ${target} ${row}`;
   }
   return text;
 }
@@ -191,6 +215,12 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
     const slice = targetSolution.slice(start, start + cols);
     const werewolfCount = slice.filter(v => v === WEREWOLF).length;
     const villagerCount = cols - werewolfCount;
+    const aboveSlice = targetSolution.slice(0, start);
+    const werewolfAbove = aboveSlice.filter(v => v === WEREWOLF).length;
+    const villagerAbove = aboveSlice.length - werewolfAbove;
+    const belowSlice = targetSolution.slice(start + cols);
+    const werewolfBelow = belowSlice.filter(v => v === WEREWOLF).length;
+    const villagerBelow = belowSlice.length - werewolfBelow;
 
     [
       { role: WEREWOLF, count: werewolfCount },
@@ -201,6 +231,26 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
         goal: exactlyKRoleInRow(roles, r, count, role, cols),
         statement: formatClue(`exactlyKRoleInRow ${role} ${r} ${count}`),
       });
+    });
+    [
+      { role: WEREWOLF, count: werewolfAbove, keyPrefix: 'above' },
+      { role: VILLAGER, count: villagerAbove, keyPrefix: 'above' },
+      { role: WEREWOLF, count: werewolfBelow, keyPrefix: 'below' },
+      { role: VILLAGER, count: villagerBelow, keyPrefix: 'below' },
+    ].forEach(({ role, count, keyPrefix }) => {
+      const builder =
+        keyPrefix === 'above'
+          ? {
+              key: `row-${r}-above-${role}-${count}`,
+              goal: exactlyRoleAboveRow(roles, r, count, role, cols),
+              statement: formatClue(`exactlyRoleAboveRow ${role} ${r} ${count}`),
+            }
+          : {
+              key: `row-${r}-below-${role}-${count}`,
+              goal: exactlyRoleBelowRow(roles, r, count, role, rows, cols),
+              statement: formatClue(`exactlyRoleBelowRow ${role} ${r} ${count}`),
+            };
+      clues.push(builder);
     });
   }
 
