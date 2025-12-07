@@ -179,6 +179,29 @@ function formatClue(text) {
     const target = fn === 'exactlyKRoleLeftColumn' ? 'left of column' : 'right of column';
     return `exactly ${count} ${plural} ${target} ${col}`;
   }
+  if (
+    fn === 'exactlyKRoleAboveSomeone' ||
+    fn === 'exactlyKRoleBelowSomeone' ||
+    fn === 'exactlyKRoleLeftOfSomeone' ||
+    fn === 'exactlyKRoleRightOfSomeone'
+  ) {
+    if (rest.length !== 4) return text;
+    const [role, rowStr, colStr, countStr] = rest;
+    const row = Number(rowStr);
+    const col = Number(colStr);
+    const count = Number(countStr);
+    if (!Number.isFinite(row) || !Number.isFinite(col) || !Number.isFinite(count)) return text;
+    const plural = pluralizeRole(role, count);
+    const target =
+      fn === 'exactlyKRoleAboveSomeone'
+        ? 'above'
+        : fn === 'exactlyKRoleBelowSomeone'
+        ? 'below'
+        : fn === 'exactlyKRoleLeftOfSomeone'
+        ? 'left of'
+        : 'right of';
+    return `exactly ${count} ${plural} ${target} the character at row ${row} column ${col}`;
+  }
   return text;
 }
 
@@ -219,6 +242,38 @@ export function exactlyKRoleRightColumn(roleList, col, k, role, rows = ROWS, col
     for (let c = col + 1; c <= cols; c++) {
       vars.push(roleList[cellIndex(r, c, cols)]);
     }
+  }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleAboveSomeone(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let r = 1; r < row; r++) {
+    vars.push(roleList[cellIndex(r, col, cols)]);
+  }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleBelowSomeone(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let r = row + 1; r <= rows; r++) {
+    vars.push(roleList[cellIndex(r, col, cols)]);
+  }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleLeftOfSomeone(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let c = 1; c < col; c++) {
+    vars.push(roleList[cellIndex(row, c, cols)]);
+  }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleRightOfSomeone(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let c = col + 1; c <= cols; c++) {
+    vars.push(roleList[cellIndex(row, c, cols)]);
   }
   return exactlyK(vars, k, role);
 }
@@ -336,6 +391,68 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
             };
       clues.push(builder);
     });
+  }
+
+  // Per-character relative clues
+  for (let r = 1; r <= rows; r++) {
+    for (let c = 1; c <= cols; c++) {
+      const aboveVals = [];
+      const belowVals = [];
+      const leftVals = [];
+      const rightVals = [];
+
+      for (let rr = 1; rr < r; rr++) aboveVals.push(targetSolution[cellIndex(rr, c, cols)]);
+      for (let rr = r + 1; rr <= rows; rr++) belowVals.push(targetSolution[cellIndex(rr, c, cols)]);
+      for (let cc = 1; cc < c; cc++) leftVals.push(targetSolution[cellIndex(r, cc, cols)]);
+      for (let cc = c + 1; cc <= cols; cc++) rightVals.push(targetSolution[cellIndex(r, cc, cols)]);
+
+      const directional = [
+        {
+          dir: 'above',
+          vals: aboveVals,
+          fn: exactlyKRoleAboveSomeone,
+          keyPrefix: 'above',
+          formatter: role => `exactlyKRoleAboveSomeone ${role} ${r} ${c}`,
+        },
+        {
+          dir: 'below',
+          vals: belowVals,
+          fn: exactlyKRoleBelowSomeone,
+          keyPrefix: 'below',
+          formatter: role => `exactlyKRoleBelowSomeone ${role} ${r} ${c}`,
+        },
+        {
+          dir: 'left',
+          vals: leftVals,
+          fn: exactlyKRoleLeftOfSomeone,
+          keyPrefix: 'left-of',
+          formatter: role => `exactlyKRoleLeftOfSomeone ${role} ${r} ${c}`,
+        },
+        {
+          dir: 'right',
+          vals: rightVals,
+          fn: exactlyKRoleRightOfSomeone,
+          keyPrefix: 'right-of',
+          formatter: role => `exactlyKRoleRightOfSomeone ${role} ${r} ${c}`,
+        },
+      ];
+
+      directional.forEach(({ vals, fn, keyPrefix, formatter }) => {
+        if (vals.length === 0) return;
+        const werewolfCount = vals.filter(v => v === WEREWOLF).length;
+        const villagerCount = vals.length - werewolfCount;
+        [
+          { role: WEREWOLF, count: werewolfCount },
+          { role: VILLAGER, count: villagerCount },
+        ].forEach(({ role, count }) => {
+          clues.push({
+            key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
+            goal: fn(roles, r, c, count, role, rows, cols),
+            statement: formatClue(`${formatter(role)} ${count}`),
+          });
+        });
+      });
+    }
   }
 
   return clues;
