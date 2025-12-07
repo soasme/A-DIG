@@ -15,15 +15,18 @@ export const VILLAGER = 'villager';
 export const WEREWOLF = 'werewolf';
 
 // 1-based indexing for rows/cols to match your puzzle spec.
-// grid[r][c] is the role variable for that cell.
+// We store the grid as a single list; cell(row, col) => list[idx(row, col)].
 //   villager = innocent
 //   werewolf = criminal
+export function cellIndex(row, col, cols = COLS) {
+  return (row - 1) * cols + (col - 1);
+}
+
 export function makeRoleGrid(rows = ROWS, cols = COLS) {
-  const grid = [];
+  const grid = new Array(rows * cols);
   for (let r = 1; r <= rows; r++) {
-    grid[r] = [];
     for (let c = 1; c <= cols; c++) {
-      grid[r][c] = lvar(`cell_${r}_${c}`);
+      grid[cellIndex(r, c, cols)] = lvar(`cell_${r}_${c}`);
     }
   }
   return grid;
@@ -42,14 +45,8 @@ function anyOr(goals) {
 }
 
 // Everyone is either villager or werewolf
-export function everyoneBinary(roleGrid) {
-  const goals = [];
-  for (let r = 1; r < roleGrid.length; r++) {
-    for (let c = 1; c < roleGrid[r].length; c++) {
-      const v = roleGrid[r][c];
-      goals.push(or(eq(v, VILLAGER), eq(v, WEREWOLF)));
-    }
-  }
+export function everyoneBinary(roleList) {
+  const goals = roleList.map(v => or(eq(v, VILLAGER), eq(v, WEREWOLF)));
   return allAnd(goals);
 }
 
@@ -108,20 +105,16 @@ export function exactlyK(vars, k, value) {
 }
 
 // Exactly K villagers in a given row
-export function exactlyKVillagersInRow(roleGrid, row, k) {
-  const rowVars = [];
-  for (let c = 1; c < roleGrid[row].length; c++) {
-    rowVars.push(roleGrid[row][c]);
-  }
+export function exactlyKVillagersInRow(roleList, row, k, cols = COLS) {
+  const start = cellIndex(row, 1, cols);
+  const rowVars = roleList.slice(start, start + cols);
   return exactlyK(rowVars, k, VILLAGER);
 }
 
 // Exactly K werewolves in a given row
-export function exactlyKWerewolvesInRow(roleGrid, row, k) {
-  const rowVars = [];
-  for (let c = 1; c < roleGrid[row].length; c++) {
-    rowVars.push(roleGrid[row][c]);
-  }
+export function exactlyKWerewolvesInRow(roleList, row, k, cols = COLS) {
+  const start = cellIndex(row, 1, cols);
+  const rowVars = roleList.slice(start, start + cols);
   return exactlyK(rowVars, k, WEREWOLF);
 }
 
@@ -142,7 +135,6 @@ var g1 = and(
   // exactly one werewolf in row 1
   exactlyKWerewolvesInRow(roles, 1, 1),
   // alice is not werewolf
-  isVillager(roles[1][1])
+  isVillager(roles[cellIndex(1, 1)])
 )
-console.log(run(g1, roles[1]));
-console.log(run(g1, roles[2]));
+console.log(run(g1, roles));
