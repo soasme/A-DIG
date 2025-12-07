@@ -221,6 +221,15 @@ function formatClue(text) {
     const plural = pluralizeRole(role, count);
     return `exactly ${count} ${plural} between row ${r1} column ${c1} and row ${r2} column ${c2}`;
   }
+  if (fn === 'AllRoleInRowConnected' || fn === 'AllRoleInColumnConnected') {
+    if (rest.length !== 2) return text;
+    const [role, axisStr] = rest;
+    const axis = Number(axisStr);
+    if (!Number.isFinite(axis)) return text;
+    const plural = pluralizeRole(role, 2);
+    const target = fn === 'AllRoleInRowConnected' ? 'row' : 'column';
+    return `all ${plural} in ${target} ${axis} are connected`;
+  }
   return text;
 }
 
@@ -328,6 +337,50 @@ export function exactlyKRoleBetweenTheTwo(
   return exactlyK(vars, k, role);
 }
 
+export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
+  const complement = role === VILLAGER ? WEREWOLF : VILLAGER;
+  const start = cellIndex(row, 1, cols);
+  const rowVars = roleList.slice(start, start + cols);
+  const goals = [];
+
+  // no occurrence of role
+  goals.push(allAnd(rowVars.map(v => eq(v, complement))));
+
+  // contiguous segment of role
+  for (let s = 0; s < cols; s++) {
+    for (let e = s; e < cols; e++) {
+      const before = rowVars.slice(0, s).map(v => eq(v, complement));
+      const inside = rowVars.slice(s, e + 1).map(v => eq(v, role));
+      const after = rowVars.slice(e + 1).map(v => eq(v, complement));
+      goals.push(allAnd([...before, ...inside, ...after]));
+    }
+  }
+
+  return anyOr(goals);
+}
+
+export function allRoleConnectedInColumn(roleList, col, role, rows = ROWS, cols = COLS) {
+  const complement = role === VILLAGER ? WEREWOLF : VILLAGER;
+  const colVars = [];
+  for (let r = 1; r <= rows; r++) {
+    colVars.push(roleList[cellIndex(r, col, cols)]);
+  }
+
+  const goals = [];
+  goals.push(allAnd(colVars.map(v => eq(v, complement))));
+
+  for (let s = 0; s < rows; s++) {
+    for (let e = s; e < rows; e++) {
+      const before = colVars.slice(0, s).map(v => eq(v, complement));
+      const inside = colVars.slice(s, e + 1).map(v => eq(v, role));
+      const after = colVars.slice(e + 1).map(v => eq(v, complement));
+      goals.push(allAnd([...before, ...inside, ...after]));
+    }
+  }
+
+  return anyOr(goals);
+}
+
 function deducedCellsFromSolutions(solutions) {
   const deduced = new Map();
   if (solutions.length === 0) return deduced;
@@ -387,6 +440,17 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
             };
       clues.push(builder);
     });
+
+    [
+      { role: WEREWOLF },
+      { role: VILLAGER },
+    ].forEach(({ role }) => {
+      clues.push({
+        key: `row-${r}-connected-${role}`,
+        goal: allRoleConnectedInRow(roles, r, role, cols),
+        statement: formatClue(`AllRoleInRowConnected ${role} ${r}`),
+      });
+    });
   }
 
   for (let c = 1; c <= cols; c++) {
@@ -419,6 +483,16 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
         key: `col-${c}-${role}-${count}`,
         goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
         statement: formatClue(`exactlyKRoleInColumn ${role} ${c} ${count}`),
+      });
+    });
+    [
+      { role: WEREWOLF },
+      { role: VILLAGER },
+    ].forEach(({ role }) => {
+      clues.push({
+        key: `col-${c}-connected-${role}`,
+        goal: allRoleConnectedInColumn(roles, c, role, rows, cols),
+        statement: formatClue(`AllRoleInColumnConnected ${role} ${c}`),
       });
     });
     [
