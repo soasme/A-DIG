@@ -169,6 +169,16 @@ function formatClue(text) {
     const target = fn === 'exactlyRoleAboveRow' ? 'above row' : 'below row';
     return `exactly ${count} ${plural} ${target} ${row}`;
   }
+  if (fn === 'exactlyKRoleLeftColumn' || fn === 'exactlyKRoleRightColumn') {
+    if (rest.length !== 3) return text;
+    const [role, colStr, countStr] = rest;
+    const col = Number(colStr);
+    const count = Number(countStr);
+    if (!Number.isFinite(col) || !Number.isFinite(count)) return text;
+    const plural = pluralizeRole(role, count);
+    const target = fn === 'exactlyKRoleLeftColumn' ? 'left of column' : 'right of column';
+    return `exactly ${count} ${plural} ${target} ${col}`;
+  }
   return text;
 }
 
@@ -191,6 +201,26 @@ export function exactlyKRoleInColumn(roleList, col, k, role, rows = ROWS, cols =
     colVars.push(roleList[cellIndex(r, col, cols)]);
   }
   return exactlyK(colVars, k, role);
+}
+
+export function exactlyKRoleLeftColumn(roleList, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let r = 1; r <= rows; r++) {
+    for (let c = 1; c < col; c++) {
+      vars.push(roleList[cellIndex(r, c, cols)]);
+    }
+  }
+  return exactlyK(vars, k, role);
+}
+
+export function exactlyKRoleRightColumn(roleList, col, k, role, rows = ROWS, cols = COLS) {
+  const vars = [];
+  for (let r = 1; r <= rows; r++) {
+    for (let c = col + 1; c <= cols; c++) {
+      vars.push(roleList[cellIndex(r, c, cols)]);
+    }
+  }
+  return exactlyK(vars, k, role);
 }
 
 function deducedCellsFromSolutions(solutions) {
@@ -261,6 +291,20 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
     }
     const werewolfCount = colSlice.filter(v => v === WEREWOLF).length;
     const villagerCount = rows - werewolfCount;
+    const leftSlice = [];
+    const rightSlice = [];
+    for (let r = 1; r <= rows; r++) {
+      for (let col = 1; col < c; col++) {
+        leftSlice.push(targetSolution[cellIndex(r, col, cols)]);
+      }
+      for (let col = c + 1; col <= cols; col++) {
+        rightSlice.push(targetSolution[cellIndex(r, col, cols)]);
+      }
+    }
+    const werewolfLeft = leftSlice.filter(v => v === WEREWOLF).length;
+    const villagerLeft = leftSlice.length - werewolfLeft;
+    const werewolfRight = rightSlice.filter(v => v === WEREWOLF).length;
+    const villagerRight = rightSlice.length - werewolfRight;
 
     [
       { role: WEREWOLF, count: werewolfCount },
@@ -271,6 +315,26 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
         goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
         statement: formatClue(`exactlyKRoleInColumn ${role} ${c} ${count}`),
       });
+    });
+    [
+      { role: WEREWOLF, count: werewolfLeft, keyPrefix: 'left' },
+      { role: VILLAGER, count: villagerLeft, keyPrefix: 'left' },
+      { role: WEREWOLF, count: werewolfRight, keyPrefix: 'right' },
+      { role: VILLAGER, count: villagerRight, keyPrefix: 'right' },
+    ].forEach(({ role, count, keyPrefix }) => {
+      const builder =
+        keyPrefix === 'left'
+          ? {
+              key: `col-${c}-left-${role}-${count}`,
+              goal: exactlyKRoleLeftColumn(roles, c, count, role, rows, cols),
+              statement: formatClue(`exactlyKRoleLeftColumn ${role} ${c} ${count}`),
+            }
+          : {
+              key: `col-${c}-right-${role}-${count}`,
+              goal: exactlyKRoleRightColumn(roles, c, count, role, rows, cols),
+              statement: formatClue(`exactlyKRoleRightColumn ${role} ${c} ${count}`),
+            };
+      clues.push(builder);
     });
   }
 
@@ -285,6 +349,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
 //   - Falls back to a direct reveal if no template clue can yield a single
 //     deterministic deduction.
 export function generatePuzzle(rows = ROWS, cols = COLS) {
+  const desiredNewDeductions = 2;
   const roles = makeRoleGrid(rows, cols);
   const targetSolution = Array.from({ length: rows * cols }, () =>
     Math.random() < 0.5 ? VILLAGER : WEREWOLF
@@ -315,7 +380,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
     let nextDeductions = deduced;
     let nextStatement = '';
 
-    // Try to find a clue that yields exactly one new deduced cell (not yet known).
+    // Try to find a clue that yields exactly the desired number of new deduced cells (not yet known).
     for (const clue of clueTemplates) {
       if (usedClueKeys.has(clue.key)) continue;
 
@@ -329,9 +394,11 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         if (!deduced.has(idx)) newDeductions.push([idx, value]);
       }
 
-      if (newDeductions.length === 1) {
+      if (
+        newDeductions.length === desiredNewDeductions &&
+        newDeductions.every(([idx]) => idx !== currentSpeakerIdx)
+      ) {
         const [newIdx] = newDeductions[0];
-        if (newIdx === currentSpeakerIdx) continue; // avoid self-pointing
 
         nextIdx = newIdx;
         nextSolutions = candidateSolutions;
@@ -364,7 +431,10 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         if (!deduced.has(idx)) newDeductions.push([idx, value]);
       }
 
-      if (newDeductions.length === 1 && newDeductions[0][0] !== currentSpeakerIdx) {
+      if (
+        newDeductions.length === desiredNewDeductions &&
+        newDeductions.every(([idx]) => idx !== currentSpeakerIdx)
+      ) {
         const [newIdx, value] = newDeductions[0];
         const { row, col } = indexToRowCol(newIdx, cols);
         nextIdx = newIdx;
