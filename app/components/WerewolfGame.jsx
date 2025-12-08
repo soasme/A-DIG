@@ -3,71 +3,241 @@ import './WerewolfGame.css';
 
 // Game data
 const gameData = {
-  "row": 3,
-  "column": 5,
+  "row": 5,
+  "column": 3,
   "characters": [
-    { "name": "Penelope", "gender": "female", "row": 1, "column": 1, "characteristic": "noble_self_sacrifice" },
-    { "name": "Paige", "gender": "female", "row": 1, "column": 2, "characteristic": "iron_willpower" },
-    { "name": "Emma", "gender": "female", "row": 1, "column": 3, "characteristic": "ruthless_pragmatism" },
-    { "name": "Graham", "gender": "male", "row": 1, "column": 4, "characteristic": "brooding_silence" },
-    { "name": "Oscar", "gender": "male", "row": 1, "column": 5, "characteristic": "forbidden_curiosity" },
-    { "name": "Felix", "gender": "male", "row": 2, "column": 1, "characteristic": "unstoppable_zeal" },
-    { "name": "Brooke", "gender": "female", "row": 2, "column": 2, "characteristic": "reckless_bravery" },
-    { "name": "Fiona", "gender": "female", "row": 2, "column": 3, "characteristic": "serene_detachment" },
-    { "name": "Xander", "gender": "male", "row": 2, "column": 4, "characteristic": "warmhearted_compassion" },
-    { "name": "Xiomara", "gender": "female", "row": 2, "column": 5, "characteristic": "warmhearted_compassion" },
-    { "name": "Walker", "gender": "male", "row": 3, "column": 1, "characteristic": "righteous_fury" },
-    { "name": "Reese", "gender": "female", "row": 3, "column": 2, "characteristic": "warmhearted_compassion" },
-    { "name": "Riley", "gender": "male", "row": 3, "column": 3, "characteristic": "unpredictable_genius" },
-    { "name": "Spencer", "gender": "male", "row": 3, "column": 4, "characteristic": "vengeful_obsession" },
-    { "name": "Uma", "gender": "female", "row": 3, "column": 5, "characteristic": "tragic_melancholy" }
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Hannah",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Jade",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Parker",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Celia",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Liam",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Kyle",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Whitney",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    }
   ],
   "puzzle": [
-    { "row": 2, "column": 5, "role": "villager", "statement": "the character at row 2 column 4 is one of the 3 villager neighbors of the character at row 3 column 4" },
-    { "row": 2, "column": 4, "role": "villager", "statement": "exactly 1 of the 1 villager below row 1 column 3 are neighbors of the character at row 2 column 4" },
-    { "row": 3, "column": 5, "role": "werewolf", "statement": "exactly 1 of the 1 werewolf to the right of row 1 column 4 are neighbors of the character at row 2 column 5" },
-    { "row": 1, "column": 5, "role": "werewolf", "statement": "exactly 0 of the 1 villager to the left of row 3 column 2 are neighbors of the character at row 3 column 4" },
-    { "row": 3, "column": 1, "role": "villager", "statement": "exactly 0 of the 1 villager below row 1 column 1 are neighbors of the character at row 3 column 5" },
-    { "row": 2, "column": 1, "role": "werewolf", "statement": "exactly 1 werewolf in column 1" },
-    { "row": 1, "column": 1, "role": "villager", "statement": "exactly 0 werewolves above the character at row 2 column 3" },
-    { "row": 1, "column": 3, "role": "villager", "statement": "exactly 0 of the 2 werewolves to the right of row 1 column 2 are neighbors of the character at row 2 column 1" },
-    { "row": 1, "column": 4, "role": "werewolf", "statement": "exactly 0 of the 2 werewolves to the left of row 1 column 5 are neighbors of the character at row 3 column 1" },
-    { "row": 1, "column": 2, "role": "werewolf", "statement": "exactly 1 werewolf left of the character at row 2 column 3" },
-    { "row": 2, "column": 2, "role": "villager", "statement": "the character at row 2 column 1 has more villager neighbors than the character at row 3 column 4" },
-    { "row": 3, "column": 2, "role": "villager", "statement": "exactly 1 of the 1 werewolf below row 1 column 4 are neighbors of the character at row 3 column 5" },
-    { "row": 3, "column": 4, "role": "werewolf", "statement": "the character at row 1 column 4 has exactly 3 villagers as neighbors" },
-    { "row": 2, "column": 3, "role": "werewolf", "statement": "the character at row 1 column 5 has fewer werewolf neighbors than the character at row 2 column 4" },
-    { "row": 3, "column": 3, "role": "villager", "statement": "The character at row 3 column 03 is a villager." }
+    {
+      "row": 5,
+      "column": 1,
+      "role": "villager",
+      "statement": "exactly 0 of the 2 villagers below Preston are neighbors of Whitney"
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "exactly 1 of the 1 werewolf above Parker are neighbors of Finn"
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "exactly 0 of the 1 villager above Finn are neighbors of Wren"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "exactly 0 of the 1 werewolf above Garrett are neighbors of Kyle"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "exactly 0 of the 1 villager above Celia are neighbors of Porter"
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "exactly 1 of the 1 villager below Nora are neighbors of Ivy"
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "exactly 0 of the 2 villagers below Liam are neighbors of Whitney"
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Ivy has exactly 4 villagers as neighbors"
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "exactly 0 of the 1 werewolf below Celia are neighbors of Whitney"
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Talia has exactly 1 werewolf as neighbors"
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "exactly 1 of the 3 werewolves below Hannah are neighbors of Whitney"
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "exactly 1 werewolf above Nora"
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "exactly 2 werewolves between Parker and Whitney"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "exactly 1 of the 1 villager to the left of Finn are neighbors of Garrett"
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Wren is a werewolf."
+    }
   ]
-};
+}
 
 function CharacterCell({ character, revealed, onClick, showStatement }) {
   const puzzle = gameData.puzzle.find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
   const emoji = character.gender === 'female' ? '👩' : '👨';
+  const positionStyle = {
+    gridColumn: character.column,
+    gridRow: character.row
+  };
   
   return (
-    <div>
-      <div 
-        className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''}`}
-        onClick={() => !revealed && onClick()}
-      >
-        <div className="emoji">{emoji}</div>
-        <div className="name">{character.name}</div>
-        <div className="characteristic">
-          {character.characteristic.replace(/_/g, ' ')}
-        </div>
-        {revealed && (
-          <div className="role-badge">
-            {role}
+    <div className="cell-wrapper" style={positionStyle}>
+      <div className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''}`}>
+        <button
+          type="button"
+          className="cell-hitbox"
+          onClick={() => !revealed && onClick()}
+          disabled={revealed}
+        >
+          <div className="emoji">{emoji}</div>
+          <div className="name">{character.name}</div>
+          {revealed && (
+            <div className="role-badge">
+              {role}
+            </div>
+          )}
+        </button>
+        {showStatement && puzzle && (
+          <div className="statement">
+            "{puzzle.statement}"
           </div>
         )}
       </div>
-      {showStatement && puzzle && (
-        <div className="statement">
-          "{puzzle.statement}"
-        </div>
-      )}
     </div>
   );
 }
@@ -247,58 +417,53 @@ export default function WerewolfGame() {
     setSelectedCharacter(null);
   };
 
-  // Create grid
-  const grid = [];
-  for (let row = 1; row <= gameData.row; row++) {
-    const rowCells = [];
-    for (let col = 1; col <= gameData.column; col++) {
-      const character = gameData.characters.find(c => c.row === row && c.column === col);
-      if (character) {
-        const key = `${row}-${col}`;
-        const isRevealed = revealed.has(key);
-        const showStatement = isRevealed;
-        rowCells.push(
-          <CharacterCell
-            key={key}
-            character={character}
-            revealed={isRevealed}
-            onClick={() => handleCharacterClick(character)}
-            showStatement={showStatement}
-          />
-        );
-      }
-    }
-    grid.push(
-      <div key={row} className="grid-row">
-        {rowCells}
-      </div>
+  const boardStyle = {
+    '--columns': gameData.column,
+    '--rows': gameData.row
+  };
+
+  const boardCells = gameData.characters.map((character) => {
+    const key = `${character.row}-${character.column}`;
+    const isRevealed = revealed.has(key);
+    const showStatement = isRevealed;
+
+    return (
+      <CharacterCell
+        key={key}
+        character={character}
+        revealed={isRevealed}
+        onClick={() => handleCharacterClick(character)}
+        showStatement={showStatement}
+      />
     );
-  }
+  });
 
   return (
     <div className="werewolf-game">
       <div className="grain"></div>
-      
-      <header className="game-header">
-        <h1 className="game-title">Who is Werewolf?</h1>
-        <p className="game-subtitle">A logic puzzle of deduction and deception</p>
-      </header>
 
-      <main className="game-main">
-        {message && (
-          <div className={`message ${message.includes('✅') ? 'success' : 'error'}`}>
-            {message}
+      <section className="game-hero">
+        <header className="game-header">
+          <h1 className="game-title">Who is Werewolf?</h1>
+          <p className="game-subtitle">A logic puzzle of deduction and deception</p>
+        </header>
+
+        <main className="game-main">
+          {message && (
+            <div className={`message ${message.includes('✅') ? 'success' : 'error'}`}>
+              {message}
+            </div>
+          )}
+          
+          <div className="game-board" style={boardStyle}>
+            {boardCells}
           </div>
-        )}
-        
-        <div className="game-board">
-          {grid}
-        </div>
 
-        <div className="progress">
-          <p>Revealed: {revealed.size} / {gameData.characters.length}</p>
-        </div>
-      </main>
+          <div className="progress">
+            <p>Revealed: {revealed.size} / {gameData.characters.length}</p>
+          </div>
+        </main>
+      </section>
 
       <Rules />
       <DetailedExplanation />
