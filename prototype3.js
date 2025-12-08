@@ -242,6 +242,19 @@ function formatClue(text) {
     const neighborWord = role === WEREWOLF ? 'werewolf neighbors' : 'villager neighbors';
     return `the characters at row ${r1} column ${c1} and row ${r2} column ${c2} have the same number of ${neighborWord}`;
   }
+  if (fn === 'HaveMoreRoleNeighbors' || fn === 'HaveLessRoleNeighbors') {
+    if (rest.length !== 5) return text;
+    const [role, r1Str, c1Str, r2Str, c2Str] = rest;
+    const r1 = Number(r1Str);
+    const c1 = Number(c1Str);
+    const r2 = Number(r2Str);
+    const c2 = Number(c2Str);
+    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2))
+      return text;
+    const neighborWord = role === WEREWOLF ? 'werewolf neighbors' : 'villager neighbors';
+    const comparison = fn === 'HaveMoreRoleNeighbors' ? 'more' : 'fewer';
+    return `the character at row ${r1} column ${c1} has ${comparison} ${neighborWord} than the character at row ${r2} column ${c2}`;
+  }
   return text;
 }
 
@@ -377,6 +390,29 @@ export function haveEqualRoleNeighbor(roleList, r1, c1, r2, c2, role, rows = ROW
   }
 
   return anyOr(equalityGoals);
+}
+
+export function haveMoreRoleNeighbors(roleList, r1, c1, r2, c2, role, rows = ROWS, cols = COLS) {
+  if (r1 === r2 && c1 === c2) return logic.fail;
+
+  const neighbors1 = getNeighbors(r1, c1, rows, cols).map(([r, c]) => roleList[cellIndex(r, c, cols)]);
+  const neighbors2 = getNeighbors(r2, c2, rows, cols).map(([r, c]) => roleList[cellIndex(r, c, cols)]);
+  const max1 = neighbors1.length;
+  const max2 = neighbors2.length;
+
+  const goals = [];
+  for (let k1 = 0; k1 <= max1; k1++) {
+    for (let k2 = 0; k2 <= max2; k2++) {
+      if (k1 <= k2) continue;
+      goals.push(and(exactlyK(neighbors1, k1, role), exactlyK(neighbors2, k2, role)));
+    }
+  }
+
+  return anyOr(goals);
+}
+
+export function haveLessRoleNeighbors(roleList, r1, c1, r2, c2, role, rows = ROWS, cols = COLS) {
+  return haveMoreRoleNeighbors(roleList, r2, c2, r1, c1, role, rows, cols);
 }
 
 export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
@@ -692,6 +728,27 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
               goal: haveEqualRoleNeighbor(roles, r1, c1, r2, c2, role, rows, cols),
               statement: formatClue(`HaveEqualRoleNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`),
             });
+          });
+
+          [
+            { role: WEREWOLF, count1: werewolfNeighbors1, count2: werewolfNeighbors2 },
+            { role: VILLAGER, count1: villagerNeighbors1, count2: villagerNeighbors2 },
+          ].forEach(({ role, count1, count2 }) => {
+            if (count1 > count2) {
+              const key = `more-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}-${count2}`;
+              clues.push({
+                key,
+                goal: haveMoreRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
+                statement: formatClue(`HaveMoreRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2}`),
+              });
+            } else if (count1 < count2) {
+              const key = `less-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}-${count2}`;
+              clues.push({
+                key,
+                goal: haveLessRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
+                statement: formatClue(`HaveLessRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2}`),
+              });
+            }
           });
         }
       }
