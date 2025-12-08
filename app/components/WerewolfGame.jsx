@@ -7,201 +7,298 @@ const gameData = {
   "column": 3,
   "characters": [
     {
-      "name": "Preston",
+      "name": "Hunter",
       "gender": "male",
       "row": 1,
-      "column": 1,
-      "characteristic": "warmhearted_compassion"
-    },
-    {
-      "name": "Hannah",
-      "gender": "female",
-      "row": 1,
-      "column": 2,
-      "characteristic": "haunted_guilt"
-    },
-    {
-      "name": "Jade",
-      "gender": "female",
-      "row": 1,
-      "column": 3,
-      "characteristic": "fierce_loyalty"
-    },
-    {
-      "name": "Parker",
-      "gender": "male",
-      "row": 2,
-      "column": 1,
-      "characteristic": "noble_self_sacrifice"
-    },
-    {
-      "name": "Finn",
-      "gender": "male",
-      "row": 2,
-      "column": 2,
-      "characteristic": "righteous_fury"
-    },
-    {
-      "name": "Celia",
-      "gender": "female",
-      "row": 2,
-      "column": 3,
-      "characteristic": "ruthless_pragmatism"
-    },
-    {
-      "name": "Wren",
-      "gender": "female",
-      "row": 3,
       "column": 1,
       "characteristic": "lonely_wanderer_spirit"
     },
     {
-      "name": "Garrett",
+      "name": "Faith",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Raina",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Dean",
       "gender": "male",
       "row": 3,
       "column": 2,
-      "characteristic": "haunted_guilt"
+      "characteristic": "brooding_silence"
     },
     {
-      "name": "Liam",
-      "gender": "male",
+      "name": "Celia",
+      "gender": "female",
       "row": 3,
       "column": 3,
-      "characteristic": "stoic_endurance"
+      "characteristic": "serene_detachment"
     },
     {
-      "name": "Porter",
+      "name": "Yusuf",
       "gender": "male",
       "row": 4,
       "column": 1,
-      "characteristic": "fierce_loyalty"
+      "characteristic": "hopeful_idealism"
     },
     {
-      "name": "Kyle",
-      "gender": "male",
+      "name": "Bianca",
+      "gender": "female",
       "row": 4,
       "column": 2,
-      "characteristic": "unpredictable_genius"
+      "characteristic": "righteous_fury"
     },
     {
-      "name": "Nora",
+      "name": "Lucy",
       "gender": "female",
       "row": 4,
       "column": 3,
-      "characteristic": "ruthless_pragmatism"
+      "characteristic": "gentle_naivety"
     },
     {
-      "name": "Whitney",
-      "gender": "female",
+      "name": "Zeke",
+      "gender": "male",
       "row": 5,
       "column": 1,
-      "characteristic": "ruthless_pragmatism"
+      "characteristic": "righteous_fury"
     },
     {
-      "name": "Ivy",
+      "name": "Poppy",
       "gender": "female",
       "row": 5,
       "column": 2,
-      "characteristic": "haunted_guilt"
+      "characteristic": "righteous_fury"
     },
     {
-      "name": "Talia",
+      "name": "Willow",
       "gender": "female",
       "row": 5,
       "column": 3,
-      "characteristic": "ruthless_pragmatism"
+      "characteristic": "relentless_perfectionism"
     }
   ],
   "puzzle": [
     {
-      "row": 5,
-      "column": 1,
-      "role": "villager",
-      "statement": "exactly 0 of the 2 villagers below Preston are neighbors of Whitney"
-    },
-    {
-      "row": 4,
-      "column": 1,
-      "role": "werewolf",
-      "statement": "exactly 1 of the 1 werewolf above Parker are neighbors of Finn"
-    },
-    {
-      "row": 1,
-      "column": 1,
-      "role": "werewolf",
-      "statement": "exactly 0 of the 1 villager above Finn are neighbors of Wren"
-    },
-    {
-      "row": 1,
-      "column": 2,
-      "role": "villager",
-      "statement": "exactly 0 of the 1 werewolf above Garrett are neighbors of Kyle"
-    },
-    {
       "row": 2,
-      "column": 2,
+      "column": 1,
       "role": "werewolf",
-      "statement": "exactly 0 of the 1 villager above Celia are neighbors of Porter"
-    },
-    {
-      "row": 1,
-      "column": 3,
-      "role": "villager",
-      "statement": "exactly 1 of the 1 villager below Nora are neighbors of Ivy"
-    },
-    {
-      "row": 5,
-      "column": 3,
-      "role": "villager",
-      "statement": "exactly 0 of the 2 villagers below Liam are neighbors of Whitney"
-    },
-    {
-      "row": 4,
-      "column": 3,
-      "role": "villager",
-      "statement": "Ivy has exactly 4 villagers as neighbors"
-    },
-    {
-      "row": 4,
-      "column": 2,
-      "role": "villager",
-      "statement": "exactly 0 of the 1 werewolf below Celia are neighbors of Whitney"
-    },
-    {
-      "row": 3,
-      "column": 3,
-      "role": "werewolf",
-      "statement": "Talia has exactly 1 werewolf as neighbors"
-    },
-    {
-      "row": 5,
-      "column": 2,
-      "role": "werewolf",
-      "statement": "exactly 1 of the 3 werewolves below Hannah are neighbors of Whitney"
-    },
-    {
-      "row": 3,
-      "column": 2,
-      "role": "werewolf",
-      "statement": "exactly 1 werewolf above Nora"
+      "statement": "Hunter has more werewolf neighbors than Reid",
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
     },
     {
       "row": 2,
       "column": 3,
       "role": "villager",
-      "statement": "exactly 2 werewolves between Parker and Whitney"
+      "statement": "exactly 0 of the 1 werewolf below Yusuf are neighbors of Lucy",
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "exactly 2 of the 2 villagers to the right of Ava are neighbors of Celia",
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
     },
     {
       "row": 2,
-      "column": 1,
+      "column": 2,
       "role": "villager",
-      "statement": "exactly 1 of the 1 villager to the left of Finn are neighbors of Garrett"
+      "statement": "exactly 1 of the 1 werewolf to the right of Faith are neighbors of Raina",
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Ava and Raina have the same number of villager neighbors",
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Dean is one of the 7 werewolf neighbors of Bianca",
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "exactly 0 of the 1 villager to the right of Hunter are neighbors of Chase",
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "exactly 0 villagers left of Willow",
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "exactly 1 of the 1 villager below Faith are neighbors of Reid",
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Raina and Celia have the same number of villager neighbors",
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
     },
     {
       "row": 3,
       "column": 1,
       "role": "werewolf",
-      "statement": "Wren is a werewolf."
+      "statement": "all werewolves in column 1 are connected",
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Hunter is a villager.",
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        },
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "Ava is one of the 4 werewolf neighbors of Chase",
+      "deductableCells": []
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Lucy is a villager.",
+      "deductableCells": []
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Willow is a werewolf.",
+      "deductableCells": []
     }
   ]
 }
@@ -242,7 +339,7 @@ function CharacterCell({ character, revealed, onClick, showStatement }) {
   );
 }
 
-function Modal({ character, onSelect, onClose }) {
+function Modal({ character, onSelect, onClose, warning }) {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
@@ -275,6 +372,9 @@ function Modal({ character, onSelect, onClose }) {
             Cancel (ESC)
           </button>
         </div>
+        {warning && (
+          <p className="modal-warning">{warning}</p>
+        )}
       </div>
     </div>
   );
@@ -365,10 +465,21 @@ function DetailedExplanation() {
   );
 }
 
+function evidenceKey(row, column, role) {
+  return `${row}-${column}-${role}`;
+}
+
+function collectEvidence(puzzleEntry) {
+  if (!puzzleEntry || !Array.isArray(puzzleEntry.deductableCells)) return [];
+  return puzzleEntry.deductableCells.map(cell => evidenceKey(cell.row, cell.column, cell.role));
+}
+
 export default function WerewolfGame() {
   const [revealed, setRevealed] = useState(new Set());
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [message, setMessage] = useState('');
+  const [modalWarning, setModalWarning] = useState('');
+  const [availableEvidence, setAvailableEvidence] = useState(new Set());
 
   useEffect(() => {
     // Reveal the first puzzle element initially
@@ -378,11 +489,13 @@ export default function WerewolfGame() {
     );
     if (firstChar) {
       setRevealed(new Set([`${firstChar.row}-${firstChar.column}`]));
+      setAvailableEvidence(new Set(collectEvidence(firstPuzzle)));
     }
   }, []);
 
   const handleCharacterClick = (character) => {
     setSelectedCharacter(character);
+    setModalWarning('');
   };
 
   const handleSelect = (selectedRole) => {
@@ -398,23 +511,30 @@ export default function WerewolfGame() {
       return;
     }
 
-    if (puzzle.role === selectedRole) {
+    const hasEvidence = availableEvidence.has(
+      evidenceKey(selectedCharacter.row, selectedCharacter.column, selectedRole)
+    );
+
+    if (puzzle.role === selectedRole && hasEvidence) {
       // Correct!
       const key = `${selectedCharacter.row}-${selectedCharacter.column}`;
       setRevealed(new Set([...revealed, key]));
+      const newEvidence = new Set(availableEvidence);
+      collectEvidence(puzzle).forEach(ev => newEvidence.add(ev));
+      setAvailableEvidence(newEvidence);
       setMessage(`✅ Correct! ${selectedCharacter.name} is a ${selectedRole}!`);
       setTimeout(() => setMessage(''), 3000);
+      setModalWarning('');
+      setSelectedCharacter(null);
     } else {
-      // Wrong!
-      setMessage(`❌ Wrong! Try again - there's always a logical choice!`);
-      setTimeout(() => setMessage(''), 3000);
+      // Not enough evidence or incorrect guess
+      setModalWarning('The evidence is insufficient! Read more clues to find out the right move.');
     }
-    
-    setSelectedCharacter(null);
   };
 
   const handleClose = () => {
     setSelectedCharacter(null);
+    setModalWarning('');
   };
 
   const boardStyle = {
@@ -473,6 +593,7 @@ export default function WerewolfGame() {
           character={selectedCharacter}
           onSelect={handleSelect}
           onClose={handleClose}
+          warning={modalWarning}
         />
       )}
 

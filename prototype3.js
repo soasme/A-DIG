@@ -1157,6 +1157,8 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
   let currentSpeakerIdx = initialIdx;
   const puzzle = [];
   const coveredSpeakerIdxs = new Set();
+  // Track which cells become newly deducible after each added statement.
+  let newlyDeducible = [];
 
   const maxSteps = rows * cols * 6;
   let steps = 0;
@@ -1170,6 +1172,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
     let nextStatement = '';
 
     // Try to find a clue that yields at most the maxNewDeductions (prefer fewer new deductions, but > 0).
+    newlyDeducible = [];
     let bestCandidate = null;
     for (const clue of clueTemplates) {
       if (usedClueKeys.has(clue.key)) continue;
@@ -1198,6 +1201,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
         nextSolutions = candidateSolutions;
         nextDeductions = candidateDeductions;
         nextStatement = clue.statement;
+        newlyDeducible = newDeductions;
 
         goals.push(clue.goal);
         usedClueKeys.add(clue.key);
@@ -1216,6 +1220,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
           statement: clue.statement,
           goal: clue.goal,
           clueKey: clue.key,
+          newDeductions,
         };
       }
     }
@@ -1225,6 +1230,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
       nextSolutions = bestCandidate.candidateSolutions;
       nextDeductions = bestCandidate.candidateDeductions;
       nextStatement = bestCandidate.statement;
+      newlyDeducible = bestCandidate.newDeductions;
 
       goals.push(bestCandidate.goal);
       usedClueKeys.add(bestCandidate.clueKey);
@@ -1259,6 +1265,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
         nextSolutions = candidateSolutions;
         nextDeductions = candidateDeductions;
         nextStatement = formatOtherRole(row, col, value, nameLookup);
+        newlyDeducible = newDeductions;
 
         goals.push(fallbackGoal);
         added = true;
@@ -1271,11 +1278,16 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
 
     // Record the current speaker's statement (about another character).
     const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
+    const deductableCells = newlyDeducible.map(([idx, value]) => {
+      const { row, col } = indexToRowCol(idx, cols);
+      return { row, column: col, role: value };
+    });
     puzzle.push({
       row: speakerRow,
       column: speakerCol,
       role: targetSolution[currentSpeakerIdx],
       statement: nextStatement,
+      deductableCells,
     });
     coveredSpeakerIdxs.add(currentSpeakerIdx);
 
@@ -1311,6 +1323,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
         column: speakerCol,
         role: targetSolution[currentSpeakerIdx],
         statement: finalStatement,
+        deductableCells: [],
       });
       coveredSpeakerIdxs.add(currentSpeakerIdx);
     }
@@ -1325,6 +1338,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters) {
       column: col,
       role: targetSolution[i],
       statement: formatOtherRole(row, col, targetSolution[i], nameLookup),
+      deductableCells: [],
     });
   }
 
