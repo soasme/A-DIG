@@ -118,10 +118,6 @@
 .game-board {
   grid-area: board;
   background: var(--paper);
-  padding: clamp(10px, 2vw, 18px);
-  border-radius: 12px;
-  border: 3px solid var(--grid-line);
-  box-shadow: 0 10px 30px var(--shadow);
   display: grid;
   grid-template-columns: repeat(var(--columns, 5), minmax(0, 1fr));
   grid-template-rows: repeat(var(--rows, 5), minmax(90px, 1fr));
@@ -645,7 +641,7 @@
   }
 
   .game-board {
-    padding: 20px;
+    padding: 2px;
   }
 
   .rules-section, 

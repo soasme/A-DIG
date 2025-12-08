@@ -5,6 +5,7 @@ import Confetti from './Confetti';
 
 const GOOD_ROLE = gameData.roles?.[0] ?? 'villager';
 const BAD_ROLE = gameData.roles?.[1] ?? 'werewolf';
+const GAME_SETTING = gameData.gameSetting;
 
 function CharacterCell({ character, revealed, onClick }) {
   const puzzle = gameData.puzzle.find(p => p.row === character.row && p.column === character.column);
@@ -96,6 +97,9 @@ function Rules() {
     <section className="rules-section">
       <h2 className="section-title">How to Play</h2>
       <div className="rules-content">
+        {GAME_SETTING && (
+          <p className="game-setting">{GAME_SETTING}</p>
+        )}
         <p>
           Your goal is to figure out who is a {GOOD_ROLE} and who is a {BAD_ROLE}.
         </p>

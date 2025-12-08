@@ -10,7 +10,6 @@ export default function Page() {
         minHeight: "100vh",
         background: "linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%)",
         color: "#e8e8e8",
-        padding: "16px",
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       }}
     >
