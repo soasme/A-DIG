@@ -1205,21 +1205,33 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
     currentSpeakerIdx = nextIdx;
   }
 
-  // Add a final truthful statement from the last revealed character about someone else.
+  // Add a final truthful statement from an unused clue template, spoken by the last revealed character.
   if (deduced.size === rows * cols) {
-    const others = [];
-    for (let i = 0; i < rows * cols; i++) {
-      if (i !== currentSpeakerIdx) others.push(i);
+    const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
+    const unusedClue = clueTemplates.find(clue => !usedClueKeys.has(clue.key));
+    let finalStatement = unusedClue ? unusedClue.statement : '';
+
+    if (!finalStatement) {
+      // Fallback: direct truth about another character if somehow all clues were used.
+      const others = [];
+      for (let i = 0; i < rows * cols; i++) {
+        if (i !== currentSpeakerIdx) others.push(i);
+      }
+      if (others.length > 0) {
+        const targetIdx = others[0];
+        const { row: tgtRow, col: tgtCol } = indexToRowCol(targetIdx, cols);
+        finalStatement = formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx]);
+      }
+    } else {
+      usedClueKeys.add(unusedClue.key);
     }
-    if (others.length > 0) {
-      const targetIdx = others[0];
-      const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
-      const { row: tgtRow, col: tgtCol } = indexToRowCol(targetIdx, cols);
+
+    if (finalStatement) {
       puzzle.push({
         row: speakerRow,
         column: speakerCol,
         role: targetSolution[currentSpeakerIdx],
-        statement: formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx]),
+        statement: finalStatement,
       });
       coveredSpeakerIdxs.add(currentSpeakerIdx);
     }
