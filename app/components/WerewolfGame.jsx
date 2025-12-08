@@ -117,7 +117,8 @@ const gameData = {
       "row": 2,
       "column": 1,
       "role": "werewolf",
-      "statement": "Hunter has more werewolf neighbors than Reid",
+      "mechanic_statement": "Hunter has more werewolf neighbors than Reid",
+      "statement": "I've counted the howls around the village: more of our kind press in around Hunter than they do around Reid.",
       "deductableCells": [
         {
           "row": 2,
@@ -130,7 +131,8 @@ const gameData = {
       "row": 2,
       "column": 3,
       "role": "villager",
-      "statement": "exactly 0 of the 1 werewolf below Yusuf are neighbors of Lucy",
+      "mechanic_statement": "exactly 0 of the 1 werewolf below Yusuf are neighbors of Lucy",
+      "statement": "I swear there is exactly one wolf lurking somewhere beneath Yusuf in that column, but whoever it is has never come close enough to stand beside Lucy.",
       "deductableCells": [
         {
           "row": 5,
@@ -143,7 +145,8 @@ const gameData = {
       "row": 5,
       "column": 1,
       "role": "werewolf",
-      "statement": "exactly 2 of the 2 villagers to the right of Ava are neighbors of Celia",
+      "mechanic_statement": "exactly 2 of the 2 villagers to the right of Ava are neighbors of Celia",
+      "statement": "Both of the villagers sitting to Ava's right sleep close enough to Celia that they could hear her breathing through the night.",
       "deductableCells": [
         {
           "row": 2,
@@ -156,7 +159,8 @@ const gameData = {
       "row": 2,
       "column": 2,
       "role": "villager",
-      "statement": "exactly 1 of the 1 werewolf to the right of Faith are neighbors of Raina",
+      "mechanic_statement": "exactly 1 of the 1 werewolf to the right of Faith are neighbors of Raina",
+      "statement": "That single wolf to Faith's right? They're close enough to brush past my chair — I'm one of their neighbors.",
       "deductableCells": [
         {
           "row": 1,
@@ -169,7 +173,8 @@ const gameData = {
       "row": 1,
       "column": 3,
       "role": "werewolf",
-      "statement": "Ava and Raina have the same number of villager neighbors",
+      "mechanic_statement": "Ava and Raina have the same number of villager neighbors",
+      "statement": "Count the calm, honest faces around Ava and around Raina — you'll find they are watched by the same number of true villagers.",
       "deductableCells": [
         {
           "row": 3,
@@ -182,7 +187,8 @@ const gameData = {
       "row": 3,
       "column": 3,
       "role": "werewolf",
-      "statement": "Dean is one of the 7 werewolf neighbors of Bianca",
+      "mechanic_statement": "Dean is one of the 7 werewolf neighbors of Bianca",
+      "statement": "Seven hungry wolves circle Bianca's spot, and quiet Dean is definitely one of the beasts breathing down her neck.",
       "deductableCells": [
         {
           "row": 3,
@@ -195,7 +201,8 @@ const gameData = {
       "row": 3,
       "column": 2,
       "role": "werewolf",
-      "statement": "exactly 0 of the 1 villager to the right of Hunter are neighbors of Chase",
+      "mechanic_statement": "exactly 0 of the 1 villager to the right of Hunter are neighbors of Chase",
+      "statement": "The lone villager sitting to Hunter's right has never stood close enough to Chase to share even a whisper.",
       "deductableCells": [
         {
           "row": 1,
@@ -208,7 +215,8 @@ const gameData = {
       "row": 1,
       "column": 2,
       "role": "villager",
-      "statement": "exactly 0 villagers left of Willow",
+      "mechanic_statement": "exactly 0 villagers left of Willow",
+      "statement": "Look along Willow's row — everyone to her left has the look of a beast; there isn't a single true villager sitting there.",
       "deductableCells": [
         {
           "row": 5,
@@ -221,7 +229,8 @@ const gameData = {
       "row": 5,
       "column": 2,
       "role": "werewolf",
-      "statement": "exactly 1 of the 1 villager below Faith are neighbors of Reid",
+      "mechanic_statement": "exactly 1 of the 1 villager below Faith are neighbors of Reid",
+      "statement": "Only one honest soul sits anywhere beneath Faith in that column, and that same villager is close enough to Reid to watch him all night.",
       "deductableCells": [
         {
           "row": 4,
@@ -234,7 +243,8 @@ const gameData = {
       "row": 4,
       "column": 2,
       "role": "werewolf",
-      "statement": "Raina and Celia have the same number of villager neighbors",
+      "mechanic_statement": "Raina and Celia have the same number of villager neighbors",
+      "statement": "However many true villagers gather around Raina, you'll find Celia surrounded by exactly the same number of them.",
       "deductableCells": [
         {
           "row": 3,
@@ -247,7 +257,8 @@ const gameData = {
       "row": 3,
       "column": 1,
       "role": "werewolf",
-      "statement": "all werewolves in column 1 are connected",
+      "mechanic_statement": "all werewolves in column 1 are connected",
+      "statement": "Every wolf lurking in the first column can pad up or down to reach another of our kind without ever having to cross a villager between them.",
       "deductableCells": [
         {
           "row": 4,
@@ -260,7 +271,8 @@ const gameData = {
       "row": 4,
       "column": 1,
       "role": "werewolf",
-      "statement": "Hunter is a villager.",
+      "mechanic_statement": "Hunter is a villager.",
+      "statement": "Say what you like, but Hunter is just a simple villager — no claws, no howl, just a lonely soul.",
       "deductableCells": [
         {
           "row": 1,
@@ -283,21 +295,24 @@ const gameData = {
       "row": 1,
       "column": 1,
       "role": "villager",
-      "statement": "Ava is one of the 4 werewolf neighbors of Chase",
+      "mechanic_statement": "Ava is one of the 4 werewolf neighbors of Chase",
+      "statement": "Chase is hemmed in by four lurking wolves, and I know for certain that Ava is one of the monsters at his side.",
       "deductableCells": []
     },
     {
       "row": 4,
       "column": 3,
       "role": "villager",
-      "statement": "Lucy is a villager.",
+      "mechanic_statement": "Lucy is a villager.",
+      "statement": "I know I sound nervous, but please believe me — I'm just a plain old villager.",
       "deductableCells": []
     },
     {
       "row": 5,
       "column": 3,
       "role": "werewolf",
-      "statement": "Willow is a werewolf.",
+      "mechanic_statement": "Willow is a werewolf.",
+      "statement": "If you're listening closely, I'll whisper the truth: Willow is one of the wolves stalking this village.",
       "deductableCells": []
     }
   ]
