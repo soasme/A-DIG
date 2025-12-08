@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import logic from 'logicjs';
+import gameThemes from './app/data/gameThemes.js';
 
 var or = logic.or,
 	and = logic.and,
@@ -1403,13 +1404,25 @@ export function generateGame(rows = ROWS, cols = COLS, roleNames = [VILLAGER, WE
 
   const puzzle = generatePuzzle(rows, cols, characters, activeRoles);
 
-  return {
+  // Check if roles match a theme from gameThemes
+  const matchingTheme = gameThemes.find(
+    theme => theme.goodRole === normalizedRoles[0] && theme.badRole === normalizedRoles[1]
+  );
+
+  const gameData = {
     row: rows,
     column: cols,
     roles: activeRoles,
     characters,
     puzzle,
   };
+
+  // If a matching theme is found, add the gameSetting
+  if (matchingTheme && matchingTheme.gameSetting) {
+    gameData.gameSetting = matchingTheme.gameSetting;
+  }
+
+  return gameData;
 }
 
 function printUsage() {
