@@ -470,6 +470,146 @@
   border-top: 1px solid var(--grid-line);
 }
 
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1200;
+  backdrop-filter: blur(3px);
+}
+
+.celebration-card {
+  background: var(--paper);
+  border-radius: 14px;
+  border: 2px solid var(--grid-line);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+  padding: 28px;
+  max-width: 520px;
+  width: min(520px, 100%);
+  position: relative;
+  text-align: left;
+}
+
+.celebration-close {
+  top: 12px;
+  right: 12px;
+}
+
+.celebration-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.celebration-confetti-emoji {
+  font-size: 26px;
+}
+
+.celebration-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.share-text {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px dashed var(--grid-line);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.share-grid {
+  background: rgba(31, 122, 77, 0.08);
+  border: 1px solid rgba(31, 122, 77, 0.35);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.legend {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.celebration-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  background: linear-gradient(135deg, #1d9bf0, #0f6cc6);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.6px;
+  box-shadow: 0 10px 26px rgba(15, 108, 198, 0.35);
+}
+
+.share-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(15, 108, 198, 0.45);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 2px solid var(--grid-line);
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.share-status {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.confetti-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1100;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10%;
+  border-radius: 2px;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  opacity: 0.9;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(var(--start-rot, 0deg)); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(var(--end-rot, 540deg)); opacity: 0; }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { 
