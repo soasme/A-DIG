@@ -3,6 +3,9 @@ import './WerewolfGame.css';
 import gameData from '../data/gameData';
 import Confetti from './Confetti';
 
+const GOOD_ROLE = gameData.roles?.[0] ?? 'villager';
+const BAD_ROLE = gameData.roles?.[1] ?? 'werewolf';
+
 function CharacterCell({ character, revealed, onClick }) {
   const puzzle = gameData.puzzle.find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
@@ -68,16 +71,16 @@ function Modal({ character, onSelect, onClose, warning }) {
         <h3 className="modal-title">Identify: {character.name}</h3>
         <div className="modal-buttons">
           <button
-            onClick={() => onSelect('villager')}
+            onClick={() => onSelect(GOOD_ROLE)}
             className="btn-villager"
           >
-            🟢 Villager
+            🟢 {GOOD_ROLE}
           </button>
           <button
-            onClick={() => onSelect('werewolf')}
+            onClick={() => onSelect(BAD_ROLE)}
             className="btn-werewolf"
           >
-            🔴 Werewolf
+            🔴 {BAD_ROLE}
           </button>
         </div>
         {warning && (
@@ -94,13 +97,13 @@ function Rules() {
       <h2 className="section-title">How to Play</h2>
       <div className="rules-content">
         <p>
-          Your goal is to figure out who is a villager and who is a werewolf.
+          Your goal is to figure out who is a {GOOD_ROLE} and who is a {BAD_ROLE}.
         </p>
         <p>
-          Based on the known evidence, tap on a suspect to choose villager or werewolf. They must be either a villager or a werewolf.They might reveal new evidence.
+          Based on the known evidence, tap on a suspect to choose {GOOD_ROLE} or {BAD_ROLE}. They must be either a {GOOD_ROLE} or a {BAD_ROLE}. They might reveal new evidence.
         </p>
         <p>
-          Everyone tells the truth, even the werewolves.
+          Everyone tells the truth, even those on the {BAD_ROLE} side.
         </p>
         <p className="warning">
           ⚠️ You never need to guess! There is always a logical next choice, even when you think there isn't! Read the clues carefully.

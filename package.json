@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate": "node --stack-size=8192 ./generator.js",
     "lint": "eslint"
   },
   "dependencies": {
