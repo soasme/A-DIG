@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import DetailedExplanation from "./components/DetailedExplanation";
-import Rules from "./components/Rules";
-import Game from "./components/Game";
+import WerewolfGame from "./components/WerewolfGame";
 
 export default function Page() {
   return (
@@ -26,10 +24,7 @@ export default function Page() {
         .clue-text { font-size: 0.65rem; color: #d1d5db; margin-top: 6px; line-height: 1.3; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px; }
       `}</style>
 
-      <Game />
-
-      <Rules />
-      <DetailedExplanation />
+      <WerewolfGame />
 
       <footer style={{ textAlign: "center", color: "#555", fontSize: "0.75rem", marginTop: 16 }}>
         Inspired by Clues by Sam
