@@ -284,6 +284,40 @@ function formatClue(text) {
     const plural = pluralizeRole(role, k);
     return `the character at row ${r} column ${c} has exactly ${k} ${plural} as neighbors`;
   }
+  if (
+    fn === 'KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor' ||
+    fn === 'KofJRoleToTheRightOfSomeoneIsAnothersNeighbor' ||
+    fn === 'KofJRoleAboveSomeoneIsAnothersNeighbor' ||
+    fn === 'KofJRoleBelowSomeoneIsAnothersNeighbor'
+  ) {
+    if (rest.length !== 7) return text;
+    const [role, r1Str, c1Str, r2Str, c2Str, kStr, jStr] = rest;
+    const r1 = Number(r1Str);
+    const c1 = Number(c1Str);
+    const r2 = Number(r2Str);
+    const c2 = Number(c2Str);
+    const k = Number(kStr);
+    const j = Number(jStr);
+    if (
+      !Number.isFinite(r1) ||
+      !Number.isFinite(c1) ||
+      !Number.isFinite(r2) ||
+      !Number.isFinite(c2) ||
+      !Number.isFinite(k) ||
+      !Number.isFinite(j)
+    )
+      return text;
+    const plural = pluralizeRole(role, j);
+    const direction =
+      fn === 'KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor'
+        ? 'to the left of'
+        : fn === 'KofJRoleToTheRightOfSomeoneIsAnothersNeighbor'
+        ? 'to the right of'
+        : fn === 'KofJRoleAboveSomeoneIsAnothersNeighbor'
+        ? 'above'
+        : 'below';
+    return `exactly ${k} of the ${j} ${plural} ${direction} row ${r1} column ${c1} are neighbors of the character at row ${r2} column ${c2}`;
+  }
   return text;
 }
 
@@ -312,6 +346,20 @@ function getNeighbors(row, col, rows = ROWS, cols = COLS) {
     }
   }
   return neighbors;
+}
+
+function cellsInDirection(row, col, direction, rows = ROWS, cols = COLS) {
+  const coords = [];
+  if (direction === 'left') {
+    for (let c = 1; c < col; c++) coords.push([row, c]);
+  } else if (direction === 'right') {
+    for (let c = col + 1; c <= cols; c++) coords.push([row, c]);
+  } else if (direction === 'above') {
+    for (let r = 1; r < row; r++) coords.push([r, col]);
+  } else if (direction === 'below') {
+    for (let r = row + 1; r <= rows; r++) coords.push([r, col]);
+  }
+  return coords;
 }
 
 // Column helpers
@@ -470,6 +518,95 @@ export function beOneOfSomeonesKRoleNeighbors(
 export function hasExactKRoleNeighbor(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
   const neighborVars = getNeighbors(row, col, rows, cols).map(([r, c]) => roleList[cellIndex(r, c, cols)]);
   return exactlyK(neighborVars, k, role);
+}
+
+function kOfJRoleDirectionalNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  direction,
+  rows = ROWS,
+  cols = COLS
+) {
+  const coords = cellsInDirection(r1, c1, direction, rows, cols);
+  if (coords.length === 0 || j > coords.length) return logic.fail;
+
+  const directionVars = coords.map(([r, c]) => roleList[cellIndex(r, c, cols)]);
+
+  const neighborSet = new Set(getNeighbors(r2, c2, rows, cols).map(([r, c]) => `${r},${c}`));
+  const intersectionVars = [];
+  coords.forEach(([r, c]) => {
+    if (neighborSet.has(`${r},${c}`)) {
+      intersectionVars.push(roleList[cellIndex(r, c, cols)]);
+    }
+  });
+
+  return allAnd([exactlyK(directionVars, j, role), exactlyK(intersectionVars, k, role)]);
+}
+
+export function kOfJRoleToTheLeftOfSomeoneIsAnothersNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  return kOfJRoleDirectionalNeighbor(roleList, r1, c1, r2, c2, k, j, role, 'left', rows, cols);
+}
+
+export function kOfJRoleToTheRightOfSomeoneIsAnothersNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  return kOfJRoleDirectionalNeighbor(roleList, r1, c1, r2, c2, k, j, role, 'right', rows, cols);
+}
+
+export function kOfJRoleAboveSomeoneIsAnothersNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  return kOfJRoleDirectionalNeighbor(roleList, r1, c1, r2, c2, k, j, role, 'above', rows, cols);
+}
+
+export function kOfJRoleBelowSomeoneIsAnothersNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  return kOfJRoleDirectionalNeighbor(roleList, r1, c1, r2, c2, k, j, role, 'below', rows, cols);
 }
 
 export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
@@ -846,6 +983,63 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
               statement: formatClue(
                 `BeOneOfSomeonesKRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2} ${count}`
               ),
+            });
+          });
+
+          // K of J role in a direction from (r1,c1) are neighbors of (r2,c2)
+          const dirSpecs = [
+            {
+              dir: 'left',
+              fn: kOfJRoleToTheLeftOfSomeoneIsAnothersNeighbor,
+              formatter: role =>
+                `KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+              keyPrefix: 'k-of-j-left',
+            },
+            {
+              dir: 'right',
+              fn: kOfJRoleToTheRightOfSomeoneIsAnothersNeighbor,
+              formatter: role =>
+                `KofJRoleToTheRightOfSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+              keyPrefix: 'k-of-j-right',
+            },
+            {
+              dir: 'above',
+              fn: kOfJRoleAboveSomeoneIsAnothersNeighbor,
+              formatter: role =>
+                `KofJRoleAboveSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+              keyPrefix: 'k-of-j-above',
+            },
+            {
+              dir: 'below',
+              fn: kOfJRoleBelowSomeoneIsAnothersNeighbor,
+              formatter: role =>
+                `KofJRoleBelowSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+              keyPrefix: 'k-of-j-below',
+            },
+          ];
+
+          dirSpecs.forEach(({ dir, fn, formatter, keyPrefix }) => {
+            const directionalCoords = cellsInDirection(r1, c1, dir, rows, cols);
+            if (directionalCoords.length === 0) return;
+            const directionalValues = directionalCoords.map(([r, c]) => targetSolution[cellIndex(r, c, cols)]);
+
+            const neighborSet = new Set(getNeighbors(r2, c2, rows, cols).map(([r, c]) => `${r},${c}`));
+            const intersectionValues = directionalCoords
+              .filter(([r, c]) => neighborSet.has(`${r},${c}`))
+              .map(([r, c]) => targetSolution[cellIndex(r, c, cols)]);
+
+            [
+              { role: WEREWOLF },
+              { role: VILLAGER },
+            ].forEach(({ role }) => {
+              const j = directionalValues.filter(v => v === role).length;
+              if (j === 0) return;
+              const k = intersectionValues.filter(v => v === role).length;
+              clues.push({
+                key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
+                goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
+                statement: formatClue(`${formatter(role)} ${k} ${j}`),
+              });
             });
           });
         }
