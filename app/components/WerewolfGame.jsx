@@ -97,77 +97,14 @@ function Rules() {
           Your goal is to figure out who is a villager and who is a werewolf.
         </p>
         <p>
-          Based on the known evidence, tap on a suspect to choose villager or werewolf. They might reveal new evidence.
+          Based on the known evidence, tap on a suspect to choose villager or werewolf. They must be either a villager or a werewolf.They might reveal new evidence.
+        </p>
+        <p>
+          Everyone tells the truth, even the werewolves.
         </p>
         <p className="warning">
-          ⚠️ You cannot guess! Just like in real life, you can't convict someone based on a 50/50 hunch. There is always a logical next choice, even when you think there isn't!
+          ⚠️ You never need to guess! There is always a logical next choice, even when you think there isn't! Read the clues carefully.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function DetailedExplanation() {
-  return (
-    <section className="explanation-section">
-      <h2 className="section-title">Rules Explained</h2>
-      <div className="explanation-content">
-        <ul>
-          <li>
-            Everyone is either a <strong className="villager-text">villager</strong> or a <strong className="werewolf-text">werewolf</strong>.
-          </li>
-          <li>
-            Everyone speaks the truth, even the werewolf.
-          </li>
-          <li>
-            <strong>Neighbors</strong> always include diagonal neighbors. One person can have up to 8 neighbors. Edge person has 5 neighbors and corner person has 3 neighbors.
-          </li>
-          <li>
-            <strong>In between</strong> (or sometimes just "between") means the persons between the two, not including the two.
-          </li>
-          <li>
-            <strong>Connected</strong> means a chain of orthogonal adjacency. For example "all werewolves in row 1 are connected" means there are no villagers between any two werewolves in that row.
-          </li>
-          <li>
-            <strong>Rows</strong> go sideways and are numbered 1,2,3,4,5. <strong>Columns</strong> go up and down and are numbered 1,2,3,4,5.
-          </li>
-          <li>
-            <strong>To the left/right</strong> always means somewhere in the same row. <strong>Above/below</strong> always means somewhere in the same column.
-          </li>
-          <li>
-            <strong>Directly to the left/right/above/below</strong> always means the neighbor to the left/right/above/below.
-          </li>
-          <li>
-            <strong>All</strong> always means there's at least one. It doesn't necessarily mean there's more than one.
-          </li>
-          <li>
-            <strong>Any</strong> doesn't tell anything about the number of werewolves/villagers. "Any werewolf on row 2 is..." means "If there are any werewolves on row 2, they would be..."
-          </li>
-          <li>
-            <strong>One of the ...</strong>, or <strong>one of several ...</strong>, or <strong>one of multiple ...</strong>, always means there's at least two villagers/werewolves.
-          </li>
-          <li>
-            <strong>Common neighbors</strong> means those who are neighbors of both persons. It does not include the persons themselves.
-          </li>
-          <li>
-            <strong>In total</strong> always means the sum of all in the group(s).
-          </li>
-          <li>
-            <strong>Corner</strong> means the four corners.
-          </li>
-          <li>
-            <strong>Edge</strong> means the 14 persons "surrounding" the board, including corners.
-          </li>
-          <li>
-            <strong>... the most</strong> always means uniquely the most. If John has the most villager neighbors, no one can have as many werewolf neighbors as John.
-          </li>
-          <li>
-            An <strong>even number</strong> means numbers divisible by two: 0, 2, 4, 6... and an <strong>odd number</strong> means everything else: 1, 3, 5, 7...
-          </li>
-          <li className="highlight">
-            You never need to guess. In fact, the game only allows you to make one logical choice at a time.
-          </li>
-        </ul>
       </div>
     </section>
   );
@@ -410,7 +347,6 @@ export default function WerewolfGame() {
       </section>
 
       <Rules />
-      <DetailedExplanation />
 
       {selectedCharacter && (
         <Modal
@@ -432,7 +368,7 @@ export default function WerewolfGame() {
       />
 
       <footer className="game-footer">
-        <p>Inspired by logic puzzles • Made with ❤️</p>
+        <p>Made with ❤️ &nbsp; by INKYLABS LIMITED</p>
       </footer>
     </div>
   );
