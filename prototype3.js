@@ -255,6 +255,35 @@ function formatClue(text) {
     const comparison = fn === 'HaveMoreRoleNeighbors' ? 'more' : 'fewer';
     return `the character at row ${r1} column ${c1} has ${comparison} ${neighborWord} than the character at row ${r2} column ${c2}`;
   }
+  if (fn === 'BeOneOfSomeonesKRoleNeighbors') {
+    if (rest.length !== 6) return text;
+    const [role, r1Str, c1Str, r2Str, c2Str, kStr] = rest;
+    const r1 = Number(r1Str);
+    const c1 = Number(c1Str);
+    const r2 = Number(r2Str);
+    const c2 = Number(c2Str);
+    const k = Number(kStr);
+    if (
+      !Number.isFinite(r1) ||
+      !Number.isFinite(c1) ||
+      !Number.isFinite(r2) ||
+      !Number.isFinite(c2) ||
+      !Number.isFinite(k)
+    )
+      return text;
+    const neighborWord = role === WEREWOLF ? 'werewolf' : 'villager';
+    return `the character at row ${r1} column ${c1} is one of the ${k} ${neighborWord} neighbors of the character at row ${r2} column ${c2}`;
+  }
+  if (fn === 'HasExactKRoleNeighbor') {
+    if (rest.length !== 4) return text;
+    const [role, rStr, cStr, kStr] = rest;
+    const r = Number(rStr);
+    const c = Number(cStr);
+    const k = Number(kStr);
+    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k)) return text;
+    const plural = pluralizeRole(role, k);
+    return `the character at row ${r} column ${c} has exactly ${k} ${plural} as neighbors`;
+  }
   return text;
 }
 
@@ -413,6 +442,34 @@ export function haveMoreRoleNeighbors(roleList, r1, c1, r2, c2, role, rows = ROW
 
 export function haveLessRoleNeighbors(roleList, r1, c1, r2, c2, role, rows = ROWS, cols = COLS) {
   return haveMoreRoleNeighbors(roleList, r2, c2, r1, c1, role, rows, cols);
+}
+
+export function beOneOfSomeonesKRoleNeighbors(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  if (r1 === r2 && c1 === c2) return logic.fail;
+
+  const neighborCoords = getNeighbors(r2, c2, rows, cols);
+  const isNeighbor = neighborCoords.some(([nr, nc]) => nr === r1 && nc === c1);
+  if (!isNeighbor) return logic.fail;
+
+  const neighborVars = neighborCoords.map(([nr, nc]) => roleList[cellIndex(nr, nc, cols)]);
+  const targetVar = roleList[cellIndex(r1, c1, cols)];
+
+  return and(eq(targetVar, role), exactlyK(neighborVars, k, role));
+}
+
+export function hasExactKRoleNeighbor(roleList, row, col, k, role, rows = ROWS, cols = COLS) {
+  const neighborVars = getNeighbors(row, col, rows, cols).map(([r, c]) => roleList[cellIndex(r, c, cols)]);
+  return exactlyK(neighborVars, k, role);
 }
 
 export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
@@ -603,6 +660,9 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
       const leftVals = [];
       const rightVals = [];
       const betweenPairs = [];
+      const neighborVals = getNeighbors(r, c, rows, cols).map(([nr, nc]) =>
+        targetSolution[cellIndex(nr, nc, cols)]
+      );
 
       for (let rr = 1; rr < r; rr++) aboveVals.push(targetSolution[cellIndex(rr, c, cols)]);
       for (let rr = r + 1; rr <= rows; rr++) belowVals.push(targetSolution[cellIndex(rr, c, cols)]);
@@ -662,6 +722,23 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
           });
         });
       });
+
+      // Exact neighbor counts for this character
+      if (neighborVals.length > 0) {
+        const werewolfNeighbors = neighborVals.filter(v => v === WEREWOLF).length;
+        const villagerNeighbors = neighborVals.length - werewolfNeighbors;
+        [
+          { role: WEREWOLF, count: werewolfNeighbors },
+          { role: VILLAGER, count: villagerNeighbors },
+        ].forEach(({ role, count }) => {
+          const key = `neighbor-count-${r}-${c}-${role}-${count}`;
+          clues.push({
+            key,
+            goal: hasExactKRoleNeighbor(roles, r, c, count, role, rows, cols),
+            statement: formatClue(`HasExactKRoleNeighbor ${role} ${r} ${c} ${count}`),
+          });
+        });
+      }
 
       // Between-two clues
       betweenPairs.forEach(({ r1, c1, r2, c2 }) => {
@@ -750,6 +827,27 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
               });
             }
           });
+
+          // A is one of B's k role neighbors
+          [
+            { role: WEREWOLF, count: werewolfNeighbors2 },
+            { role: VILLAGER, count: villagerNeighbors2 },
+          ].forEach(({ role, count }) => {
+            if (count === 0) return;
+            const r1c1IsNeighbor =
+              getNeighbors(r2, c2, rows, cols).some(([nr, nc]) => nr === r1 && nc === c1);
+            if (!r1c1IsNeighbor) return;
+            const cellRole = targetSolution[cellIndex(r1, c1, cols)];
+            if (cellRole !== role) return;
+            const key = `one-of-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count}`;
+            clues.push({
+              key,
+              goal: beOneOfSomeonesKRoleNeighbors(roles, r1, c1, r2, c2, count, role, rows, cols),
+              statement: formatClue(
+                `BeOneOfSomeonesKRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2} ${count}`
+              ),
+            });
+          });
         }
       }
     }
@@ -766,7 +864,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols) {
 //   - Falls back to a direct reveal if no template clue can yield a single
 //     deterministic deduction.
 export function generatePuzzle(rows = ROWS, cols = COLS) {
-  const desiredNewDeductions = 2;
+  const maxNewDeductions = 2;
   const roles = makeRoleGrid(rows, cols);
   const targetSolution = Array.from({ length: rows * cols }, () =>
     Math.random() < 0.5 ? VILLAGER : WEREWOLF
@@ -798,8 +896,8 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
     let nextDeductions = deduced;
     let nextStatement = '';
 
-    // Try to find a clue that yields exactly the desired number of new deduced cells (not yet known).
-    let relaxedCandidate = null;
+    // Try to find a clue that yields at most the maxNewDeductions (prefer fewer new deductions, but > 0).
+    let bestCandidate = null;
     for (const clue of clueTemplates) {
       if (usedClueKeys.has(clue.key)) continue;
 
@@ -813,10 +911,14 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         if (!deduced.has(idx)) newDeductions.push([idx, value]);
       }
 
-      const acceptable = newDeductions.length > 0 && newDeductions.every(([idx]) => idx !== currentSpeakerIdx);
+      const acceptable =
+        newDeductions.length > 0 &&
+        newDeductions.length <= maxNewDeductions &&
+        newDeductions.every(([idx]) => idx !== currentSpeakerIdx);
       if (!acceptable) continue;
 
-      if (newDeductions.length === desiredNewDeductions) {
+      // Prefer clues that yield the smallest positive number of new deductions.
+      if (newDeductions.length === 1) {
         const [newIdx] = newDeductions[0];
 
         nextIdx = newIdx;
@@ -830,10 +932,12 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
         break;
       }
 
-      if (!relaxedCandidate) {
-        const [newIdx] = newDeductions[0];
-        relaxedCandidate = {
+      // Track the best acceptable candidate with the fewest new deductions so far.
+      const [newIdx] = newDeductions[0];
+      if (!bestCandidate || newDeductions.length < bestCandidate.newCount) {
+        bestCandidate = {
           newIdx,
+          newCount: newDeductions.length,
           candidateSolutions,
           candidateDeductions,
           statement: clue.statement,
@@ -843,14 +947,14 @@ export function generatePuzzle(rows = ROWS, cols = COLS) {
       }
     }
 
-    if (!added && relaxedCandidate) {
-      nextIdx = relaxedCandidate.newIdx;
-      nextSolutions = relaxedCandidate.candidateSolutions;
-      nextDeductions = relaxedCandidate.candidateDeductions;
-      nextStatement = relaxedCandidate.statement;
+    if (!added && bestCandidate) {
+      nextIdx = bestCandidate.newIdx;
+      nextSolutions = bestCandidate.candidateSolutions;
+      nextDeductions = bestCandidate.candidateDeductions;
+      nextStatement = bestCandidate.statement;
 
-      goals.push(relaxedCandidate.goal);
-      usedClueKeys.add(relaxedCandidate.clueKey);
+      goals.push(bestCandidate.goal);
+      usedClueKeys.add(bestCandidate.clueKey);
       added = true;
     }
 
