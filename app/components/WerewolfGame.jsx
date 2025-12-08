@@ -318,14 +318,15 @@ const gameData = {
   ]
 }
 
-function CharacterCell({ character, revealed, onClick, showStatement }) {
+function CharacterCell({ character, revealed, onClick }) {
   const puzzle = gameData.puzzle.find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
-  const emoji = character.gender === 'female' ? '👩' : '👨';
   const positionStyle = {
     gridColumn: character.column,
     gridRow: character.row
   };
+  const coordsLabel = `row ${character.row} column ${character.column}`;
+  const statementText = puzzle?.statement;
   
   return (
     <div className="cell-wrapper" style={positionStyle}>
@@ -336,19 +337,24 @@ function CharacterCell({ character, revealed, onClick, showStatement }) {
           onClick={() => !revealed && onClick()}
           disabled={revealed}
         >
-          <div className="emoji">{emoji}</div>
-          <div className="name">{character.name}</div>
-          {revealed && (
-            <div className="role-badge">
-              {role}
-            </div>
-          )}
-        </button>
-        {showStatement && puzzle && (
-          <div className="statement">
-            "{puzzle.statement}"
+          <div className="cell-header">
+            <div className="cell-coordinates">{coordsLabel}</div>
+            {revealed && role && (
+              <div className={`role-badge ${role}`}>
+                {role}
+              </div>
+            )}
           </div>
-        )}
+          <div className="cell-body">
+            {revealed && statementText ? (
+              <div className="statement compact">
+                <span className="name-inline">{character.name}:</span> {statementText}
+              </div>
+            ) : (
+              <div className="name unrevealed-name">{character.name}</div>
+            )}
+          </div>
+        </button>
       </div>
     </div>
   );
@@ -366,6 +372,14 @@ function Modal({ character, onSelect, onClose, warning }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          className="modal-close"
+          onClick={onClose}
+          aria-label="Close dialog"
+        >
+          x
+        </button>
         <h3 className="modal-title">Identify: {character.name}</h3>
         <div className="modal-buttons">
           <button
@@ -379,12 +393,6 @@ function Modal({ character, onSelect, onClose, warning }) {
             className="btn-werewolf"
           >
             🔴 Werewolf
-          </button>
-          <button
-            onClick={onClose}
-            className="btn-cancel"
-          >
-            Cancel (ESC)
           </button>
         </div>
         {warning && (
@@ -537,8 +545,6 @@ export default function WerewolfGame() {
       const newEvidence = new Set(availableEvidence);
       collectEvidence(puzzle).forEach(ev => newEvidence.add(ev));
       setAvailableEvidence(newEvidence);
-      setMessage(`✅ Correct! ${selectedCharacter.name} is a ${selectedRole}!`);
-      setTimeout(() => setMessage(''), 3000);
       setModalWarning('');
       setSelectedCharacter(null);
     } else {
@@ -560,7 +566,6 @@ export default function WerewolfGame() {
   const boardCells = gameData.characters.map((character) => {
     const key = `${character.row}-${character.column}`;
     const isRevealed = revealed.has(key);
-    const showStatement = isRevealed;
 
     return (
       <CharacterCell
@@ -568,7 +573,6 @@ export default function WerewolfGame() {
         character={character}
         revealed={isRevealed}
         onClick={() => handleCharacterClick(character)}
-        showStatement={showStatement}
       />
     );
   });
@@ -579,7 +583,7 @@ export default function WerewolfGame() {
 
       <section className="game-hero">
         <header className="game-header">
-          <h1 className="game-title">Who is Werewolf?</h1>
+          <h1 className="game-title">Clues of Who?</h1>
           <p className="game-subtitle">A logic puzzle of deduction and deception</p>
         </header>
 

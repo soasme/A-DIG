@@ -25,10 +25,6 @@ export default function Page() {
       `}</style>
 
       <WerewolfGame />
-
-      <footer style={{ textAlign: "center", color: "#555", fontSize: "0.75rem", marginTop: 16 }}>
-        Inspired by Clues by Sam
-      </footer>
     </div>
   );
 }
