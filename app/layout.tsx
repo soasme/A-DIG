@@ -13,20 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cultivators or Demon-In-Disguise - Logic Puzzle Game",
-  description: "Test your deductive reasoning in this engaging logic puzzle game. Identify cultivators and demons-in-disguise using clues and logical deduction. No guessing allowed!",
-  keywords: "logic puzzle, deduction game, cultivators, demon puzzle, brain teaser, reasoning game, logic game",
-  authors: [{ name: "Cultivators Game" }],
+  title: "Clues of Who? - Logic Puzzle Game",
+  description: "Test your deductive reasoning in this engaging logic puzzle game. Identify humble souls and villains using clues and logical deduction. No guessing allowed!",
+  keywords: "logic puzzle, deduction game, demon puzzle, werewolf puzzle, xiuxian puzzle, brain teaser, reasoning game, logic game",
+  authors: [{ name: "InkyLabs" }],
   openGraph: {
-    title: "Cultivators or Demon-In-Disguise - Logic Puzzle Game",
-    description: "Test your deductive reasoning in this engaging logic puzzle game. Identify cultivators and demons-in-disguise using clues and logical deduction.",
+    title: "Clues of Who? - Logic Puzzle Game",
+    description: "Test your deductive reasoning in this engaging logic puzzle game. Identify humble souls and villains using clues and logical deduction.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cultivators or Demon-In-Disguise - Logic Puzzle Game",
-    description: "Test your deductive reasoning in this engaging logic puzzle game. Identify cultivators and demons-in-disguise using clues and logical deduction.",
+    title: "Clues of Who? - Logic Puzzle Game",
+    description: "Test your deductive reasoning in this engaging logic puzzle game. Identify humble souls and villains using clues and logical deduction.",
   },
   robots: {
     index: true,
