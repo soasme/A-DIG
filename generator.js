@@ -1390,7 +1390,7 @@ export function generateGame(rows = ROWS, cols = COLS, roleNames = [VILLAGER, WE
   const names = [];
   for (let i = 0; i < maleCount; i++) names.push({ name: malePool[i], gender: 'male' });
   for (let i = 0; i < femaleCount; i++) names.push({ name: femalePool[i], gender: 'female' });
-  shuffle(names);
+  names.sort((a, b) => a.name.localeCompare(b.name));
 
   const characters = [];
   let idx = 0;
