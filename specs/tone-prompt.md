@@ -42,3 +42,9 @@ Example:
 “I’m scared… three shadows circled row 4 last night. Only two were friendly.”
 
 Clues become story snippets. Still logical—just atmospheric.
+
+---
+
+Given INPUT json, reserve statement as mechanic_statement, and print OUTPUT json with statement being tone-adjusted statements.
+
+INPUT:

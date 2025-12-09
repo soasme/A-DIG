@@ -1,0 +1,149 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": ["villager", "werewolf"],
+  "characters": [
+    {"name":"Ethan","gender":"male","row":1,"column":1,"characteristic":"warmhearted_compassion"},
+    {"name":"Damian","gender":"male","row":1,"column":2,"characteristic":"playful_mischief"},
+    {"name":"Zara","gender":"female","row":1,"column":3,"characteristic":"iron_willpower"},
+    {"name":"Joy","gender":"female","row":2,"column":1,"characteristic":"tragic_melancholy"},
+    {"name":"Nova","gender":"female","row":2,"column":2,"characteristic":"brooding_silence"},
+    {"name":"Ingrid","gender":"female","row":2,"column":3,"characteristic":"chaotic_impulsiveness"},
+    {"name":"Reese","gender":"female","row":3,"column":1,"characteristic":"forbidden_curiosity"},
+    {"name":"Gabriel","gender":"male","row":3,"column":2,"characteristic":"noble_self_sacrifice"},
+    {"name":"Freya","gender":"female","row":3,"column":3,"characteristic":"chaotic_impulsiveness"},
+    {"name":"Jenna","gender":"female","row":4,"column":1,"characteristic":"iron_willpower"},
+    {"name":"Amelia","gender":"female","row":4,"column":2,"characteristic":"warmhearted_compassion"},
+    {"name":"Hayden","gender":"male","row":4,"column":3,"characteristic":"noble_self_sacrifice"},
+    {"name":"Parker","gender":"male","row":5,"column":1,"characteristic":"gentle_naivety"},
+    {"name":"Peter","gender":"male","row":5,"column":2,"characteristic":"lonely_wanderer_spirit"},
+    {"name":"Yusuf","gender":"male","row":5,"column":3,"characteristic":"unyielding_principle"}
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 of the 1 werewolf above Joy are neighbors of Amelia",
+      "statement": "“Above me lurks a single beast… but Amelia never feels its breath. Whoever hides up there keeps their distance from her.”",
+      "deductableCells": [{"row":1,"column":1,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 werewolfs between Zara and Freya",
+      "statement": "“Between Zara’s steel gaze and Freya’s wild energy, the path is clean—no fur, no howls, no beasts hiding in between.”",
+      "deductableCells": [{"row":2,"column":3,"role":"villager"}]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "mechanic_statement": "exactly 1 werewolf between Ethan and Jenna",
+      "statement": "“When I look from kind Ethan all the way down to steadfast Jenna… I swear a single shadow prowls between them.”",
+      "deductableCells": [{"row":3,"column":1,"role":"villager"}]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "mechanic_statement": "exactly 0 of the 1 werewolf to the right of Joy are neighbors of Hayden",
+      "statement": "“Joy’s right side hides a wolf—that much is clear—but Hayden never crosses its path. It keeps far from his righteous flame.”",
+      "deductableCells": [{"row":2,"column":2,"role":"werewolf"}]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 of the 3 werewolfs below Damian are neighbors of Yusuf",
+      "statement": "“Below Damian… three of my kin stir. But only one ever creeps close enough to brush shoulders with Yusuf.”",
+      "deductableCells": [{"row":3,"column":2,"role":"werewolf"}]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 of the 2 werewolfs above Gabriel are neighbors of Hayden",
+      "statement": "“Two beasts linger above noble Gabriel, yet neither dares near Hayden. His presence repels us more than he knows.”",
+      "deductableCells": [{"row":1,"column":2,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 3 werewolfs in row 1",
+      "statement": "“Look across this row—three of us howl beneath the moonlight. Row 1 is thick with fur and fangs.”",
+      "deductableCells": [{"row":1,"column":3,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 of the 1 villager below Jenna are neighbors of Hayden",
+      "statement": "“Jenna stands above a soft-hearted soul, but that villager never draws close to Hayden. Their paths simply do not meet.”",
+      "deductableCells": [{"row":5,"column":1,"role":"villager"}]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "villager",
+      "mechanic_statement": "exactly 0 of the 1 werewolf below Ethan are neighbors of Hayden",
+      "statement": "“I know there’s a wolf somewhere beneath Ethan… but Hayden? No, that creature never comes near him. Thank the spirits.”",
+      "deductableCells": [{"row":4,"column":1,"role":"villager"}]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "mechanic_statement": "Zara has fewer villager neighbors than Yusuf",
+      "statement": "“Zara stands almost alone—fewer friendly faces surround her than strong Yusuf. That’s just how the village lies.”",
+      "deductableCells": [{"row":4,"column":3,"role":"villager"}]
+    },
+    {
+      "row": 4,
+     				 "column": 3,
+      "role": "villager",
+      "mechanic_statement": "exactly 1 of the 2 villagers below Freya are neighbors of Yusuf",
+      "statement": "“Freya’s chaos casts two gentle souls beneath her… yet only one of them ever stands close enough for Yusuf to greet.”",
+      "deductableCells": [{"row":5,"column":3,"role":"villager"}]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "mechanic_statement": "exactly 1 of the 1 villager to the right of Gabriel are neighbors of Hayden",
+      "statement": "“Gabriel has someone just to his right—only one—and Hayden watches over that soul like a guardian.”",
+      "deductableCells": [{"row":3,"column":3,"role":"villager"}]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "mechanic_statement": "exactly 1 of the 1 werewolf below Gabriel are neighbors of Amelia",
+      "statement": "“A single wolf lurks beneath Gabriel… and Amelia, bless her light, stands close enough to feel its shadow.”",
+      "deductableCells": [
+        {"row":4,"column":2,"role":"villager"},
+        {"row":5,"column":2,"role":"werewolf"}
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "mechanic_statement": "Zara has fewer villager neighbors than Amelia",
+      "statement": "“Zara walks with fewer friendly souls than I do. The village crowds nearer to me than to her.”",
+      "deductableCells": []
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "Peter is a werewolf.",
+      "statement": "“No more whispers—Peter’s howl is unmistakable. He is one of us.”",
+      "deductableCells": []
+    }
+  ],
+  "publishedAt": "2025-12-10T00:00:00Z",
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you."
+}
