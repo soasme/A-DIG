@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Footer from "../components/Footer";
 import { listGameArchiveSummaries } from "../lib/gameData";
 import styles from "./archives.module.css";
 
@@ -113,6 +114,12 @@ export default async function ArchiveListPage({ pageNumber }: ArchiveListPagePro
             )}
           </nav>
         )}
+
+        <Footer
+          className={styles.footer}
+          navClassName={styles.footerNav}
+          linkClassName={styles.footerLink}
+        />
       </div>
     </div>
   );

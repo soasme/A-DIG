@@ -2,9 +2,9 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import './WerewolfGame.css';
 import Confetti from './Confetti';
+import Footer from './Footer';
 
 function CharacterCell({ character, puzzleEntries, revealed, onClick }) {
   const puzzle = puzzleEntries.find(p => p.row === character.row && p.column === character.column);
@@ -438,14 +438,11 @@ export default function WerewolfGame({ id, gameData }) {
         shareStatus={shareStatus}
       />
 
-      <footer className="game-footer">
-        <p>Made with ❤️ by INKYLABS LIMITED</p>
-        <div className="game-footer-nav">
-          <Link href="/archives" className="footer-link">
-            Browse the archives
-          </Link>
-        </div>
-      </footer>
+      <Footer
+        className="game-footer"
+        navClassName="game-footer-nav"
+        linkClassName="footer-link"
+      />
     </div>
   );
 }
