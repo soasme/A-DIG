@@ -1,20 +1,31 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import './WerewolfGame.css';
 import Confetti from './Confetti';
 import Footer from './Footer';
 
-function CharacterCell({ character, puzzleEntries, revealed, onClick }) {
-  const puzzle = puzzleEntries.find(p => p.row === character.row && p.column === character.column);
+function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealedClick, isReferenced, flashReferenced }) {
+  const puzzle = (puzzleEntries || []).find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
+  const selfReferenced = Array.isArray(puzzle?.referencedCells)
+    ? puzzle.referencedCells.some(rc => rc.row === character.row && rc.column === character.column)
+    : false;
+  const shouldAnimateReference = (isReferenced || flashReferenced) && !selfReferenced;
   const positionStyle = {
     gridColumn: character.column,
     gridRow: character.row
   };
   const coordsLabel = `row ${character.row} column ${character.column}`;
   const statementText = puzzle?.statement;
+  const handleClick = () => {
+    if (revealed) {
+      onRevealedClick?.();
+    } else {
+      onClick();
+    }
+  };
   
   return (
     <div className="cell-wrapper" style={positionStyle}>
@@ -22,8 +33,8 @@ function CharacterCell({ character, puzzleEntries, revealed, onClick }) {
         <button
           type="button"
           className="cell-hitbox"
-          onClick={() => !revealed && onClick()}
-          disabled={revealed}
+          onClick={handleClick}
+          aria-pressed={revealed ? 'true' : 'false'}
         >
           <div className="cell-header">
             <div className="cell-coordinates">{coordsLabel}</div>
@@ -36,10 +47,10 @@ function CharacterCell({ character, puzzleEntries, revealed, onClick }) {
           <div className="cell-body">
             {revealed && statementText ? (
               <div className="statement compact">
-                <span className="name-inline">{character.name}:</span> {statementText}
+                <span className={`name-inline ${shouldAnimateReference ? 'referenced-pop' : ''} ${shouldAnimateReference && flashReferenced ? 'referenced-flash' : ''}`}>{character.name}:</span> {statementText}
               </div>
             ) : (
-              <div className="name unrevealed-name">{character.name}</div>
+              <div className={`name unrevealed-name ${shouldAnimateReference ? 'referenced-pop' : ''} ${shouldAnimateReference && flashReferenced ? 'referenced-flash' : ''}`}>{character.name}</div>
             )}
           </div>
         </button>
@@ -211,6 +222,8 @@ export default function WerewolfGame({ id, gameData }) {
   const [confettiActive, setConfettiActive] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
   const [startTime, setStartTime] = useState(() => Date.now());
+  const [flashRefs, setFlashRefs] = useState(new Set());
+  const flashTimerRef = useRef(null);
   const totalCharacters = gameData.characters.length;
   const revealedCount = revealed.size;
   const progressRatio = totalCharacters ? revealedCount / totalCharacters : 0;
@@ -236,6 +249,11 @@ export default function WerewolfGame({ id, gameData }) {
     setConfettiActive(false);
     setShareStatus('');
     setStartTime(Date.now());
+    setFlashRefs(new Set());
+    if (flashTimerRef.current) {
+      clearTimeout(flashTimerRef.current);
+      flashTimerRef.current = null;
+    }
   }, [gameData]);
 
   const handleCharacterClick = (character) => {
@@ -292,9 +310,31 @@ export default function WerewolfGame({ id, gameData }) {
     '--rows': gameData.row
   };
 
+  const handleRevealedCellClick = (character) => {
+    const puzzle = (gameData.puzzle || []).find(
+      p => p.row === character.row && p.column === character.column
+    );
+    if (!puzzle || !Array.isArray(puzzle.referencedCells) || puzzle.referencedCells.length === 0) return;
+    const next = new Set();
+    puzzle.referencedCells.forEach(({ row, column }) => {
+      if (row == null || column == null) return;
+      next.add(`${row}-${column}`);
+    });
+    setFlashRefs(next);
+    if (flashTimerRef.current) {
+      clearTimeout(flashTimerRef.current);
+    }
+    flashTimerRef.current = setTimeout(() => {
+      setFlashRefs(new Set());
+      flashTimerRef.current = null;
+    }, 1200);
+  };
+
   const boardCells = gameData.characters.map((character) => {
     const key = `${character.row}-${character.column}`;
     const isRevealed = revealed.has(key);
+    const isReferenced = flashRefs.has(key);
+    const flashReferenced = isReferenced;
 
     return (
       <CharacterCell
@@ -302,7 +342,10 @@ export default function WerewolfGame({ id, gameData }) {
         character={character}
         puzzleEntries={gameData.puzzle}
         revealed={isRevealed}
+        isReferenced={isReferenced}
+        flashReferenced={flashReferenced}
         onClick={() => handleCharacterClick(character)}
+        onRevealedClick={() => handleRevealedCellClick(character)}
       />
     );
   });

@@ -287,6 +287,47 @@
   font-size: 16px;
 }
 
+.referenced-pop {
+  display: inline-block;
+  animation: referencedPop 1.2s ease-in-out infinite;
+  color: var(--accent-gold);
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+@keyframes referencedPop {
+  0% {
+    transform: translateY(0) scale(1);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.07);
+    text-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.referenced-flash {
+  animation: referencedFlash 0.9s ease;
+}
+
+@keyframes referencedFlash {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+  40% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.2));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+}
+
 .progress {
   grid-area: progress;
   max-width: 900px;
