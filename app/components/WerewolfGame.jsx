@@ -29,7 +29,7 @@ function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealed
   
   return (
     <div className="cell-wrapper" style={positionStyle}>
-      <div className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''}`}>
+      <div className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''} ${flashReferenced ? 'referenced-glow' : ''}`}>
         <button
           type="button"
           className="cell-hitbox"
