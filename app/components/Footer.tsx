@@ -13,6 +13,7 @@ export default function Footer({
 }: FooterProps) {
   const links = [
     { href: "/", label: "Home" },
+    { href: "/blog", label: "Read the blog" },
     { href: "/archives", label: "Browse the archives" },
   ];
 
