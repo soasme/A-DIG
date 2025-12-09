@@ -16,34 +16,128 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
-function renderContent(content: string) {
-  const blocks = content.split(/\n\s*\n/).map((block) => block.trim()).filter(Boolean);
+type MarkdownBlock =
+  | { type: "heading"; level: number; text: string }
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
 
-  return blocks.map((block, index) => {
-    const lines = block.split(/\n/).map((line) => line.trim());
-    const isList = lines.every((line) => /^-\s+/.test(line));
+function parseMarkdownBlocks(content: string): MarkdownBlock[] {
+  const lines = content.split(/\r?\n/);
+  const blocks: MarkdownBlock[] = [];
+  let index = 0;
 
-    if (isList) {
-      return (
-        <ul key={index}>
-          {lines.map((line, lineIndex) => (
-            <li key={lineIndex}>{line.replace(/^-\s+/, "")}</li>
-          ))}
-        </ul>
+  while (index < lines.length) {
+    const rawLine = lines[index];
+    const line = rawLine.trim();
+
+    if (!line) {
+      index += 1;
+      continue;
+    }
+
+    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
+    if (headingMatch) {
+      blocks.push({ type: "heading", level: headingMatch[1].length, text: headingMatch[2].trim() });
+      index += 1;
+      continue;
+    }
+
+    if (line.startsWith("- ")) {
+      const items: string[] = [];
+      while (index < lines.length) {
+        const listLine = lines[index].trim();
+        if (!listLine.startsWith("- ")) break;
+        items.push(listLine.slice(2).trim());
+        index += 1;
+      }
+      blocks.push({ type: "list", items });
+      continue;
+    }
+
+    const paragraphLines: string[] = [];
+    while (
+      index < lines.length &&
+      lines[index].trim() &&
+      !/^(#{1,6})\s+/.test(lines[index].trim()) &&
+      !lines[index].trim().startsWith("- ")
+    ) {
+      paragraphLines.push(lines[index].trim());
+      index += 1;
+    }
+
+    if (paragraphLines.length) {
+      blocks.push({ type: "paragraph", text: paragraphLines.join(" ") });
+    }
+  }
+
+  return blocks;
+}
+
+function renderInline(text: string, keyPrefix: string) {
+  const nodes: Array<string | JSX.Element> = [];
+  let remaining = text;
+  let tokenIndex = 0;
+
+  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+]\([^\)]+\))/;
+
+  while (remaining.length) {
+    const match = remaining.match(pattern);
+    if (!match || match.index === undefined) {
+      nodes.push(remaining);
+      break;
+    }
+
+    const matchIndex = match.index;
+    if (matchIndex > 0) {
+      nodes.push(remaining.slice(0, matchIndex));
+    }
+
+    const token = match[0];
+    const content = token.startsWith("**")
+      ? token.slice(2, -2)
+      : token.startsWith("*")
+        ? token.slice(1, -1)
+        : token.slice(1, token.lastIndexOf("]"));
+
+    if (token.startsWith("**")) {
+      nodes.push(
+        <strong key={`${keyPrefix}-bold-${tokenIndex}`}>
+          {content}
+        </strong>
+      );
+    } else if (token.startsWith("*")) {
+      nodes.push(
+        <em key={`${keyPrefix}-em-${tokenIndex}`}>
+          {content}
+        </em>
+      );
+    } else if (token.startsWith("[")) {
+      const href = token.slice(token.lastIndexOf("(") + 1, -1);
+      const linkContent = content;
+      const isInternal = href.startsWith("/");
+      nodes.push(
+        isInternal ? (
+          <Link key={`${keyPrefix}-link-${tokenIndex}`} href={href}>
+            {linkContent}
+          </Link>
+        ) : (
+          <a
+            key={`${keyPrefix}-link-${tokenIndex}`}
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {linkContent}
+          </a>
+        )
       );
     }
 
-    return (
-      <p key={index}>
-        {lines.map((line, lineIndex) => (
-          <span key={lineIndex}>
-            {line}
-            {lineIndex < lines.length - 1 ? <br /> : null}
-          </span>
-        ))}
-      </p>
-    );
-  });
+    remaining = remaining.slice(matchIndex + token.length);
+    tokenIndex += 1;
+  }
+
+  return nodes;
 }
 
 export async function generateStaticParams() {
@@ -81,6 +175,7 @@ export default async function BlogPostPage({
 
   try {
     const post = await loadBlogPostBySlug(slug);
+    const blocks = parseMarkdownBlocks(post.content);
 
     return (
       <div className={styles.page}>
@@ -105,7 +200,34 @@ export default async function BlogPostPage({
               )}
             </header>
 
-            <div className={styles.content}>{renderContent(post.content)}</div>
+            <div className={styles.content}>
+              {blocks.map((block, index) => {
+                if (block.type === "heading") {
+                  const HeadingTag = block.level === 1 ? "h2" : block.level === 2 ? "h3" : "h4";
+                  return (
+                    <HeadingTag key={`heading-${index}`} className={styles.articleSubheading}>
+                      {renderInline(block.text, `heading-${index}`)}
+                    </HeadingTag>
+                  );
+                }
+
+                if (block.type === "list") {
+                  return (
+                    <ul key={`list-${index}`}>
+                      {block.items.map((item, itemIndex) => (
+                        <li key={`list-${index}-${itemIndex}`}>{renderInline(item, `list-${index}-${itemIndex}`)}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+
+                return (
+                  <p key={`paragraph-${index}`}>
+                    {renderInline(block.text, `paragraph-${index}`)}
+                  </p>
+                );
+              })}
+            </div>
           </article>
 
           <Footer

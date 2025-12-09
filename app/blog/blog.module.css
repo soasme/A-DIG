@@ -192,6 +192,13 @@
   margin-bottom: 10px;
 }
 
+.articleSubheading {
+  margin: 12px 0 6px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a1209;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -218,6 +225,17 @@
 
 .content li + li {
   margin-top: 6px;
+}
+
+.content a {
+  color: var(--accent-red, #c92121);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.content a:hover {
+  color: var(--accent-gold, #c08a2a);
+  text-decoration: underline;
 }
 
 .backLink {
