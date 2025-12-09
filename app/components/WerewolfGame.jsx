@@ -196,6 +196,10 @@ export default function WerewolfGame({ id, gameData }) {
   const [shareStatus, setShareStatus] = useState('');
   const [startTime, setStartTime] = useState(() => Date.now());
   const totalCharacters = gameData.characters.length;
+  const revealedCount = revealed.size;
+  const progressRatio = totalCharacters ? revealedCount / totalCharacters : 0;
+  const revealComplete = revealedCount === totalCharacters;
+  const progressWidth = Math.min(100, Math.max(0, progressRatio * 100));
 
   useEffect(() => {
     const firstPuzzle = gameData.puzzle?.[0];
@@ -362,7 +366,27 @@ export default function WerewolfGame({ id, gameData }) {
           </div>
 
           <div className="progress">
-            <p>Revealed: {revealed.size} / {totalCharacters}</p>
+            <div className="progress-header">
+              <div className="progress-label">
+                <span className="progress-eyebrow">Revealed</span>
+                <span className="progress-count">{revealedCount} / {totalCharacters}</span>
+              </div>
+            </div>
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow={revealedCount}
+              aria-valuemin={0}
+              aria-valuemax={totalCharacters}
+            >
+              <div className="progress-track">
+                <div
+                  className={`progress-fill ${revealComplete ? 'complete' : ''}`}
+                  style={{ width: `${progressWidth}%` }}
+                />
+              </div>
+            </div>
+            <p className="progress-caption">Unveil each row and column to crack the case.</p>
           </div>
         </main>
       </section>
