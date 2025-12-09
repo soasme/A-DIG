@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     title: "Clues of Who? - Logic Puzzle Game",
     description: "Test your deductive reasoning in this engaging logic puzzle game. Identify humble souls and villains using clues and logical deduction.",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
   robots: {
     index: true,
     follow: true,

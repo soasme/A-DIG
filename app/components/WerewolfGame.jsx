@@ -109,6 +109,20 @@ function Rules({ goodRole, badRole, gameSetting }) {
         <p className="warning">
           ⚠️ You never need to guess! There is always a logical next choice, even when you think there isn't! Read the clues carefully.
         </p>
+        <p>
+          Think of each grid location as a statement about its row and column. A reveal might prove one character&apos;s role and rule out another, so try to chain these facts together rather than treating each box in isolation.
+        </p>
+        <p>
+          Quick tactics for new players:
+        </p>
+        <ul>
+          <li>Start with cells that already have evidence attached to them — they often unlock an entire line of deductions.</li>
+          <li>If a row or column is almost filled in, finish it to remove ambiguity elsewhere on the board.</li>
+          <li>When stuck, reread the latest unlocked statements; the correct move usually hides in the freshest clue.</li>
+        </ul>
+        <p>
+          You can always step away mid-puzzle and return later; the board state and your reveal streak remain saved in the browser. Take your time and enjoy the mystery.
+        </p>
       </div>
     </section>
   );
