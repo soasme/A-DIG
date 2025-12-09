@@ -1,14 +1,11 @@
+"use client";
+
 import React, { useEffect, useMemo, useState } from 'react';
 import './WerewolfGame.css';
-import gameData from '../data/gameData';
 import Confetti from './Confetti';
 
-const GOOD_ROLE = gameData.roles?.[0] ?? 'villager';
-const BAD_ROLE = gameData.roles?.[1] ?? 'werewolf';
-const GAME_SETTING = gameData.gameSetting;
-
-function CharacterCell({ character, revealed, onClick }) {
-  const puzzle = gameData.puzzle.find(p => p.row === character.row && p.column === character.column);
+function CharacterCell({ character, puzzleEntries, revealed, onClick }) {
+  const puzzle = puzzleEntries.find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
   const positionStyle = {
     gridColumn: character.column,
@@ -49,7 +46,7 @@ function CharacterCell({ character, revealed, onClick }) {
   );
 }
 
-function Modal({ character, onSelect, onClose, warning }) {
+function Modal({ character, onSelect, onClose, warning, goodRole, badRole }) {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
@@ -72,16 +69,16 @@ function Modal({ character, onSelect, onClose, warning }) {
         <h3 className="modal-title">Identify: {character.name}</h3>
         <div className="modal-buttons">
           <button
-            onClick={() => onSelect(GOOD_ROLE)}
+            onClick={() => onSelect(goodRole)}
             className="btn-villager"
           >
-            🟢 {GOOD_ROLE}
+            🟢 {goodRole}
           </button>
           <button
-            onClick={() => onSelect(BAD_ROLE)}
+            onClick={() => onSelect(badRole)}
             className="btn-werewolf"
           >
-            🔴 {BAD_ROLE}
+            🔴 {badRole}
           </button>
         </div>
         {warning && (
@@ -92,22 +89,22 @@ function Modal({ character, onSelect, onClose, warning }) {
   );
 }
 
-function Rules() {
+function Rules({ goodRole, badRole, gameSetting }) {
   return (
     <section className="rules-section">
       <h2 className="section-title">How to Play</h2>
       <div className="rules-content">
-        {GAME_SETTING && (
-          <p className="game-setting">{GAME_SETTING}</p>
+        {gameSetting && (
+          <p className="game-setting">{gameSetting}</p>
         )}
         <p>
-          Your goal is to figure out who is a {GOOD_ROLE} and who is a {BAD_ROLE}.
+          Your goal is to figure out who is a {goodRole} and who is a {badRole}.
         </p>
         <p>
-          Based on the known evidence, tap on a suspect to choose {GOOD_ROLE} or {BAD_ROLE}. They must be either a {GOOD_ROLE} or a {BAD_ROLE}. They might reveal new evidence.
+          Based on the known evidence, tap on a suspect to choose {goodRole} or {badRole}. They must be either a {goodRole} or a {badRole}. They might reveal new evidence.
         </p>
         <p>
-          Everyone tells the truth, even those on the {BAD_ROLE} side.
+          Everyone tells the truth, even those on the {badRole} side.
         </p>
         <p className="warning">
           ⚠️ You never need to guess! There is always a logical next choice, even when you think there isn't! Read the clues carefully.
@@ -182,7 +179,11 @@ function CelebrationDialog({ visible, shareText, gridText, legend, onShare, onCl
   );
 }
 
-export default function WerewolfGame() {
+export default function WerewolfGame({ id, gameData }) {
+  const GOOD_ROLE = gameData.roles?.[0] ?? 'villager';
+  const BAD_ROLE = gameData.roles?.[1] ?? 'werewolf';
+  const GAME_SETTING = gameData.gameSetting;
+
   const [revealed, setRevealed] = useState(new Set());
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [message, setMessage] = useState('');
@@ -193,19 +194,29 @@ export default function WerewolfGame() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [confettiActive, setConfettiActive] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
-  const [startTime] = useState(() => Date.now());
+  const [startTime, setStartTime] = useState(() => Date.now());
+  const totalCharacters = gameData.characters.length;
 
   useEffect(() => {
-    // Reveal the first puzzle element initially
-    const firstPuzzle = gameData.puzzle[0];
-    const firstChar = gameData.characters.find(
-      c => c.row === firstPuzzle.row && c.column === firstPuzzle.column
-    );
-    if (firstChar) {
-      setRevealed(new Set([`${firstChar.row}-${firstChar.column}`]));
-      setAvailableEvidence(new Set(collectEvidence(firstPuzzle)));
-    }
-  }, []);
+    const firstPuzzle = gameData.puzzle?.[0];
+    const firstChar = firstPuzzle
+      ? gameData.characters.find(
+          c => c.row === firstPuzzle.row && c.column === firstPuzzle.column
+        )
+      : null;
+
+    setRevealed(firstChar ? new Set([`${firstChar.row}-${firstChar.column}`]) : new Set());
+    setAvailableEvidence(new Set(firstPuzzle ? collectEvidence(firstPuzzle) : []));
+    setSelectedCharacter(null);
+    setModalWarning('');
+    setMessage('');
+    setWrongGuesses(new Set());
+    setCompletedAt(null);
+    setShowCelebration(false);
+    setConfettiActive(false);
+    setShareStatus('');
+    setStartTime(Date.now());
+  }, [gameData]);
 
   const handleCharacterClick = (character) => {
     setSelectedCharacter(character);
@@ -232,10 +243,12 @@ export default function WerewolfGame() {
     if (puzzle.role === selectedRole && hasEvidence) {
       // Correct!
       const key = `${selectedCharacter.row}-${selectedCharacter.column}`;
-      setRevealed(new Set([...revealed, key]));
-      const newEvidence = new Set(availableEvidence);
-      collectEvidence(puzzle).forEach(ev => newEvidence.add(ev));
-      setAvailableEvidence(newEvidence);
+      setRevealed(prev => new Set([...prev, key]));
+      setAvailableEvidence(prev => {
+        const next = new Set(prev);
+        collectEvidence(puzzle).forEach(ev => next.add(ev));
+        return next;
+      });
       setModalWarning('');
       setSelectedCharacter(null);
     } else {
@@ -267,6 +280,7 @@ export default function WerewolfGame() {
       <CharacterCell
         key={key}
         character={character}
+        puzzleEntries={gameData.puzzle}
         revealed={isRevealed}
         onClick={() => handleCharacterClick(character)}
       />
@@ -274,7 +288,7 @@ export default function WerewolfGame() {
   });
 
   useEffect(() => {
-    const allRevealed = revealed.size === gameData.characters.length;
+    const allRevealed = revealed.size === totalCharacters;
     if (allRevealed && !completedAt) {
       const finishedAt = new Date();
       setCompletedAt(finishedAt);
@@ -282,7 +296,7 @@ export default function WerewolfGame() {
       setConfettiActive(true);
       setShareStatus('');
     }
-  }, [revealed, completedAt]);
+  }, [revealed, completedAt, totalCharacters]);
 
   useEffect(() => {
     if (!confettiActive) return undefined;
@@ -301,7 +315,7 @@ export default function WerewolfGame() {
       lines.push(line);
     }
     return lines.join('\n');
-  }, [wrongGuesses]);
+  }, [wrongGuesses, gameData.column, gameData.row]);
 
   const shareText = useMemo(() => {
     const finishedAt = completedAt || new Date();
@@ -332,7 +346,7 @@ export default function WerewolfGame() {
 
       <section className="game-hero">
         <header className="game-header">
-          <h1 className="game-title">Clues of Who?</h1>
+          <h1 className="game-title">Clues of Who? - #{id}</h1>
           <p className="game-subtitle">A logic puzzle of deduction and deception</p>
         </header>
 
@@ -348,12 +362,12 @@ export default function WerewolfGame() {
           </div>
 
           <div className="progress">
-            <p>Revealed: {revealed.size} / {gameData.characters.length}</p>
+            <p>Revealed: {revealed.size} / {totalCharacters}</p>
           </div>
         </main>
       </section>
 
-      <Rules />
+      <Rules goodRole={GOOD_ROLE} badRole={BAD_ROLE} gameSetting={GAME_SETTING} />
 
       {selectedCharacter && (
         <Modal
@@ -361,6 +375,8 @@ export default function WerewolfGame() {
           onSelect={handleSelect}
           onClose={handleClose}
           warning={modalWarning}
+          goodRole={GOOD_ROLE}
+          badRole={BAD_ROLE}
         />
       )}
 

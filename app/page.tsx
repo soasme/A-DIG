@@ -1,9 +1,11 @@
-"use client";
-
-import React, { useMemo, useState } from "react";
 import WerewolfGame from "./components/WerewolfGame";
+import { loadLatestGameData } from "./lib/gameData";
 
-export default function Page() {
+export const revalidate = 0;
+
+export default async function Page() {
+  const { id, data } = await loadLatestGameData();
+
   return (
     <div
       style={{
@@ -23,7 +25,7 @@ export default function Page() {
         .clue-text { font-size: 0.65rem; color: #d1d5db; margin-top: 6px; line-height: 1.3; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px; }
       `}</style>
 
-      <WerewolfGame />
+      <WerewolfGame id={id} gameData={data} />
     </div>
   );
 }
