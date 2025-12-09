@@ -49,6 +49,14 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+.game-logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  display: block;
+  filter: drop-shadow(0 6px 12px var(--shadow));
+}
+
 .game-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(42px, 4vw, 64px);
@@ -552,6 +560,26 @@
   font-size: 14px;
   margin-top: 48px;
   border-top: 1px solid var(--grid-line);
+}
+
+.game-footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--accent-red);
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.footer-link:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
 }
 
 .celebration-overlay {

@@ -25,11 +25,21 @@ export type GameData = {
   puzzle: PuzzleCell[];
   roles?: string[];
   gameSetting?: string;
+  publishedAt?: string;
 };
 
 export type GameDataWithId = {
   id: number;
   data: GameData;
+};
+
+export type GameArchiveSummary = {
+  id: number;
+  gridSize: string;
+  characterCount: number;
+  clueCount: number;
+  publishedAt: string;
+  gameSetting?: string;
 };
 
 const GAME_DATA_DIR = path.join(process.cwd(), "app", "data", "gameData");
@@ -40,7 +50,7 @@ function assertValidId(id: string) {
   }
 }
 
-async function findLatestId(): Promise<string> {
+async function discoverGameDataIds(): Promise<number[]> {
   const entries = await fs.readdir(GAME_DATA_DIR);
   const ids = entries
     .map((file) => {
@@ -53,6 +63,16 @@ async function findLatestId(): Promise<string> {
     throw new Error("No game data files found");
   }
 
+  return ids.sort((a, b) => a - b);
+}
+
+export async function listGameDataIds(): Promise<number[]> {
+  const ids = await discoverGameDataIds();
+  return [...ids].sort((a, b) => b - a);
+}
+
+async function findLatestId(): Promise<string> {
+  const ids = await discoverGameDataIds();
   return String(Math.max(...ids));
 }
 
@@ -73,4 +93,30 @@ export async function loadGameDataById(id: string | number): Promise<GameDataWit
   const normalizedId = String(id);
   const data = await readGameDataFile(normalizedId);
   return { id: Number(normalizedId), data };
+}
+
+export async function listGameArchiveSummaries(): Promise<GameArchiveSummary[]> {
+  const ids = await listGameDataIds();
+
+  return Promise.all(
+    ids.map(async (id) => {
+      const fileName = `${id}.json`;
+      const filePath = path.join(GAME_DATA_DIR, fileName);
+      const [data, stats] = await Promise.all([
+        readGameDataFile(String(id)),
+        fs.stat(filePath),
+      ]);
+
+      const publishedAt = data.publishedAt || stats.mtime.toISOString();
+
+      return {
+        id,
+        gridSize: `${data.row}x${data.column}`,
+        characterCount: data.characters.length,
+        clueCount: data.puzzle.length,
+        publishedAt,
+        gameSetting: data.gameSetting,
+      };
+    })
+  );
 }

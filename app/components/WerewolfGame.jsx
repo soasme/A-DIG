@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import './WerewolfGame.css';
 import Confetti from './Confetti';
 
@@ -364,6 +366,14 @@ export default function WerewolfGame({ id, gameData }) {
 
       <section className="game-hero">
         <header className="game-header">
+          <Image
+            src="/logo_s.png"
+            alt="Clues of Who logo"
+            width={72}
+            height={72}
+            className="game-logo"
+            priority
+          />
           <h1 className="game-title">Clues of Who? - #{id}</h1>
           <p className="game-subtitle">A logic puzzle of deduction and deception</p>
         </header>
@@ -429,7 +439,12 @@ export default function WerewolfGame({ id, gameData }) {
       />
 
       <footer className="game-footer">
-        <p>Made with ❤️ &nbsp; by INKYLABS LIMITED</p>
+        <p>Made with ❤️ by INKYLABS LIMITED</p>
+        <div className="game-footer-nav">
+          <Link href="/archives" className="footer-link">
+            Browse the archives
+          </Link>
+        </div>
       </footer>
     </div>
   );
