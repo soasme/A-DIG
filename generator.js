@@ -391,6 +391,27 @@ function formatClue(text, getName, roleNames = [VILLAGER, WEREWOLF]) {
         : 'below';
     return `exactly ${k} of the ${j} ${plural} ${direction} ${nameFor(r1, c1)} are neighbors of ${nameFor(r2, c2)}`;
   }
+  if (fn === 'KofJRoleNeighborToSomeoneIsAnothersNeighbor') {
+    if (rest.length !== 7) return text;
+    const [role, r1Str, c1Str, r2Str, c2Str, kStr, jStr] = rest;
+    const r1 = Number(r1Str);
+    const c1 = Number(c1Str);
+    const r2 = Number(r2Str);
+    const c2 = Number(c2Str);
+    const k = Number(kStr);
+    const j = Number(jStr);
+    if (
+      !Number.isFinite(r1) ||
+      !Number.isFinite(c1) ||
+      !Number.isFinite(r2) ||
+      !Number.isFinite(c2) ||
+      !Number.isFinite(k) ||
+      !Number.isFinite(j)
+    )
+      return text;
+    const plural = pluralizeRole(role, j);
+    return `exactly ${k} of the ${j} ${plural} neighboring ${nameFor(r1, c1)} are neighbors of ${nameFor(r2, c2)}`;
+  }
   return text;
 }
 
@@ -708,6 +729,34 @@ export function kOfJRoleBelowSomeoneIsAnothersNeighbor(
   cols = COLS
 ) {
   return kOfJRoleDirectionalNeighbor(roleList, r1, c1, r2, c2, k, j, role, 'below', rows, cols);
+}
+
+export function kOfJRoleNeighborToSomeoneIsAnothersNeighbor(
+  roleList,
+  r1,
+  c1,
+  r2,
+  c2,
+  k,
+  j,
+  role,
+  rows = ROWS,
+  cols = COLS
+) {
+  const neighbors1 = getNeighbors(r1, c1, rows, cols);
+  if (neighbors1.length === 0 || j > neighbors1.length) return logic.fail;
+
+  const neighborVars1 = neighbors1.map(([r, c]) => roleList[cellIndex(r, c, cols)]);
+
+  const neighborSet2 = new Set(getNeighbors(r2, c2, rows, cols).map(([r, c]) => `${r},${c}`));
+  const intersectionVars = [];
+  neighbors1.forEach(([r, c]) => {
+    if (neighborSet2.has(`${r},${c}`)) {
+      intersectionVars.push(roleList[cellIndex(r, c, cols)]);
+    }
+  });
+
+  return allAnd([exactlyK(neighborVars1, j, role), exactlyK(intersectionVars, k, role)]);
 }
 
 export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
@@ -1182,6 +1231,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               const j = directionalValues.filter(v => v === role).length;
               if (j === 0) return;
               const k = intersectionValues.filter(v => v === role).length;
+              if (k === 0) return;
             clues.push({
               key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
               goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
@@ -1193,6 +1243,36 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             });
           });
         });
+
+          // K of J role neighbors of (r1,c1) are also neighbors of (r2,c2)
+          const neighbors1 = getNeighbors(r1, c1, rows, cols);
+          if (neighbors1.length > 0) {
+            const neighborValues1 = neighbors1.map(([r, c]) => targetSolution[cellIndex(r, c, cols)]);
+
+            const neighborSet2 = new Set(getNeighbors(r2, c2, rows, cols).map(([r, c]) => `${r},${c}`));
+            const intersectionValues = neighbors1
+              .filter(([r, c]) => neighborSet2.has(`${r},${c}`))
+              .map(([r, c]) => targetSolution[cellIndex(r, c, cols)]);
+
+            [
+              { role: WEREWOLF },
+              { role: VILLAGER },
+            ].forEach(({ role }) => {
+              const j = neighborValues1.filter(v => v === role).length;
+              if (j === 0) return;
+              const k = intersectionValues.filter(v => v === role).length;
+              if (k === 0) return;
+              clues.push({
+                key: `k-of-j-neighbor-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
+                goal: kOfJRoleNeighborToSomeoneIsAnothersNeighbor(roles, r1, c1, r2, c2, k, j, role, rows, cols),
+                statement: formatClue(`KofJRoleNeighborToSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2} ${k} ${j}`, getName, roleNames),
+                referencedCells: normalizeReferencedCells([
+                  { row: r1, column: c1 },
+                  { row: r2, column: c2 },
+                ]),
+              });
+            });
+          }
       }
       }
     }
