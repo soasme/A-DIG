@@ -1,0 +1,164 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": ["villager", "werewolf"],
+  "characters": [
+    { "name": "Arthur", "gender": "male", "row": 1, "column": 1, "characteristic": "vengeful_obsession" },
+    { "name": "Celia", "gender": "female", "row": 1, "column": 2, "characteristic": "unpredictable_genius" },
+    { "name": "Dominic", "gender": "male", "row": 1, "column": 3, "characteristic": "reckless_bravery" },
+    { "name": "Dylan", "gender": "male", "row": 2, "column": 1, "characteristic": "deceptive_charm" },
+    { "name": "Emmett", "gender": "male", "row": 2, "column": 2, "characteristic": "reckless_bravery" },
+    { "name": "Finn", "gender": "male", "row": 2, "column": 3, "characteristic": "hopeful_idealism" },
+    { "name": "Fiona", "gender": "female", "row": 3, "column": 1, "characteristic": "noble_self_sacrifice" },
+    { "name": "Flora", "gender": "female", "row": 3, "column": 2, "characteristic": "cold_calculation" },
+    { "name": "Franklin", "gender": "male", "row": 3, "column": 3, "characteristic": "warmhearted_compassion" },
+    { "name": "Gemma", "gender": "female", "row": 4, "column": 1, "characteristic": "unyielding_principle" },
+    { "name": "Kara", "gender": "female", "row": 4, "column": 2, "characteristic": "ruthless_pragmatism" },
+    { "name": "Odette", "gender": "female", "row": 4, "column": 3, "characteristic": "relentless_perfectionism" },
+    { "name": "Silas", "gender": "male", "row": 5, "column": 1, "characteristic": "noble_self_sacrifice" },
+    { "name": "Uma", "gender": "female", "row": 5, "column": 2, "characteristic": "unpredictable_genius" },
+    { "name": "Violet", "gender": "female", "row": 5, "column": 3, "characteristic": "forbidden_curiosity" }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 of the 1 werewolf below Kara are neighbors of Violet",
+      "statement": "“Kara’s shadow twitched last night… and one of the beasts lurking beneath her keeps circling Violet. Just one—always watching her.”",
+      "referencedCells": [{"row": 4,"column": 2},{"row": 5,"column": 3}],
+      "deductableCells": [{"row": 5,"column": 2,"role":"werewolf"}]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 of the 3 werewolfs below Celia are neighbors of Emmett",
+      "statement": "“Celia’s brilliance attracts monsters… three roam beneath her, but only one has ever dared creep close to Emmett. I’ve seen it.”",
+      "referencedCells": [{"row":1,"column":2},{"row":2,"column":2}],
+      "deductableCells": [{"row":3,"column":2,"role":"werewolf"}]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 of the 3 werewolfs neighboring Gemma are neighbors of Uma",
+      "statement": "“Gemma’s stern gaze scares off most wolves… but one of the creatures near her keeps drifting toward Uma. Only one dares.”",
+      "referencedCells": [{"row":4,"column":1},{"row":5,"column":2}],
+      "deductableCells": [{"row":3,"column":1,"role":"villager"}]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "mechanic_statement": "exactly 1 werewolf left of Celia",
+      "statement": "“Celia’s mind spins too fast for wolves to hide from her. She swears there’s just one lurking immediately to her left… and I believe her.”",
+      "referencedCells": [{"row":1,"column":2}],
+      "deductableCells": [{"row":1,"column":1,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 villager right of Emmett",
+      "statement": "“Emmett’s right side… only one person there still feels human warmth. Just one. The rest? Their eyes don’t blink right.”",
+      "referencedCells": [{"row":2,"column":2}],
+      "deductableCells": [{"row":2,"column":3,"role":"villager"}]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "mechanic_statement": "Fiona has fewer werewolf neighbors than Flora",
+      "statement": "“Fiona sleeps lightly—wolves avoid that. Flora, though… something about her cold stare draws more of them. I’ve counted.”",
+      "referencedCells": [{"row":3,"column":1},{"row":3,"column":2}],
+      "deductableCells": [{"row":4,"column":3,"role":"werewolf"}]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "werewolf",
+      "mechanic_statement": "Silas and Violet have the same number of villager neighbors",
+      "statement": "“Silas and Violet… funny pair. Every friendly face around Silas seems mirrored around Violet. Balance like that isn’t coincidence.”",
+      "referencedCells": [{"row":5,"column":1},{"row":5,"column":3}],
+      "deductableCells": [{"row":4,"column":1,"role":"werewolf"}]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 villager above Silas",
+      "statement": "“Above Silas? Only one soul there still smells of honest earth. The others hide something darker.”",
+      "referencedCells": [{"row":5,"column":1}],
+      "deductableCells": [{"row":2,"column":1,"role":"werewolf"}]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 1 of the 2 werewolfs below Franklin are neighbors of Odette",
+      "statement": "“Two beasts lurk just beneath Franklin, but Odette only ever crosses paths with one of them. She tracks perfection—even in monsters.”",
+      "referencedCells": [{"row":3,"column":3},{"row":4,"column":3}],
+      "deductableCells": [{"row":5,"column":3,"role":"werewolf"}]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "werewolf",
+      "mechanic_statement": "Arthur has fewer villager neighbors than Kara",
+      "statement": "“Arthur’s rage scares off good folk—he barely keeps any near him. Kara? Villagers cling to her even when she pushes them away.”",
+      "referencedCells": [{"row":1,"column":1},{"row":4,"column":2}],
+      "deductableCells": [{"row":1,"column":2,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 villagers in row 1",
+      "statement": "“Row 1… there’s no true villager left up here. I feel the lies clinging to every voice.”",
+      "referencedCells": [],
+      "deductableCells": [{"row":1,"column":3,"role":"werewolf"}]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "mechanic_statement": "Emmett is a werewolf.",
+      "statement": "“Emmett? Oh, he howled last night. Loud enough that even Kara flinched. Don’t pretend you didn’t hear it.”",
+      "referencedCells": [{"row":2,"column":2}],
+      "deductableCells": [
+        {"row":2,"column":2,"role":"werewolf"},
+        {"row":4,"column":2,"role":"villager"},
+        {"row":5,"column":1,"role":"werewolf"}
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "mechanic_statement": "exactly 0 villagers in row 5",
+      "statement": "“Row 5… every heartbeat down there thuds wrong. Not a single villager breathes among them.”",
+      "referencedCells": [],
+      "deductableCells": []
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "mechanic_statement": "Kara is a villager.",
+      "statement": "“Believe what you want—Kara stands firm for this village. I’d stake my life on her humanity.”",
+      "referencedCells": [{"row":4,"column":2}],
+      "deductableCells": []
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "mechanic_statement": "Silas is a werewolf.",
+      "statement": "I have nothing to say. Sigh.”",
+      "referencedCells": [{"row":5,"column":1}],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you."
+}

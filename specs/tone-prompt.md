@@ -43,6 +43,8 @@ Example:
 
 Clues become story snippets. Still logical—just atmospheric.
 
+When someone is pointing itself as a role and its deductableRoles is empty array, like Silas says "Silas is a werewolf", the statement becomes a pure flavour NPCs build world, foreshadow a twist, add humour, or hint at the theme, This makes the world feel alive, while eliminating redundancy complaints.
+
 ---
 
 Given INPUT json, reserve statement as mechanic_statement, and print OUTPUT json with statement being tone-adjusted statements.
