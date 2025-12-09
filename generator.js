@@ -407,6 +407,21 @@ function indexToRowCol(idx, cols = COLS) {
   };
 }
 
+function normalizeReferencedCells(cells = []) {
+  const seen = new Set();
+  const refs = [];
+  for (const cell of cells) {
+    if (!cell) continue;
+    const { row, column } = cell;
+    if (row == null || column == null) continue;
+    const key = `${row},${column}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    refs.push({ row, column });
+  }
+  return refs;
+}
+
 function makeNameLookup(characters) {
   const map = new Map();
   if (Array.isArray(characters)) {
@@ -776,6 +791,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
         key: `row-${r}-${role}-${count}`,
         goal: exactlyKRoleInRow(roles, r, count, role, cols),
         statement: formatClue(`exactlyKRoleInRow ${role} ${r} ${count}`, getName, roleNames),
+        referencedCells: [],
       });
     });
     [
@@ -790,11 +806,13 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               key: `row-${r}-above-${role}-${count}`,
               goal: exactlyRoleAboveRow(roles, r, count, role, cols),
               statement: formatClue(`exactlyRoleAboveRow ${role} ${r} ${count}`, getName, roleNames),
+              referencedCells: [],
             }
           : {
               key: `row-${r}-below-${role}-${count}`,
               goal: exactlyRoleBelowRow(roles, r, count, role, rows, cols),
               statement: formatClue(`exactlyRoleBelowRow ${role} ${r} ${count}`, getName, roleNames),
+              referencedCells: [],
             };
       clues.push(builder);
     });
@@ -807,6 +825,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
         key: `row-${r}-connected-${role}`,
         goal: allRoleConnectedInRow(roles, r, role, cols),
         statement: formatClue(`AllRoleInRowConnected ${role} ${r}`, getName, roleNames),
+        referencedCells: [],
       });
     });
   }
@@ -841,6 +860,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
         key: `col-${c}-${role}-${count}`,
         goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
         statement: formatClue(`exactlyKRoleInColumn ${role} ${c} ${count}`, getName, roleNames),
+        referencedCells: [],
       });
     });
     [
@@ -851,6 +871,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
         key: `col-${c}-connected-${role}`,
         goal: allRoleConnectedInColumn(roles, c, role, rows, cols),
         statement: formatClue(`AllRoleInColumnConnected ${role} ${c}`, getName, roleNames),
+        referencedCells: [],
       });
     });
     [
@@ -865,11 +886,13 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               key: `col-${c}-left-${role}-${count}`,
               goal: exactlyKRoleLeftColumn(roles, c, count, role, rows, cols),
               statement: formatClue(`exactlyKRoleLeftColumn ${role} ${c} ${count}`, getName, roleNames),
+              referencedCells: [],
             }
           : {
               key: `col-${c}-right-${role}-${count}`,
               goal: exactlyKRoleRightColumn(roles, c, count, role, rows, cols),
               statement: formatClue(`exactlyKRoleRightColumn ${role} ${c} ${count}`, getName, roleNames),
+              referencedCells: [],
             };
       clues.push(builder);
     });
@@ -942,6 +965,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
             goal: fn(roles, r, c, count, role, rows, cols),
             statement: formatClue(`${formatter(role)} ${count}`, getName, roleNames),
+            referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
           });
         });
       });
@@ -959,6 +983,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             key,
             goal: hasExactKRoleNeighbor(roles, r, c, count, role, rows, cols),
             statement: formatClue(`HasExactKRoleNeighbor ${role} ${r} ${c} ${count}`, getName, roleNames),
+            referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
           });
         });
       }
@@ -995,6 +1020,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               getName,
               roleNames
             ),
+            referencedCells: normalizeReferencedCells([
+              { row: r1, column: c1 },
+              { row: r2, column: c2 },
+            ]),
           });
         });
       });
@@ -1033,6 +1062,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                 getName,
                 roleNames
               ),
+              referencedCells: normalizeReferencedCells([
+                { row: r1, column: c1 },
+                { row: r2, column: c2 },
+              ]),
             });
           });
 
@@ -1050,6 +1083,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                   getName,
                   roleNames
                 ),
+                referencedCells: normalizeReferencedCells([
+                  { row: r1, column: c1 },
+                  { row: r2, column: c2 },
+                ]),
               });
             } else if (count1 < count2) {
               const key = `less-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}-${count2}`;
@@ -1061,6 +1098,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                   getName,
                   roleNames
                 ),
+                referencedCells: normalizeReferencedCells([
+                  { row: r1, column: c1 },
+                  { row: r2, column: c2 },
+                ]),
               });
             }
           });
@@ -1085,6 +1126,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                 getName,
                 roleNames
               ),
+              referencedCells: normalizeReferencedCells([
+                { row: r1, column: c1 },
+                { row: r2, column: c2 },
+              ]),
             });
           });
 
@@ -1141,6 +1186,10 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
               goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
               statement: formatClue(`${formatter(role)} ${k} ${j}`, getName, roleNames),
+              referencedCells: normalizeReferencedCells([
+                { row: r1, column: c1 },
+                { row: r2, column: c2 },
+              ]),
             });
           });
         });
@@ -1199,6 +1248,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     let nextSolutions = solutions;
     let nextDeductions = deduced;
     let nextStatement = '';
+    let nextReferencedCells = [];
 
     // Try to find a clue that yields at most the maxNewDeductions (prefer fewer new deductions, but > 0).
     newlyDeducible = [];
@@ -1230,6 +1280,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         nextSolutions = candidateSolutions;
         nextDeductions = candidateDeductions;
         nextStatement = clue.statement;
+        nextReferencedCells = clue.referencedCells || [];
         newlyDeducible = newDeductions;
 
         goals.push(clue.goal);
@@ -1250,6 +1301,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
           goal: clue.goal,
           clueKey: clue.key,
           newDeductions,
+          referencedCells: clue.referencedCells || [],
         };
       }
     }
@@ -1259,6 +1311,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
       nextSolutions = bestCandidate.candidateSolutions;
       nextDeductions = bestCandidate.candidateDeductions;
       nextStatement = bestCandidate.statement;
+      nextReferencedCells = bestCandidate.referencedCells || [];
       newlyDeducible = bestCandidate.newDeductions;
 
       goals.push(bestCandidate.goal);
@@ -1294,6 +1347,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         nextSolutions = candidateSolutions;
         nextDeductions = candidateDeductions;
         nextStatement = formatOtherRole(row, col, value, nameLookup, activeRoles);
+        nextReferencedCells = normalizeReferencedCells([{ row, column: col }]);
         newlyDeducible = newDeductions;
 
         goals.push(fallbackGoal);
@@ -1316,6 +1370,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
       column: speakerCol,
       role: targetSolution[currentSpeakerIdx],
       statement: nextStatement,
+      referencedCells: normalizeReferencedCells(nextReferencedCells),
       deductableCells,
     });
     coveredSpeakerIdxs.add(currentSpeakerIdx);
@@ -1330,6 +1385,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
     const unusedClue = clueTemplates.find(clue => !usedClueKeys.has(clue.key));
     let finalStatement = unusedClue ? unusedClue.statement : '';
+    let finalReferencedCells = unusedClue ? unusedClue.referencedCells || [] : [];
 
     if (!finalStatement) {
       // Fallback: direct truth about another character if somehow all clues were used.
@@ -1341,6 +1397,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         const targetIdx = others[0];
         const { row: tgtRow, col: tgtCol } = indexToRowCol(targetIdx, cols);
         finalStatement = formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx], nameLookup, activeRoles);
+        finalReferencedCells = normalizeReferencedCells([{ row: tgtRow, column: tgtCol }]);
       }
     } else {
       usedClueKeys.add(unusedClue.key);
@@ -1352,6 +1409,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         column: speakerCol,
         role: targetSolution[currentSpeakerIdx],
         statement: finalStatement,
+        referencedCells: normalizeReferencedCells(finalReferencedCells),
         deductableCells: [],
       });
       coveredSpeakerIdxs.add(currentSpeakerIdx);
@@ -1367,6 +1425,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
       column: col,
       role: targetSolution[i],
       statement: formatOtherRole(row, col, targetSolution[i], nameLookup, activeRoles),
+      referencedCells: normalizeReferencedCells([{ row, column: col }]),
       deductableCells: [],
     });
   }
