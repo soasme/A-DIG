@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import './WerewolfGame.css';
 import Confetti from './Confetti';
-import Footer from './Footer';
 
 function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealedClick, isReferenced, flashReferenced }) {
   const puzzle = (puzzleEntries || []).find(p => p.row === character.row && p.column === character.column);
@@ -481,11 +480,6 @@ export default function WerewolfGame({ id, gameData }) {
         shareStatus={shareStatus}
       />
 
-      <Footer
-        className="game-footer"
-        navClassName="game-footer-nav"
-        linkClassName="footer-link"
-      />
     </div>
   );
 }

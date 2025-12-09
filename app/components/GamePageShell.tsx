@@ -1,3 +1,6 @@
+import Footer from "./Footer";
+import LatestNews from "./LatestNews";
+import { listBlogPostSummaries } from "../lib/blog";
 import WerewolfGame from "./WerewolfGame";
 
 type Props = {
@@ -5,12 +8,15 @@ type Props = {
   gameData: unknown;
 };
 
-export default function GamePageShell({ id, gameData }: Props) {
+export default async function GamePageShell({ id, gameData }: Props) {
+  const posts = await listBlogPostSummaries();
+  const latestPosts = posts.slice(0, 5);
+
   return (
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%)",
+        background: "var(--paper)",
         color: "#e8e8e8",
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       }}
@@ -26,6 +32,10 @@ export default function GamePageShell({ id, gameData }: Props) {
       `}</style>
 
       <WerewolfGame id={id} gameData={gameData} />
+
+      <LatestNews posts={latestPosts} />
+
+      <Footer className="game-footer" navClassName="game-footer-nav" linkClassName="footer-link" />
     </div>
   );
 }
