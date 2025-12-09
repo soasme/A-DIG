@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { writeFileSync } from 'node:fs';
 import logic from 'logicjs';
 import gameThemes from './app/data/gameThemes.js';
 
@@ -1566,12 +1567,13 @@ export function generateGame(rows = ROWS, cols = COLS, roleNames = [VILLAGER, WE
 
 function printUsage() {
   const defaultRoles = [VILLAGER, WEREWOLF].join(',');
-  console.log('Usage: node generator.js [--row N] [--column N] [--roles role1,role2]');
+  console.log('Usage: node generator.js [--row N] [--column N] [--roles role1,role2] [--output path]');
   console.log(`Defaults: --row ${ROWS}, --column ${COLS}, --roles ${defaultRoles}`);
+  console.log('If --output is omitted, the JSON is printed to stdout.');
 }
 
 function parseArgs(argv) {
-  const options = { row: ROWS, column: COLS, roles: [VILLAGER, WEREWOLF], help: false };
+  const options = { row: ROWS, column: COLS, roles: [VILLAGER, WEREWOLF], output: null, help: false };
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -1599,6 +1601,12 @@ function parseArgs(argv) {
         }
         i++;
       }
+    } else if (arg === '--output') {
+      const next = argv[i + 1];
+      if (typeof next === 'string') {
+        options.output = next;
+        i++;
+      }
     } else if (arg === '--help' || arg === '-h') {
       options.help = true;
     }
@@ -1610,13 +1618,18 @@ function parseArgs(argv) {
 const isMainModule = process.argv[1] && import.meta.url === new URL(process.argv[1], 'file:').href;
 
 if (isMainModule) {
-  const { row, column, roles, help } = parseArgs(process.argv.slice(2));
+  const { row, column, roles, output, help } = parseArgs(process.argv.slice(2));
   if (help) {
     printUsage();
     process.exit(0);
   }
   const game = generateGame(row, column, roles);
-  console.log(JSON.stringify(game, null, 2));
+  const json = JSON.stringify(game, null, 2);
+  if (output) {
+    writeFileSync(output, json);
+  } else {
+    console.log(json);
+  }
 }
 
 
