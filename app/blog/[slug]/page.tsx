@@ -9,7 +9,7 @@ import styles from "../blog.module.css";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-marked.setOptions({ mangle: false, headerIds: false, gfm: true, breaks: true });
+marked.setOptions({ gfm: true, breaks: true });
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", {
