@@ -1577,9 +1577,16 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
   // Add a final truthful statement from an unused clue template, spoken by the last revealed character.
   if (deduced.size === rows * cols) {
     const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
-    const unusedClue = clueTemplates.find(clue => !usedClueKeys.has(clue.key));
-    let finalStatement = unusedClue ? unusedClue.statement : '';
-    let finalReferencedCells = unusedClue ? unusedClue.referencedCells || [] : [];
+    const unusedClues = clueTemplates.filter(clue => !usedClueKeys.has(clue.key));
+    let finalStatement = '';
+    let finalReferencedCells = [];
+
+    if (unusedClues.length > 0) {
+      const picked = unusedClues[randInt(unusedClues.length)];
+      finalStatement = picked.statement;
+      finalReferencedCells = picked.referencedCells || [];
+      usedClueKeys.add(picked.key);
+    }
 
     if (!finalStatement) {
       // Fallback: direct truth about another character if somehow all clues were used.
