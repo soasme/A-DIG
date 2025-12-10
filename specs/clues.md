@@ -497,6 +497,50 @@ These rules directly state a character's role.
 
 ---
 
+### 9. Alphabetical Order Counts
+
+These rules count roles among characters that come before or after the speaker alphabetically by name.
+
+#### 9.1 Before Alphabetical Names
+
+**Template:** `exactly K of the J people whose names come before {Character} alphabetically are {role}`
+
+**Behavior:** Among the J characters whose names are alphabetically earlier than the speaker's name, exactly K have the specified role.
+
+**Parameters:**
+- `Character`: Name of the speaker
+- `K`: Integer count of matching roles (1 to J, cannot be 0)
+- `J`: Number of characters whose names come before the speaker (at least 1)
+- `role`: Either "villager" or "werewolf"
+
+**Example:** "Exactly 1 of the 3 people whose names come before Bianca alphabetically is a villager."
+
+**Referenced Cells:** The speaker and all characters whose names are alphabetically earlier than the speaker
+
+**Notes:** This rule is unavailable for the alphabetically first character (J = 0).
+
+---
+
+#### 9.2 After Alphabetical Names
+
+**Template:** `exactly K of the J people whose names come after {Character} alphabetically are {role}`
+
+**Behavior:** Among the J characters whose names are alphabetically later than the speaker's name, exactly K have the specified role.
+
+**Parameters:**
+- `Character`: Name of the speaker
+- `K`: Integer count of matching roles (1 to J, cannot be 0)
+- `J`: Number of characters whose names come after the speaker (at least 1)
+- `role`: Either "villager" or "werewolf"
+
+**Example:** "Exactly 2 of the 11 people whose names come after Arthur alphabetically are werewolves."
+
+**Referenced Cells:** The speaker and all characters whose names are alphabetically later than the speaker
+
+**Notes:** This rule is unavailable for the alphabetically last character (J = 0).
+
+---
+
 ## Rule Usage in Puzzles
 
 ### Clue Assignment

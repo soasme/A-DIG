@@ -413,6 +413,20 @@ function formatClue(text, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const plural = pluralizeRole(role, j);
     return `exactly ${k} of the ${j} ${plural} neighboring ${nameFor(r1, c1)} are neighbors of ${nameFor(r2, c2)}`;
   }
+  if (fn === 'KofJRoleBeforeAlphabetNames' || fn === 'KofJRoleAfterAlphabetNames') {
+    if (rest.length !== 5) return text;
+    const [role, rStr, cStr, kStr, jStr] = rest;
+    const r = Number(rStr);
+    const c = Number(cStr);
+    const k = Number(kStr);
+    const j = Number(jStr);
+    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k) || !Number.isFinite(j)) return text;
+    const roleWord = formatRoleName(role, roleNames);
+    const verb = k === 1 ? 'is' : 'are';
+    const rolePhrase = k === 1 ? `a ${roleWord}` : `${roleWord}s`;
+    const direction = fn === 'KofJRoleBeforeAlphabetNames' ? 'come before' : 'come after';
+    return `exactly ${k} of the ${j} people whose names ${direction} ${nameFor(r, c)} alphabetically ${verb} ${rolePhrase}`;
+  }
   return text;
 }
 
@@ -454,6 +468,28 @@ function makeNameLookup(characters) {
     });
   }
   return (row, col) => map.get(`${row},${col}`) || `row ${row} column ${String(col)}`;
+}
+
+function buildAlphabeticalOrder(rows, cols, getName) {
+  const entries = [];
+  for (let r = 1; r <= rows; r++) {
+    for (let c = 1; c <= cols; c++) {
+      entries.push({ row: r, column: c, name: getName(r, c) });
+    }
+  }
+
+  entries.sort((a, b) => {
+    const byName = a.name.localeCompare(b.name);
+    if (byName !== 0) return byName;
+    return a.row === b.row ? a.column - b.column : a.row - b.row;
+  });
+
+  const indexMap = new Map();
+  entries.forEach((entry, index) => {
+    indexMap.set(`${entry.row},${entry.column}`, index);
+  });
+
+  return { entries, indexMap };
 }
 
 function getNeighbors(row, col, rows = ROWS, cols = COLS) {
@@ -760,6 +796,42 @@ export function kOfJRoleNeighborToSomeoneIsAnothersNeighbor(
   return allAnd([exactlyK(neighborVars1, j, role), exactlyK(intersectionVars, k, role)]);
 }
 
+export function kOfJRoleBeforeAlphabetNames(
+  roleList,
+  alphabeticalOrder,
+  row,
+  col,
+  k,
+  j,
+  role,
+  cols = COLS
+) {
+  const idx = alphabeticalOrder.indexMap.get(`${row},${col}`);
+  if (idx == null) return logic.fail;
+  const before = alphabeticalOrder.entries.slice(0, idx);
+  if (before.length !== j || j === 0 || k === 0) return logic.fail;
+  const vars = before.map(({ row: r, column: c }) => roleList[cellIndex(r, c, cols)]);
+  return exactlyK(vars, k, role);
+}
+
+export function kOfJRoleAfterAlphabetNames(
+  roleList,
+  alphabeticalOrder,
+  row,
+  col,
+  k,
+  j,
+  role,
+  cols = COLS
+) {
+  const idx = alphabeticalOrder.indexMap.get(`${row},${col}`);
+  if (idx == null) return logic.fail;
+  const after = alphabeticalOrder.entries.slice(idx + 1);
+  if (after.length !== j || j === 0 || k === 0) return logic.fail;
+  const vars = after.map(({ row: r, column: c }) => roleList[cellIndex(r, c, cols)]);
+  return exactlyK(vars, k, role);
+}
+
 export function allRoleConnectedInRow(roleList, row, role, cols = COLS) {
   const complement = role === VILLAGER ? WEREWOLF : VILLAGER;
   const start = cellIndex(row, 1, cols);
@@ -820,6 +892,7 @@ function deducedCellsFromSolutions(solutions) {
 
 function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleNames = [VILLAGER, WEREWOLF]) {
   const clues = [];
+  const alphabeticalOrder = buildAlphabeticalOrder(rows, cols, getName);
 
   for (let r = 1; r <= rows; r++) {
     const start = cellIndex(r, 1, cols);
@@ -1016,6 +1089,46 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             goal: fn(roles, r, c, count, role, rows, cols),
             statement: formatClue(`${formatter(role)} ${count}`, getName, roleNames),
             referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
+          });
+        });
+      });
+
+      const alphaIndex = alphabeticalOrder.indexMap.get(`${r},${c}`);
+      const beforeAlpha = typeof alphaIndex === 'number' ? alphabeticalOrder.entries.slice(0, alphaIndex) : [];
+      const afterAlpha = typeof alphaIndex === 'number' ? alphabeticalOrder.entries.slice(alphaIndex + 1) : [];
+      const alphabeticalSpecs = [
+        {
+          entries: beforeAlpha,
+          fn: kOfJRoleBeforeAlphabetNames,
+          formatter: role => `KofJRoleBeforeAlphabetNames ${role} ${r} ${c}`,
+          keyPrefix: 'alphabet-before',
+        },
+        {
+          entries: afterAlpha,
+          fn: kOfJRoleAfterAlphabetNames,
+          formatter: role => `KofJRoleAfterAlphabetNames ${role} ${r} ${c}`,
+          keyPrefix: 'alphabet-after',
+        },
+      ];
+
+      alphabeticalSpecs.forEach(({ entries, fn, formatter, keyPrefix }) => {
+        if (!entries || entries.length === 0) return;
+        const j = entries.length;
+        const werewolfCount = entries.filter(({ row: rr, column: cc }) => targetSolution[cellIndex(rr, cc, cols)] === WEREWOLF).length;
+        const villagerCount = j - werewolfCount;
+        [
+          { role: WEREWOLF, count: werewolfCount },
+          { role: VILLAGER, count: villagerCount },
+        ].forEach(({ role, count }) => {
+          if (count === 0) return;
+          clues.push({
+            key: `${keyPrefix}-${r}-${c}-${role}-${count}-of-${j}`,
+            goal: fn(roles, alphabeticalOrder, r, c, count, j, role, cols),
+            statement: formatClue(`${formatter(role)} ${count} ${j}`, getName, roleNames),
+            referencedCells: normalizeReferencedCells([
+              { row: r, column: c },
+              ...entries.map(({ row: rr, column: cc }) => ({ row: rr, column: cc })),
+            ]),
           });
         });
       });
