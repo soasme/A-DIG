@@ -1,0 +1,286 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Elise",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Hailey",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Jasper",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Kyle",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Xander",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "mechanic_statement": "exactly 1 vampire above Gemma",
+      "statement": "“When I looked up toward Gemma’s row last night… only one presence felt cold. Just one vampire watching from above her.”",
+      "referencedCells": [{"row": 2, "column": 3}],
+      "deductableCells": [{"row": 1, "column": 3, "role": "vampire"}]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "mechanic_statement": "exactly 1 of the 2 hunters neighboring Elise are neighbors of Fiona",
+      "statement": "“Two hunters linger close to me… but only one drifts near Fiona as well. I saw their shadows overlap for a heartbeat.”",
+      "referencedCells": [
+        {"row": 1, "column": 3},
+        {"row": 2, "column": 2}
+      ],
+      "deductableCells": [{"row": 2, "column": 2, "role": "hunter"}]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "mechanic_statement": "exactly 1 of the 1 hunter to the right of Felix are neighbors of Gemma",
+      "statement": "“Felix sat calmly… but the hunter to his right? I saw them brushing shoulders with Gemma. Just that one.”",
+      "referencedCells": [
+        {"row": 2, "column": 1},
+        {"row": 2, "column": 3}
+      ],
+      "deductableCells": [{"row": 2, "column": 3, "role": "vampire"}]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "vampire",
+      "mechanic_statement": "exactly 1 vampire above Felix",
+      "statement": "“Above Felix… only one heartbeat didn’t beat at all. Only one of them is like me.”",
+      "referencedCells": [{"row": 2, "column": 1}],
+      "deductableCells": [{"row": 1, "column": 1, "role": "vampire"}]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "mechanic_statement": "exactly 1 vampire left of Jasper",
+      "statement": "“Left of Jasper, there’s just one of us lurking. Don’t bother looking for more in that direction.”",
+      "referencedCells": [{"row": 3, "column": 3}],
+      "deductableCells": [{"row": 3, "column": 1, "role": "hunter"}]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "mechanic_statement": "exactly 1 vampire between Elise and Wren",
+      "statement": "“Between Elise’s nervous glances and Wren’s sly smirks, I sensed one undead presence threading the space between them.”",
+      "referencedCells": [
+        {"row": 1, "column": 3},
+        {"row": 4, "column": 3}
+      ],
+      "deductableCells": [{"row": 3, "column": 3, "role": "hunter"}]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "hunter",
+      "mechanic_statement": "Elise is one of the 2 vampire neighbors of Gemma",
+      "statement": "“Gemma whispered to me—two neighbors chill her blood. And Elise… Elise is certainly one of them.”",
+      "referencedCells": [
+        {"row": 1, "column": 3},
+        {"row": 2, "column": 3}
+      ],
+      "deductableCells": [{"row": 1, "column": 2, "role": "hunter"}]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "mechanic_statement": "exactly 3 of the 4 people whose names come before Fiona alphabetically are vampires",
+      "statement": "“I counted the folks whose names come before Fiona’s in the old ledger… and three of the four were pale as moonlight. Three vampires hiding in plain sight.”",
+      "referencedCells": [
+        {"row": 2, "column": 2},
+        {"row": 1, "column": 1},
+        {"row": 1, "column": 2},
+        {"row": 1, "column": 3},
+        {"row": 2, "column": 1}
+      ],
+      "deductableCells": [{"row": 2, "column": 1, "role": "vampire"}]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "mechanic_statement": "exactly 2 vampires above Xander",
+      "statement": "“Xander shivers for a reason… two vampires loom above him. He may not see us, but he feels us.”",
+      "referencedCells": [{"row": 5, "column": 1}],
+      "deductableCells": [{"row": 4, "column": 1, "role": "hunter"}]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "mechanic_statement": "Kyle has more hunter neighbors than Xander",
+      "statement": "“Between us two, Kyle stands with more hunters at his sides than Xander ever could. The man practically rallies them.”",
+      "referencedCells": [
+        {"row": 4, "column": 1},
+        {"row": 5, "column": 1}
+      ],
+      "deductableCells": [{"row": 5, "column": 1, "role": "hunter"}]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "hunter",
+      "mechanic_statement": "Xander has more hunter neighbors than Zeke",
+      "statement": "“Strange as it sounds, Xander’s surrounded by more hunters than Zeke is. You’d think Zeke would draw allies… but no.”",
+      "referencedCells": [
+        {"row": 5, "column": 1},
+        {"row": 5, "column": 3}
+      ],
+      "deductableCells": [{"row": 4, "column": 3, "role": "vampire"}]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "mechanic_statement": "Hailey has more vampire neighbors than Yara",
+      "statement": "“Hailey is surrounded by whispers like mine… far more than Yara ever is. You can feel it in the way people recoil from her.”",
+      "referencedCells": [
+        {"row": 3, "column": 1},
+        {"row": 5, "column": 2}
+      ],
+      "deductableCells": [{"row": 5, "column": 3, "role": "hunter"}]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "mechanic_statement": "Jasper has exactly 1 hunter as neighbors",
+      "statement": "“Jasper… that fiery soul only keeps one hunter beside him. Just one ally watching his back.”",
+      "referencedCells": [{"row": 3, "column": 3}],
+      "deductableCells": [{"row": 4, "column": 2, "role": "vampire"}]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "mechanic_statement": "Hailey and Zeke have the same number of vampire neighbors",
+      "statement": "“It’s eerie—Hailey and Zeke attract the same number of our kind. Balance in darkness, I suppose.”",
+      "referencedCells": [
+        {"row": 3, "column": 1},
+        {"row": 5, "column": 3}
+      ],
+      "deductableCells": [{"row": 5, "column": 2, "role": "vampire"}]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "mechanic_statement": "Hailey has fewer hunter neighbors than Holden",
+      "statement": "“Compared to Holden’s ever-watchful guards, Hailey barely feels the hunters breathing down her neck. She’s far less watched… which I rather enjoy.”",
+      "referencedCells": [
+        {"row": 3, "column": 1},
+        {"row": 3, "column": 2}
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead."
+}
