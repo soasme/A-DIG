@@ -1468,16 +1468,23 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
 
       // Prefer clues that yield the smallest positive number of new deductions.
       if (newDeductions.length === 1) {
-        const [newIdx] = newDeductions[0];
-
+        const [newIdx, newValue] = newDeductions[0];
+        const eqGoal = eq(roles[newIdx], newValue);
+        const updatedGoals = [...goals, eqGoal];
+        const updatedSolutions = run(and(...updatedGoals), roles);
+        const updatedDeductions = deducedCellsFromSolutions(updatedSolutions);
+        const updatedNewDeductions = [];
+        for (const [idx, value] of updatedDeductions.entries()) {
+          if (!deduced.has(idx)) updatedNewDeductions.push([idx, value]);
+        }
         nextIdx = newIdx;
-        nextSolutions = candidateSolutions;
-        nextDeductions = candidateDeductions;
+        nextSolutions = updatedSolutions;
+        nextDeductions = updatedDeductions;
         nextStatement = clue.statement;
         nextReferencedCells = clue.referencedCells || [];
-        newlyDeducible = newDeductions;
+        newlyDeducible = updatedNewDeductions;
 
-        goals.push(clue.goal);
+        goals.push(eqGoal);
         usedClueKeys.add(clue.key);
         added = true;
         break;
@@ -1600,8 +1607,6 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         finalStatement = formatOtherRole(tgtRow, tgtCol, targetSolution[targetIdx], nameLookup, activeRoles);
         finalReferencedCells = normalizeReferencedCells([{ row: tgtRow, column: tgtCol }]);
       }
-    } else {
-      usedClueKeys.add(unusedClue.key);
     }
 
     if (finalStatement) {
