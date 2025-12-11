@@ -5,9 +5,26 @@ import Image from 'next/image';
 import './WerewolfGame.css';
 import Confetti from './Confetti';
 
-function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealedClick, isReferenced, flashReferenced }) {
+function CharacterCell({
+  character,
+  puzzleEntries,
+  revealed,
+  onClick,
+  onRevealedClick,
+  isReferenced,
+  flashReferenced,
+  goodRole,
+  badRole
+}) {
   const puzzle = (puzzleEntries || []).find(p => p.row === character.row && p.column === character.column);
   const role = revealed ? puzzle?.role : null;
+  const roleTypeClass = role
+    ? role === goodRole
+      ? 'role-good'
+      : role === badRole
+        ? 'role-bad'
+        : ''
+    : '';
   const selfReferenced = Array.isArray(puzzle?.referencedCells)
     ? puzzle.referencedCells.some(rc => rc.row === character.row && rc.column === character.column)
     : false;
@@ -28,7 +45,7 @@ function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealed
   
   return (
     <div className="cell-wrapper" style={positionStyle}>
-      <div className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''} ${flashReferenced ? 'referenced-glow' : ''}`}>
+      <div className={`character-cell ${revealed ? 'revealed' : 'unrevealed'} ${role || ''} ${roleTypeClass} ${flashReferenced ? 'referenced-glow' : ''}`}>
         <button
           type="button"
           className="cell-hitbox"
@@ -38,7 +55,7 @@ function CharacterCell({ character, puzzleEntries, revealed, onClick, onRevealed
           <div className="cell-header">
             <div className="cell-coordinates">{coordsLabel}</div>
             {revealed && role && (
-              <div className={`role-badge ${role}`}>
+              <div className={`role-badge ${role} ${roleTypeClass}`}>
                 {role}
               </div>
             )}
@@ -343,6 +360,8 @@ export default function WerewolfGame({ id, gameData }) {
         revealed={isRevealed}
         isReferenced={isReferenced}
         flashReferenced={flashReferenced}
+        goodRole={GOOD_ROLE}
+        badRole={BAD_ROLE}
         onClick={() => handleCharacterClick(character)}
         onRevealedClick={() => handleRevealedCellClick(character)}
       />

@@ -203,13 +203,15 @@
   cursor: default;
 }
 
-.character-cell.revealed.villager {
+.character-cell.revealed.villager,
+.character-cell.revealed.role-good {
   background: linear-gradient(135deg, rgba(31, 122, 77, 0.14), rgba(31, 122, 77, 0.08));
   border-color: var(--accent-green);
   box-shadow: 0 10px 28px rgba(31, 122, 77, 0.25);
 }
 
-.character-cell.revealed.werewolf {
+.character-cell.revealed.werewolf,
+.character-cell.revealed.role-bad {
   background: linear-gradient(135deg, rgba(201, 33, 33, 0.16), rgba(201, 33, 33, 0.08));
   border-color: var(--accent-red);
   box-shadow: 0 10px 28px rgba(201, 33, 33, 0.25);
@@ -240,6 +242,20 @@
   letter-spacing: 1px;
   color: var(--ink);
   align-self: flex-end;
+}
+
+.role-badge.villager,
+.role-badge.role-good {
+  color: var(--accent-green);
+  background: rgba(31, 122, 77, 0.12);
+  border: 1px solid rgba(31, 122, 77, 0.35);
+}
+
+.role-badge.werewolf,
+.role-badge.role-bad {
+  color: var(--accent-red);
+  background: rgba(201, 33, 33, 0.12);
+  border: 1px solid rgba(201, 33, 33, 0.35);
 }
 
 .statement {
