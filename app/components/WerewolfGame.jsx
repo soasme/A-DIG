@@ -436,7 +436,7 @@ export default function WerewolfGame({ id, gameData }) {
             priority
           />
           <h1 className="game-title">Clues of Who? - #{id}</h1>
-          <p className="game-subtitle">A logic puzzle of deduction and deception</p>
+          <p className="game-subtitle">{GAME_SETTING}<br></br>Please identify {GOOD_ROLE} and {BAD_ROLE}.</p>
         </header>
 
         <main className="game-main">
