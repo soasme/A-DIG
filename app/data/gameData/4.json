@@ -139,7 +139,7 @@
       "column": 2,
       "role": "hunter",
       "mechanic_statement": "exactly 1 of the 1 hunter to the right of Felix are neighbors of Gemma",
-      "statement": "“Felix sat calmly… but the hunter to his right? I saw them brushing shoulders with Gemma. Just that one.”",
+      "statement": "“Felix seems nervous. He saw a pair of dark wings fluttering last night on her row.”",
       "referencedCells": [
         {"row": 2, "column": 1},
         {"row": 2, "column": 3}
@@ -151,7 +151,7 @@
       "column": 3,
       "role": "vampire",
       "mechanic_statement": "exactly 1 vampire above Felix",
-      "statement": "“Above Felix… only one heartbeat didn’t beat at all. Only one of them is like me.”",
+      "statement": "“Above Felix… I sensed no heartbeat at all above him.",
       "referencedCells": [{"row": 2, "column": 1}],
       "deductableCells": [{"row": 1, "column": 1, "role": "vampire"}]
     },
@@ -217,7 +217,7 @@
       "column": 1,
       "role": "hunter",
       "mechanic_statement": "Kyle has more hunter neighbors than Xander",
-      "statement": "“Between us two, Kyle stands with more hunters at his sides than Xander ever could. The man practically rallies them.”",
+      "statement": "I stand with more hunters at my sides than Xander ever could. The man practically rallies them.”",
       "referencedCells": [
         {"row": 4, "column": 1},
         {"row": 5, "column": 1}
@@ -229,7 +229,7 @@
       "column": 1,
       "role": "hunter",
       "mechanic_statement": "Xander has more hunter neighbors than Zeke",
-      "statement": "“Strange as it sounds, Xander’s surrounded by more hunters than Zeke is. You’d think Zeke would draw allies… but no.”",
+      "statement": "“Strange as it sounds, I am surrounded by more hunters than Zeke is. You’d think Zeke would draw allies… but no.”",
       "referencedCells": [
         {"row": 5, "column": 1},
         {"row": 5, "column": 3}
