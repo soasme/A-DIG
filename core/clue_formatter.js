@@ -89,7 +89,7 @@ function formatDirectionalRelative(fn, rest, { roleNames, nameFor }) {
       ? 'to the left of'
       : 'to the right of';
   const verb = beVerb(count);
-  return `${verb[0].toUpperCase()}${verb.slice(1)} exactly ${roleAmount(count, role, roleNames)} ${preposition} ${name}.`;
+  return `There ${verb[0]}${verb.slice(1)} exactly ${roleAmount(count, role, roleNames)} ${preposition} ${name}.`;
 }
 
 function formatBetweenTwo(_fn, rest, { roleNames, nameFor }) {
