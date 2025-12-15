@@ -273,8 +273,20 @@ function rolePlural(role, roleNames = [VILLAGER, WEREWOLF]) {
   return roleWord.endsWith('s') ? roleWord : `${roleWord}s`;
 }
 
-function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
-  const nameFor = (r, c) => (typeof getName === 'function' ? getName(r, c) : `row ${r} column ${c}`);
+function speakerize(name, speakerName, form = 'object') {
+  if (!speakerName || typeof name !== 'string') return name;
+  const normalized = name.trim().toLowerCase();
+  const normalizedSpeaker = speakerName.trim().toLowerCase();
+  if (normalized !== normalizedSpeaker) return name;
+  if (form === 'subject') return 'I';
+  if (form === 'possessive') return 'my';
+  return 'me';
+}
+
+function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF], options = {}) {
+  const { speakerName } = options || {};
+  const baseNameFor = (r, c) => (typeof getName === 'function' ? getName(r, c) : `row ${r} column ${c}`);
+  const nameFor = (r, c, form = 'object') => speakerize(baseNameFor(r, c), speakerName, form);
   const parts = normalizeClueParts(clueParts);
   if (parts.length === 0) return '';
   const [fn, ...rest] = parts;
@@ -323,7 +335,7 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const col = toNumber(colRaw);
     const count = toNumber(countRaw);
     if (!Number.isFinite(row) || !Number.isFinite(col) || !Number.isFinite(count)) return fallback;
-    const name = nameFor(row, col);
+    const name = nameFor(row, col, 'object');
     const preposition =
       fn === CLUE_TYPES.EXACTLY_K_ROLE_ABOVE_SOMEONE
         ? 'above'
@@ -346,7 +358,7 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const count = toNumber(countRaw);
     if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2) || !Number.isFinite(count))
       return fallback;
-    return `Between ${nameFor(r1, c1)} and ${nameFor(r2, c2)}, there ${beVerb(count)} exactly ${roleAmount(count, role, roleNames)}.`;
+    return `Between ${nameFor(r1, c1, 'object')} and ${nameFor(r2, c2, 'object')}, there ${beVerb(count)} exactly ${roleAmount(count, role, roleNames)}.`;
   }
 
   if (fn === CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED || fn === CLUE_TYPES.ALL_ROLE_IN_COLUMN_CONNECTED) {
@@ -367,7 +379,7 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const r2 = toNumber(r2Raw);
     const c2 = toNumber(c2Raw);
     if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2)) return fallback;
-    return `${nameFor(r1, c1)} and ${nameFor(r2, c2)} share the same number of ${rolePlural(role, roleNames)} nearby.`;
+    return `${nameFor(r1, c1, 'subject')} and ${nameFor(r2, c2, 'subject')} share the same number of ${rolePlural(role, roleNames)} nearby.`;
   }
 
   if (fn === CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS || fn === CLUE_TYPES.HAVE_LESS_ROLE_NEIGHBORS) {
@@ -379,7 +391,9 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const c2 = toNumber(c2Raw);
     if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2)) return fallback;
     const comparison = fn === CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS ? 'more' : 'fewer';
-    return `${nameFor(r1, c1)} has ${comparison} ${rolePlural(role, roleNames)} nearby than ${nameFor(r2, c2)}.`;
+    const subject = nameFor(r1, c1, 'subject');
+    const verb = subject === 'I' ? 'have' : 'has';
+    return `${subject} ${verb} ${comparison} ${rolePlural(role, roleNames)} nearby than ${nameFor(r2, c2, 'object')}.`;
   }
 
   if (fn === CLUE_TYPES.BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS) {
@@ -392,7 +406,9 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const k = toNumber(kRaw);
     if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2) || !Number.isFinite(k))
       return fallback;
-    return `${nameFor(r1, c1)} is one of the ${roleAmount(k, role, roleNames)} surrounding ${nameFor(r2, c2)}.`;
+    const subject = nameFor(r1, c1, 'subject');
+    const verb = subject === 'I' ? 'am' : 'is';
+    return `${subject} ${verb} one of the ${roleAmount(k, role, roleNames)} surrounding ${nameFor(r2, c2, 'object')}.`;
   }
 
   if (fn === CLUE_TYPES.HAS_EXACT_K_ROLE_NEIGHBOR) {
@@ -402,7 +418,9 @@ function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
     const c = toNumber(cRaw);
     const k = toNumber(kRaw);
     if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k)) return fallback;
-    return `${nameFor(r, c)} has exactly ${roleAmount(k, role, roleNames)} nearby.`;
+    const subject = nameFor(r, c, 'subject');
+    const verb = subject === 'I' ? 'have' : 'has';
+    return `${subject} ${verb} exactly ${roleAmount(k, role, roleNames)} nearby.`;
   }
 
   if (
@@ -940,6 +958,13 @@ function deducedCellsFromSolutions(solutions) {
 function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleNames = [VILLAGER, WEREWOLF]) {
   const clues = [];
   const alphabeticalOrder = buildAlphabeticalOrder(rows, cols, getName);
+  const clueWithParts = ({ key, goal, parts, referencedCells = [] }) => ({
+    key,
+    goal,
+    clueParts: parts,
+    statement: formatClue(parts, getName, roleNames),
+    referencedCells,
+  });
 
   for (let r = 1; r <= rows; r++) {
     const start = cellIndex(r, 1, cols);
@@ -957,12 +982,14 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       { role: WEREWOLF, count: werewolfCount },
       { role: VILLAGER, count: villagerCount },
     ].forEach(({ role, count }) => {
-      clues.push({
-        key: `row-${r}-${role}-${count}`,
-        goal: exactlyKRoleInRow(roles, r, count, role, cols),
-        statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_IN_ROW, role, r, count], getName, roleNames),
-        referencedCells: [],
-      });
+      const parts = [CLUE_TYPES.EXACTLY_K_ROLE_IN_ROW, role, r, count];
+      clues.push(
+        clueWithParts({
+          key: `row-${r}-${role}-${count}`,
+          goal: exactlyKRoleInRow(roles, r, count, role, cols),
+          parts,
+        })
+      );
     });
     [
       { role: WEREWOLF, count: werewolfAbove, keyPrefix: 'above' },
@@ -975,28 +1002,28 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ? {
               key: `row-${r}-above-${role}-${count}`,
               goal: exactlyRoleAboveRow(roles, r, count, role, cols),
-              statement: formatClue([CLUE_TYPES.EXACTLY_ROLE_ABOVE_ROW, role, r, count], getName, roleNames),
-              referencedCells: [],
+              parts: [CLUE_TYPES.EXACTLY_ROLE_ABOVE_ROW, role, r, count],
             }
           : {
               key: `row-${r}-below-${role}-${count}`,
               goal: exactlyRoleBelowRow(roles, r, count, role, rows, cols),
-              statement: formatClue([CLUE_TYPES.EXACTLY_ROLE_BELOW_ROW, role, r, count], getName, roleNames),
-              referencedCells: [],
+              parts: [CLUE_TYPES.EXACTLY_ROLE_BELOW_ROW, role, r, count],
             };
-      clues.push(builder);
+      clues.push(clueWithParts({ ...builder }));
     });
 
     [
       { role: WEREWOLF },
       { role: VILLAGER },
     ].forEach(({ role }) => {
-      clues.push({
-        key: `row-${r}-connected-${role}`,
-        goal: allRoleConnectedInRow(roles, r, role, cols),
-        statement: formatClue([CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED, role, r], getName, roleNames),
-        referencedCells: [],
-      });
+      const parts = [CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED, role, r];
+      clues.push(
+        clueWithParts({
+          key: `row-${r}-connected-${role}`,
+          goal: allRoleConnectedInRow(roles, r, role, cols),
+          parts,
+        })
+      );
     });
   }
 
@@ -1026,23 +1053,27 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       { role: WEREWOLF, count: werewolfCount },
       { role: VILLAGER, count: villagerCount },
     ].forEach(({ role, count }) => {
-      clues.push({
-        key: `col-${c}-${role}-${count}`,
-        goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
-        statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_IN_COLUMN, role, c, count], getName, roleNames),
-        referencedCells: [],
-      });
+      const parts = [CLUE_TYPES.EXACTLY_K_ROLE_IN_COLUMN, role, c, count];
+      clues.push(
+        clueWithParts({
+          key: `col-${c}-${role}-${count}`,
+          goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
+          parts,
+        })
+      );
     });
     [
       { role: WEREWOLF },
       { role: VILLAGER },
     ].forEach(({ role }) => {
-      clues.push({
-        key: `col-${c}-connected-${role}`,
-        goal: allRoleConnectedInColumn(roles, c, role, rows, cols),
-        statement: formatClue([CLUE_TYPES.ALL_ROLE_IN_COLUMN_CONNECTED, role, c], getName, roleNames),
-        referencedCells: [],
-      });
+      const parts = [CLUE_TYPES.ALL_ROLE_IN_COLUMN_CONNECTED, role, c];
+      clues.push(
+        clueWithParts({
+          key: `col-${c}-connected-${role}`,
+          goal: allRoleConnectedInColumn(roles, c, role, rows, cols),
+          parts,
+        })
+      );
     });
     [
       { role: WEREWOLF, count: werewolfLeft, keyPrefix: 'left' },
@@ -1055,16 +1086,14 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ? {
               key: `col-${c}-left-${role}-${count}`,
               goal: exactlyKRoleLeftColumn(roles, c, count, role, rows, cols),
-              statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_LEFT_COLUMN, role, c, count], getName, roleNames),
-              referencedCells: [],
+              parts: [CLUE_TYPES.EXACTLY_K_ROLE_LEFT_COLUMN, role, c, count],
             }
           : {
               key: `col-${c}-right-${role}-${count}`,
               goal: exactlyKRoleRightColumn(roles, c, count, role, rows, cols),
-              statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_COLUMN, role, c, count], getName, roleNames),
-              referencedCells: [],
+              parts: [CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_COLUMN, role, c, count],
             };
-      clues.push(builder);
+      clues.push(clueWithParts({ ...builder }));
     });
   }
 
@@ -1131,12 +1160,15 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           { role: WEREWOLF, count: werewolfCount },
           { role: VILLAGER, count: villagerCount },
         ].forEach(({ role, count }) => {
-          clues.push({
-            key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
-            goal: fn(roles, r, c, count, role, rows, cols),
-            statement: formatClue([...formatter(role), count], getName, roleNames),
-            referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
-          });
+          const parts = [...formatter(role), count];
+          clues.push(
+            clueWithParts({
+              key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
+              goal: fn(roles, r, c, count, role, rows, cols),
+              parts,
+              referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
+            })
+          );
         });
       });
 
@@ -1168,15 +1200,18 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           { role: VILLAGER, count: villagerCount },
         ].forEach(({ role, count }) => {
           if (count === 0) return;
-          clues.push({
-            key: `${keyPrefix}-${r}-${c}-${role}-${count}-of-${j}`,
-            goal: fn(roles, alphabeticalOrder, r, c, count, j, role, cols),
-            statement: formatClue([...formatter(role), count, j], getName, roleNames),
-            referencedCells: normalizeReferencedCells([
-              { row: r, column: c },
-              ...entries.map(({ row: rr, column: cc }) => ({ row: rr, column: cc })),
-            ]),
-          });
+          const parts = [...formatter(role), count, j];
+          clues.push(
+            clueWithParts({
+              key: `${keyPrefix}-${r}-${c}-${role}-${count}-of-${j}`,
+              goal: fn(roles, alphabeticalOrder, r, c, count, j, role, cols),
+              parts,
+              referencedCells: normalizeReferencedCells([
+                { row: r, column: c },
+                ...entries.map(({ row: rr, column: cc }) => ({ row: rr, column: cc })),
+              ]),
+            })
+          );
         });
       });
 
@@ -1189,12 +1224,15 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           { role: VILLAGER, count: villagerNeighbors },
         ].forEach(({ role, count }) => {
           const key = `neighbor-count-${r}-${c}-${role}-${count}`;
-          clues.push({
-            key,
-            goal: hasExactKRoleNeighbor(roles, r, c, count, role, rows, cols),
-            statement: formatClue([CLUE_TYPES.HAS_EXACT_K_ROLE_NEIGHBOR, role, r, c, count], getName, roleNames),
-            referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
-          });
+          const parts = [CLUE_TYPES.HAS_EXACT_K_ROLE_NEIGHBOR, role, r, c, count];
+          clues.push(
+            clueWithParts({
+              key,
+              goal: hasExactKRoleNeighbor(roles, r, c, count, role, rows, cols),
+              parts,
+              referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
+            })
+          );
         });
       }
 
@@ -1222,19 +1260,18 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           { role: VILLAGER, count: villagerBetween },
         ].forEach(({ role, count }) => {
           const key = `between-${r1}-${c1}-${r2}-${c2}-${role}-${count}`;
-          clues.push({
-            key,
-            goal: exactlyKRoleBetweenTheTwo(roles, r1, c1, r2, c2, count, role, rows, cols),
-            statement: formatClue(
-              [CLUE_TYPES.EXACTLY_K_ROLE_BETWEEN_THE_TWO, role, r1, c1, r2, c2, count],
-              getName,
-              roleNames
-            ),
-            referencedCells: normalizeReferencedCells([
-              { row: r1, column: c1 },
-              { row: r2, column: c2 },
-            ]),
-          });
+          const parts = [CLUE_TYPES.EXACTLY_K_ROLE_BETWEEN_THE_TWO, role, r1, c1, r2, c2, count];
+          clues.push(
+            clueWithParts({
+              key,
+              goal: exactlyKRoleBetweenTheTwo(roles, r1, c1, r2, c2, count, role, rows, cols),
+              parts,
+              referencedCells: normalizeReferencedCells([
+                { row: r1, column: c1 },
+                { row: r2, column: c2 },
+              ]),
+            })
+          );
         });
       });
     }
@@ -1264,19 +1301,18 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ].forEach(({ role, count1, count2 }) => {
             if (count1 !== count2) return;
             const key = `equal-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}`;
-            clues.push({
-              key,
-              goal: haveEqualRoleNeighbor(roles, r1, c1, r2, c2, role, rows, cols),
-              statement: formatClue(
-                [CLUE_TYPES.HAVE_EQUAL_ROLE_NEIGHBOR, role, r1, c1, r2, c2],
-                getName,
-                roleNames
-              ),
-              referencedCells: normalizeReferencedCells([
-                { row: r1, column: c1 },
-                { row: r2, column: c2 },
-              ]),
-            });
+            const parts = [CLUE_TYPES.HAVE_EQUAL_ROLE_NEIGHBOR, role, r1, c1, r2, c2];
+            clues.push(
+              clueWithParts({
+                key,
+                goal: haveEqualRoleNeighbor(roles, r1, c1, r2, c2, role, rows, cols),
+                parts,
+                referencedCells: normalizeReferencedCells([
+                  { row: r1, column: c1 },
+                  { row: r2, column: c2 },
+                ]),
+              })
+            );
           });
 
           [
@@ -1285,34 +1321,32 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ].forEach(({ role, count1, count2 }) => {
             if (count1 > count2) {
               const key = `more-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}-${count2}`;
-              clues.push({
-                key,
-                goal: haveMoreRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
-                statement: formatClue(
-                  [CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS, role, r1, c1, r2, c2],
-                  getName,
-                  roleNames
-                ),
-                referencedCells: normalizeReferencedCells([
-                  { row: r1, column: c1 },
-                  { row: r2, column: c2 },
-                ]),
-              });
+              const parts = [CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS, role, r1, c1, r2, c2];
+              clues.push(
+                clueWithParts({
+                  key,
+                  goal: haveMoreRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
+                  parts,
+                  referencedCells: normalizeReferencedCells([
+                    { row: r1, column: c1 },
+                    { row: r2, column: c2 },
+                  ]),
+                })
+              );
             } else if (count1 < count2) {
               const key = `less-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count1}-${count2}`;
-              clues.push({
-                key,
-                goal: haveLessRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
-                statement: formatClue(
-                  [CLUE_TYPES.HAVE_LESS_ROLE_NEIGHBORS, role, r1, c1, r2, c2],
-                  getName,
-                  roleNames
-                ),
-                referencedCells: normalizeReferencedCells([
-                  { row: r1, column: c1 },
-                  { row: r2, column: c2 },
-                ]),
-              });
+              const parts = [CLUE_TYPES.HAVE_LESS_ROLE_NEIGHBORS, role, r1, c1, r2, c2];
+              clues.push(
+                clueWithParts({
+                  key,
+                  goal: haveLessRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
+                  parts,
+                  referencedCells: normalizeReferencedCells([
+                    { row: r1, column: c1 },
+                    { row: r2, column: c2 },
+                  ]),
+                })
+              );
             }
           });
 
@@ -1328,19 +1362,18 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             const cellRole = targetSolution[cellIndex(r1, c1, cols)];
             if (cellRole !== role) return;
             const key = `one-of-neighbors-${r1}-${c1}-${r2}-${c2}-${role}-${count}`;
-            clues.push({
-              key,
-              goal: beOneOfSomeonesKRoleNeighbors(roles, r1, c1, r2, c2, count, role, rows, cols),
-              statement: formatClue(
-                [CLUE_TYPES.BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS, role, r1, c1, r2, c2, count],
-                getName,
-                roleNames
-              ),
-              referencedCells: normalizeReferencedCells([
-                { row: r1, column: c1 },
-                { row: r2, column: c2 },
-              ]),
-            });
+            const parts = [CLUE_TYPES.BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS, role, r1, c1, r2, c2, count];
+            clues.push(
+              clueWithParts({
+                key,
+                goal: beOneOfSomeonesKRoleNeighbors(roles, r1, c1, r2, c2, count, role, rows, cols),
+                parts,
+                referencedCells: normalizeReferencedCells([
+                  { row: r1, column: c1 },
+                  { row: r2, column: c2 },
+                ]),
+              })
+            );
           });
 
           // K of J role in a direction from (r1,c1) are neighbors of (r2,c2)
@@ -1393,17 +1426,20 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               if (j === 0) return;
               const k = intersectionValues.filter(v => v === role).length;
               if (k === 0) return;
-            clues.push({
-              key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
-              goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
-              statement: formatClue([...formatter(role), k, j], getName, roleNames),
-              referencedCells: normalizeReferencedCells([
-                { row: r1, column: c1 },
-                { row: r2, column: c2 },
-              ]),
+              const parts = [...formatter(role), k, j];
+              clues.push(
+                clueWithParts({
+                  key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
+                  goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
+                  parts,
+                  referencedCells: normalizeReferencedCells([
+                    { row: r1, column: c1 },
+                    { row: r2, column: c2 },
+                  ]),
+                })
+              );
             });
           });
-        });
 
           // K of J role neighbors of (r1,c1) are also neighbors of (r2,c2)
           const neighbors1 = getNeighbors(r1, c1, rows, cols);
@@ -1423,19 +1459,27 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               if (j === 0) return;
               const k = intersectionValues.filter(v => v === role).length;
               if (k === 0) return;
-              clues.push({
-                key: `k-of-j-neighbor-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
-                goal: kOfJRoleNeighborToSomeoneIsAnothersNeighbor(roles, r1, c1, r2, c2, k, j, role, rows, cols),
-                statement: formatClue(
-                  [CLUE_TYPES.K_OF_J_ROLE_NEIGHBOR_TO_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2, k, j],
-                  getName,
-                  roleNames
-                ),
-                referencedCells: normalizeReferencedCells([
-                  { row: r1, column: c1 },
-                  { row: r2, column: c2 },
-                ]),
-              });
+              const parts = [
+                CLUE_TYPES.K_OF_J_ROLE_NEIGHBOR_TO_SOMEONE_IS_ANOTHERS_NEIGHBOR,
+                role,
+                r1,
+                c1,
+                r2,
+                c2,
+                k,
+                j,
+              ];
+              clues.push(
+                clueWithParts({
+                  key: `k-of-j-neighbor-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
+                  goal: kOfJRoleNeighborToSomeoneIsAnothersNeighbor(roles, r1, c1, r2, c2, k, j, role, rows, cols),
+                  parts,
+                  referencedCells: normalizeReferencedCells([
+                    { row: r1, column: c1 },
+                    { row: r2, column: c2 },
+                  ]),
+                })
+              );
             });
           }
       }
@@ -1493,6 +1537,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     let nextSolutions = solutions;
     let nextDeductions = deduced;
     let nextStatement = '';
+    let nextClueParts = null;
     let nextReferencedCells = [];
 
     // Try to find a clue that yields at most the maxNewDeductions (prefer fewer new deductions, but > 0).
@@ -1532,6 +1577,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         nextSolutions = updatedSolutions;
         nextDeductions = updatedDeductions;
         nextStatement = clue.statement;
+        nextClueParts = clue.clueParts || null;
         nextReferencedCells = clue.referencedCells || [];
         newlyDeducible = updatedNewDeductions;
 
@@ -1550,6 +1596,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
           candidateSolutions,
           candidateDeductions,
           statement: clue.statement,
+          clueParts: clue.clueParts || null,
           goal: clue.goal,
           clueKey: clue.key,
           newDeductions,
@@ -1563,6 +1610,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
       nextSolutions = bestCandidate.candidateSolutions;
       nextDeductions = bestCandidate.candidateDeductions;
       nextStatement = bestCandidate.statement;
+      nextClueParts = bestCandidate.clueParts || null;
       nextReferencedCells = bestCandidate.referencedCells || [];
       newlyDeducible = bestCandidate.newDeductions;
 
@@ -1613,15 +1661,19 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
 
     // Record the current speaker's statement (about another character).
     const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
+    const speakerName = nameLookup(speakerRow, speakerCol);
     const deductableCells = newlyDeducible.map(([idx, value]) => {
       const { row, col } = indexToRowCol(idx, cols);
       return { row, column: col, role: value };
     });
+    const renderedStatement = nextClueParts
+      ? formatClue(nextClueParts, nameLookup, activeRoles, { speakerName })
+      : nextStatement;
     puzzle.push({
       row: speakerRow,
       column: speakerCol,
       role: targetSolution[currentSpeakerIdx],
-      statement: nextStatement,
+      statement: renderedStatement,
       referencedCells: normalizeReferencedCells(nextReferencedCells),
       deductableCells,
     });
@@ -1637,11 +1689,13 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     const { row: speakerRow, col: speakerCol } = indexToRowCol(currentSpeakerIdx, cols);
     const unusedClues = clueTemplates.filter(clue => !usedClueKeys.has(clue.key));
     let finalStatement = '';
+    let finalClueParts = null;
     let finalReferencedCells = [];
 
     if (unusedClues.length > 0) {
       const picked = unusedClues[randInt(unusedClues.length)];
       finalStatement = picked.statement;
+      finalClueParts = picked.clueParts || null;
       finalReferencedCells = picked.referencedCells || [];
       usedClueKeys.add(picked.key);
     }
@@ -1661,11 +1715,15 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     }
 
     if (finalStatement) {
+      const speakerName = nameLookup(speakerRow, speakerCol);
+      const renderedFinalStatement = finalClueParts
+        ? formatClue(finalClueParts, nameLookup, activeRoles, { speakerName })
+        : finalStatement;
       puzzle.push({
         row: speakerRow,
         column: speakerCol,
         role: targetSolution[currentSpeakerIdx],
-        statement: finalStatement,
+        statement: renderedFinalStatement,
         referencedCells: normalizeReferencedCells(finalReferencedCells),
         deductableCells: [],
       });
