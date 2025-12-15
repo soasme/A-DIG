@@ -1,0 +1,602 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Irene",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Isaac",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Jenna",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Mia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Nicholas",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Tristan",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Uriel",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the one agent neighboring Irene, exactly one agent also neighbor Isaac.",
+      "parts": [
+        23,
+        "agent",
+        3,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "There is exactly one agent to the right of Irene.",
+      "parts": [
+        10,
+        "agent",
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "agent",
+      "statement": "There is exactly one double-agent to the left of me.",
+      "parts": [
+        9,
+        "double-agent",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 3 double-agents below Delia, exactly one double-agent also neighbor Tristan.",
+      "parts": [
+        22,
+        "double-agent",
+        2,
+        2,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the 2 double-agents to the left of Mia, exactly one double-agent also neighbor Uriel.",
+      "parts": [
+        19,
+        "double-agent",
+        4,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the 3 double-agents below Camila, exactly one double-agent also neighbor Isaac.",
+      "parts": [
+        22,
+        "double-agent",
+        1,
+        2,
+        3,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one agent below Chloe, exactly one agent also neighbor me.",
+      "parts": [
+        22,
+        "agent",
+        2,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the 3 double-agents below Arthur, exactly one double-agent also neighbor Delia.",
+      "parts": [
+        22,
+        "double-agent",
+        1,
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Tristan is one of the 2 double-agents surrounding Uriel.",
+      "parts": [
+        17,
+        "double-agent",
+        5,
+        2,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "Among the 5 people whose names come after Jenna alphabetically, exactly one agent is among them.",
+      "parts": [
+        25,
+        "agent",
+        4,
+        1,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 3 agents below Carter, exactly one agent also neighbor Mia.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        3,
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 2 agents above Jenna, exactly one agent also neighbor Joel.",
+      "parts": [
+        21,
+        "agent",
+        4,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 agents neighboring Carter, exactly 2 agents also neighbor Ivy.",
+      "parts": [
+        23,
+        "agent",
+        1,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Delia has fewer double-agents nearby than Jenna.",
+      "parts": [
+        16,
+        "double-agent",
+        2,
+        2,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "agent",
+      "statement": "Harper has more agents nearby than Jenna.",
+      "parts": [
+        15,
+        "agent",
+        2,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one."
+}
