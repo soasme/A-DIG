@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "generate": "node --stack-size=8192 ./generator.js",
+    "generate-daily": "node --stack-size=8192 ./scripts/generatePuzzleDaily.js",
     "lint": "eslint"
   },
   "dependencies": {
