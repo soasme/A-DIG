@@ -2,6 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import logic from 'logicjs';
 import gameThemes from './app/data/gameThemes.js';
+import { generateCharacters } from './core/character_generator.js';
 
 var or = logic.or,
 	and = logic.and,
@@ -50,66 +51,6 @@ export function setRoleNames(roleNames = []) {
   VILLAGER = goodRole || VILLAGER;
   WEREWOLF = badRole || WEREWOLF;
 }
-
-const MALE_NAMES = [
-  'Aiden','Brandon','Caleb','Derek','Ethan','Felix','Gavin','Henry','Isaac','Julian',
-  'Kyle','Liam','Mason','Noah','Owen','Peter','Quinn','Ryan','Samuel','Tyler',
-  'Victor','Wyatt','Xavier','Zachary','Adam','Blake','Colin','Damian','Elliot',
-  'Finn','Grayson','Hunter','Ian','Jack','Kaden','Logan','Miles','Nathan','Oliver',
-  'Preston','Reid','Sawyer','Tristan','Vincent','Wesley','Zane','Adrian','Bryce',
-  'Carter','Dominic','Emmett','Gabriel','Hayden','Jasper','Keegan','Landon','Micah',
-  'Nicholas','Parker','Riley','Spencer','Trevor','Vance','Warren','Zion','Austin',
-  'Brady','Chase','Dylan','Evan','Garrett','Holden','Jacob','Kevin','Leon','Marcus',
-  'Neil','Porter','Roman','Silas','Tanner','Uriel','Walker','Xander','Yusuf','Zeke',
-  'Arthur','Bennett','Clark','Dean','Elias','Franklin','Graham','Harvey','Joel','Kirk',
-  'Lawson','Mitchell','Nolan','Oscar','Phillip','Russell'
-];
-
-const FEMALE_NAMES = [
-  'Ava','Bella','Chloe','Diana','Emma','Faith','Grace','Hannah','Isla','Jade',
-  'Kara','Lily','Mia','Nora','Olivia','Paige','Quinn','Ruby','Sophia','Tessa',
-  'Violet','Willow','Xena','Zoe','Amelia','Brooke','Clara','Delia','Elise',
-  'Fiona','Gemma','Hailey','Ivy','Julia','Kayla','Leah','Maya','Naomi','Opal',
-  'Piper','Reese','Sienna','Trinity','Vanessa','Wren','Yara','Zara','Alice','Bria',
-  'Celia','Daphne','Eden','Freya','Gia','Harper','Irene','Jenna','Keira','Lena',
-  'Molly','Nadia','Odette','Poppy','Riley','Sage','Talia','Vera','Wendy','Zelda',
-  'April','Bianca','Camila','Danica','Esme','Flora','Greta','Hazel','Ingrid','Joy',
-  'Kelsey','Lucy','Morgan','Nova','Ophelia','Penelope','Raina','Serena','Tatum','Uma',
-  'Valerie','Whitney','Xiomara','Yvette','Zuri','Anya','Beatrice','Celeste','Dahlia'
-];
-
-const CHARACTERISTICS = [
-  'fierce_loyalty',
-  'chaotic_impulsiveness',
-  'cold_calculation',
-  'tragic_melancholy',
-  'unyielding_ambition',
-  'playful_mischief',
-  'righteous_fury',
-  'scheming_cunning',
-  'hopeful_idealism',
-  'stoic_endurance',
-  'brooding_silence',
-  'reckless_bravery',
-  'vengeful_obsession',
-  'noble_self_sacrifice',
-  'shadowed_past',
-  'gentle_naivety',
-  'unyielding_principle',
-  'forbidden_curiosity',
-  'haunted_guilt',
-  'mercurial_mood',
-  'iron_willpower',
-  'deceptive_charm',
-  'unstoppable_zeal',
-  'lonely_wanderer_spirit',
-  'relentless_perfectionism',
-  'unpredictable_genius',
-  'ruthless_pragmatism',
-  'warmhearted_compassion',
-  'defiant_rebellion',
-  'serene_detachment',
-];
 
 // 1-based indexing for rows/cols to match your puzzle spec.
 // We store the grid as a single list; cell(row, col) => list[idx(row, col)].
@@ -1755,28 +1696,7 @@ export function generateGame(rows = ROWS, cols = COLS, roleNames = [VILLAGER, WE
     Array.isArray(roleNames) && roleNames.length >= 2 ? [roleNames[0], roleNames[1]] : [VILLAGER, WEREWOLF];
   setRoleNames(normalizedRoles);
   const activeRoles = [VILLAGER, WEREWOLF];
-  const total = rows * cols;
-
-  const maleCount = Math.floor(total / 2);
-  const femaleCount = total - maleCount;
-
-  const malePool = shuffle(MALE_NAMES.slice());
-  const femalePool = shuffle(FEMALE_NAMES.slice());
-
-  const names = [];
-  for (let i = 0; i < maleCount; i++) names.push({ name: malePool[i], gender: 'male' });
-  for (let i = 0; i < femaleCount; i++) names.push({ name: femalePool[i], gender: 'female' });
-  names.sort((a, b) => a.name.localeCompare(b.name));
-
-  const characters = [];
-  let idx = 0;
-  for (let r = 1; r <= rows; r++) {
-    for (let c = 1; c <= cols; c++) {
-      const { name, gender } = names[idx++];
-      const characteristic = CHARACTERISTICS[randInt(CHARACTERISTICS.length)];
-      characters.push({ name, gender, row: r, column: c, characteristic });
-    }
-  }
+  const characters = generateCharacters(rows, cols);
 
   const puzzle = generatePuzzle(rows, cols, characters, activeRoles);
 
