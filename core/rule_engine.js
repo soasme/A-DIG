@@ -1,4 +1,5 @@
 import logic from 'logicjs';
+import { buildClueGoal } from './clue_goals.js';
 
 const { or, and, not, eq, run, lvar, between } = logic;
 
@@ -611,4 +612,68 @@ export function deducedCellsFromSolutions(solutions) {
     }
   }
   return deduced;
+}
+
+export function deduceRoles({
+  rows = ROWS,
+  cols = COLS,
+  characters = [],
+  revealedClues = [],
+  knownAssignments = [],
+  roleNames = [VILLAGER, WEREWOLF],
+} = {}) {
+  setRoleNames(roleNames);
+  const roles = makeRoleGrid(rows, cols);
+  const nameLookup = makeNameLookup(characters);
+  const alphabeticalOrder = buildAlphabeticalOrder(rows, cols, nameLookup);
+  const goals = [everyoneBinary(roles)];
+
+  const fns = {
+    exactlyKRoleInRow,
+    exactlyKRoleInColumn,
+    exactlyRoleAboveRow,
+    exactlyRoleBelowRow,
+    exactlyKRoleLeftColumn,
+    exactlyKRoleRightColumn,
+    exactlyKRoleAboveSomeone,
+    exactlyKRoleBelowSomeone,
+    exactlyKRoleLeftOfSomeone,
+    exactlyKRoleRightOfSomeone,
+    exactlyKRoleBetweenTheTwo,
+    allRoleConnectedInRow,
+    allRoleConnectedInColumn,
+    haveEqualRoleNeighbor,
+    haveMoreRoleNeighbors,
+    haveLessRoleNeighbors,
+    beOneOfSomeonesKRoleNeighbors,
+    hasExactKRoleNeighbor,
+    kOfJRoleToTheLeftOfSomeoneIsAnothersNeighbor,
+    kOfJRoleToTheRightOfSomeoneIsAnothersNeighbor,
+    kOfJRoleAboveSomeoneIsAnothersNeighbor,
+    kOfJRoleBelowSomeoneIsAnothersNeighbor,
+    kOfJRoleNeighborToSomeoneIsAnothersNeighbor,
+    kOfJRoleBeforeAlphabetNames,
+    kOfJRoleAfterAlphabetNames,
+  };
+
+  knownAssignments.forEach(({ row, column, role }) => {
+    if (row == null || column == null || !role) return;
+    goals.push(eq(roles[cellIndex(row, column, cols)], role));
+  });
+
+  revealedClues.forEach((clue) => {
+    const parts = Array.isArray(clue?.parts) ? clue.parts : clue;
+    const goal = buildClueGoal(parts, {
+      roleList: roles,
+      alphabeticalOrder,
+      rows,
+      cols,
+      fns,
+    });
+    if (goal) goals.push(goal);
+  });
+
+  const solutions = run(and(...goals), roles);
+  const deduced = deducedCellsFromSolutions(solutions);
+  return { deduced, solutionsCount: solutions.length };
 }

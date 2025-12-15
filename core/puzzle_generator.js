@@ -595,7 +595,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
     Array.isArray(roleNames) && roleNames.length >= 2 ? [roleNames[0], roleNames[1]] : [VILLAGER, WEREWOLF];
   setRoleNames(normalizedRoles);
   const activeRoles = [VILLAGER, WEREWOLF];
-  const maxNewDeductions = 2;
+  const maxNewDeductions = 1;
   const roles = makeRoleGrid(rows, cols);
   const targetSolution = Array.from({ length: rows * cols }, () =>
     Math.random() < 0.5 ? VILLAGER : WEREWOLF
