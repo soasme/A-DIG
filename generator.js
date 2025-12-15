@@ -1674,6 +1674,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
       column: speakerCol,
       role: targetSolution[currentSpeakerIdx],
       statement: renderedStatement,
+      parts: nextClueParts || [],
       referencedCells: normalizeReferencedCells(nextReferencedCells),
       deductableCells,
     });
@@ -1724,6 +1725,7 @@ export function generatePuzzle(rows = ROWS, cols = COLS, characters, roleNames =
         column: speakerCol,
         role: targetSolution[currentSpeakerIdx],
         statement: renderedFinalStatement,
+        parts: finalClueParts || [],
         referencedCells: normalizeReferencedCells(finalReferencedCells),
         deductableCells: [],
       });
