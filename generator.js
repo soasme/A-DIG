@@ -17,6 +17,34 @@ export const COLS = 3;
 export let VILLAGER = 'villager';
 export let WEREWOLF = 'werewolf';
 
+export const CLUE_TYPES = Object.freeze({
+  EXACTLY_K_ROLE_IN_ROW: 'exactlyKRoleInRow',
+  EXACTLY_K_ROLE_IN_COLUMN: 'exactlyKRoleInColumn',
+  EXACTLY_ROLE_ABOVE_ROW: 'exactlyRoleAboveRow',
+  EXACTLY_ROLE_BELOW_ROW: 'exactlyRoleBelowRow',
+  EXACTLY_K_ROLE_LEFT_COLUMN: 'exactlyKRoleLeftColumn',
+  EXACTLY_K_ROLE_RIGHT_COLUMN: 'exactlyKRoleRightColumn',
+  EXACTLY_K_ROLE_ABOVE_SOMEONE: 'exactlyKRoleAboveSomeone',
+  EXACTLY_K_ROLE_BELOW_SOMEONE: 'exactlyKRoleBelowSomeone',
+  EXACTLY_K_ROLE_LEFT_OF_SOMEONE: 'exactlyKRoleLeftOfSomeone',
+  EXACTLY_K_ROLE_RIGHT_OF_SOMEONE: 'exactlyKRoleRightOfSomeone',
+  EXACTLY_K_ROLE_BETWEEN_THE_TWO: 'exactlyKRoleBetweenTheTwo',
+  ALL_ROLE_IN_ROW_CONNECTED: 'AllRoleInRowConnected',
+  ALL_ROLE_IN_COLUMN_CONNECTED: 'AllRoleInColumnConnected',
+  HAVE_EQUAL_ROLE_NEIGHBOR: 'HaveEqualRoleNeighbor',
+  HAVE_MORE_ROLE_NEIGHBORS: 'HaveMoreRoleNeighbors',
+  HAVE_LESS_ROLE_NEIGHBORS: 'HaveLessRoleNeighbors',
+  BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS: 'BeOneOfSomeonesKRoleNeighbors',
+  HAS_EXACT_K_ROLE_NEIGHBOR: 'HasExactKRoleNeighbor',
+  K_OF_J_ROLE_TO_THE_LEFT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR: 'KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor',
+  K_OF_J_ROLE_TO_THE_RIGHT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR: 'KofJRoleToTheRightOfSomeoneIsAnothersNeighbor',
+  K_OF_J_ROLE_ABOVE_SOMEONE_IS_ANOTHERS_NEIGHBOR: 'KofJRoleAboveSomeoneIsAnothersNeighbor',
+  K_OF_J_ROLE_BELOW_SOMEONE_IS_ANOTHERS_NEIGHBOR: 'KofJRoleBelowSomeoneIsAnothersNeighbor',
+  K_OF_J_ROLE_NEIGHBOR_TO_SOMEONE_IS_ANOTHERS_NEIGHBOR: 'KofJRoleNeighborToSomeoneIsAnothersNeighbor',
+  K_OF_J_ROLE_BEFORE_ALPHABET_NAMES: 'KofJRoleBeforeAlphabetNames',
+  K_OF_J_ROLE_AFTER_ALPHABET_NAMES: 'KofJRoleAfterAlphabetNames',
+});
+
 export function setRoleNames(roleNames = []) {
   const [goodRole, badRole] = roleNames;
   VILLAGER = goodRole || VILLAGER;
@@ -211,167 +239,186 @@ function formatRoleName(role, roleNames = [VILLAGER, WEREWOLF]) {
   return role;
 }
 
-function formatClue(text, getName, roleNames = [VILLAGER, WEREWOLF]) {
+function normalizeClueParts(clue) {
+  if (Array.isArray(clue)) return clue;
+  if (typeof clue === 'string') return clue.trim().split(/\s+/);
+  return [];
+}
+
+function toNumber(value) {
+  if (typeof value === 'number') return value;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function countLabel(count) {
+  return count === 1 ? 'one' : String(count);
+}
+
+function beVerb(count) {
+  return count === 1 ? 'is' : 'are';
+}
+
+function roleAmount(count, role, roleNames = [VILLAGER, WEREWOLF], { withArticle = false } = {}) {
+  const roleWord = formatRoleName(role, roleNames);
+  const plural = roleWord.endsWith('s') ? roleWord : `${roleWord}s`;
+  if (count === 1) {
+    return withArticle ? `a ${roleWord}` : `${countLabel(count)} ${roleWord}`;
+  }
+  return `${countLabel(count)} ${plural}`;
+}
+
+function rolePlural(role, roleNames = [VILLAGER, WEREWOLF]) {
+  const roleWord = formatRoleName(role, roleNames);
+  return roleWord.endsWith('s') ? roleWord : `${roleWord}s`;
+}
+
+function formatClue(clueParts, getName, roleNames = [VILLAGER, WEREWOLF]) {
   const nameFor = (r, c) => (typeof getName === 'function' ? getName(r, c) : `row ${r} column ${c}`);
-  const parts = text.split(' ');
+  const parts = normalizeClueParts(clueParts);
+  if (parts.length === 0) return '';
   const [fn, ...rest] = parts;
+  const fallback = Array.isArray(clueParts) ? clueParts.join(' ') : String(clueParts);
 
-  const pluralizeRole = (role, count) => {
-    const roleWord = formatRoleName(role, roleNames);
-    return count === 1 ? roleWord : `${roleWord}s`;
-  };
+  if (fn === CLUE_TYPES.EXACTLY_K_ROLE_IN_ROW || fn === CLUE_TYPES.EXACTLY_K_ROLE_IN_COLUMN) {
+    if (rest.length !== 3) return fallback;
+    const [role, axisRaw, countRaw] = rest;
+    const axis = toNumber(axisRaw);
+    const count = toNumber(countRaw);
+    if (!Number.isFinite(axis) || !Number.isFinite(count)) return fallback;
+    const target = fn === CLUE_TYPES.EXACTLY_K_ROLE_IN_ROW ? 'row' : 'column';
+    const verb = count === 1 ? 'is' : 'are';
+    return `${target[0].toUpperCase()}${target.slice(1)} ${axis} ${verb} home to exactly ${roleAmount(count, role, roleNames)}.`;
+  }
 
-  if (fn === 'exactlyKRoleInRow' || fn === 'exactlyKRoleInColumn') {
-    if (rest.length !== 3) return text;
-    const [role, axisStr, countStr] = rest;
-    const axis = Number(axisStr);
-    const count = Number(countStr);
-    if (!Number.isFinite(axis) || !Number.isFinite(count)) return text;
+  if (fn === CLUE_TYPES.EXACTLY_ROLE_ABOVE_ROW || fn === CLUE_TYPES.EXACTLY_ROLE_BELOW_ROW) {
+    if (rest.length !== 3) return fallback;
+    const [role, rowRaw, countRaw] = rest;
+    const row = toNumber(rowRaw);
+    const count = toNumber(countRaw);
+    if (!Number.isFinite(row) || !Number.isFinite(count)) return fallback;
+    const preposition = fn === CLUE_TYPES.EXACTLY_ROLE_ABOVE_ROW ? 'above' : 'below';
+    return `There ${beVerb(count)} exactly ${roleAmount(count, role, roleNames)} ${preposition} row ${row}.`;
+  }
 
-    const plural = pluralizeRole(role, count);
-    const target = fn === 'exactlyKRoleInRow' ? 'row' : 'column';
-    return `exactly ${count} ${plural} in ${target} ${axis}`;
+  if (fn === CLUE_TYPES.EXACTLY_K_ROLE_LEFT_COLUMN || fn === CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_COLUMN) {
+    if (rest.length !== 3) return fallback;
+    const [role, colRaw, countRaw] = rest;
+    const col = toNumber(colRaw);
+    const count = toNumber(countRaw);
+    if (!Number.isFinite(col) || !Number.isFinite(count)) return fallback;
+    const side = fn === CLUE_TYPES.EXACTLY_K_ROLE_LEFT_COLUMN ? 'left of' : 'right of';
+    return `To the ${side} column ${col}, there ${beVerb(count)} exactly ${roleAmount(count, role, roleNames)}.`;
   }
-  if (fn === 'exactlyRoleAboveRow' || fn === 'exactlyRoleBelowRow') {
-    if (rest.length !== 3) return text;
-    const [role, rowStr, countStr] = rest;
-    const row = Number(rowStr);
-    const count = Number(countStr);
-    if (!Number.isFinite(row) || !Number.isFinite(count)) return text;
-    const plural = pluralizeRole(role, count);
-    const target = fn === 'exactlyRoleAboveRow' ? 'above row' : 'below row';
-    return `exactly ${count} ${plural} ${target} ${row}`;
-  }
-  if (fn === 'exactlyKRoleLeftColumn' || fn === 'exactlyKRoleRightColumn') {
-    if (rest.length !== 3) return text;
-    const [role, colStr, countStr] = rest;
-    const col = Number(colStr);
-    const count = Number(countStr);
-    if (!Number.isFinite(col) || !Number.isFinite(count)) return text;
-    const plural = pluralizeRole(role, count);
-    const target = fn === 'exactlyKRoleLeftColumn' ? 'left of column' : 'right of column';
-    return `exactly ${count} ${plural} ${target} ${col}`;
-  }
+
   if (
-    fn === 'exactlyKRoleAboveSomeone' ||
-    fn === 'exactlyKRoleBelowSomeone' ||
-    fn === 'exactlyKRoleLeftOfSomeone' ||
-    fn === 'exactlyKRoleRightOfSomeone'
+    fn === CLUE_TYPES.EXACTLY_K_ROLE_ABOVE_SOMEONE ||
+    fn === CLUE_TYPES.EXACTLY_K_ROLE_BELOW_SOMEONE ||
+    fn === CLUE_TYPES.EXACTLY_K_ROLE_LEFT_OF_SOMEONE ||
+    fn === CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_OF_SOMEONE
   ) {
-    if (rest.length !== 4) return text;
-    const [role, rowStr, colStr, countStr] = rest;
-    const row = Number(rowStr);
-    const col = Number(colStr);
-    const count = Number(countStr);
-    if (!Number.isFinite(row) || !Number.isFinite(col) || !Number.isFinite(count)) return text;
-    const plural = pluralizeRole(role, count);
+    if (rest.length !== 4) return fallback;
+    const [role, rowRaw, colRaw, countRaw] = rest;
+    const row = toNumber(rowRaw);
+    const col = toNumber(colRaw);
+    const count = toNumber(countRaw);
+    if (!Number.isFinite(row) || !Number.isFinite(col) || !Number.isFinite(count)) return fallback;
     const name = nameFor(row, col);
-    const target =
-      fn === 'exactlyKRoleAboveSomeone'
+    const preposition =
+      fn === CLUE_TYPES.EXACTLY_K_ROLE_ABOVE_SOMEONE
         ? 'above'
-        : fn === 'exactlyKRoleBelowSomeone'
+        : fn === CLUE_TYPES.EXACTLY_K_ROLE_BELOW_SOMEONE
         ? 'below'
-        : fn === 'exactlyKRoleLeftOfSomeone'
-        ? 'left of'
-        : 'right of';
-    return `exactly ${count} ${plural} ${target} ${name}`;
+        : fn === CLUE_TYPES.EXACTLY_K_ROLE_LEFT_OF_SOMEONE
+        ? 'to the left of'
+        : 'to the right of';
+    const verb = beVerb(count);
+    return `${verb[0].toUpperCase()}${verb.slice(1)} exactly ${roleAmount(count, role, roleNames)} ${preposition} ${name}.`;
   }
-  if (fn === 'exactlyKRoleBetweenTheTwo') {
-    if (rest.length !== 6) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str, countStr] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    const count = Number(countStr);
-    if (
-      !Number.isFinite(r1) ||
-      !Number.isFinite(c1) ||
-      !Number.isFinite(r2) ||
-      !Number.isFinite(c2) ||
-      !Number.isFinite(count)
-    )
-      return text;
-    const plural = pluralizeRole(role, count);
-    return `exactly ${count} ${plural} between ${nameFor(r1, c1)} and ${nameFor(r2, c2)}`;
+
+  if (fn === CLUE_TYPES.EXACTLY_K_ROLE_BETWEEN_THE_TWO) {
+    if (rest.length !== 6) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw, countRaw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    const count = toNumber(countRaw);
+    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2) || !Number.isFinite(count))
+      return fallback;
+    return `Between ${nameFor(r1, c1)} and ${nameFor(r2, c2)}, there ${beVerb(count)} exactly ${roleAmount(count, role, roleNames)}.`;
   }
-  if (fn === 'AllRoleInRowConnected' || fn === 'AllRoleInColumnConnected') {
-    if (rest.length !== 2) return text;
-    const [role, axisStr] = rest;
-    const axis = Number(axisStr);
-    if (!Number.isFinite(axis)) return text;
-    const plural = pluralizeRole(role, 2);
-    const target = fn === 'AllRoleInRowConnected' ? 'row' : 'column';
-    return `all ${plural} in ${target} ${axis} are connected`;
+
+  if (fn === CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED || fn === CLUE_TYPES.ALL_ROLE_IN_COLUMN_CONNECTED) {
+    if (rest.length !== 2) return fallback;
+    const [role, axisRaw] = rest;
+    const axis = toNumber(axisRaw);
+    if (!Number.isFinite(axis)) return fallback;
+    const target = fn === CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED ? 'row' : 'column';
+    const plural = rolePlural(role, roleNames);
+    return `All ${plural} in ${target} ${axis} stay connected to each other.`;
   }
-  if (fn === 'HaveEqualRoleNeighbor') {
-    if (rest.length !== 5) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2))
-      return text;
-    const neighborWord = `${formatRoleName(role, roleNames)} neighbors`;
-    return `${nameFor(r1, c1)} and ${nameFor(r2, c2)} have the same number of ${neighborWord}`;
+
+  if (fn === CLUE_TYPES.HAVE_EQUAL_ROLE_NEIGHBOR) {
+    if (rest.length !== 5) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2)) return fallback;
+    return `${nameFor(r1, c1)} and ${nameFor(r2, c2)} share the same number of ${rolePlural(role, roleNames)} nearby.`;
   }
-  if (fn === 'HaveMoreRoleNeighbors' || fn === 'HaveLessRoleNeighbors') {
-    if (rest.length !== 5) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2))
-      return text;
-    const neighborWord = `${formatRoleName(role, roleNames)} neighbors`;
-    const comparison = fn === 'HaveMoreRoleNeighbors' ? 'more' : 'fewer';
-    return `${nameFor(r1, c1)} has ${comparison} ${neighborWord} than ${nameFor(r2, c2)}`;
+
+  if (fn === CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS || fn === CLUE_TYPES.HAVE_LESS_ROLE_NEIGHBORS) {
+    if (rest.length !== 5) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2)) return fallback;
+    const comparison = fn === CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS ? 'more' : 'fewer';
+    return `${nameFor(r1, c1)} has ${comparison} ${rolePlural(role, roleNames)} nearby than ${nameFor(r2, c2)}.`;
   }
-  if (fn === 'BeOneOfSomeonesKRoleNeighbors') {
-    if (rest.length !== 6) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str, kStr] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    const k = Number(kStr);
-    if (
-      !Number.isFinite(r1) ||
-      !Number.isFinite(c1) ||
-      !Number.isFinite(r2) ||
-      !Number.isFinite(c2) ||
-      !Number.isFinite(k)
-    )
-      return text;
-    const neighborWord = formatRoleName(role, roleNames);
-    return `${nameFor(r1, c1)} is one of the ${k} ${neighborWord} neighbors of ${nameFor(r2, c2)}`;
+
+  if (fn === CLUE_TYPES.BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS) {
+    if (rest.length !== 6) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw, kRaw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    const k = toNumber(kRaw);
+    if (!Number.isFinite(r1) || !Number.isFinite(c1) || !Number.isFinite(r2) || !Number.isFinite(c2) || !Number.isFinite(k))
+      return fallback;
+    return `${nameFor(r1, c1)} is one of the ${roleAmount(k, role, roleNames)} surrounding ${nameFor(r2, c2)}.`;
   }
-  if (fn === 'HasExactKRoleNeighbor') {
-    if (rest.length !== 4) return text;
-    const [role, rStr, cStr, kStr] = rest;
-    const r = Number(rStr);
-    const c = Number(cStr);
-    const k = Number(kStr);
-    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k)) return text;
-    const plural = pluralizeRole(role, k);
-    return `${nameFor(r, c)} has exactly ${k} ${plural} as neighbors`;
+
+  if (fn === CLUE_TYPES.HAS_EXACT_K_ROLE_NEIGHBOR) {
+    if (rest.length !== 4) return fallback;
+    const [role, rRaw, cRaw, kRaw] = rest;
+    const r = toNumber(rRaw);
+    const c = toNumber(cRaw);
+    const k = toNumber(kRaw);
+    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k)) return fallback;
+    return `${nameFor(r, c)} has exactly ${roleAmount(k, role, roleNames)} nearby.`;
   }
+
   if (
-    fn === 'KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor' ||
-    fn === 'KofJRoleToTheRightOfSomeoneIsAnothersNeighbor' ||
-    fn === 'KofJRoleAboveSomeoneIsAnothersNeighbor' ||
-    fn === 'KofJRoleBelowSomeoneIsAnothersNeighbor'
+    fn === CLUE_TYPES.K_OF_J_ROLE_TO_THE_LEFT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR ||
+    fn === CLUE_TYPES.K_OF_J_ROLE_TO_THE_RIGHT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR ||
+    fn === CLUE_TYPES.K_OF_J_ROLE_ABOVE_SOMEONE_IS_ANOTHERS_NEIGHBOR ||
+    fn === CLUE_TYPES.K_OF_J_ROLE_BELOW_SOMEONE_IS_ANOTHERS_NEIGHBOR
   ) {
-    if (rest.length !== 7) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str, kStr, jStr] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    const k = Number(kStr);
-    const j = Number(jStr);
+    if (rest.length !== 7) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw, kRaw, jRaw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    const k = toNumber(kRaw);
+    const j = toNumber(jRaw);
     if (
       !Number.isFinite(r1) ||
       !Number.isFinite(c1) ||
@@ -380,27 +427,27 @@ function formatClue(text, getName, roleNames = [VILLAGER, WEREWOLF]) {
       !Number.isFinite(k) ||
       !Number.isFinite(j)
     )
-      return text;
-    const plural = pluralizeRole(role, j);
+      return fallback;
     const direction =
-      fn === 'KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor'
+      fn === CLUE_TYPES.K_OF_J_ROLE_TO_THE_LEFT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR
         ? 'to the left of'
-        : fn === 'KofJRoleToTheRightOfSomeoneIsAnothersNeighbor'
+        : fn === CLUE_TYPES.K_OF_J_ROLE_TO_THE_RIGHT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR
         ? 'to the right of'
-        : fn === 'KofJRoleAboveSomeoneIsAnothersNeighbor'
+        : fn === CLUE_TYPES.K_OF_J_ROLE_ABOVE_SOMEONE_IS_ANOTHERS_NEIGHBOR
         ? 'above'
         : 'below';
-    return `exactly ${k} of the ${j} ${plural} ${direction} ${nameFor(r1, c1)} are neighbors of ${nameFor(r2, c2)}`;
+    return `Of the ${roleAmount(j, role, roleNames)} ${direction} ${nameFor(r1, c1)}, exactly ${roleAmount(k, role, roleNames)} also neighbor ${nameFor(r2, c2)}.`;
   }
-  if (fn === 'KofJRoleNeighborToSomeoneIsAnothersNeighbor') {
-    if (rest.length !== 7) return text;
-    const [role, r1Str, c1Str, r2Str, c2Str, kStr, jStr] = rest;
-    const r1 = Number(r1Str);
-    const c1 = Number(c1Str);
-    const r2 = Number(r2Str);
-    const c2 = Number(c2Str);
-    const k = Number(kStr);
-    const j = Number(jStr);
+
+  if (fn === CLUE_TYPES.K_OF_J_ROLE_NEIGHBOR_TO_SOMEONE_IS_ANOTHERS_NEIGHBOR) {
+    if (rest.length !== 7) return fallback;
+    const [role, r1Raw, c1Raw, r2Raw, c2Raw, kRaw, jRaw] = rest;
+    const r1 = toNumber(r1Raw);
+    const c1 = toNumber(c1Raw);
+    const r2 = toNumber(r2Raw);
+    const c2 = toNumber(c2Raw);
+    const k = toNumber(kRaw);
+    const j = toNumber(jRaw);
     if (
       !Number.isFinite(r1) ||
       !Number.isFinite(c1) ||
@@ -409,25 +456,25 @@ function formatClue(text, getName, roleNames = [VILLAGER, WEREWOLF]) {
       !Number.isFinite(k) ||
       !Number.isFinite(j)
     )
-      return text;
-    const plural = pluralizeRole(role, j);
-    return `exactly ${k} of the ${j} ${plural} neighboring ${nameFor(r1, c1)} are neighbors of ${nameFor(r2, c2)}`;
+      return fallback;
+    return `Of the ${roleAmount(j, role, roleNames)} neighboring ${nameFor(r1, c1)}, exactly ${roleAmount(k, role, roleNames)} also neighbor ${nameFor(r2, c2)}.`;
   }
-  if (fn === 'KofJRoleBeforeAlphabetNames' || fn === 'KofJRoleAfterAlphabetNames') {
-    if (rest.length !== 5) return text;
-    const [role, rStr, cStr, kStr, jStr] = rest;
-    const r = Number(rStr);
-    const c = Number(cStr);
-    const k = Number(kStr);
-    const j = Number(jStr);
-    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k) || !Number.isFinite(j)) return text;
-    const roleWord = formatRoleName(role, roleNames);
-    const verb = k === 1 ? 'is' : 'are';
-    const rolePhrase = k === 1 ? `a ${roleWord}` : `${roleWord}s`;
-    const direction = fn === 'KofJRoleBeforeAlphabetNames' ? 'come before' : 'come after';
-    return `exactly ${k} of the ${j} people whose names ${direction} ${nameFor(r, c)} alphabetically ${verb} ${rolePhrase}`;
+
+  if (fn === CLUE_TYPES.K_OF_J_ROLE_BEFORE_ALPHABET_NAMES || fn === CLUE_TYPES.K_OF_J_ROLE_AFTER_ALPHABET_NAMES) {
+    if (rest.length !== 5) return fallback;
+    const [role, rRaw, cRaw, kRaw, jRaw] = rest;
+    const r = toNumber(rRaw);
+    const c = toNumber(cRaw);
+    const k = toNumber(kRaw);
+    const j = toNumber(jRaw);
+    if (!Number.isFinite(r) || !Number.isFinite(c) || !Number.isFinite(k) || !Number.isFinite(j)) return fallback;
+    const direction = fn === CLUE_TYPES.K_OF_J_ROLE_BEFORE_ALPHABET_NAMES ? 'come before' : 'come after';
+    const verb = beVerb(k);
+    const quantity = roleAmount(k, role, roleNames);
+    return `Among the ${countLabel(j)} people whose names ${direction} ${nameFor(r, c)} alphabetically, exactly ${quantity} ${verb} among them.`;
   }
-  return text;
+
+  return fallback;
 }
 
 function formatOtherRole(row, col, value, getName, roleNames = [VILLAGER, WEREWOLF]) {
@@ -913,7 +960,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       clues.push({
         key: `row-${r}-${role}-${count}`,
         goal: exactlyKRoleInRow(roles, r, count, role, cols),
-        statement: formatClue(`exactlyKRoleInRow ${role} ${r} ${count}`, getName, roleNames),
+        statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_IN_ROW, role, r, count], getName, roleNames),
         referencedCells: [],
       });
     });
@@ -928,13 +975,13 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ? {
               key: `row-${r}-above-${role}-${count}`,
               goal: exactlyRoleAboveRow(roles, r, count, role, cols),
-              statement: formatClue(`exactlyRoleAboveRow ${role} ${r} ${count}`, getName, roleNames),
+              statement: formatClue([CLUE_TYPES.EXACTLY_ROLE_ABOVE_ROW, role, r, count], getName, roleNames),
               referencedCells: [],
             }
           : {
               key: `row-${r}-below-${role}-${count}`,
               goal: exactlyRoleBelowRow(roles, r, count, role, rows, cols),
-              statement: formatClue(`exactlyRoleBelowRow ${role} ${r} ${count}`, getName, roleNames),
+              statement: formatClue([CLUE_TYPES.EXACTLY_ROLE_BELOW_ROW, role, r, count], getName, roleNames),
               referencedCells: [],
             };
       clues.push(builder);
@@ -947,7 +994,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       clues.push({
         key: `row-${r}-connected-${role}`,
         goal: allRoleConnectedInRow(roles, r, role, cols),
-        statement: formatClue(`AllRoleInRowConnected ${role} ${r}`, getName, roleNames),
+        statement: formatClue([CLUE_TYPES.ALL_ROLE_IN_ROW_CONNECTED, role, r], getName, roleNames),
         referencedCells: [],
       });
     });
@@ -982,7 +1029,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       clues.push({
         key: `col-${c}-${role}-${count}`,
         goal: exactlyKRoleInColumn(roles, c, count, role, rows, cols),
-        statement: formatClue(`exactlyKRoleInColumn ${role} ${c} ${count}`, getName, roleNames),
+        statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_IN_COLUMN, role, c, count], getName, roleNames),
         referencedCells: [],
       });
     });
@@ -993,7 +1040,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       clues.push({
         key: `col-${c}-connected-${role}`,
         goal: allRoleConnectedInColumn(roles, c, role, rows, cols),
-        statement: formatClue(`AllRoleInColumnConnected ${role} ${c}`, getName, roleNames),
+        statement: formatClue([CLUE_TYPES.ALL_ROLE_IN_COLUMN_CONNECTED, role, c], getName, roleNames),
         referencedCells: [],
       });
     });
@@ -1008,13 +1055,13 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           ? {
               key: `col-${c}-left-${role}-${count}`,
               goal: exactlyKRoleLeftColumn(roles, c, count, role, rows, cols),
-              statement: formatClue(`exactlyKRoleLeftColumn ${role} ${c} ${count}`, getName, roleNames),
+              statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_LEFT_COLUMN, role, c, count], getName, roleNames),
               referencedCells: [],
             }
           : {
               key: `col-${c}-right-${role}-${count}`,
               goal: exactlyKRoleRightColumn(roles, c, count, role, rows, cols),
-              statement: formatClue(`exactlyKRoleRightColumn ${role} ${c} ${count}`, getName, roleNames),
+              statement: formatClue([CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_COLUMN, role, c, count], getName, roleNames),
               referencedCells: [],
             };
       clues.push(builder);
@@ -1051,28 +1098,28 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           vals: aboveVals,
           fn: exactlyKRoleAboveSomeone,
           keyPrefix: 'above',
-          formatter: role => `exactlyKRoleAboveSomeone ${role} ${r} ${c}`,
+          formatter: role => [CLUE_TYPES.EXACTLY_K_ROLE_ABOVE_SOMEONE, role, r, c],
         },
         {
           dir: 'below',
           vals: belowVals,
           fn: exactlyKRoleBelowSomeone,
           keyPrefix: 'below',
-          formatter: role => `exactlyKRoleBelowSomeone ${role} ${r} ${c}`,
+          formatter: role => [CLUE_TYPES.EXACTLY_K_ROLE_BELOW_SOMEONE, role, r, c],
         },
         {
           dir: 'left',
           vals: leftVals,
           fn: exactlyKRoleLeftOfSomeone,
           keyPrefix: 'left-of',
-          formatter: role => `exactlyKRoleLeftOfSomeone ${role} ${r} ${c}`,
+          formatter: role => [CLUE_TYPES.EXACTLY_K_ROLE_LEFT_OF_SOMEONE, role, r, c],
         },
         {
           dir: 'right',
           vals: rightVals,
           fn: exactlyKRoleRightOfSomeone,
           keyPrefix: 'right-of',
-          formatter: role => `exactlyKRoleRightOfSomeone ${role} ${r} ${c}`,
+          formatter: role => [CLUE_TYPES.EXACTLY_K_ROLE_RIGHT_OF_SOMEONE, role, r, c],
         },
       ];
 
@@ -1087,7 +1134,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           clues.push({
             key: `cell-${r}-${c}-${keyPrefix}-${role}-${count}`,
             goal: fn(roles, r, c, count, role, rows, cols),
-            statement: formatClue(`${formatter(role)} ${count}`, getName, roleNames),
+            statement: formatClue([...formatter(role), count], getName, roleNames),
             referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
           });
         });
@@ -1096,20 +1143,20 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
       const alphaIndex = alphabeticalOrder.indexMap.get(`${r},${c}`);
       const beforeAlpha = typeof alphaIndex === 'number' ? alphabeticalOrder.entries.slice(0, alphaIndex) : [];
       const afterAlpha = typeof alphaIndex === 'number' ? alphabeticalOrder.entries.slice(alphaIndex + 1) : [];
-      const alphabeticalSpecs = [
-        {
-          entries: beforeAlpha,
-          fn: kOfJRoleBeforeAlphabetNames,
-          formatter: role => `KofJRoleBeforeAlphabetNames ${role} ${r} ${c}`,
-          keyPrefix: 'alphabet-before',
-        },
-        {
-          entries: afterAlpha,
-          fn: kOfJRoleAfterAlphabetNames,
-          formatter: role => `KofJRoleAfterAlphabetNames ${role} ${r} ${c}`,
-          keyPrefix: 'alphabet-after',
-        },
-      ];
+    const alphabeticalSpecs = [
+      {
+        entries: beforeAlpha,
+        fn: kOfJRoleBeforeAlphabetNames,
+        formatter: role => [CLUE_TYPES.K_OF_J_ROLE_BEFORE_ALPHABET_NAMES, role, r, c],
+        keyPrefix: 'alphabet-before',
+      },
+      {
+        entries: afterAlpha,
+        fn: kOfJRoleAfterAlphabetNames,
+        formatter: role => [CLUE_TYPES.K_OF_J_ROLE_AFTER_ALPHABET_NAMES, role, r, c],
+        keyPrefix: 'alphabet-after',
+      },
+    ];
 
       alphabeticalSpecs.forEach(({ entries, fn, formatter, keyPrefix }) => {
         if (!entries || entries.length === 0) return;
@@ -1124,7 +1171,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           clues.push({
             key: `${keyPrefix}-${r}-${c}-${role}-${count}-of-${j}`,
             goal: fn(roles, alphabeticalOrder, r, c, count, j, role, cols),
-            statement: formatClue(`${formatter(role)} ${count} ${j}`, getName, roleNames),
+            statement: formatClue([...formatter(role), count, j], getName, roleNames),
             referencedCells: normalizeReferencedCells([
               { row: r, column: c },
               ...entries.map(({ row: rr, column: cc }) => ({ row: rr, column: cc })),
@@ -1145,7 +1192,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
           clues.push({
             key,
             goal: hasExactKRoleNeighbor(roles, r, c, count, role, rows, cols),
-            statement: formatClue(`HasExactKRoleNeighbor ${role} ${r} ${c} ${count}`, getName, roleNames),
+            statement: formatClue([CLUE_TYPES.HAS_EXACT_K_ROLE_NEIGHBOR, role, r, c, count], getName, roleNames),
             referencedCells: normalizeReferencedCells([{ row: r, column: c }]),
           });
         });
@@ -1179,7 +1226,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             key,
             goal: exactlyKRoleBetweenTheTwo(roles, r1, c1, r2, c2, count, role, rows, cols),
             statement: formatClue(
-              `exactlyKRoleBetweenTheTwo ${role} ${r1} ${c1} ${r2} ${c2} ${count}`,
+              [CLUE_TYPES.EXACTLY_K_ROLE_BETWEEN_THE_TWO, role, r1, c1, r2, c2, count],
               getName,
               roleNames
             ),
@@ -1221,7 +1268,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               key,
               goal: haveEqualRoleNeighbor(roles, r1, c1, r2, c2, role, rows, cols),
               statement: formatClue(
-                `HaveEqualRoleNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+                [CLUE_TYPES.HAVE_EQUAL_ROLE_NEIGHBOR, role, r1, c1, r2, c2],
                 getName,
                 roleNames
               ),
@@ -1242,7 +1289,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                 key,
                 goal: haveMoreRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
                 statement: formatClue(
-                  `HaveMoreRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2}`,
+                  [CLUE_TYPES.HAVE_MORE_ROLE_NEIGHBORS, role, r1, c1, r2, c2],
                   getName,
                   roleNames
                 ),
@@ -1257,7 +1304,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
                 key,
                 goal: haveLessRoleNeighbors(roles, r1, c1, r2, c2, role, rows, cols),
                 statement: formatClue(
-                  `HaveLessRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2}`,
+                  [CLUE_TYPES.HAVE_LESS_ROLE_NEIGHBORS, role, r1, c1, r2, c2],
                   getName,
                   roleNames
                 ),
@@ -1285,7 +1332,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               key,
               goal: beOneOfSomeonesKRoleNeighbors(roles, r1, c1, r2, c2, count, role, rows, cols),
               statement: formatClue(
-                `BeOneOfSomeonesKRoleNeighbors ${role} ${r1} ${c1} ${r2} ${c2} ${count}`,
+                [CLUE_TYPES.BE_ONE_OF_SOMEONES_K_ROLE_NEIGHBORS, role, r1, c1, r2, c2, count],
                 getName,
                 roleNames
               ),
@@ -1302,28 +1349,28 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               dir: 'left',
               fn: kOfJRoleToTheLeftOfSomeoneIsAnothersNeighbor,
               formatter: role =>
-                `KofJRoleToTheLeftOfSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+                [CLUE_TYPES.K_OF_J_ROLE_TO_THE_LEFT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2],
               keyPrefix: 'k-of-j-left',
             },
             {
               dir: 'right',
               fn: kOfJRoleToTheRightOfSomeoneIsAnothersNeighbor,
               formatter: role =>
-                `KofJRoleToTheRightOfSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+                [CLUE_TYPES.K_OF_J_ROLE_TO_THE_RIGHT_OF_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2],
               keyPrefix: 'k-of-j-right',
             },
             {
               dir: 'above',
               fn: kOfJRoleAboveSomeoneIsAnothersNeighbor,
               formatter: role =>
-                `KofJRoleAboveSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+                [CLUE_TYPES.K_OF_J_ROLE_ABOVE_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2],
               keyPrefix: 'k-of-j-above',
             },
             {
               dir: 'below',
               fn: kOfJRoleBelowSomeoneIsAnothersNeighbor,
               formatter: role =>
-                `KofJRoleBelowSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2}`,
+                [CLUE_TYPES.K_OF_J_ROLE_BELOW_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2],
               keyPrefix: 'k-of-j-below',
             },
           ];
@@ -1349,7 +1396,7 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
             clues.push({
               key: `${keyPrefix}-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
               goal: fn(roles, r1, c1, r2, c2, k, j, role, rows, cols),
-              statement: formatClue(`${formatter(role)} ${k} ${j}`, getName, roleNames),
+              statement: formatClue([...formatter(role), k, j], getName, roleNames),
               referencedCells: normalizeReferencedCells([
                 { row: r1, column: c1 },
                 { row: r2, column: c2 },
@@ -1379,7 +1426,11 @@ function buildClueTemplates(targetSolution, roles, rows, cols, getName, roleName
               clues.push({
                 key: `k-of-j-neighbor-${r1}-${c1}-${r2}-${c2}-${role}-${k}-${j}`,
                 goal: kOfJRoleNeighborToSomeoneIsAnothersNeighbor(roles, r1, c1, r2, c2, k, j, role, rows, cols),
-                statement: formatClue(`KofJRoleNeighborToSomeoneIsAnothersNeighbor ${role} ${r1} ${c1} ${r2} ${c2} ${k} ${j}`, getName, roleNames),
+                statement: formatClue(
+                  [CLUE_TYPES.K_OF_J_ROLE_NEIGHBOR_TO_SOMEONE_IS_ANOTHERS_NEIGHBOR, role, r1, c1, r2, c2, k, j],
+                  getName,
+                  roleNames
+                ),
                 referencedCells: normalizeReferencedCells([
                   { row: r1, column: c1 },
                   { row: r2, column: c2 },
