@@ -27,6 +27,9 @@ jobs:
         with:
           version: 9
 
+      - name: Activate pnpm
+        run: corepack prepare pnpm@9 --activate
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -51,7 +54,7 @@ jobs:
 
       - name: Push changes
         if: steps.commit_game_data.outputs.committed == 'true'
-        uses: ad-m/github-push-action@master
+        uses: actions/github-push@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
