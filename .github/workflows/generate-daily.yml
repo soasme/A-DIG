@@ -15,22 +15,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up PNPM
+        # Use the official pnpm setup action
+        uses: pnpm/action-setup@v4 
         with:
-          node-version: 20
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          # Optional: specify a pnpm version or leave empty for latest
+          version: 9 
+          # Prevents automatic installation here; we install later to use Node.js version
+          run_install: false 
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Set up Node.js ${{ matrix.node-version }}
+        # Use the official Node.js setup action
+        uses: actions/setup-node@v4 
         with:
-          version: 9
-
-      - name: Activate pnpm
-        run: corepack prepare pnpm@9 --activate
+          node-version: ${{ matrix.node-version }}
+          # Crucial: enables pnpm-specific dependency caching
+          cache: 'pnpm' 
 
       - name: Install dependencies
+        # Use --frozen-lockfile for consistent CI builds
         run: pnpm install --frozen-lockfile
 
       - name: Generate daily puzzle
