@@ -1,0 +1,586 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Bella",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Jade",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Zachary",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the one zombie below Gemma, exactly one zombie also neighbor Kaden.",
+      "parts": [
+        22,
+        "zombie",
+        3,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one zombie below Lena, exactly one zombie also neighbor Zachary.",
+      "parts": [
+        22,
+        "zombie",
+        4,
+        2,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "zombie",
+      "statement": "There are exactly 2 zombies below Jade.",
+      "parts": [
+        8,
+        "zombie",
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the 5 villagers neighboring Jade, exactly one villager also neighbor Yvette.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        2,
+        5,
+        2,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the 2 villagers neighboring Adam, exactly one villager also neighbor Dominic.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        1,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one villager to the left of Felix, exactly one villager also neighbor Gemma.",
+      "parts": [
+        19,
+        "villager",
+        2,
+        3,
+        3,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the one zombie below me, exactly one zombie also neighbor Yvette.",
+      "parts": [
+        22,
+        "zombie",
+        2,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers to the left of Joel.",
+      "parts": [
+        9,
+        "villager",
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Yvette has more zombies nearby than Zachary.",
+      "parts": [
+        15,
+        "zombie",
+        5,
+        2,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Ophelia and I share the same number of zombies nearby.",
+      "parts": [
+        14,
+        "zombie",
+        4,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 5 villagers neighboring Jade, exactly 3 villagers also neighbor Lena.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        2,
+        4,
+        2,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Adam has fewer zombies nearby than Preston.",
+      "parts": [
+        16,
+        "zombie",
+        1,
+        1,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Among the one people whose names come before me alphabetically, exactly one villager is among them.",
+      "parts": [
+        24,
+        "villager",
+        1,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 4 villagers neighboring Amelia, exactly one villager also neighbor Gemma.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        2,
+        3,
+        1,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 zombies below Joel, exactly one zombie also neighbor Zachary.",
+      "parts": [
+        22,
+        "zombie",
+        3,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2025-12-28T00:00:00Z"
+}
