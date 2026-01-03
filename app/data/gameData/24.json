@@ -1,0 +1,578 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Isla",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Spencer",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Uriel",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Zoe",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "agent",
+      "statement": "Peter is one of the 2 double-agents surrounding Spencer.",
+      "parts": [
+        17,
+        "double-agent",
+        3,
+        2,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Between Brandon and Uma, there are exactly 2 double-agents.",
+      "parts": [
+        11,
+        "double-agent",
+        1,
+        2,
+        4,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Uma is one of the 3 agents surrounding Zelda.",
+      "parts": [
+        17,
+        "agent",
+        4,
+        2,
+        5,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one agent below Felix, exactly one agent also neighbor Peter.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the one double-agent to the right of Kelsey, exactly one double-agent also neighbor Sienna.",
+      "parts": [
+        20,
+        "double-agent",
+        3,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 3 double-agents neighboring Isla, exactly one double-agent also neighbor Uma.",
+      "parts": [
+        23,
+        "double-agent",
+        2,
+        3,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There are exactly 2 agents below Peter.",
+      "parts": [
+        8,
+        "agent",
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 3 agents neighboring Wren, exactly 2 agents also neighbor Zoe.",
+      "parts": [
+        23,
+        "agent",
+        5,
+        1,
+        5,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents below Arthur, exactly one double-agent also neighbor me.",
+      "parts": [
+        22,
+        "double-agent",
+        1,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the 2 double-agents above Kelsey, exactly one double-agent also neighbor Peter.",
+      "parts": [
+        21,
+        "double-agent",
+        3,
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Among the 3 people whose names come after Uriel alphabetically, exactly 2 agents are among them.",
+      "parts": [
+        25,
+        "agent",
+        4,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "agent",
+      "statement": "5 double-agent 2 3",
+      "parts": [
+        5,
+        "double-agent",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There are exactly 5 agents below row 2.",
+      "parts": [
+        4,
+        "agent",
+        2,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 6 double-agents neighboring Harper, exactly one double-agent also neighbor me.",
+      "parts": [
+        23,
+        "double-agent",
+        2,
+        2,
+        4,
+        3,
+        1,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the one double-agent below Garrett, exactly one double-agent also neighbor Harper.",
+      "parts": [
+        22,
+        "double-agent",
+        2,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-01-03T00:00:00Z"
+}
