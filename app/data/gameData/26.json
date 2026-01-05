@@ -1,0 +1,557 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "crew member",
+    "alien-impostor"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Vera",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Between Vera and me, there is exactly one crew member.",
+      "parts": [
+        11,
+        "crew member",
+        4,
+        1,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Yvette is one of the 2 alien-impostors surrounding Zelda.",
+      "parts": [
+        17,
+        "alien-impostor",
+        5,
+        2,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Between Joel and Wyatt, there are exactly 0 crew members.",
+      "parts": [
+        11,
+        "crew member",
+        2,
+        3,
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the one crew member neighboring Damian, exactly one crew member also neighbor Graham.",
+      "parts": [
+        23,
+        "crew member",
+        1,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the one alien-impostor to the right of Graham, exactly one alien-impostor also neighbor Quinn.",
+      "parts": [
+        20,
+        "alien-impostor",
+        2,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Of the one crew member to the left of Joel, exactly one crew member also neighbor Sophia.",
+      "parts": [
+        19,
+        "crew member",
+        2,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "There are exactly 0 alien-impostors below Wyatt.",
+      "parts": [
+        8,
+        "alien-impostor",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Lucy has more crew members nearby than Wyatt.",
+      "parts": [
+        15,
+        "crew member",
+        3,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Lucy has exactly one alien-impostor nearby.",
+      "parts": [
+        18,
+        "alien-impostor",
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "crew member",
+      "statement": "All crew members in column 1 stay connected to each other.",
+      "parts": [
+        13,
+        "crew member",
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "There are exactly 2 alien-impostors above Yara.",
+      "parts": [
+        7,
+        "alien-impostor",
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Wendy has exactly 3 alien-impostors nearby.",
+      "parts": [
+        18,
+        "alien-impostor",
+        4,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Graham has more alien-impostors nearby than Lucy.",
+      "parts": [
+        15,
+        "alien-impostor",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Joel has more crew members nearby than Yara.",
+      "parts": [
+        15,
+        "crew member",
+        2,
+        3,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Of the 2 alien-impostors below Joel, exactly 2 alien-impostors also neighbor Wendy.",
+      "parts": [
+        22,
+        "alien-impostor",
+        2,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Alien creatures has copied some crew members aboard your ship. Identify the impostors.",
+  "publishedAt": "2026-01-05T00:00:00Z"
+}
