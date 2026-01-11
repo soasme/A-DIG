@@ -1,0 +1,597 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Danica",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Jenna",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Mason",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Tanner",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Tristan",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Ava is one of the 6 prisoners surrounding me.",
+      "parts": [
+        17,
+        "prisoner",
+        1,
+        2,
+        2,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Between Tristan and Zeke, there are exactly 0 identity thiefs.",
+      "parts": [
+        11,
+        "identity thief",
+        5,
+        1,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "There are exactly 0 prisoners to the left of Leah.",
+      "parts": [
+        9,
+        "prisoner",
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "There is exactly one identity thief to the left of Mason.",
+      "parts": [
+        9,
+        "identity thief",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners below Ava, exactly one prisoner also neighbor Jenna.",
+      "parts": [
+        22,
+        "prisoner",
+        1,
+        2,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners neighboring Gabriel, exactly 3 prisoners also neighbor Jenna.",
+      "parts": [
+        23,
+        "prisoner",
+        2,
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the one prisoner to the right of Gabriel, exactly one prisoner also neighbor Mason.",
+      "parts": [
+        20,
+        "prisoner",
+        2,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "There are exactly 2 prisoners to the right of Adam.",
+      "parts": [
+        10,
+        "prisoner",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Gabriel has fewer prisoners nearby than Julia.",
+      "parts": [
+        16,
+        "prisoner",
+        2,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "There are exactly 0 identity thiefs above Zeke.",
+      "parts": [
+        7,
+        "identity thief",
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Of the 2 identity thiefs neighboring Jenna, exactly one identity thief also neighbor Keegan.",
+      "parts": [
+        23,
+        "identity thief",
+        2,
+        2,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Mason and Molly share the same number of identity thiefs nearby.",
+      "parts": [
+        14,
+        "identity thief",
+        3,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 2 prisoners below Keegan, exactly one prisoner also neighbor Molly.",
+      "parts": [
+        22,
+        "prisoner",
+        3,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Among the 9 people whose names come after Julia alphabetically, exactly 8 prisoners are among them.",
+      "parts": [
+        25,
+        "prisoner",
+        2,
+        3,
+        8,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "There are exactly 2 prisoners above Penelope.",
+      "parts": [
+        7,
+        "prisoner",
+        4,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-01-11T00:00:00Z"
+}
