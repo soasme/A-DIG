@@ -1,0 +1,669 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Bria",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Elias",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Evan",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Kara",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Silas",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Trinity",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Vincent",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 killers below Elias, exactly 2 killers also neighbor Kara.",
+      "parts": [
+        22,
+        "killer",
+        1,
+        2,
+        3,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 4 detectives neighboring Silas, exactly 2 detectives also neighbor Zelda.",
+      "parts": [
+        23,
+        "detective",
+        4,
+        3,
+        5,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 6 detectives neighboring Kevin, exactly 2 detectives also neighbor Silas.",
+      "parts": [
+        23,
+        "detective",
+        3,
+        2,
+        4,
+        3,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 detectives below Flora, exactly one detective also neighbor Kevin.",
+      "parts": [
+        22,
+        "detective",
+        2,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 2 detectives below Bria, exactly 2 detectives also neighbor me.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        1,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "killer",
+      "statement": "I have fewer detectives nearby than Vincent.",
+      "parts": [
+        16,
+        "detective",
+        5,
+        1,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 killers below Bria, exactly one killer also neighbor Reese.",
+      "parts": [
+        22,
+        "killer",
+        1,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 4 detectives below Evan, exactly 3 detectives also neighbor Reid.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        3,
+        4,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "detective",
+      "statement": "Between Bria and Evan, there is exactly one killer.",
+      "parts": [
+        11,
+        "killer",
+        1,
+        1,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "Evan is one of the 4 killers surrounding Flora.",
+      "parts": [
+        17,
+        "killer",
+        1,
+        3,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the 4 killers neighboring Julia, exactly one killer also neighbor Kevin.",
+      "parts": [
+        23,
+        "killer",
+        2,
+        3,
+        3,
+        2,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "killer",
+      "statement": "Felix has exactly 2 detectives nearby.",
+      "parts": [
+        18,
+        "detective",
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "detective",
+      "statement": "Among the 7 people whose names come before Kevin alphabetically, exactly 4 killers are among them.",
+      "parts": [
+        24,
+        "killer",
+        3,
+        2,
+        4,
+        7
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Among the 14 people whose names come before Zelda alphabetically, exactly 6 killers are among them.",
+      "parts": [
+        24,
+        "killer",
+        5,
+        3,
+        6,
+        14
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 2 detectives below Elias, exactly one detective also neighbor Odette.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-01-12T00:00:00Z"
+}
