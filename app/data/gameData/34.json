@@ -1,0 +1,666 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Mia",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Paige",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Riley",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "There is exactly one agent to the right of Porter.",
+      "parts": [
+        10,
+        "agent",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 2 agents neighboring Amelia, exactly one agent also neighbor Nora.",
+      "parts": [
+        23,
+        "agent",
+        1,
+        1,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "agent",
+      "statement": "Between Grayson and Xiomara, there is exactly one agent.",
+      "parts": [
+        11,
+        "agent",
+        2,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 2 double-agents below Mia, exactly 2 double-agents also neighbor Riley.",
+      "parts": [
+        22,
+        "double-agent",
+        3,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the one double-agent to the left of Riley, exactly one double-agent also neighbor Xiomara.",
+      "parts": [
+        19,
+        "double-agent",
+        4,
+        3,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "Between Chase and Riley, there are exactly 0 double-agents.",
+      "parts": [
+        11,
+        "double-agent",
+        2,
+        1,
+        5,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents below Brady, exactly one double-agent also neighbor Wendy.",
+      "parts": [
+        22,
+        "double-agent",
+        1,
+        2,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one double-agent neighboring Leah, exactly one double-agent also neighbor Paige.",
+      "parts": [
+        23,
+        "double-agent",
+        3,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "agent",
+      "statement": "Row 2 are home to exactly 3 agents.",
+      "parts": [
+        1,
+        "agent",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 4 double-agents neighboring Riley, exactly 2 double-agents also neighbor Xiomara.",
+      "parts": [
+        23,
+        "double-agent",
+        4,
+        3,
+        5,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Among the 11 people whose names come after Chase alphabetically, exactly 6 agents are among them.",
+      "parts": [
+        25,
+        "agent",
+        2,
+        1,
+        6,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Among the 13 people whose names come after Brady alphabetically, exactly 7 agents are among them.",
+      "parts": [
+        25,
+        "agent",
+        1,
+        2,
+        7,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Brady has fewer double-agents nearby than Riley.",
+      "parts": [
+        16,
+        "double-agent",
+        1,
+        2,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents to the right of me, exactly 2 double-agents also neighbor Colin.",
+      "parts": [
+        20,
+        "double-agent",
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Chase and Leah share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-01-13T00:00:00Z"
+}
