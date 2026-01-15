@@ -1,0 +1,584 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "monk",
+    "demon-in-disguise"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Franklin",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Jasper",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Mia",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Valerie",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the 2 demon-in-disguises below Camila, exactly one demon-in-disguise also neighbor Gemma.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        1,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Between Amelia and Franklin, there is exactly one monk.",
+      "parts": [
+        11,
+        "monk",
+        1,
+        1,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "monk",
+      "statement": "There is exactly one monk to the right of Kevin.",
+      "parts": [
+        10,
+        "monk",
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the one demon-in-disguise below Jasper, exactly one demon-in-disguise also neighbor Willow.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        2,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Of the one demon-in-disguise below Reid, exactly one demon-in-disguise also neighbor Valerie.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        4,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Of the one demon-in-disguise below Mia, exactly one demon-in-disguise also neighbor Valerie.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        3,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "monk",
+      "statement": "Among the 4 people whose names come after me alphabetically, exactly one monk is among them.",
+      "parts": [
+        25,
+        "monk",
+        4,
+        2,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the one monk below Kevin, exactly one monk also neighbor Reid.",
+      "parts": [
+        22,
+        "monk",
+        3,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "monk",
+      "statement": "There are exactly 2 demon-in-disguises below Camila.",
+      "parts": [
+        8,
+        "demon-in-disguise",
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "monk",
+      "statement": "Of the one demon-in-disguise neighboring Jasper, exactly one demon-in-disguise also neighbor Peter.",
+      "parts": [
+        23,
+        "demon-in-disguise",
+        2,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the 2 monks to the right of Garrett, exactly one monk also neighbor Jasper.",
+      "parts": [
+        20,
+        "monk",
+        2,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "monk",
+      "statement": "Amelia has fewer monks nearby than Willow.",
+      "parts": [
+        16,
+        "monk",
+        1,
+        1,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Mia and Sienna share the same number of demon-in-disguises nearby.",
+      "parts": [
+        14,
+        "demon-in-disguise",
+        3,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "monk",
+      "statement": "Column 1 are home to exactly 2 demon-in-disguises.",
+      "parts": [
+        2,
+        "demon-in-disguise",
+        1,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "monk",
+      "statement": "Gemma has more monks nearby than Zara.",
+      "parts": [
+        15,
+        "monk",
+        2,
+        2,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Demons infiltrate the monastery wearing human forms. Reveal which monks are corrupted.",
+  "publishedAt": "2026-01-15T00:00:00Z"
+}
