@@ -1,0 +1,670 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Aiden",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Nathan",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Nova",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Owen",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Camila is one of the 2 werewolfs surrounding Harper.",
+      "parts": [
+        17,
+        "werewolf",
+        1,
+        2,
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 3 werewolfs below Aiden, exactly 2 werewolfs also neighbor Owen.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        1,
+        4,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers neighboring Finn, exactly one villager also neighbor Owen.",
+      "parts": [
+        23,
+        "villager",
+        2,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs below Camila, exactly one werewolf also neighbor Finn.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the one villager to the left of Harper, exactly one villager also neighbor Nathan.",
+      "parts": [
+        19,
+        "villager",
+        2,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "There is exactly one werewolf above Owen.",
+      "parts": [
+        7,
+        "werewolf",
+        4,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one villager to the right of Finn, exactly one villager also neighbor Nova.",
+      "parts": [
+        20,
+        "villager",
+        2,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one werewolf neighboring Camila, exactly one werewolf also neighbor Finn.",
+      "parts": [
+        23,
+        "werewolf",
+        1,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 3 villagers neighboring Harper, exactly one villager also neighbor Owen.",
+      "parts": [
+        23,
+        "villager",
+        2,
+        3,
+        4,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 3 werewolfs below Finn, exactly 2 werewolfs also neighbor Zara.",
+      "parts": [
+        22,
+        "werewolf",
+        2,
+        1,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Among the 11 people whose names come before Reid alphabetically, exactly 4 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        4,
+        3,
+        4,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "All werewolfs in column 2 stay connected to each other.",
+      "parts": [
+        13,
+        "werewolf",
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Among the 13 people whose names come before me alphabetically, exactly 5 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        5,
+        2,
+        5,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one villager below Nova, exactly one villager also neighbor Zuri.",
+      "parts": [
+        22,
+        "villager",
+        3,
+        3,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers neighboring Owen, exactly one villager also neighbor Zara.",
+      "parts": [
+        23,
+        "villager",
+        4,
+        1,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-01-16T00:00:00Z"
+}
