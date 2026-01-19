@@ -1,0 +1,554 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "pilot",
+    "rogue-android"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "There is exactly one pilot to the left of Emma.",
+      "parts": [
+        9,
+        "pilot",
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "pilot",
+      "statement": "Of the 2 pilots below Emma, exactly one pilot also neighbor Felix.",
+      "parts": [
+        22,
+        "pilot",
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Of the one rogue-android to the left of Carter, exactly one rogue-android also neighbor Emma.",
+      "parts": [
+        19,
+        "rogue-android",
+        1,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Of the one pilot to the left of Harper, exactly one pilot also neighbor Leah.",
+      "parts": [
+        19,
+        "pilot",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "pilot",
+      "statement": "There are exactly 2 rogue-androids to the left of Vance.",
+      "parts": [
+        9,
+        "rogue-android",
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Among the 3 people whose names come after Molly alphabetically, exactly 2 rogue-androids are among them.",
+      "parts": [
+        25,
+        "rogue-android",
+        4,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Of the one pilot below Harper, exactly one pilot also neighbor Keira.",
+      "parts": [
+        22,
+        "pilot",
+        3,
+        2,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Between Carter and Harper, there are exactly 0 rogue-androids.",
+      "parts": [
+        11,
+        "rogue-android",
+        1,
+        2,
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Gabriel has exactly one rogue-android nearby.",
+      "parts": [
+        18,
+        "rogue-android",
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Bennett has exactly 0 rogue-androids nearby.",
+      "parts": [
+        18,
+        "rogue-android",
+        1,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Row 1 is home to exactly one rogue-android.",
+      "parts": [
+        1,
+        "rogue-android",
+        1,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Felix and Leah share the same number of pilots nearby.",
+      "parts": [
+        14,
+        "pilot",
+        2,
+        3,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Gabriel has more rogue-androids nearby than Joel.",
+      "parts": [
+        15,
+        "rogue-android",
+        3,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "pilot",
+      "statement": "There are exactly 8 pilots above row 4.",
+      "parts": [
+        3,
+        "pilot",
+        4,
+        8
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Between Gabriel and me, there are exactly 0 rogue-androids.",
+      "parts": [
+        11,
+        "rogue-android",
+        3,
+        1,
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A rogue android has replaced a pilot in your squadron. Mechanical tells can expose them.",
+  "publishedAt": "2026-01-19T00:00:00Z"
+}
