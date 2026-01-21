@@ -1,0 +1,634 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Brooke",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Elias",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Hannah",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Nolan",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Tanner",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Between Brooke and Graham, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        1,
+        1,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the 2 hunters to the left of Garrett, exactly one hunter also neighbor Lily.",
+      "parts": [
+        19,
+        "hunter",
+        2,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters neighboring Brooke, exactly 2 hunters also neighbor me.",
+      "parts": [
+        23,
+        "hunter",
+        1,
+        1,
+        2,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "statement": "There are exactly 0 vampires to the right of Nora.",
+      "parts": [
+        10,
+        "vampire",
+        4,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 vampires neighboring Hannah, exactly one vampire also neighbor Lily.",
+      "parts": [
+        23,
+        "vampire",
+        3,
+        2,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Between Elias and Penelope, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Elias and I share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        1,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 vampires neighboring Graham, exactly one vampire also neighbor Tanner.",
+      "parts": [
+        23,
+        "vampire",
+        3,
+        1,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Tanner has exactly 2 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 hunters below Elias, exactly 2 hunters also neighbor Lily.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Among the 5 people whose names come after Nolan alphabetically, exactly 3 hunters are among them.",
+      "parts": [
+        25,
+        "hunter",
+        4,
+        1,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the 4 hunters below Brooke, exactly 2 hunters also neighbor Nolan.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        1,
+        4,
+        1,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Garrett has fewer hunters nearby than Vance.",
+      "parts": [
+        16,
+        "hunter",
+        2,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Among the 10 people whose names come before Nora alphabetically, exactly 4 vampires are among them.",
+      "parts": [
+        24,
+        "vampire",
+        4,
+        2,
+        4,
+        10
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Gabriel has more vampires nearby than Garrett.",
+      "parts": [
+        15,
+        "vampire",
+        2,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-01-21T00:00:00Z"
+}
