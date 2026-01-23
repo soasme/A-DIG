@@ -1,0 +1,577 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Bryce",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Mason",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Ruby",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 2 hunters below Bryce, exactly one hunter also neighbor Leah.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        2,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Esme is one of the 3 hunters surrounding Holden.",
+      "parts": [
+        17,
+        "hunter",
+        1,
+        3,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 hunters above Ruby, exactly one hunter also neighbor Yara.",
+      "parts": [
+        21,
+        "hunter",
+        5,
+        1,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the one vampire below Leah, exactly one vampire also neighbor Peter.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Peter is one of the one vampire surrounding me.",
+      "parts": [
+        17,
+        "vampire",
+        4,
+        2,
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 hunters below Grayson, exactly one hunter also neighbor Holden.",
+      "parts": [
+        22,
+        "hunter",
+        2,
+        1,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Odette and Ruby share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        4,
+        1,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "There are exactly 0 hunters above Grayson.",
+      "parts": [
+        7,
+        "hunter",
+        2,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Between Mason and Zelda, there are exactly 0 hunters.",
+      "parts": [
+        11,
+        "hunter",
+        3,
+        3,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Bryce is one of the 3 vampires surrounding Ivy.",
+      "parts": [
+        17,
+        "vampire",
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "All vampires in column 2 stay connected to each other.",
+      "parts": [
+        13,
+        "vampire",
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Ivy has fewer vampires nearby than Peter.",
+      "parts": [
+        16,
+        "vampire",
+        2,
+        3,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 vampires to the right of Leah, exactly one vampire also neighbor Lucy.",
+      "parts": [
+        20,
+        "vampire",
+        3,
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the 3 hunters neighboring Holden, exactly 2 hunters also neighbor Lucy.",
+      "parts": [
+        23,
+        "hunter",
+        2,
+        2,
+        3,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Arthur and Bryce share the same number of vampires nearby.",
+      "parts": [
+        14,
+        "vampire",
+        1,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-01-23T00:00:00Z"
+}
