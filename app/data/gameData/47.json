@@ -1,0 +1,623 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Elliot",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Greta",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Jack",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Jacob",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Nathan",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Nova",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Poppy",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Vincent",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "killer",
+      "statement": "Jacob is one of the 3 killers surrounding Nathan.",
+      "parts": [
+        17,
+        "killer",
+        2,
+        1,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the 6 killers neighboring Kelsey, exactly 2 killers also neighbor Oscar.",
+      "parts": [
+        23,
+        "killer",
+        2,
+        2,
+        3,
+        3,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 3 killers neighboring Lily, exactly one killer also neighbor Oscar.",
+      "parts": [
+        23,
+        "killer",
+        2,
+        3,
+        3,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 2 killers neighboring Jack, exactly one killer also neighbor Oscar.",
+      "parts": [
+        23,
+        "killer",
+        1,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "There are exactly 3 killers above Xiomara.",
+      "parts": [
+        7,
+        "killer",
+        5,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 2 detectives neighboring Kelsey, exactly one detective also neighbor Poppy.",
+      "parts": [
+        23,
+        "detective",
+        2,
+        2,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 2 detectives neighboring Jacob, exactly one detective also neighbor Quinn.",
+      "parts": [
+        23,
+        "detective",
+        2,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Greta has fewer detectives nearby than Kelsey.",
+      "parts": [
+        16,
+        "detective",
+        1,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 detectives neighboring Lily, exactly one detective also neighbor Samuel.",
+      "parts": [
+        23,
+        "detective",
+        2,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "killer",
+      "statement": "Greta has fewer detectives nearby than Nathan.",
+      "parts": [
+        16,
+        "detective",
+        1,
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 3 detectives below Elliot, exactly 3 detectives also neighbor Quinn.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        1,
+        4,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "detective",
+      "statement": "Among the 12 people whose names come before me alphabetically, exactly 8 killers are among them.",
+      "parts": [
+        24,
+        "killer",
+        5,
+        1,
+        8,
+        12
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "killer",
+      "statement": "I and Xiomara share the same number of killers nearby.",
+      "parts": [
+        14,
+        "killer",
+        4,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "There are exactly 3 detectives below row 3.",
+      "parts": [
+        4,
+        "detective",
+        3,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the one detective to the left of Nova, exactly one detective also neighbor Quinn.",
+      "parts": [
+        19,
+        "detective",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-01-26T00:00:00Z"
+}
