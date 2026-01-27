@@ -1,0 +1,598 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Alice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Dylan",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Franklin",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Jacob",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Kyle",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Lawson",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Opal",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Zachary",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers below Delia, exactly one villager also neighbor Julia.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Grace is one of the 3 villagers surrounding me.",
+      "parts": [
+        17,
+        "villager",
+        3,
+        1,
+        4,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one werewolf to the right of Harper, exactly one werewolf also neighbor Lawson.",
+      "parts": [
+        20,
+        "werewolf",
+        3,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "There is exactly one werewolf to the right of Alice.",
+      "parts": [
+        10,
+        "werewolf",
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one werewolf to the right of Grace, exactly one werewolf also neighbor Lawson.",
+      "parts": [
+        20,
+        "werewolf",
+        3,
+        1,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 3 villagers neighboring Franklin, exactly one villager also neighbor Lawson.",
+      "parts": [
+        23,
+        "villager",
+        2,
+        3,
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "There are exactly 0 werewolfs to the right of Delia.",
+      "parts": [
+        10,
+        "werewolf",
+        2,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Alice has fewer villagers nearby than Chase.",
+      "parts": [
+        16,
+        "villager",
+        1,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Between Ava and Sophia, there is exactly one werewolf.",
+      "parts": [
+        11,
+        "werewolf",
+        1,
+        2,
+        5,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers below Alice, exactly 2 villagers also neighbor Harper.",
+      "parts": [
+        22,
+        "villager",
+        1,
+        1,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers below Dylan, exactly one villager also neighbor me.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        2,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Among the 7 people whose names come before Harper alphabetically, exactly 3 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        3,
+        2,
+        3,
+        7
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "There are exactly 5 werewolfs above row 5.",
+      "parts": [
+        3,
+        "werewolf",
+        5,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers below Franklin, exactly one villager also neighbor Zachary.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Harper is one of the 3 villagers surrounding Julia.",
+      "parts": [
+        17,
+        "villager",
+        3,
+        2,
+        4,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-01-27T00:00:00Z"
+}
