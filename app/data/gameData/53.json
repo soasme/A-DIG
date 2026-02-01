@@ -1,0 +1,619 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Beatrice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Ingrid",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Joy",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Landon",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Leon",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Owen",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the one killer below Ingrid, exactly one killer also neighbor Tatum.",
+      "parts": [
+        22,
+        "killer",
+        2,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "Between Joy and Talia, there is exactly one detective.",
+      "parts": [
+        11,
+        "detective",
+        2,
+        3,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 3 detectives neighboring Talia, exactly one detective also neighbor Wren.",
+      "parts": [
+        23,
+        "detective",
+        4,
+        3,
+        5,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the 5 detectives neighboring Ingrid, exactly 3 detectives also neighbor Owen.",
+      "parts": [
+        23,
+        "detective",
+        2,
+        2,
+        4,
+        2,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the one detective to the right of Ingrid, exactly one detective also neighbor Landon.",
+      "parts": [
+        20,
+        "detective",
+        2,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 detectives to the right of Holden, exactly 2 detectives also neighbor Keira.",
+      "parts": [
+        20,
+        "detective",
+        2,
+        1,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Between Graham and Wren, there are exactly 0 killers.",
+      "parts": [
+        11,
+        "killer",
+        1,
+        3,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "detective",
+      "statement": "There are exactly 0 killers to the right of Leon.",
+      "parts": [
+        10,
+        "killer",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "There are exactly 2 detectives below Ingrid.",
+      "parts": [
+        8,
+        "detective",
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "killer",
+      "statement": "Kayla is one of the 4 detectives surrounding Leon.",
+      "parts": [
+        17,
+        "detective",
+        3,
+        1,
+        4,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 5 detectives neighboring Ingrid, exactly 3 detectives also neighbor Joy.",
+      "parts": [
+        23,
+        "detective",
+        2,
+        2,
+        2,
+        3,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the 3 detectives below Beatrice, exactly 2 detectives also neighbor Victor.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        1,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "Holden has fewer detectives nearby than Joy.",
+      "parts": [
+        16,
+        "detective",
+        2,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "detective",
+      "statement": "Among the 9 people whose names come before Leon alphabetically, exactly 6 detectives are among them.",
+      "parts": [
+        24,
+        "detective",
+        4,
+        1,
+        6,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 5 detectives neighboring Landon, exactly 2 detectives also neighbor Leon.",
+      "parts": [
+        23,
+        "detective",
+        3,
+        3,
+        4,
+        1,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-02-01T00:00:00Z"
+}
