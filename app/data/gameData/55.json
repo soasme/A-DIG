@@ -1,0 +1,579 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Anya",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Daphne",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Hazel",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Jade",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Nicholas",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Spencer",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Zane",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 4 hunters neighboring Gabriel, exactly one hunter also neighbor Penelope.",
+      "parts": [
+        23,
+        "hunter",
+        2,
+        1,
+        4,
+        3,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 hunters to the left of Keira, exactly one hunter also neighbor Penelope.",
+      "parts": [
+        19,
+        "hunter",
+        3,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the 2 vampires neighboring Kelsey, exactly one vampire also neighbor Zeke.",
+      "parts": [
+        23,
+        "vampire",
+        4,
+        1,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Between Ian and Penelope, there is exactly one vampire.",
+      "parts": [
+        11,
+        "vampire",
+        2,
+        3,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the 3 vampires neighboring Jade, exactly one vampire also neighbor me.",
+      "parts": [
+        23,
+        "vampire",
+        3,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Kelsey has fewer vampires nearby than Penelope.",
+      "parts": [
+        16,
+        "vampire",
+        4,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "There are exactly 3 vampires below row 4.",
+      "parts": [
+        4,
+        "vampire",
+        4,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Spencer and I share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        5,
+        1,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one vampire below Hazel, exactly one vampire also neighbor Kelsey.",
+      "parts": [
+        22,
+        "vampire",
+        2,
+        2,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the one vampire neighboring Ivy, exactly one vampire also neighbor me.",
+      "parts": [
+        23,
+        "vampire",
+        3,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 hunters to the right of Gabriel, exactly one hunter also neighbor Ivy.",
+      "parts": [
+        20,
+        "hunter",
+        2,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 3 hunters neighboring Daphne, exactly 2 hunters also neighbor Hazel.",
+      "parts": [
+        23,
+        "hunter",
+        1,
+        3,
+        2,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Gabriel and Ivy share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Hazel has exactly 2 vampires nearby.",
+      "parts": [
+        18,
+        "vampire",
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Keira has fewer vampires nearby than Zane.",
+      "parts": [
+        16,
+        "vampire",
+        3,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-02-03T00:00:00Z"
+}
