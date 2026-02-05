@@ -1,0 +1,576 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Aiden",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Gia",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Isla",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Mason",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Zane",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Talia is one of the 4 villagers surrounding Uma.",
+      "parts": [
+        17,
+        "villager",
+        4,
+        2,
+        4,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 villagers below Ivy, exactly 2 villagers also neighbor Uma.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Between Isla and Preston, there are exactly 0 villagers.",
+      "parts": [
+        11,
+        "villager",
+        2,
+        1,
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Marcus is one of the 2 villagers surrounding Preston.",
+      "parts": [
+        17,
+        "villager",
+        3,
+        2,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "There is exactly one villager below Uma.",
+      "parts": [
+        8,
+        "villager",
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers below Mason.",
+      "parts": [
+        8,
+        "villager",
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers to the right of Lily, exactly 2 villagers also neighbor Talia.",
+      "parts": [
+        20,
+        "villager",
+        3,
+        1,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Between Aiden and Gia, there is exactly one villager.",
+      "parts": [
+        11,
+        "villager",
+        1,
+        1,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 villagers to the right of Aiden, exactly 2 villagers also neighbor Ivy.",
+      "parts": [
+        20,
+        "villager",
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 0 zombies above Mason.",
+      "parts": [
+        7,
+        "zombie",
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Preston is one of the 4 villagers surrounding Yara.",
+      "parts": [
+        17,
+        "villager",
+        4,
+        1,
+        5,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one villager to the left of Ivy, exactly one villager also neighbor Lily.",
+      "parts": [
+        19,
+        "villager",
+        2,
+        2,
+        3,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Ivy has more zombies nearby than Uma.",
+      "parts": [
+        15,
+        "zombie",
+        2,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Esme has fewer villagers nearby than Uma.",
+      "parts": [
+        16,
+        "villager",
+        1,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Lily has fewer zombies nearby than Preston.",
+      "parts": [
+        16,
+        "zombie",
+        3,
+        1,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-02-05T00:00:00Z"
+}
