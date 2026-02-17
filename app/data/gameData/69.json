@@ -1,0 +1,686 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "crew member",
+    "alien-impostor"
+  ],
+  "characters": [
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Kirk",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Tyler",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Of the 2 crew members below Damian, exactly one crew member also neighbor Diana.",
+      "parts": [
+        22,
+        "crew member",
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "crew member",
+      "statement": "There are exactly 0 alien-impostors to the left of Kelsey.",
+      "parts": [
+        9,
+        "alien-impostor",
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Of the one crew member to the right of Garrett, exactly one crew member also neighbor Kelsey.",
+      "parts": [
+        20,
+        "crew member",
+        2,
+        2,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Of the 3 alien-impostors neighboring Tyler, exactly 2 alien-impostors also neighbor Willow.",
+      "parts": [
+        23,
+        "alien-impostor",
+        4,
+        3,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "There is exactly one alien-impostor above Diana.",
+      "parts": [
+        7,
+        "alien-impostor",
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Of the one crew member to the left of Delia, exactly one crew member also neighbor Diana.",
+      "parts": [
+        19,
+        "crew member",
+        1,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Of the one alien-impostor below Garrett, exactly one alien-impostor also neighbor Victor.",
+      "parts": [
+        22,
+        "alien-impostor",
+        2,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Of the 2 alien-impostors below Damian, exactly 2 alien-impostors also neighbor Kirk.",
+      "parts": [
+        22,
+        "alien-impostor",
+        1,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Of the 3 alien-impostors neighboring me, exactly one alien-impostor also neighbor Molly.",
+      "parts": [
+        23,
+        "alien-impostor",
+        2,
+        2,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Delia has more crew members nearby than Yara.",
+      "parts": [
+        15,
+        "crew member",
+        1,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Among the 3 people whose names come before Diana alphabetically, exactly one alien-impostor is among them.",
+      "parts": [
+        24,
+        "alien-impostor",
+        2,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Among the 4 people whose names come before Garrett alphabetically, exactly 2 crew members are among them.",
+      "parts": [
+        24,
+        "crew member",
+        2,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Among the 12 people whose names come before Victor alphabetically, exactly 5 crew members are among them.",
+      "parts": [
+        24,
+        "crew member",
+        5,
+        1,
+        5,
+        12
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Among the 11 people whose names come after Diana alphabetically, exactly 5 crew members are among them.",
+      "parts": [
+        25,
+        "crew member",
+        2,
+        1,
+        5,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Gemma has fewer crew members nearby than Molly.",
+      "parts": [
+        16,
+        "crew member",
+        2,
+        3,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Alien creatures has copied some crew members aboard your ship. Identify the impostors.",
+  "publishedAt": "2026-02-17T00:00:00Z"
+}
