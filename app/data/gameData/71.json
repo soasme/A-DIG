@@ -1,0 +1,587 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Bria",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Elise",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Maya",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Nathan",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Tyler",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Between Kelsey and Maya, there are exactly 0 vampires.",
+      "parts": [
+        11,
+        "vampire",
+        3,
+        1,
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the one hunter to the left of Riley, exactly one hunter also neighbor Tyler.",
+      "parts": [
+        19,
+        "hunter",
+        4,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "There are exactly 0 vampires to the left of Trevor.",
+      "parts": [
+        9,
+        "vampire",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters below Freya, exactly 2 hunters also neighbor Zion.",
+      "parts": [
+        22,
+        "hunter",
+        2,
+        2,
+        5,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the one hunter to the right of Freya, exactly one hunter also neighbor Maya.",
+      "parts": [
+        20,
+        "hunter",
+        2,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 hunters to the right of Esme, exactly one hunter also neighbor me.",
+      "parts": [
+        20,
+        "hunter",
+        2,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the one hunter to the left of Julia, exactly one hunter also neighbor Lucy.",
+      "parts": [
+        19,
+        "hunter",
+        2,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 5 hunters neighboring Maya, exactly 2 hunters also neighbor Zeke.",
+      "parts": [
+        23,
+        "hunter",
+        3,
+        3,
+        5,
+        2,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the one hunter to the right of Brady, exactly one hunter also neighbor Freya.",
+      "parts": [
+        20,
+        "hunter",
+        1,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Julia and Tyler share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        2,
+        3,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Trevor has exactly 3 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        4,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Lucy has more hunters nearby than Riley.",
+      "parts": [
+        15,
+        "hunter",
+        3,
+        2,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 4 vampires neighboring Riley, exactly 2 vampires also neighbor Zeke.",
+      "parts": [
+        23,
+        "vampire",
+        4,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Freya and Zeke share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        2,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 2 vampires neighboring Julia, exactly one vampire also neighbor Lucy.",
+      "parts": [
+        23,
+        "vampire",
+        2,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-02-19T00:00:00Z"
+}
