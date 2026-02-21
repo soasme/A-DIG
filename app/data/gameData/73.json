@@ -1,0 +1,550 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Clark",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Greta",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Noah",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Ryan",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Vera",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Whitney",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There are exactly 0 agents to the left of Whitney.",
+      "parts": [
+        9,
+        "agent",
+        5,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the one agent to the right of Kayla, exactly one agent also neighbor Ryan.",
+      "parts": [
+        20,
+        "agent",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 3 double-agents neighboring Noah, exactly one double-agent also neighbor Whitney.",
+      "parts": [
+        23,
+        "double-agent",
+        4,
+        1,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one agent to the right of Noah, exactly one agent also neighbor Sophia.",
+      "parts": [
+        20,
+        "agent",
+        4,
+        1,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There is exactly one double-agent below Lily.",
+      "parts": [
+        8,
+        "double-agent",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "agent",
+      "statement": "Between Clark and me, there is exactly one agent.",
+      "parts": [
+        11,
+        "agent",
+        1,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Row 5 is home to exactly one double-agent.",
+      "parts": [
+        1,
+        "double-agent",
+        5,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one double-agent to the right of Dominic, exactly one double-agent also neighbor Flora.",
+      "parts": [
+        20,
+        "double-agent",
+        2,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "agent",
+      "statement": "There is exactly one double-agent below Celeste.",
+      "parts": [
+        8,
+        "double-agent",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the 2 double-agents neighboring Clark, exactly one double-agent also neighbor me.",
+      "parts": [
+        23,
+        "double-agent",
+        1,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Gabriel and Lily share the same number of agents nearby.",
+      "parts": [
+        14,
+        "agent",
+        2,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There is exactly one agent to the left of Gabriel.",
+      "parts": [
+        9,
+        "agent",
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Flora has exactly 7 double-agents nearby.",
+      "parts": [
+        18,
+        "double-agent",
+        2,
+        2,
+        7
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the 4 agents neighboring Kayla, exactly one agent also neighbor Zeke.",
+      "parts": [
+        23,
+        "agent",
+        3,
+        2,
+        5,
+        3,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "There are exactly 0 agents above Gabriel.",
+      "parts": [
+        7,
+        "agent",
+        2,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-02-21T00:00:00Z"
+}
