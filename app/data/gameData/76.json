@@ -1,0 +1,641 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Bria",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Clara",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Evan",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Isaac",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Phillip",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Piper",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Raina",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Tristan",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Bria is one of the 3 vampires surrounding Evan.",
+      "parts": [
+        17,
+        "vampire",
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Between Isaac and Morgan, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        3,
+        1,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "There are exactly 0 hunters below Phillip.",
+      "parts": [
+        8,
+        "hunter",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Morgan is one of the 5 vampires surrounding Piper.",
+      "parts": [
+        17,
+        "vampire",
+        3,
+        3,
+        4,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the 3 vampires neighboring Ian, exactly one vampire also neighbor Piper.",
+      "parts": [
+        23,
+        "vampire",
+        2,
+        3,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 hunters neighboring Molly, exactly one hunter also neighbor Raina.",
+      "parts": [
+        23,
+        "hunter",
+        3,
+        2,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters below Bria, exactly one hunter also neighbor Ian.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Morgan is one of the 2 vampires surrounding Raina.",
+      "parts": [
+        17,
+        "vampire",
+        3,
+        3,
+        4,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one hunter below Ian, exactly one hunter also neighbor Morgan.",
+      "parts": [
+        22,
+        "hunter",
+        2,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Among the 8 people whose names come after Isaac alphabetically, exactly 4 hunters are among them.",
+      "parts": [
+        25,
+        "hunter",
+        3,
+        1,
+        4,
+        8
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Piper and Zeke share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        4,
+        2,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Row 1 are home to exactly 2 hunters.",
+      "parts": [
+        1,
+        "hunter",
+        1,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "hunter",
+      "statement": "5 vampire 2 4",
+      "parts": [
+        5,
+        "vampire",
+        2,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Among the 13 people whose names come before Zara alphabetically, exactly 8 vampires are among them.",
+      "parts": [
+        24,
+        "vampire",
+        5,
+        2,
+        8,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one vampire to the right of Isaac, exactly one vampire also neighbor Molly.",
+      "parts": [
+        20,
+        "vampire",
+        3,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-02-24T00:00:00Z"
+}
