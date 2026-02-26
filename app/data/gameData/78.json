@@ -1,0 +1,544 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Clark",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Elise",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Jasper",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Riley",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 3,
+      "role": "hunter",
+      "statement": "There are exactly 0 hunters to the left of Walker.",
+      "parts": [
+        9,
+        "hunter",
+        4,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 2 vampires below Clark, exactly one vampire also neighbor Jasper.",
+      "parts": [
+        22,
+        "vampire",
+        1,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Between Gabriel and Zion, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        2,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Between Elise and Kevin, there are exactly 0 hunters.",
+      "parts": [
+        11,
+        "hunter",
+        1,
+        2,
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Gabriel is one of the 2 hunters surrounding Molly.",
+      "parts": [
+        17,
+        "hunter",
+        2,
+        3,
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "There are exactly 0 hunters below Walker.",
+      "parts": [
+        8,
+        "hunter",
+        4,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 3 hunters neighboring Flora, exactly one hunter also neighbor Wren.",
+      "parts": [
+        23,
+        "hunter",
+        2,
+        1,
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 vampires below Freya, exactly 2 vampires also neighbor Wren.",
+      "parts": [
+        22,
+        "vampire",
+        2,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Felix and Molly share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        1,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Flora has fewer hunters nearby than Kevin.",
+      "parts": [
+        16,
+        "hunter",
+        2,
+        1,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Elise has more vampires nearby than Freya.",
+      "parts": [
+        15,
+        "vampire",
+        1,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "There are exactly 6 hunters above row 5.",
+      "parts": [
+        3,
+        "hunter",
+        5,
+        6
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Gabriel has more hunters nearby than Riley.",
+      "parts": [
+        15,
+        "hunter",
+        2,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "There are exactly 6 hunters below row 1.",
+      "parts": [
+        4,
+        "hunter",
+        1,
+        6
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "statement": "6 vampire 3 0",
+      "parts": [
+        6,
+        "vampire",
+        3,
+        0
+      ],
+      "referencedCells": [],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-02-26T00:00:00Z"
+}
