@@ -1,0 +1,597 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Tanner",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Tyler",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Uriel",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Vera",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Naomi is one of the 4 zombies surrounding Tanner.",
+      "parts": [
+        17,
+        "zombie",
+        3,
+        2,
+        4,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "zombie",
+      "statement": "There is exactly one zombie to the left of Talia.",
+      "parts": [
+        9,
+        "zombie",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 2 zombies below me, exactly 2 zombies also neighbor Wren.",
+      "parts": [
+        22,
+        "zombie",
+        3,
+        1,
+        5,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 4 villagers neighboring Kaden, exactly one villager also neighbor Tyler.",
+      "parts": [
+        23,
+        "villager",
+        2,
+        2,
+        4,
+        2,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the 2 zombies neighboring Adam, exactly one zombie also neighbor me.",
+      "parts": [
+        23,
+        "zombie",
+        1,
+        1,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "zombie",
+      "statement": "There is exactly one villager to the left of April.",
+      "parts": [
+        9,
+        "villager",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "All villagers in column 1 stay connected to each other.",
+      "parts": [
+        13,
+        "villager",
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one villager to the left of Blake, exactly one villager also neighbor Kaden.",
+      "parts": [
+        19,
+        "villager",
+        1,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Among the 3 people whose names come before Garrett alphabetically, exactly one zombie is among them.",
+      "parts": [
+        24,
+        "zombie",
+        2,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Adam and Leah share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Kayla and Tanner share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        2,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "zombie",
+      "statement": "There is exactly one villager below row 4.",
+      "parts": [
+        4,
+        "villager",
+        4,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Tyler has exactly 2 villagers nearby.",
+      "parts": [
+        18,
+        "villager",
+        4,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Among the 11 people whose names come after Garrett alphabetically, exactly 9 zombies are among them.",
+      "parts": [
+        25,
+        "zombie",
+        2,
+        1,
+        9,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Tyler has more zombies nearby than Wren.",
+      "parts": [
+        15,
+        "zombie",
+        4,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-03-01T00:00:00Z"
+}
