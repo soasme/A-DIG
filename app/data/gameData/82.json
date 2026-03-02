@@ -1,0 +1,632 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "crew member",
+    "alien-impostor"
+  ],
+  "characters": [
+    {
+      "name": "Aiden",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Maya",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Miles",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Nolan",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Riley",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Miles is one of the 2 crew members surrounding Nolan.",
+      "parts": [
+        17,
+        "crew member",
+        3,
+        2,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Of the 2 alien-impostors below Keegan, exactly one alien-impostor also neighbor Nolan.",
+      "parts": [
+        22,
+        "alien-impostor",
+        2,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Kelsey is one of the 4 alien-impostors surrounding Miles.",
+      "parts": [
+        17,
+        "alien-impostor",
+        2,
+        2,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Of the one alien-impostor to the left of Lucy, exactly one alien-impostor also neighbor Miles.",
+      "parts": [
+        19,
+        "alien-impostor",
+        2,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Between Vance and Zion, there are exactly 0 crew members.",
+      "parts": [
+        11,
+        "crew member",
+        5,
+        1,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "There are exactly 0 crew members below Miles.",
+      "parts": [
+        8,
+        "crew member",
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Of the one alien-impostor to the right of Nolan, exactly one alien-impostor also neighbor Zion.",
+      "parts": [
+        20,
+        "alien-impostor",
+        4,
+        1,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Of the 2 crew members neighboring Freya, exactly one crew member also neighbor Molly.",
+      "parts": [
+        23,
+        "crew member",
+        1,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "crew member",
+      "statement": "There are exactly 0 crew members below Nolan.",
+      "parts": [
+        8,
+        "crew member",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Maya has fewer alien-impostors nearby than Victor.",
+      "parts": [
+        16,
+        "alien-impostor",
+        3,
+        1,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Penelope is one of the 4 alien-impostors surrounding Riley.",
+      "parts": [
+        17,
+        "alien-impostor",
+        4,
+        2,
+        4,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Lucy has more crew members nearby than Maya.",
+      "parts": [
+        15,
+        "crew member",
+        2,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Among the 13 people whose names come after Camila alphabetically, exactly 6 crew members are among them.",
+      "parts": [
+        25,
+        "crew member",
+        1,
+        2,
+        6,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Of the one alien-impostor neighboring Camila, exactly one alien-impostor also neighbor Lucy.",
+      "parts": [
+        23,
+        "alien-impostor",
+        1,
+        2,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Of the 2 crew members to the left of Molly, exactly one crew member also neighbor Riley.",
+      "parts": [
+        19,
+        "crew member",
+        3,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Alien creatures has copied some crew members aboard your ship. Identify the impostors.",
+  "publishedAt": "2026-03-02T00:00:00Z"
+}
