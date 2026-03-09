@@ -1,0 +1,633 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Clara",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Emmett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Nathan",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Roman",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 3 werewolfs neighboring Porter, exactly one werewolf also neighbor Quinn.",
+      "parts": [
+        23,
+        "werewolf",
+        3,
+        3,
+        4,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "There is exactly one werewolf below Quinn.",
+      "parts": [
+        8,
+        "werewolf",
+        4,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Ava is one of the 3 villagers surrounding Emmett.",
+      "parts": [
+        17,
+        "villager",
+        1,
+        1,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "There is exactly one werewolf to the left of Roman.",
+      "parts": [
+        9,
+        "werewolf",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the one villager to the left of Fiona, exactly one villager also neighbor Holden.",
+      "parts": [
+        19,
+        "villager",
+        2,
+        2,
+        3,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 3 villagers neighboring Holden, exactly 2 villagers also neighbor Nathan.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        1,
+        3,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one werewolf to the left of Clara, exactly one werewolf also neighbor me.",
+      "parts": [
+        19,
+        "werewolf",
+        1,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Clara has exactly 2 werewolfs nearby.",
+      "parts": [
+        18,
+        "werewolf",
+        1,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Emmett and Holden share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Ava and Porter share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Among the 3 people whose names come before Emmett alphabetically, exactly 2 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        2,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Among the 13 people whose names come before Wren alphabetically, exactly 8 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        5,
+        2,
+        8,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs below Nathan, exactly 2 werewolfs also neighbor Sophia.",
+      "parts": [
+        22,
+        "werewolf",
+        3,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 5 werewolfs neighboring Roman, exactly one werewolf also neighbor Sophia.",
+      "parts": [
+        23,
+        "werewolf",
+        4,
+        2,
+        4,
+        3,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Roman is one of the 3 werewolfs surrounding me.",
+      "parts": [
+        17,
+        "werewolf",
+        4,
+        2,
+        5,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-03-09T00:00:00Z"
+}
