@@ -1,0 +1,564 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Adrian",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Jasper",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Lawson",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Nadia",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Riley",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Tessa",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs neighboring Bennett, exactly one werewolf also neighbor Lena.",
+      "parts": [
+        23,
+        "werewolf",
+        1,
+        3,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 2 werewolfs neighboring Arthur, exactly one werewolf also neighbor Diana.",
+      "parts": [
+        23,
+        "werewolf",
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one werewolf neighboring me, exactly one werewolf also neighbor Quinn.",
+      "parts": [
+        23,
+        "werewolf",
+        1,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs below Adrian, exactly one werewolf also neighbor Tessa.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        1,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 6 werewolfs neighboring Riley, exactly 2 werewolfs also neighbor Tessa.",
+      "parts": [
+        23,
+        "werewolf",
+        4,
+        2,
+        5,
+        1,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers to the right of Adrian, exactly one villager also neighbor Bennett.",
+      "parts": [
+        20,
+        "villager",
+        1,
+        1,
+        1,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs to the right of Tessa, exactly one werewolf also neighbor Wren.",
+      "parts": [
+        20,
+        "werewolf",
+        5,
+        1,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "There are exactly 0 villagers to the left of Wren.",
+      "parts": [
+        9,
+        "villager",
+        5,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "There are exactly 2 werewolfs below Adrian.",
+      "parts": [
+        8,
+        "werewolf",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one werewolf to the left of Tatum, exactly one werewolf also neighbor Wren.",
+      "parts": [
+        19,
+        "werewolf",
+        4,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "5 villager 3 6",
+      "parts": [
+        5,
+        "villager",
+        3,
+        6
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Arthur has fewer villagers nearby than Diana.",
+      "parts": [
+        16,
+        "villager",
+        1,
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Lena has fewer werewolfs nearby than Quinn.",
+      "parts": [
+        16,
+        "werewolf",
+        3,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "There are exactly 4 villagers below row 1.",
+      "parts": [
+        4,
+        "villager",
+        1,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the one villager to the right of Reid, exactly one villager also neighbor Tessa.",
+      "parts": [
+        20,
+        "villager",
+        4,
+        1,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-03-11T00:00:00Z"
+}
