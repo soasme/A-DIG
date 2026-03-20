@@ -1,0 +1,588 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Beatrice",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Celia",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Clark",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Franklin",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Hayden",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Hazel",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Henry",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Jade",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Sawyer",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the one werewolf above Dahlia, exactly one werewolf also neighbor Franklin.",
+      "parts": [
+        21,
+        "werewolf",
+        2,
+        2,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "There is exactly one werewolf above Hazel.",
+      "parts": [
+        7,
+        "werewolf",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Quinn is one of the 2 villagers surrounding Zara.",
+      "parts": [
+        17,
+        "villager",
+        4,
+        3,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one werewolf below Celia, exactly one werewolf also neighbor Dahlia.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Between Celia and Henry, there are exactly 0 werewolfs.",
+      "parts": [
+        11,
+        "werewolf",
+        1,
+        3,
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "There is exactly one werewolf below Celia.",
+      "parts": [
+        8,
+        "werewolf",
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the 4 werewolfs neighboring Franklin, exactly 2 werewolfs also neighbor Ophelia.",
+      "parts": [
+        23,
+        "werewolf",
+        2,
+        3,
+        4,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the one villager below Ophelia, exactly one villager also neighbor Sawyer.",
+      "parts": [
+        22,
+        "villager",
+        4,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one villager below Dahlia, exactly one villager also neighbor Zara.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        2,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the one werewolf to the left of me, exactly one werewolf also neighbor Walker.",
+      "parts": [
+        19,
+        "werewolf",
+        4,
+        2,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the one werewolf neighboring Arthur, exactly one werewolf also neighbor Clark.",
+      "parts": [
+        23,
+        "werewolf",
+        1,
+        1,
+        2,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Beatrice has more werewolfs nearby than Zara.",
+      "parts": [
+        15,
+        "werewolf",
+        1,
+        2,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 5 werewolfs neighboring Dahlia, exactly one werewolf also neighbor Hazel.",
+      "parts": [
+        23,
+        "werewolf",
+        2,
+        2,
+        3,
+        2,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs below Arthur, exactly 2 werewolfs also neighbor Ophelia.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        1,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Beatrice has fewer werewolfs nearby than Dahlia.",
+      "parts": [
+        16,
+        "werewolf",
+        1,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-03-20T00:00:00Z"
+}
