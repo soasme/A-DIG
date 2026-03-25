@@ -1,0 +1,565 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Danica",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Gavin",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Hunter",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Piper",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Spencer",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Tyler",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the 3 vampires neighboring Hunter, exactly one vampire also neighbor Xena.",
+      "parts": [
+        23,
+        "vampire",
+        3,
+        1,
+        5,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 vampires below Piper, exactly 2 vampires also neighbor Tyler.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        2,
+        5,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 3 vampires neighboring Tyler, exactly 2 vampires also neighbor Xena.",
+      "parts": [
+        23,
+        "vampire",
+        5,
+        1,
+        5,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Between Gavin and Tyler, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        2,
+        1,
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Between Bennett and Spencer, there are exactly 0 vampires.",
+      "parts": [
+        11,
+        "vampire",
+        1,
+        1,
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the 2 vampires above Talia, exactly one vampire also neighbor Trevor.",
+      "parts": [
+        21,
+        "vampire",
+        4,
+        2,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Hunter has exactly 2 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "There is exactly one hunter above Talia.",
+      "parts": [
+        7,
+        "hunter",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "All hunters in row 3 stay connected to each other.",
+      "parts": [
+        12,
+        "hunter",
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the one hunter to the right of Bennett, exactly one hunter also neighbor Danica.",
+      "parts": [
+        20,
+        "hunter",
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Tyler and Xena share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        5,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Quinn and Spencer share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        3,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 vampires below Quinn, exactly 2 vampires also neighbor Talia.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Gavin and Talia share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        2,
+        1,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "hunter",
+      "statement": "There is exactly one vampire to the right of me.",
+      "parts": [
+        10,
+        "vampire",
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-03-25T00:00:00Z"
+}
