@@ -1,0 +1,561 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Danica",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Hayden",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Hunter",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Irene",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Neil",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Olivia",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Russell",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Violet",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Between Ian and Uma, there is exactly one vampire.",
+      "parts": [
+        11,
+        "vampire",
+        2,
+        2,
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "There is exactly one vampire to the right of Garrett.",
+      "parts": [
+        10,
+        "vampire",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "There are exactly 2 vampires to the right of Danica.",
+      "parts": [
+        10,
+        "vampire",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Between Ian and Yara, there are exactly 0 hunters.",
+      "parts": [
+        11,
+        "hunter",
+        2,
+        2,
+        5,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "There are exactly 0 hunters below Ian.",
+      "parts": [
+        8,
+        "hunter",
+        2,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 4 vampires below Garrett, exactly 3 vampires also neighbor Neil.",
+      "parts": [
+        22,
+        "vampire",
+        1,
+        2,
+        3,
+        1,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "vampire",
+      "statement": "There are exactly 0 hunters to the left of Irene.",
+      "parts": [
+        9,
+        "hunter",
+        2,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Between Danica and Violet, there are exactly 2 vampires.",
+      "parts": [
+        11,
+        "vampire",
+        1,
+        1,
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the one hunter below Danica, exactly one hunter also neighbor Violet.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        1,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Among the 4 people whose names come before Ian alphabetically, exactly 3 vampires are among them.",
+      "parts": [
+        24,
+        "vampire",
+        2,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Yara is one of the 3 vampires surrounding Yvette.",
+      "parts": [
+        17,
+        "vampire",
+        5,
+        2,
+        5,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Garrett has more vampires nearby than Yvette.",
+      "parts": [
+        15,
+        "vampire",
+        1,
+        2,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Garrett has fewer hunters nearby than Olivia.",
+      "parts": [
+        16,
+        "hunter",
+        1,
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Vance has exactly 2 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        4,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "statement": "All vampires in row 3 stay connected to each other.",
+      "parts": [
+        12,
+        "vampire",
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-03-29T00:00:00Z"
+}
