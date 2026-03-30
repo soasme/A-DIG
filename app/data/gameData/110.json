@@ -1,0 +1,574 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Jasper",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Kirk",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Nolan",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Parker",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Warren",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Zane",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "There are exactly 2 double-agents to the left of Jasper.",
+      "parts": [
+        9,
+        "double-agent",
+        1,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Between me and Nolan, there is exactly one agent.",
+      "parts": [
+        11,
+        "agent",
+        1,
+        1,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 agents to the left of Lily, exactly 2 agents also neighbor Nolan.",
+      "parts": [
+        19,
+        "agent",
+        2,
+        3,
+        3,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one double-agent to the right of Kirk, exactly one double-agent also neighbor Parker.",
+      "parts": [
+        20,
+        "double-agent",
+        2,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Between Nolan and Parker, there are exactly 0 double-agents.",
+      "parts": [
+        11,
+        "double-agent",
+        3,
+        1,
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "agent",
+      "statement": "Quinn is one of the 2 agents surrounding Warren.",
+      "parts": [
+        17,
+        "agent",
+        4,
+        1,
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "There are exactly 3 agents above Wendy.",
+      "parts": [
+        7,
+        "agent",
+        5,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 2 double-agents neighboring Parker, exactly one double-agent also neighbor me.",
+      "parts": [
+        23,
+        "double-agent",
+        3,
+        3,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Zane has exactly one agent nearby.",
+      "parts": [
+        18,
+        "agent",
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Kirk and Quinn share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        2,
+        1,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the 2 agents neighboring Quinn, exactly one agent also neighbor Zane.",
+      "parts": [
+        23,
+        "agent",
+        4,
+        1,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There is exactly one double-agent below Parker.",
+      "parts": [
+        8,
+        "double-agent",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 2 double-agents below Lily, exactly 2 double-agents also neighbor Sophia.",
+      "parts": [
+        22,
+        "double-agent",
+        2,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Kirk is one of the 2 agents surrounding Lena.",
+      "parts": [
+        17,
+        "agent",
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 2 agents neighboring Brady, exactly one agent also neighbor me.",
+      "parts": [
+        23,
+        "agent",
+        1,
+        1,
+        1,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-03-30T00:00:00Z"
+}
