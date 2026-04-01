@@ -1,0 +1,570 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Hazel",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Poppy",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Ruby",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Wesley",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Of the 2 identity thiefs below Colin, exactly 2 identity thiefs also neighbor Tatum.",
+      "parts": [
+        22,
+        "identity thief",
+        1,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Between Morgan and Ruby, there is exactly one identity thief.",
+      "parts": [
+        11,
+        "identity thief",
+        3,
+        1,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "There is exactly one identity thief to the right of Wesley.",
+      "parts": [
+        10,
+        "identity thief",
+        5,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 2 prisoners neighboring Brandon, exactly one prisoner also neighbor Morgan.",
+      "parts": [
+        23,
+        "prisoner",
+        1,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners above Wesley, exactly one prisoner also neighbor Wyatt.",
+      "parts": [
+        21,
+        "prisoner",
+        5,
+        2,
+        5,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the one prisoner to the right of Samuel, exactly one prisoner also neighbor Wyatt.",
+      "parts": [
+        20,
+        "prisoner",
+        4,
+        1,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 2 prisoners below Colin, exactly one prisoner also neighbor Hazel.",
+      "parts": [
+        22,
+        "prisoner",
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the 2 prisoners neighboring Colin, exactly one prisoner also neighbor Poppy.",
+      "parts": [
+        23,
+        "prisoner",
+        1,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Grace and Tatum share the same number of prisoners nearby.",
+      "parts": [
+        14,
+        "prisoner",
+        1,
+        3,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "6 prisoner 1 5",
+      "parts": [
+        6,
+        "prisoner",
+        1,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Of the 2 prisoners neighboring Colin, exactly one prisoner also neighbor Morgan.",
+      "parts": [
+        23,
+        "prisoner",
+        1,
+        2,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "There is exactly one prisoner below row 4.",
+      "parts": [
+        4,
+        "prisoner",
+        4,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners neighboring Wesley, exactly one prisoner also neighbor Wyatt.",
+      "parts": [
+        23,
+        "prisoner",
+        5,
+        2,
+        5,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 2 identity thiefs neighboring me, exactly one identity thief also neighbor Wyatt.",
+      "parts": [
+        23,
+        "identity thief",
+        4,
+        1,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "I have fewer identity thiefs nearby than Ruby.",
+      "parts": [
+        16,
+        "identity thief",
+        3,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-04-01T00:00:00Z"
+}
