@@ -1,0 +1,591 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Raina",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Ryan",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Xander",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the 2 hunters below Blake, exactly one hunter also neighbor me.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        2,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "There is exactly one vampire to the left of Raina.",
+      "parts": [
+        9,
+        "vampire",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 2 hunters below Brandon, exactly one hunter also neighbor Ryan.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "statement": "There are exactly 2 hunters below Ryan.",
+      "parts": [
+        8,
+        "hunter",
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "There are exactly 0 vampires to the right of Sienna.",
+      "parts": [
+        10,
+        "vampire",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 hunters below Eden, exactly 2 hunters also neighbor Victor.",
+      "parts": [
+        22,
+        "hunter",
+        2,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the one vampire to the left of Victor, exactly one vampire also neighbor Xander.",
+      "parts": [
+        19,
+        "vampire",
+        4,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "There are exactly 0 vampires above Camila.",
+      "parts": [
+        7,
+        "vampire",
+        2,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Eden is one of the 4 vampires surrounding Graham.",
+      "parts": [
+        17,
+        "vampire",
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "vampire",
+      "statement": "There are exactly 0 hunters below Sienna.",
+      "parts": [
+        8,
+        "hunter",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "There is exactly one vampire to the right of Eden.",
+      "parts": [
+        10,
+        "vampire",
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Among the 12 people whose names come after Brandon alphabetically, exactly 8 vampires are among them.",
+      "parts": [
+        25,
+        "vampire",
+        1,
+        3,
+        8,
+        12
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Brandon has exactly 0 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Eden has exactly 2 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Camila has more vampires nearby than Victor.",
+      "parts": [
+        15,
+        "vampire",
+        2,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-04-02T00:00:00Z"
+}
