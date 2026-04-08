@@ -1,0 +1,678 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Brooke",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Dean",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Jade",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Opal",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Vera",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Brandon is one of the 2 hunters surrounding Eden.",
+      "parts": [
+        17,
+        "hunter",
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Brooke is one of the 3 vampires surrounding Flora.",
+      "parts": [
+        17,
+        "vampire",
+        1,
+        2,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Between Vance and Wendy, there is exactly one hunter.",
+      "parts": [
+        11,
+        "hunter",
+        5,
+        1,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 2 hunters below Dean, exactly one hunter also neighbor Wendy.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the one vampire below Joel, exactly one vampire also neighbor me.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        3,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "There is exactly one hunter to the right of Flora.",
+      "parts": [
+        10,
+        "hunter",
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 vampires neighboring Dean, exactly 2 vampires also neighbor Eden.",
+      "parts": [
+        23,
+        "vampire",
+        1,
+        3,
+        2,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the one hunter to the right of Brandon, exactly one hunter also neighbor Brooke.",
+      "parts": [
+        20,
+        "hunter",
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Eden has fewer vampires nearby than Holden.",
+      "parts": [
+        16,
+        "vampire",
+        2,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Eden and Opal share the same number of vampires nearby.",
+      "parts": [
+        14,
+        "vampire",
+        2,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters neighboring Ian, exactly one hunter also neighbor me.",
+      "parts": [
+        23,
+        "hunter",
+        3,
+        1,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "I have more vampires nearby than Ian.",
+      "parts": [
+        15,
+        "vampire",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Among the 11 people whose names come before Opal alphabetically, exactly 4 vampires are among them.",
+      "parts": [
+        24,
+        "vampire",
+        4,
+        3,
+        4,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Among the 14 people whose names come after Brandon alphabetically, exactly 6 vampires are among them.",
+      "parts": [
+        25,
+        "vampire",
+        1,
+        1,
+        6,
+        14
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Dean and Jade share the same number of vampires nearby.",
+      "parts": [
+        14,
+        "vampire",
+        1,
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-04-08T00:00:00Z"
+}
