@@ -1,0 +1,620 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "pilot",
+    "rogue-android"
+  ],
+  "characters": [
+    {
+      "name": "Alice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Derek",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Gia",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Liam",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Nolan",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Violet",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Xander",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 1,
+      "role": "pilot",
+      "statement": "Talia is one of the 4 rogue-androids surrounding Yara.",
+      "parts": [
+        17,
+        "rogue-android",
+        4,
+        1,
+        5,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "There are exactly 0 pilots below Liam.",
+      "parts": [
+        8,
+        "pilot",
+        3,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Of the 2 pilots below Keegan, exactly one pilot also neighbor Quinn.",
+      "parts": [
+        22,
+        "pilot",
+        2,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Of the 2 rogue-androids neighboring Gia, exactly one rogue-android also neighbor Talia.",
+      "parts": [
+        23,
+        "rogue-android",
+        2,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Of the 3 rogue-androids neighboring Kayla, exactly 2 rogue-androids also neighbor Liam.",
+      "parts": [
+        23,
+        "rogue-android",
+        2,
+        2,
+        3,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Of the 2 rogue-androids to the left of Keegan, exactly 2 rogue-androids also neighbor Nolan.",
+      "parts": [
+        19,
+        "rogue-android",
+        2,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Of the one pilot to the right of Delia, exactly one pilot also neighbor Keegan.",
+      "parts": [
+        20,
+        "pilot",
+        1,
+        2,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Of the 5 rogue-androids neighboring Liam, exactly 3 rogue-androids also neighbor Quinn.",
+      "parts": [
+        23,
+        "rogue-android",
+        3,
+        1,
+        3,
+        3,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Of the 3 rogue-androids neighboring Kayla, exactly one rogue-android also neighbor me.",
+      "parts": [
+        23,
+        "rogue-android",
+        2,
+        2,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "pilot",
+      "statement": "There is exactly one rogue-android above Zelda.",
+      "parts": [
+        7,
+        "rogue-android",
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "rogue-android",
+      "statement": "Of the 2 rogue-androids neighboring Alice, exactly one rogue-android also neighbor Gia.",
+      "parts": [
+        23,
+        "rogue-android",
+        1,
+        1,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Quinn and Yara share the same number of rogue-androids nearby.",
+      "parts": [
+        14,
+        "rogue-android",
+        3,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "rogue-android",
+      "statement": "Among the 9 people whose names come after Keegan alphabetically, exactly 4 pilots are among them.",
+      "parts": [
+        25,
+        "pilot",
+        2,
+        3,
+        4,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "pilot",
+      "statement": "Gia is one of the 3 rogue-androids surrounding Kayla.",
+      "parts": [
+        17,
+        "rogue-android",
+        2,
+        1,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "pilot",
+      "statement": "Of the one pilot neighboring me, exactly one pilot also neighbor Keegan.",
+      "parts": [
+        23,
+        "pilot",
+        1,
+        1,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A rogue android has replaced a pilot in your squadron. Mechanical tells can expose them.",
+  "publishedAt": "2026-04-10T00:00:00Z"
+}
