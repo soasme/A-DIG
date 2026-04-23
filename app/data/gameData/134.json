@@ -1,0 +1,560 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Austin",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Brooke",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Liam",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Neil",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Poppy",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Ryan",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "detective",
+      "statement": "Among the one people whose names come before Brooke alphabetically, exactly one killer is among them.",
+      "parts": [
+        24,
+        "killer",
+        1,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the 2 killers below Brooke, exactly 2 killers also neighbor Sophia.",
+      "parts": [
+        22,
+        "killer",
+        1,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 3 killers neighboring Poppy, exactly 2 killers also neighbor Ryan.",
+      "parts": [
+        23,
+        "killer",
+        4,
+        1,
+        4,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 2 detectives below Dahlia, exactly one detective also neighbor Talia.",
+      "parts": [
+        22,
+        "detective",
+        2,
+        1,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "There are exactly 0 detectives to the right of me.",
+      "parts": [
+        10,
+        "detective",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "killer",
+      "statement": "There are exactly 0 detectives above Lena.",
+      "parts": [
+        7,
+        "detective",
+        2,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the 2 detectives neighboring Brooke, exactly 2 detectives also neighbor Neil.",
+      "parts": [
+        23,
+        "detective",
+        1,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the 2 killers neighboring Austin, exactly one killer also neighbor me.",
+      "parts": [
+        23,
+        "killer",
+        1,
+        1,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "Lena and Liam share the same number of detectives nearby.",
+      "parts": [
+        14,
+        "detective",
+        2,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "There are exactly 2 killers below Lena.",
+      "parts": [
+        8,
+        "killer",
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Lena is one of the 5 detectives surrounding Morgan.",
+      "parts": [
+        17,
+        "detective",
+        2,
+        3,
+        3,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 4 killers neighboring Damian, exactly one killer also neighbor Morgan.",
+      "parts": [
+        23,
+        "killer",
+        2,
+        2,
+        3,
+        2,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "There are exactly 2 killers below Brooke.",
+      "parts": [
+        8,
+        "killer",
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "killer",
+      "statement": "Brooke has fewer killers nearby than Ryan.",
+      "parts": [
+        16,
+        "killer",
+        1,
+        2,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "killer",
+      "statement": "Column 1 are home to exactly 2 detectives.",
+      "parts": [
+        2,
+        "detective",
+        1,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-04-23T00:00:00Z"
+}
