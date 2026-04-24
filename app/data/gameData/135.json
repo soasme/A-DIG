@@ -1,0 +1,625 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Logan",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Sage",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 hunters neighboring Willow, exactly one hunter also neighbor Yvette.",
+      "parts": [
+        23,
+        "hunter",
+        5,
+        1,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 6 hunters neighboring Samuel, exactly one hunter also neighbor Willow.",
+      "parts": [
+        23,
+        "hunter",
+        4,
+        2,
+        5,
+        1,
+        1,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Willow has fewer hunters nearby than Zion.",
+      "parts": [
+        16,
+        "hunter",
+        5,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Colin is one of the 3 vampires surrounding Kelsey.",
+      "parts": [
+        17,
+        "vampire",
+        2,
+        1,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the 2 vampires to the right of Brady, exactly one vampire also neighbor Caleb.",
+      "parts": [
+        20,
+        "vampire",
+        1,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one vampire below Logan, exactly one vampire also neighbor Samuel.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one vampire below Esme, exactly one vampire also neighbor Samuel.",
+      "parts": [
+        22,
+        "vampire",
+        2,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Of the 2 hunters to the right of Sage, exactly one hunter also neighbor Vance.",
+      "parts": [
+        20,
+        "hunter",
+        4,
+        1,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters below Diana, exactly one hunter also neighbor Yvette.",
+      "parts": [
+        22,
+        "hunter",
+        2,
+        2,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 4 hunters below Caleb, exactly 2 hunters also neighbor Esme.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        2,
+        2,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Column 3 are home to exactly 3 vampires.",
+      "parts": [
+        2,
+        "vampire",
+        3,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the one vampire below Ivy, exactly one vampire also neighbor Samuel.",
+      "parts": [
+        22,
+        "vampire",
+        3,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Ivy is one of the 5 hunters surrounding Sage.",
+      "parts": [
+        17,
+        "hunter",
+        3,
+        1,
+        4,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Among the 10 people whose names come before Samuel alphabetically, exactly 4 hunters are among them.",
+      "parts": [
+        24,
+        "hunter",
+        4,
+        2,
+        4,
+        10
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Of the one hunter to the left of Esme, exactly one hunter also neighbor Kelsey.",
+      "parts": [
+        19,
+        "hunter",
+        2,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-04-24T00:00:00Z"
+}
