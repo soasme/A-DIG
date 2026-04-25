@@ -1,0 +1,579 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "monk",
+    "demon-in-disguise"
+  ],
+  "characters": [
+    {
+      "name": "Alice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Bryce",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Hayden",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Isaac",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Julian",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Kara",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Paige",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Sage",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Of the 3 demon-in-disguises neighboring Kara, exactly 2 demon-in-disguises also neighbor Sage.",
+      "parts": [
+        23,
+        "demon-in-disguise",
+        3,
+        3,
+        4,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Between Bryce and Kara, there is exactly one demon-in-disguise.",
+      "parts": [
+        11,
+        "demon-in-disguise",
+        1,
+        3,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Between Harper and Lena, there are exactly 0 demon-in-disguises.",
+      "parts": [
+        11,
+        "demon-in-disguise",
+        2,
+        1,
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "monk",
+      "statement": "Of the 2 monks below Bryce, exactly one monk also neighbor Sage.",
+      "parts": [
+        22,
+        "monk",
+        1,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the 3 demon-in-disguises neighboring Kara, exactly one demon-in-disguise also neighbor Paige.",
+      "parts": [
+        23,
+        "demon-in-disguise",
+        3,
+        3,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "monk",
+      "statement": "Of the 2 demon-in-disguises below Alice, exactly one demon-in-disguise also neighbor Isaac.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        1,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Isaac is one of the 2 monks surrounding Lena.",
+      "parts": [
+        17,
+        "monk",
+        3,
+        1,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "monk",
+      "statement": "Of the 4 monks neighboring Paige, exactly 2 monks also neighbor me.",
+      "parts": [
+        23,
+        "monk",
+        4,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 0 demon-in-disguises to the left of Ian.",
+      "parts": [
+        9,
+        "demon-in-disguise",
+        2,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "monk",
+      "statement": "Of the 2 monks below Alice, exactly one monk also neighbor Lena.",
+      "parts": [
+        22,
+        "monk",
+        1,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Kara and Walker share the same number of monks nearby.",
+      "parts": [
+        14,
+        "monk",
+        3,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "monk",
+      "statement": "Alice has more monks nearby than Isaac.",
+      "parts": [
+        15,
+        "monk",
+        1,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "monk",
+      "statement": "6 demon-in-disguise 1 4",
+      "parts": [
+        6,
+        "demon-in-disguise",
+        1,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the 3 demon-in-disguises neighboring Hayden, exactly 2 demon-in-disguises also neighbor Paige.",
+      "parts": [
+        23,
+        "demon-in-disguise",
+        2,
+        2,
+        4,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "monk",
+      "statement": "Kara has more demon-in-disguises nearby than Wren.",
+      "parts": [
+        15,
+        "demon-in-disguise",
+        3,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Demons infiltrate the monastery wearing human forms. Reveal which monks are corrupted.",
+  "publishedAt": "2026-04-25T00:00:00Z"
+}
