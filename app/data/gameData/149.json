@@ -1,0 +1,617 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "pilot",
+    "rogue-android"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Olivia",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Phillip",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Poppy",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Ryan",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Sawyer",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Of the 2 rogue-androids to the left of Phillip, exactly 2 rogue-androids also neighbor Quinn.",
+      "parts": [
+        19,
+        "rogue-android",
+        3,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Of the one rogue-android below Nora, exactly one rogue-android also neighbor Willow.",
+      "parts": [
+        22,
+        "rogue-android",
+        2,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "pilot",
+      "statement": "Between Nora and Wren, there are exactly 0 rogue-androids.",
+      "parts": [
+        11,
+        "rogue-android",
+        2,
+        3,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "pilot"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "pilot",
+      "statement": "There is exactly one rogue-android above Nora.",
+      "parts": [
+        7,
+        "rogue-android",
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "rogue-android",
+      "statement": "There is exactly one rogue-android above Flora.",
+      "parts": [
+        7,
+        "rogue-android",
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Of the one rogue-android below Quinn, exactly one rogue-android also neighbor Ryan.",
+      "parts": [
+        22,
+        "rogue-android",
+        4,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Among the 2 people whose names come after Sawyer alphabetically, exactly 2 rogue-androids are among them.",
+      "parts": [
+        25,
+        "rogue-android",
+        5,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "rogue-android",
+      "statement": "I have exactly 2 rogue-androids nearby.",
+      "parts": [
+        18,
+        "rogue-android",
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Poppy has fewer rogue-androids nearby than me.",
+      "parts": [
+        16,
+        "rogue-android",
+        4,
+        1,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Ryan and Willow share the same number of rogue-androids nearby.",
+      "parts": [
+        14,
+        "rogue-android",
+        4,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Between Delia and Willow, there are exactly 0 pilots.",
+      "parts": [
+        11,
+        "pilot",
+        1,
+        2,
+        5,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Olivia has more rogue-androids nearby than Ryan.",
+      "parts": [
+        15,
+        "rogue-android",
+        3,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "rogue-android",
+      "statement": "Bennett and Poppy share the same number of pilots nearby.",
+      "parts": [
+        14,
+        "pilot",
+        1,
+        1,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "rogue-android",
+      "statement": "Among the 11 people whose names come after Flora alphabetically, exactly 9 rogue-androids are among them.",
+      "parts": [
+        25,
+        "rogue-android",
+        2,
+        1,
+        9,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "rogue-android"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "rogue-android",
+      "statement": "Of the 2 rogue-androids to the right of Flora, exactly one rogue-android also neighbor me.",
+      "parts": [
+        20,
+        "rogue-android",
+        2,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A rogue android has replaced a pilot in your squadron. Mechanical tells can expose them.",
+  "publishedAt": "2026-05-08T00:00:00Z"
+}
