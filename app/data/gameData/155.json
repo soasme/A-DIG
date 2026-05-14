@@ -1,0 +1,537 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Bella",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Danica",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Derek",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Elise",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Henry",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Landon",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Nicholas",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Wesley",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers below Kevin, exactly one villager also neighbor Ophelia.",
+      "parts": [
+        22,
+        "villager",
+        3,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Between Danica and Elise, there are exactly 0 werewolfs.",
+      "parts": [
+        11,
+        "werewolf",
+        2,
+        1,
+        2,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 werewolfs below Chase, exactly one werewolf also neighbor Elise.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the one werewolf below Elise, exactly one werewolf also neighbor Ophelia.",
+      "parts": [
+        22,
+        "werewolf",
+        2,
+        3,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the 2 werewolfs below Dahlia, exactly one werewolf also neighbor Ophelia.",
+      "parts": [
+        22,
+        "werewolf",
+        1,
+        3,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "There is exactly one werewolf to the left of Henry.",
+      "parts": [
+        9,
+        "werewolf",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the one werewolf below Landon, exactly one werewolf also neighbor Nicholas.",
+      "parts": [
+        22,
+        "werewolf",
+        4,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "There is exactly one villager above Derek.",
+      "parts": [
+        7,
+        "villager",
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers to the right of Bella.",
+      "parts": [
+        10,
+        "villager",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers above row 2.",
+      "parts": [
+        3,
+        "villager",
+        2,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "There are exactly 4 villagers above row 4.",
+      "parts": [
+        3,
+        "villager",
+        4,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Chase and Kevin share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Yara has exactly one werewolf nearby.",
+      "parts": [
+        18,
+        "werewolf",
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "5 villager 3 5",
+      "parts": [
+        5,
+        "villager",
+        3,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Elise is one of the 3 werewolfs surrounding Henry.",
+      "parts": [
+        17,
+        "werewolf",
+        2,
+        3,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-05-14T00:00:00Z"
+}
