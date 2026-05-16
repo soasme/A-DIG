@@ -1,0 +1,573 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Bryce",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Camila",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Clara",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Elliot",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Evan",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Greta",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Hailey",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Ian",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Jack",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Tessa",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Zachary",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 2 werewolfs neighboring Ian, exactly one werewolf also neighbor Marcus.",
+      "parts": [
+        23,
+        "werewolf",
+        4,
+        1,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "There is exactly one werewolf to the left of Hailey.",
+      "parts": [
+        9,
+        "werewolf",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 3 werewolfs neighboring Hailey, exactly one werewolf also neighbor Ian.",
+      "parts": [
+        23,
+        "werewolf",
+        3,
+        3,
+        4,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Between Clara and Elliot, there is exactly one villager.",
+      "parts": [
+        11,
+        "villager",
+        2,
+        1,
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers above Greta.",
+      "parts": [
+        7,
+        "villager",
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one werewolf above Clara, exactly one werewolf also neighbor Diana.",
+      "parts": [
+        21,
+        "werewolf",
+        2,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Row 1 is home to exactly one werewolf.",
+      "parts": [
+        1,
+        "werewolf",
+        1,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers neighboring me, exactly one villager also neighbor Greta.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Among the 6 people whose names come before Evan alphabetically, exactly 3 werewolfs are among them.",
+      "parts": [
+        24,
+        "werewolf",
+        3,
+        1,
+        3,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers neighboring Hailey, exactly one villager also neighbor Zelda.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "All werewolfs in row 4 stay connected to each other.",
+      "parts": [
+        12,
+        "werewolf",
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Between Camila and Zelda, there are exactly 2 werewolfs.",
+      "parts": [
+        11,
+        "werewolf",
+        1,
+        3,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "I and Zelda share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        3,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Jack is one of the 4 villagers surrounding Marcus.",
+      "parts": [
+        17,
+        "villager",
+        4,
+        2,
+        4,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 2 villagers above Tessa.",
+      "parts": [
+        7,
+        "villager",
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-05-16T00:00:00Z"
+}
