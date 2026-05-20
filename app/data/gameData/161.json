@@ -1,0 +1,586 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Bryce",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Gia",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Ingrid",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Julian",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Nolan",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Raina",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Trinity",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 2 villagers neighboring Celeste, exactly one villager also neighbor Grace.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        3,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Grayson is one of the 4 zombies surrounding Julian.",
+      "parts": [
+        17,
+        "zombie",
+        3,
+        2,
+        4,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the one zombie to the right of Grace, exactly one zombie also neighbor Raina.",
+      "parts": [
+        20,
+        "zombie",
+        3,
+        1,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "There is exactly one villager below Nolan.",
+      "parts": [
+        8,
+        "villager",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the one zombie below Grayson, exactly one zombie also neighbor Raina.",
+      "parts": [
+        22,
+        "zombie",
+        3,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the 5 villagers neighboring Grayson, exactly one villager also neighbor Trinity.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        2,
+        5,
+        2,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "zombie",
+      "statement": "There is exactly one villager below Ingrid.",
+      "parts": [
+        8,
+        "villager",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one zombie below Julian, exactly one zombie also neighbor Trinity.",
+      "parts": [
+        22,
+        "zombie",
+        4,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 4 villagers neighboring Nolan, exactly 3 villagers also neighbor Raina.",
+      "parts": [
+        23,
+        "villager",
+        4,
+        2,
+        4,
+        3,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Ingrid has fewer zombies nearby than Julian.",
+      "parts": [
+        16,
+        "zombie",
+        3,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Grayson has fewer zombies nearby than Nolan.",
+      "parts": [
+        16,
+        "zombie",
+        3,
+        2,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one zombie neighboring Adam, exactly one zombie also neighbor me.",
+      "parts": [
+        23,
+        "zombie",
+        1,
+        1,
+        2,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the one villager to the right of Adam, exactly one villager also neighbor me.",
+      "parts": [
+        20,
+        "villager",
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Flora has more villagers nearby than Nolan.",
+      "parts": [
+        15,
+        "villager",
+        2,
+        2,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "Raina is one of the 2 zombies surrounding Yvette.",
+      "parts": [
+        17,
+        "zombie",
+        4,
+        3,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-05-20T00:00:00Z"
+}
