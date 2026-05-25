@@ -1,0 +1,601 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Ava",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Derek",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Hailey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Leon",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Maya",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Nova",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Spencer",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Tessa",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Vera",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents above Tessa, exactly one double-agent also neighbor Vance.",
+      "parts": [
+        21,
+        "double-agent",
+        4,
+        2,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the 6 agents neighboring Hailey, exactly one agent also neighbor Maya.",
+      "parts": [
+        23,
+        "agent",
+        2,
+        2,
+        3,
+        1,
+        1,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents neighboring me, exactly one double-agent also neighbor Tessa.",
+      "parts": [
+        23,
+        "double-agent",
+        2,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 2 double-agents neighboring Spencer, exactly one double-agent also neighbor Talia.",
+      "parts": [
+        23,
+        "double-agent",
+        3,
+        3,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one agent to the left of Vance, exactly one agent also neighbor Vera.",
+      "parts": [
+        19,
+        "agent",
+        4,
+        3,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the one agent below Hailey, exactly one agent also neighbor Nova.",
+      "parts": [
+        22,
+        "agent",
+        2,
+        2,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Among the 2 people whose names come after Vera alphabetically, exactly one double-agent is among them.",
+      "parts": [
+        25,
+        "double-agent",
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 6 agents neighboring Hailey, exactly one agent also neighbor Spencer.",
+      "parts": [
+        23,
+        "agent",
+        2,
+        2,
+        3,
+        3,
+        1,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "agent",
+      "statement": "There are exactly 0 agents to the right of Ava.",
+      "parts": [
+        10,
+        "agent",
+        1,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 6 agents neighboring Nova, exactly 2 agents also neighbor Vance.",
+      "parts": [
+        23,
+        "agent",
+        3,
+        2,
+        4,
+        3,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 4 agents below Derek, exactly 2 agents also neighbor me.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        3,
+        3,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the 2 double-agents neighboring Nova, exactly one double-agent also neighbor Tessa.",
+      "parts": [
+        23,
+        "double-agent",
+        3,
+        2,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Derek and Wyatt share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        1,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 5 agents neighboring Tessa, exactly one agent also neighbor Wyatt.",
+      "parts": [
+        23,
+        "agent",
+        4,
+        2,
+        5,
+        3,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the one agent to the right of me, exactly one agent also neighbor Wendy.",
+      "parts": [
+        20,
+        "agent",
+        5,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-05-25T00:00:00Z"
+}
