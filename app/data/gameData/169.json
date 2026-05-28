@@ -1,0 +1,600 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "crew member",
+    "alien-impostor"
+  ],
+  "characters": [
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Daphne",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Jenna",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Leon",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Xavier",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Of the 2 alien-impostors neighboring me, exactly one alien-impostor also neighbor Chase.",
+      "parts": [
+        23,
+        "alien-impostor",
+        1,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Between Jenna and Yvette, there is exactly one alien-impostor.",
+      "parts": [
+        11,
+        "alien-impostor",
+        3,
+        2,
+        5,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "There are exactly 0 alien-impostors to the right of Chase.",
+      "parts": [
+        10,
+        "alien-impostor",
+        1,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Between Gabriel and Vance, there are exactly 0 alien-impostors.",
+      "parts": [
+        11,
+        "alien-impostor",
+        2,
+        3,
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Of the 2 alien-impostors to the right of Leon, exactly one alien-impostor also neighbor Vance.",
+      "parts": [
+        20,
+        "alien-impostor",
+        4,
+        1,
+        4,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the 2 alien-impostors below Keira, exactly 2 alien-impostors also neighbor Preston.",
+      "parts": [
+        22,
+        "alien-impostor",
+        3,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Esme is one of the 5 alien-impostors surrounding Jenna.",
+      "parts": [
+        17,
+        "alien-impostor",
+        2,
+        2,
+        3,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "April has exactly 2 alien-impostors nearby.",
+      "parts": [
+        18,
+        "alien-impostor",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Of the 5 alien-impostors neighboring Jenna, exactly 2 alien-impostors also neighbor Preston.",
+      "parts": [
+        23,
+        "alien-impostor",
+        3,
+        2,
+        4,
+        2,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the 4 alien-impostors neighboring Keira, exactly one alien-impostor also neighbor Preston.",
+      "parts": [
+        23,
+        "alien-impostor",
+        3,
+        3,
+        4,
+        2,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Chase and Daphne share the same number of crew members nearby.",
+      "parts": [
+        14,
+        "crew member",
+        1,
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Between Daphne and Xavier, there is exactly one crew member.",
+      "parts": [
+        11,
+        "crew member",
+        2,
+        1,
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Gabriel and Xavier share the same number of alien-impostors nearby.",
+      "parts": [
+        14,
+        "alien-impostor",
+        2,
+        3,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Among the 5 people whose names come after Leon alphabetically, exactly one crew member is among them.",
+      "parts": [
+        25,
+        "crew member",
+        4,
+        1,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Of the 2 alien-impostors below April, exactly one alien-impostor also neighbor Leon.",
+      "parts": [
+        22,
+        "alien-impostor",
+        1,
+        1,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Alien creatures has copied some crew members aboard your ship. Identify the impostors.",
+  "publishedAt": "2026-05-28T00:00:00Z"
+}
