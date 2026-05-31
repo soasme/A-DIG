@@ -1,0 +1,608 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Daphne",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Joy",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Landon",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Raina",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Wesley",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Wyatt",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 3 detectives above Wesley, exactly one detective also neighbor Wyatt.",
+      "parts": [
+        21,
+        "detective",
+        5,
+        1,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 2 detectives below Daphne, exactly one detective also neighbor Xena.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "killer",
+      "statement": "There are exactly 0 detectives to the right of Kelsey.",
+      "parts": [
+        10,
+        "detective",
+        3,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the one detective neighboring Tatum, exactly one detective also neighbor Wesley.",
+      "parts": [
+        23,
+        "detective",
+        4,
+        3,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "All killers in column 3 stay connected to each other.",
+      "parts": [
+        13,
+        "killer",
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the 4 killers neighboring Landon, exactly 2 killers also neighbor Xena.",
+      "parts": [
+        23,
+        "killer",
+        3,
+        2,
+        5,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the 2 detectives below Daphne, exactly one detective also neighbor Landon.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "There is exactly one killer below row 4.",
+      "parts": [
+        4,
+        "killer",
+        4,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 2 killers neighboring Raina, exactly one killer also neighbor me.",
+      "parts": [
+        23,
+        "killer",
+        4,
+        1,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Oscar has fewer detectives nearby than Wyatt.",
+      "parts": [
+        16,
+        "detective",
+        3,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "killer",
+      "statement": "Freya has fewer killers nearby than Joy.",
+      "parts": [
+        16,
+        "killer",
+        1,
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Daphne is one of the 3 detectives surrounding Joy.",
+      "parts": [
+        17,
+        "detective",
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "detective",
+      "statement": "Caleb has exactly 0 killers nearby.",
+      "parts": [
+        18,
+        "killer",
+        1,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "detective",
+      "statement": "Among the 13 people whose names come after Daphne alphabetically, exactly 7 detectives are among them.",
+      "parts": [
+        25,
+        "detective",
+        1,
+        2,
+        7,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 detectives below Daphne, exactly one detective also neighbor Oscar.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-05-31T00:00:00Z"
+}
