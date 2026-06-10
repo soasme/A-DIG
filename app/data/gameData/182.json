@@ -1,0 +1,566 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Austin",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Beatrice",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Bella",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Dean",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Esme",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Ingrid",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Leon",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Noah",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Piper",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Between Bella and Ingrid, there is exactly one double-agent.",
+      "parts": [
+        11,
+        "double-agent",
+        1,
+        3,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There is exactly one agent to the left of Beatrice.",
+      "parts": [
+        9,
+        "agent",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 3 double-agents neighboring Beatrice, exactly one double-agent also neighbor Emma.",
+      "parts": [
+        23,
+        "double-agent",
+        1,
+        2,
+        3,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There are exactly 0 agents above Odette.",
+      "parts": [
+        7,
+        "agent",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 2 double-agents to the right of Blake, exactly 2 double-agents also neighbor Esme.",
+      "parts": [
+        20,
+        "double-agent",
+        2,
+        1,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Of the 3 agents neighboring Blake, exactly one agent also neighbor Emma.",
+      "parts": [
+        23,
+        "agent",
+        2,
+        1,
+        3,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 3 agents below Beatrice, exactly one agent also neighbor Piper.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        2,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the one agent to the left of Dean, exactly one agent also neighbor Emma.",
+      "parts": [
+        19,
+        "agent",
+        2,
+        3,
+        3,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "agent",
+      "statement": "Austin has fewer double-agents nearby than me.",
+      "parts": [
+        16,
+        "double-agent",
+        1,
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There are exactly 5 double-agents above row 4.",
+      "parts": [
+        3,
+        "double-agent",
+        4,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "agent",
+      "statement": "Austin and Oscar share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        1,
+        1,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There are exactly 3 double-agents above Zion.",
+      "parts": [
+        7,
+        "double-agent",
+        5,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "Leon has fewer agents nearby than Noah.",
+      "parts": [
+        16,
+        "agent",
+        4,
+        1,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the one agent below Austin, exactly one agent also neighbor Esme.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Between Blake and Dean, there is exactly one double-agent.",
+      "parts": [
+        11,
+        "double-agent",
+        2,
+        1,
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-06-10T00:00:00Z"
+}
