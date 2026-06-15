@@ -1,0 +1,560 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "hunter",
+    "vampire"
+  ],
+  "characters": [
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Hayden",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Sawyer",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Trinity",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Zoe",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Between Nora and Vance, there is exactly one vampire.",
+      "parts": [
+        11,
+        "vampire",
+        2,
+        3,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Of the 2 vampires below Holden, exactly one vampire also neighbor Sawyer.",
+      "parts": [
+        22,
+        "vampire",
+        2,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 2 vampires below Eden, exactly one vampire also neighbor Sawyer.",
+      "parts": [
+        22,
+        "vampire",
+        1,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Sawyer is one of the 2 hunters surrounding Trevor.",
+      "parts": [
+        17,
+        "hunter",
+        3,
+        2,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "hunter",
+      "statement": "There is exactly one hunter to the right of Trinity.",
+      "parts": [
+        10,
+        "hunter",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "hunter",
+      "statement": "I have exactly 2 hunters nearby.",
+      "parts": [
+        18,
+        "hunter",
+        4,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "vampire",
+      "statement": "Of the 3 hunters below Emma, exactly 2 hunters also neighbor Trinity.",
+      "parts": [
+        22,
+        "hunter",
+        1,
+        3,
+        4,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "hunter",
+      "statement": "Emma has exactly 0 vampires nearby.",
+      "parts": [
+        18,
+        "vampire",
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "hunter",
+      "statement": "Of the 3 hunters neighboring Bennett, exactly 2 hunters also neighbor Nora.",
+      "parts": [
+        23,
+        "hunter",
+        1,
+        1,
+        2,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Of the one hunter to the right of Bennett, exactly one hunter also neighbor Nora.",
+      "parts": [
+        20,
+        "hunter",
+        1,
+        1,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "vampire",
+      "statement": "Sawyer and Trinity share the same number of hunters nearby.",
+      "parts": [
+        14,
+        "hunter",
+        3,
+        2,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "hunter",
+      "statement": "Among the 4 people whose names come before Holden alphabetically, exactly 2 vampires are among them.",
+      "parts": [
+        24,
+        "vampire",
+        2,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "vampire",
+      "statement": "There are exactly 4 vampires above row 4.",
+      "parts": [
+        3,
+        "vampire",
+        4,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "vampire"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "vampire",
+      "statement": "Column 1 are home to exactly 3 hunters.",
+      "parts": [
+        2,
+        "hunter",
+        1,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "hunter"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "hunter",
+      "statement": "There are exactly 0 vampires to the right of Trinity.",
+      "parts": [
+        10,
+        "vampire",
+        4,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Vampires have blended into the townsfolk. Only sharp eyes can expose the undead.",
+  "publishedAt": "2026-06-15T00:00:00Z"
+}
