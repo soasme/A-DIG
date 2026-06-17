@@ -1,0 +1,567 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "student",
+    "witch-masquerader"
+  ],
+  "characters": [
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Elias",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Irene",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Parker",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Silas",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Valerie",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Sienna is one of the 2 students surrounding Trevor.",
+      "parts": [
+        17,
+        "student",
+        4,
+        2,
+        5,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "student",
+      "statement": "There is exactly one student to the left of Morgan.",
+      "parts": [
+        9,
+        "student",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "student",
+      "statement": "Of the one witch-masquerader to the right of Irene, exactly one witch-masquerader also neighbor Keegan.",
+      "parts": [
+        20,
+        "witch-masquerader",
+        2,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "student",
+      "statement": "There is exactly one student to the right of Dahlia.",
+      "parts": [
+        10,
+        "student",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "student",
+      "statement": "Among the one people whose names come after Valerie alphabetically, exactly one student is among them.",
+      "parts": [
+        25,
+        "student",
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "student",
+      "statement": "Of the one student to the right of Trevor, exactly one student also neighbor Valerie.",
+      "parts": [
+        20,
+        "student",
+        5,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Among the 3 people whose names come after Silas alphabetically, exactly one student is among them.",
+      "parts": [
+        25,
+        "student",
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Of the 2 students below Keegan, exactly 2 students also neighbor Silas.",
+      "parts": [
+        22,
+        "student",
+        2,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "student",
+      "statement": "Column 2 is home to exactly one witch-masquerader.",
+      "parts": [
+        2,
+        "witch-masquerader",
+        2,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "student",
+      "statement": "Of the 4 students neighboring Ophelia, exactly 2 students also neighbor Sienna.",
+      "parts": [
+        23,
+        "student",
+        3,
+        3,
+        4,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "student",
+      "statement": "Of the 3 students below Elias, exactly one student also neighbor Keegan.",
+      "parts": [
+        22,
+        "student",
+        1,
+        3,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "student",
+      "statement": "Morgan and Trevor share the same number of witch-masqueraders nearby.",
+      "parts": [
+        14,
+        "witch-masquerader",
+        3,
+        2,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "student",
+      "statement": "Lena and Marcus share the same number of witch-masqueraders nearby.",
+      "parts": [
+        14,
+        "witch-masquerader",
+        2,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "student",
+      "statement": "Of the 2 witch-masqueraders neighboring Dahlia, exactly one witch-masquerader also neighbor Elias.",
+      "parts": [
+        23,
+        "witch-masquerader",
+        1,
+        2,
+        1,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Row 4 are home to exactly 0 witch-masqueraders.",
+      "parts": [
+        1,
+        "witch-masquerader",
+        4,
+        0
+      ],
+      "referencedCells": [],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A magic academy hides a witch posing as a student. Their aura feels… wrong.",
+  "publishedAt": "2026-06-17T00:00:00Z"
+}
