@@ -1,0 +1,564 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "werewolf"
+  ],
+  "characters": [
+    {
+      "name": "Adrian",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Brandon",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Bryce",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Daphne",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Dean",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Irene",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Jenna",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Tessa",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one werewolf below Keira, exactly one werewolf also neighbor Quinn.",
+      "parts": [
+        22,
+        "werewolf",
+        4,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Among the 2 people whose names come after Morgan alphabetically, exactly one villager is among them.",
+      "parts": [
+        25,
+        "villager",
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "There is exactly one werewolf to the right of Keegan.",
+      "parts": [
+        10,
+        "werewolf",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "Of the 3 werewolfs neighboring Flora, exactly one werewolf also neighbor Quinn.",
+      "parts": [
+        23,
+        "werewolf",
+        3,
+        2,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 villagers neighboring Daphne, exactly one villager also neighbor Jenna.",
+      "parts": [
+        23,
+        "villager",
+        2,
+        3,
+        4,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 3 villagers below Brandon, exactly one villager also neighbor Chloe.",
+      "parts": [
+        22,
+        "villager",
+        1,
+        2,
+        2,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Of the 2 villagers to the right of Dean, exactly 2 villagers also neighbor Keira.",
+      "parts": [
+        20,
+        "villager",
+        3,
+        1,
+        4,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers below Dean, exactly one villager also neighbor Morgan.",
+      "parts": [
+        22,
+        "villager",
+        3,
+        1,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "villager",
+      "statement": "Flora is one of the 4 villagers surrounding Jenna.",
+      "parts": [
+        17,
+        "villager",
+        3,
+        2,
+        4,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "Between Bryce and Irene, there are exactly 0 werewolfs.",
+      "parts": [
+        11,
+        "werewolf",
+        1,
+        3,
+        3,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Bryce and Chloe share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "werewolf",
+      "statement": "5 werewolf 2 2",
+      "parts": [
+        5,
+        "werewolf",
+        2,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "5 villager 3 6",
+      "parts": [
+        5,
+        "villager",
+        3,
+        6
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "werewolf",
+      "statement": "Daphne has fewer villagers nearby than Irene.",
+      "parts": [
+        16,
+        "villager",
+        2,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "werewolf"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "werewolf",
+      "statement": "There are exactly 2 werewolfs below Irene.",
+      "parts": [
+        8,
+        "werewolf",
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A quiet village is stalked by werewolves each night. Find the beasts hiding among you.",
+  "publishedAt": "2026-06-20T00:00:00Z"
+}
