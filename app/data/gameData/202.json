@@ -1,0 +1,577 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Alice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Brooke",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Ethan",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Vincent",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the one identity thief below me, exactly one identity thief also neighbor Gabriel.",
+      "parts": [
+        22,
+        "identity thief",
+        2,
+        2,
+        3,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners neighboring Blake, exactly one prisoner also neighbor Gabriel.",
+      "parts": [
+        23,
+        "prisoner",
+        1,
+        2,
+        3,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 4 prisoners neighboring Serena, exactly 2 prisoners also neighbor Zuri.",
+      "parts": [
+        23,
+        "prisoner",
+        4,
+        3,
+        5,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "There is exactly one prisoner above Kaden.",
+      "parts": [
+        7,
+        "prisoner",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Column 2 are home to exactly 3 prisoners.",
+      "parts": [
+        2,
+        "prisoner",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the one prisoner below Serena, exactly one prisoner also neighbor Vincent.",
+      "parts": [
+        22,
+        "prisoner",
+        4,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "There is exactly one prisoner to the left of Serena.",
+      "parts": [
+        9,
+        "prisoner",
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Of the one prisoner to the right of Kaden, exactly one prisoner also neighbor Samuel.",
+      "parts": [
+        20,
+        "prisoner",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Of the 3 prisoners neighboring Flora, exactly one prisoner also neighbor Serena.",
+      "parts": [
+        23,
+        "prisoner",
+        2,
+        3,
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Blake has fewer identity thiefs nearby than Ethan.",
+      "parts": [
+        16,
+        "identity thief",
+        1,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Between Brooke and Serena, there is exactly one prisoner.",
+      "parts": [
+        11,
+        "prisoner",
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 5 prisoners neighboring Ethan, exactly 2 prisoners also neighbor Kaden.",
+      "parts": [
+        23,
+        "prisoner",
+        2,
+        2,
+        3,
+        2,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "There are exactly 2 prisoners above Zuri.",
+      "parts": [
+        7,
+        "prisoner",
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 3 prisoners neighboring Samuel, exactly 3 prisoners also neighbor me.",
+      "parts": [
+        23,
+        "prisoner",
+        4,
+        2,
+        4,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Among the 3 people whose names come after Serena alphabetically, exactly one identity thief is among them.",
+      "parts": [
+        25,
+        "identity thief",
+        4,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-06-30T00:00:00Z"
+}
