@@ -1,0 +1,612 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "monk",
+    "demon-in-disguise"
+  ],
+  "characters": [
+    {
+      "name": "Beatrice",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Faith",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Isla",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Lawson",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Neil",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Nicholas",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Roman",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Walker",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Zion",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 demon-in-disguises neighboring Talia, exactly one demon-in-disguise also neighbor Zara.",
+      "parts": [
+        23,
+        "demon-in-disguise",
+        4,
+        3,
+        5,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "monk",
+      "statement": "There are exactly 0 monks to the left of Kelsey.",
+      "parts": [
+        9,
+        "monk",
+        2,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 0 monks below Nicholas.",
+      "parts": [
+        8,
+        "monk",
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Of the one monk below Kelsey, exactly one monk also neighbor Preston.",
+      "parts": [
+        22,
+        "monk",
+        2,
+        2,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "monk",
+      "statement": "There are exactly 2 demon-in-disguises below Faith.",
+      "parts": [
+        8,
+        "demon-in-disguise",
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "monk",
+      "statement": "There are exactly 2 demon-in-disguises below row 4.",
+      "parts": [
+        4,
+        "demon-in-disguise",
+        4,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Zara is one of the 3 demon-in-disguises surrounding Zion.",
+      "parts": [
+        17,
+        "demon-in-disguise",
+        5,
+        2,
+        5,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 2 monks below Lawson.",
+      "parts": [
+        8,
+        "monk",
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "monk",
+      "statement": "Preston is one of the 3 demon-in-disguises surrounding Walker.",
+      "parts": [
+        17,
+        "demon-in-disguise",
+        4,
+        1,
+        5,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "I and Zara share the same number of demon-in-disguises nearby.",
+      "parts": [
+        14,
+        "demon-in-disguise",
+        4,
+        1,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Beatrice has more monks nearby than Preston.",
+      "parts": [
+        15,
+        "monk",
+        1,
+        1,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "monk",
+      "statement": "There are exactly 0 demon-in-disguises to the left of Freya.",
+      "parts": [
+        9,
+        "demon-in-disguise",
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "monk",
+      "statement": "Kelsey and Penelope share the same number of demon-in-disguises nearby.",
+      "parts": [
+        14,
+        "demon-in-disguise",
+        2,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "monk",
+      "statement": "Among the 8 people whose names come before Penelope alphabetically, exactly 2 demon-in-disguises are among them.",
+      "parts": [
+        24,
+        "demon-in-disguise",
+        3,
+        3,
+        2,
+        8
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "monk",
+      "statement": "Among the 10 people whose names come after Kelsey alphabetically, exactly 6 demon-in-disguises are among them.",
+      "parts": [
+        25,
+        "demon-in-disguise",
+        2,
+        2,
+        6,
+        10
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Demons infiltrate the monastery wearing human forms. Reveal which monks are corrupted.",
+  "publishedAt": "2026-07-09T00:00:00Z"
+}
