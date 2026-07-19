@@ -1,0 +1,555 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Neil",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Oliver",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Poppy",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Violet",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 3 detectives neighboring me, exactly 2 detectives also neighbor Oliver.",
+      "parts": [
+        23,
+        "detective",
+        4,
+        1,
+        4,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the one killer to the left of Flora, exactly one killer also neighbor Neil.",
+      "parts": [
+        19,
+        "killer",
+        3,
+        2,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "killer",
+      "statement": "Between me and Lena, there is exactly one detective.",
+      "parts": [
+        11,
+        "detective",
+        3,
+        1,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "Amelia is one of the 3 detectives surrounding April.",
+      "parts": [
+        17,
+        "detective",
+        1,
+        1,
+        1,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the one killer below Arthur, exactly one killer also neighbor Flora.",
+      "parts": [
+        22,
+        "killer",
+        1,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "detective",
+      "statement": "Row 4 are home to exactly 3 detectives.",
+      "parts": [
+        1,
+        "detective",
+        4,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "detective",
+      "statement": "Between Amelia and Finn, there is exactly one detective.",
+      "parts": [
+        11,
+        "detective",
+        1,
+        1,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "detective",
+      "statement": "Finn has exactly 5 detectives nearby.",
+      "parts": [
+        18,
+        "detective",
+        3,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Amelia has exactly 3 detectives nearby.",
+      "parts": [
+        18,
+        "detective",
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 4 detectives below me, exactly 2 detectives also neighbor Eden.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        2,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "There is exactly one detective to the right of Chase.",
+      "parts": [
+        10,
+        "detective",
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "killer",
+      "statement": "Flora has exactly 6 detectives nearby.",
+      "parts": [
+        18,
+        "detective",
+        3,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "I and Serena share the same number of detectives nearby.",
+      "parts": [
+        14,
+        "detective",
+        3,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the 2 killers neighboring April, exactly one killer also neighbor Arthur.",
+      "parts": [
+        23,
+        "killer",
+        1,
+        2,
+        1,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "killer",
+      "statement": "There are exactly 2 killers below Chase.",
+      "parts": [
+        8,
+        "killer",
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-07-19T00:00:00Z"
+}
