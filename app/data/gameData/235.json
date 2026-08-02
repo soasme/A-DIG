@@ -1,0 +1,581 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Elias",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Gabriel",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Hazel",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Lily",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Opal",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 2 zombies below Colin, exactly 2 zombies also neighbor Opal.",
+      "parts": [
+        22,
+        "zombie",
+        1,
+        1,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one zombie to the right of Elias, exactly one zombie also neighbor Hazel.",
+      "parts": [
+        20,
+        "zombie",
+        1,
+        2,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the one villager to the right of Leah, exactly one villager also neighbor Oscar.",
+      "parts": [
+        20,
+        "villager",
+        3,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "Grayson is one of the 3 villagers surrounding Julia.",
+      "parts": [
+        17,
+        "villager",
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 villagers to the right of Gabriel, exactly 2 villagers also neighbor Lily.",
+      "parts": [
+        20,
+        "villager",
+        2,
+        1,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 zombies neighboring Elias, exactly 2 zombies also neighbor Grayson.",
+      "parts": [
+        23,
+        "zombie",
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "zombie",
+      "statement": "I and Elias share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Leah is one of the 2 zombies surrounding Lily.",
+      "parts": [
+        17,
+        "zombie",
+        3,
+        2,
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Gabriel has exactly 3 zombies nearby.",
+      "parts": [
+        18,
+        "zombie",
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 6 villagers neighboring Leah, exactly one villager also neighbor Zeke.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        2,
+        5,
+        3,
+        1,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the 3 zombies neighboring Yvette, exactly one zombie also neighbor Zeke.",
+      "parts": [
+        23,
+        "zombie",
+        5,
+        2,
+        5,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the one zombie below Hazel, exactly one zombie also neighbor Opal.",
+      "parts": [
+        22,
+        "zombie",
+        2,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one villager to the right of Naomi, exactly one villager also neighbor Yvette.",
+      "parts": [
+        20,
+        "villager",
+        4,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Emma and I share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        1,
+        3,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "zombie",
+      "statement": "All villagers in row 4 stay connected to each other.",
+      "parts": [
+        12,
+        "villager",
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-08-02T00:00:00Z"
+}
