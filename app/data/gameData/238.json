@@ -1,0 +1,685 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Beatrice",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Diana",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Harvey",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Kyle",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Leon",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Russell",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Vincent",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Yusuf",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 4 agents neighboring Leon, exactly 2 agents also neighbor Yusuf.",
+      "parts": [
+        23,
+        "agent",
+        3,
+        2,
+        5,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "Between Graham and Reese, there are exactly 0 double-agents.",
+      "parts": [
+        11,
+        "double-agent",
+        2,
+        1,
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the one double-agent to the right of Leon, exactly one double-agent also neighbor Tatum.",
+      "parts": [
+        20,
+        "double-agent",
+        3,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There are exactly 2 agents below Ivy.",
+      "parts": [
+        8,
+        "agent",
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "agent",
+      "statement": "Uma and I share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        5,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 3 agents below Graham, exactly one agent also neighbor Kyle.",
+      "parts": [
+        22,
+        "agent",
+        2,
+        1,
+        3,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "agent",
+      "statement": "Row 5 are home to exactly 3 agents.",
+      "parts": [
+        1,
+        "agent",
+        5,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "agent",
+      "statement": "Among the 8 people whose names come after Kyle alphabetically, exactly one double-agent is among them.",
+      "parts": [
+        25,
+        "double-agent",
+        3,
+        1,
+        1,
+        8
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "agent",
+      "statement": "Among the 10 people whose names come after Harvey alphabetically, exactly 2 double-agents are among them.",
+      "parts": [
+        25,
+        "double-agent",
+        2,
+        2,
+        2,
+        10
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Naomi has more double-agents nearby than Russell.",
+      "parts": [
+        15,
+        "double-agent",
+        3,
+        3,
+        4,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Leon and Tatum share the same number of agents nearby.",
+      "parts": [
+        14,
+        "agent",
+        3,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Of the one double-agent above Kyle, exactly one double-agent also neighbor Leon.",
+      "parts": [
+        21,
+        "double-agent",
+        3,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "agent",
+      "statement": "Beatrice and Ivy share the same number of agents nearby.",
+      "parts": [
+        14,
+        "agent",
+        1,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Among the 13 people whose names come before Vincent alphabetically, exactly 6 double-agents are among them.",
+      "parts": [
+        24,
+        "double-agent",
+        5,
+        2,
+        6,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Of the 4 double-agents neighboring Beatrice, exactly 3 double-agents also neighbor Harvey.",
+      "parts": [
+        23,
+        "double-agent",
+        1,
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-08-05T00:00:00Z"
+}
