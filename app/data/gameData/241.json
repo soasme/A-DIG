@@ -1,0 +1,604 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Grayson",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Logan",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Micah",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Morgan",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Nadia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Trevor",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Vanessa",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Warren",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Zoe",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "Grayson is one of the 5 killers surrounding Morgan.",
+      "parts": [
+        17,
+        "killer",
+        2,
+        1,
+        3,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Morgan is one of the 3 detectives surrounding Vanessa.",
+      "parts": [
+        17,
+        "detective",
+        3,
+        2,
+        4,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "There is exactly one killer to the right of Trevor.",
+      "parts": [
+        10,
+        "killer",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "killer",
+      "statement": "Between Logan and Zoe, there is exactly one killer.",
+      "parts": [
+        11,
+        "killer",
+        2,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "Row 4 are home to exactly 2 killers.",
+      "parts": [
+        1,
+        "killer",
+        4,
+        2
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "killer",
+      "statement": "Between Finn and Zoe, there is exactly one detective.",
+      "parts": [
+        11,
+        "detective",
+        1,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "killer",
+      "statement": "Micah is one of the 4 detectives surrounding Reese.",
+      "parts": [
+        17,
+        "detective",
+        3,
+        1,
+        4,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 2 killers below Logan, exactly one killer also neighbor Morgan.",
+      "parts": [
+        22,
+        "killer",
+        2,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Nadia is one of the 3 detectives surrounding Vanessa.",
+      "parts": [
+        17,
+        "detective",
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "killer",
+      "statement": "Morgan and Vanessa share the same number of detectives nearby.",
+      "parts": [
+        14,
+        "detective",
+        3,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "killer",
+      "statement": "Among the 9 people whose names come after Logan alphabetically, exactly 5 detectives are among them.",
+      "parts": [
+        25,
+        "detective",
+        2,
+        3,
+        5,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "detective",
+      "statement": "Finn has fewer killers nearby than Willow.",
+      "parts": [
+        16,
+        "killer",
+        1,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the one killer to the left of me, exactly one killer also neighbor Kelsey.",
+      "parts": [
+        19,
+        "killer",
+        1,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Kelsey has more killers nearby than Micah.",
+      "parts": [
+        15,
+        "killer",
+        2,
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "killer",
+      "statement": "Logan has fewer killers nearby than Morgan.",
+      "parts": [
+        16,
+        "killer",
+        2,
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-08-08T00:00:00Z"
+}
