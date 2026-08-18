@@ -1,0 +1,601 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Flora",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Jack",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Jacob",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Kayla",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Micah",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Nova",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Quinn",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Ruby",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Wendy",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Zane",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 zombies neighboring Chloe, exactly one zombie also neighbor Micah.",
+      "parts": [
+        23,
+        "zombie",
+        1,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 2 zombies above Nova, exactly one zombie also neighbor Porter.",
+      "parts": [
+        21,
+        "zombie",
+        3,
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 4 villagers neighboring Quinn, exactly 2 villagers also neighbor Riley.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        3,
+        4,
+        1,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 3 villagers below Kayla, exactly one villager also neighbor Wendy.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        2,
+        5,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "There is exactly one zombie below Flora.",
+      "parts": [
+        8,
+        "zombie",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the one zombie above Porter, exactly one zombie also neighbor Quinn.",
+      "parts": [
+        21,
+        "zombie",
+        3,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "Among the 4 people whose names come before Kayla alphabetically, exactly 2 villagers are among them.",
+      "parts": [
+        24,
+        "villager",
+        2,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 villagers neighboring Nova, exactly one villager also neighbor Porter.",
+      "parts": [
+        23,
+        "villager",
+        3,
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the one villager below Nova, exactly one villager also neighbor me.",
+      "parts": [
+        22,
+        "villager",
+        3,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "villager",
+      "statement": "Nova has fewer villagers nearby than Zane.",
+      "parts": [
+        16,
+        "villager",
+        3,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "villager",
+      "statement": "Among the 5 people whose names come after Riley alphabetically, exactly 5 villagers are among them.",
+      "parts": [
+        25,
+        "villager",
+        4,
+        1,
+        5,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 3 villagers below Micah, exactly 3 villagers also neighbor Ruby.",
+      "parts": [
+        22,
+        "villager",
+        2,
+        3,
+        4,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "villager",
+      "statement": "I have more villagers nearby than Zane.",
+      "parts": [
+        15,
+        "villager",
+        3,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 4 zombies above row 5.",
+      "parts": [
+        3,
+        "zombie",
+        5,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Serena has exactly 5 villagers nearby.",
+      "parts": [
+        18,
+        "villager",
+        4,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-08-18T00:00:00Z"
+}
