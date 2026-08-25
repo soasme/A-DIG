@@ -1,0 +1,535 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "monk",
+    "demon-in-disguise"
+  ],
+  "characters": [
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Jenna",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Talia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Uriel",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Xiomara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 monks neighboring Joel, exactly 2 monks also neighbor Ophelia.",
+      "parts": [
+        23,
+        "monk",
+        3,
+        1,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the one demon-in-disguise below Freya, exactly one demon-in-disguise also neighbor Ophelia.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        2,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "monk",
+      "statement": "There is exactly one demon-in-disguise to the left of Damian.",
+      "parts": [
+        9,
+        "demon-in-disguise",
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 0 monks above Victor.",
+      "parts": [
+        7,
+        "monk",
+        5,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 0 monks to the left of Dominic.",
+      "parts": [
+        9,
+        "monk",
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "There are exactly 2 demon-in-disguises below Joel.",
+      "parts": [
+        8,
+        "demon-in-disguise",
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 monks below Dominic, exactly one monk also neighbor Yara.",
+      "parts": [
+        22,
+        "monk",
+        1,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "monk",
+      "statement": "Samuel has fewer monks nearby than Yara.",
+      "parts": [
+        16,
+        "monk",
+        4,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Uriel and Xiomara share the same number of demon-in-disguises nearby.",
+      "parts": [
+        14,
+        "demon-in-disguise",
+        4,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Between Dominic and Uriel, there are exactly 2 demon-in-disguises.",
+      "parts": [
+        11,
+        "demon-in-disguise",
+        1,
+        3,
+        4,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 monks below me, exactly 2 monks also neighbor Talia.",
+      "parts": [
+        22,
+        "monk",
+        2,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "monk",
+      "statement": "There are exactly 4 monks below row 2.",
+      "parts": [
+        4,
+        "monk",
+        2,
+        4
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "monk",
+      "statement": "Nora has exactly 5 demon-in-disguises nearby.",
+      "parts": [
+        18,
+        "demon-in-disguise",
+        3,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "monk",
+      "statement": "6 monk 1 6",
+      "parts": [
+        6,
+        "monk",
+        1,
+        6
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "monk",
+      "statement": "There are exactly 0 demon-in-disguises to the right of Damian.",
+      "parts": [
+        10,
+        "demon-in-disguise",
+        1,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Demons infiltrate the monastery wearing human forms. Reveal which monks are corrupted.",
+  "publishedAt": "2026-08-25T00:00:00Z"
+}
