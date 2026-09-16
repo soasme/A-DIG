@@ -1,0 +1,576 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Brady",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Delia",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Gia",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Nadia",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Ruby",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Samuel",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Xavier",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Yvette",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 3 identity thiefs neighboring Lena, exactly one identity thief also neighbor Reese.",
+      "parts": [
+        23,
+        "identity thief",
+        2,
+        3,
+        4,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the 2 prisoners neighboring Peter, exactly one prisoner also neighbor Ruby.",
+      "parts": [
+        23,
+        "prisoner",
+        3,
+        3,
+        4,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Between Lena and Yvette, there is exactly one prisoner.",
+      "parts": [
+        11,
+        "prisoner",
+        2,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the one prisoner below Lena, exactly one prisoner also neighbor Ruby.",
+      "parts": [
+        22,
+        "prisoner",
+        2,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 2 identity thiefs below Carter, exactly one identity thief also neighbor Lena.",
+      "parts": [
+        22,
+        "identity thief",
+        1,
+        3,
+        2,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "There is exactly one prisoner to the right of Delia.",
+      "parts": [
+        10,
+        "prisoner",
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the 4 identity thiefs neighboring Nadia, exactly 2 identity thiefs also neighbor Peter.",
+      "parts": [
+        23,
+        "identity thief",
+        3,
+        2,
+        3,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "There are exactly 2 identity thiefs to the left of Samuel.",
+      "parts": [
+        9,
+        "identity thief",
+        4,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Between Brady and Carter, there are exactly 0 identity thiefs.",
+      "parts": [
+        11,
+        "identity thief",
+        1,
+        1,
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the one prisoner to the left of Peter, exactly one prisoner also neighbor Ruby.",
+      "parts": [
+        19,
+        "prisoner",
+        3,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 2 identity thiefs neighboring Delia, exactly one identity thief also neighbor Gia.",
+      "parts": [
+        23,
+        "identity thief",
+        2,
+        1,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Caleb and Carter share the same number of identity thiefs nearby.",
+      "parts": [
+        14,
+        "identity thief",
+        1,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Of the 3 identity thiefs neighboring Vance, exactly 2 identity thiefs also neighbor Xavier.",
+      "parts": [
+        23,
+        "identity thief",
+        5,
+        1,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Row 5 is home to exactly one prisoner.",
+      "parts": [
+        1,
+        "prisoner",
+        5,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Between Caleb and Ruby, there are exactly 0 prisoners.",
+      "parts": [
+        11,
+        "prisoner",
+        1,
+        2,
+        4,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-09-16T00:00:00Z"
+}
