@@ -1,0 +1,553 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Carter",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Danica",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Hannah",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Kelsey",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Marcus",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Willow",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Zachary",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unstoppable_zeal"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "villager",
+      "statement": "Eden is one of the 5 zombies surrounding Hannah.",
+      "parts": [
+        17,
+        "zombie",
+        2,
+        1,
+        3,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "zombie",
+      "statement": "There are exactly 0 zombies to the right of Carter.",
+      "parts": [
+        10,
+        "zombie",
+        1,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "There are exactly 0 zombies below Peter.",
+      "parts": [
+        8,
+        "zombie",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the one zombie below Holden, exactly one zombie also neighbor me.",
+      "parts": [
+        22,
+        "zombie",
+        3,
+        3,
+        5,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the one zombie to the right of Hannah, exactly one zombie also neighbor Marcus.",
+      "parts": [
+        20,
+        "zombie",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "zombie",
+      "statement": "There are exactly 0 villagers to the right of Kelsey.",
+      "parts": [
+        10,
+        "villager",
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the 3 villagers neighboring Carter, exactly one villager also neighbor Holden.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "There are exactly 0 villagers above Freya.",
+      "parts": [
+        7,
+        "villager",
+        2,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Between Gemma and Holden, there is exactly one villager.",
+      "parts": [
+        11,
+        "villager",
+        3,
+        1,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "villager",
+      "statement": "There is exactly one zombie below Freya.",
+      "parts": [
+        8,
+        "zombie",
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Between Amelia and Kelsey, there is exactly one villager.",
+      "parts": [
+        11,
+        "villager",
+        1,
+        1,
+        4,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "villager",
+      "statement": "Amelia has fewer zombies nearby than Holden.",
+      "parts": [
+        16,
+        "zombie",
+        1,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "zombie",
+      "statement": "There are exactly 5 villagers above row 4.",
+      "parts": [
+        3,
+        "villager",
+        4,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "villager",
+      "statement": "Hannah and Peter share the same number of villagers nearby.",
+      "parts": [
+        14,
+        "villager",
+        3,
+        2,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "villager",
+      "statement": "Of the one villager neighboring Amelia, exactly one villager also neighbor Hannah.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-09-18T00:00:00Z"
+}
