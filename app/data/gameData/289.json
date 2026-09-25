@@ -1,0 +1,595 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Amelia",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Bianca",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Dean",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Finn",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Hannah",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Landon",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Lucy",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Tanner",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Xena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "hopeful_idealism"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the one detective below Landon, exactly one detective also neighbor Lucy.",
+      "parts": [
+        22,
+        "detective",
+        4,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "There are exactly 0 killers above Dominic.",
+      "parts": [
+        7,
+        "killer",
+        2,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "detective",
+      "statement": "Among the 2 people whose names come before Dean alphabetically, exactly one detective is among them.",
+      "parts": [
+        24,
+        "detective",
+        1,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "All detectives in row 1 stay connected to each other.",
+      "parts": [
+        12,
+        "detective",
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "detective",
+      "statement": "Between Harper and Xena, there are exactly 0 killers.",
+      "parts": [
+        11,
+        "killer",
+        3,
+        3,
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 2 detectives to the right of Joel, exactly 2 detectives also neighbor Tatum.",
+      "parts": [
+        20,
+        "detective",
+        4,
+        1,
+        5,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 3 detectives below Finn, exactly 3 detectives also neighbor Joel.",
+      "parts": [
+        22,
+        "detective",
+        2,
+        2,
+        4,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "Joel has exactly one killer nearby.",
+      "parts": [
+        18,
+        "killer",
+        4,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the one detective below Grace, exactly one detective also neighbor Joel.",
+      "parts": [
+        22,
+        "detective",
+        3,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "killer",
+      "statement": "Dominic and Grace share the same number of killers nearby.",
+      "parts": [
+        14,
+        "killer",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "killer",
+      "statement": "Grace has fewer detectives nearby than Xena.",
+      "parts": [
+        16,
+        "detective",
+        3,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "killer",
+      "statement": "Of the one detective to the right of Dominic, exactly one detective also neighbor Hannah.",
+      "parts": [
+        20,
+        "detective",
+        2,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "detective",
+      "statement": "Hannah and Harper share the same number of detectives nearby.",
+      "parts": [
+        14,
+        "detective",
+        3,
+        2,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "detective",
+      "statement": "Among the 7 people whose names come after Hannah alphabetically, exactly 2 killers are among them.",
+      "parts": [
+        25,
+        "killer",
+        3,
+        2,
+        2,
+        7
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Landon has more detectives nearby than Tatum.",
+      "parts": [
+        15,
+        "detective",
+        4,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-09-25T00:00:00Z"
+}
