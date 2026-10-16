@@ -1,0 +1,572 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Aiden",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Anya",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Bennett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Fiona",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Graham",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Henry",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Joel",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Xander",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the one prisoner below me, exactly one prisoner also neighbor Naomi.",
+      "parts": [
+        22,
+        "prisoner",
+        1,
+        2,
+        4,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the 4 identity thiefs neighboring Anya, exactly 2 identity thiefs also neighbor Joel.",
+      "parts": [
+        23,
+        "identity thief",
+        1,
+        2,
+        3,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Between Naomi and Tatum, there is exactly one identity thief.",
+      "parts": [
+        11,
+        "identity thief",
+        4,
+        1,
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the one prisoner to the left of Tatum, exactly one prisoner also neighbor Vance.",
+      "parts": [
+        19,
+        "prisoner",
+        4,
+        3,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 2 prisoners below Graham, exactly 2 prisoners also neighbor Serena.",
+      "parts": [
+        22,
+        "prisoner",
+        3,
+        1,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the one identity thief to the right of Aiden, exactly one identity thief also neighbor Fiona.",
+      "parts": [
+        20,
+        "identity thief",
+        1,
+        1,
+        2,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Between Bennett and Uma, there is exactly one prisoner.",
+      "parts": [
+        11,
+        "prisoner",
+        2,
+        1,
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "Between Aiden and Naomi, there are exactly 2 identity thiefs.",
+      "parts": [
+        11,
+        "identity thief",
+        1,
+        1,
+        4,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "identity thief",
+      "statement": "I have fewer prisoners nearby than Eden.",
+      "parts": [
+        16,
+        "prisoner",
+        2,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Fiona and Naomi share the same number of identity thiefs nearby.",
+      "parts": [
+        14,
+        "identity thief",
+        2,
+        3,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 5 prisoners neighboring Serena, exactly one prisoner also neighbor Xander.",
+      "parts": [
+        23,
+        "prisoner",
+        4,
+        2,
+        5,
+        3,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Henry is one of the 5 identity thiefs surrounding Joel.",
+      "parts": [
+        17,
+        "identity thief",
+        3,
+        2,
+        3,
+        3,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "There are exactly 5 prisoners below row 1.",
+      "parts": [
+        4,
+        "prisoner",
+        1,
+        5
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "All prisoners in column 1 stay connected to each other.",
+      "parts": [
+        13,
+        "prisoner",
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Between Joel and Xander, there is exactly one identity thief.",
+      "parts": [
+        11,
+        "identity thief",
+        3,
+        3,
+        5,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-10-16T00:00:00Z"
+}
