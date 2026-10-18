@@ -1,0 +1,565 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "agent",
+    "double-agent"
+  ],
+  "characters": [
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unpredictable_genius"
+    },
+    {
+      "name": "Damian",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Emmett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Henry",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Julia",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Kaden",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Reese",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Riley",
+      "gender": "male",
+      "row": 4,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Sage",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Tatum",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Zelda",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "defiant_rebellion"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 5,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "There are exactly 0 agents below Sage.",
+      "parts": [
+        8,
+        "agent",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "Damian is one of the 6 agents surrounding Gemma.",
+      "parts": [
+        17,
+        "agent",
+        1,
+        2,
+        2,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 2 double-agents below Eden, exactly one double-agent also neighbor Gemma.",
+      "parts": [
+        22,
+        "double-agent",
+        1,
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "agent",
+      "statement": "There are exactly 0 agents to the left of Zelda.",
+      "parts": [
+        9,
+        "agent",
+        5,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "double-agent",
+      "statement": "Riley is one of the 2 agents surrounding Zelda.",
+      "parts": [
+        17,
+        "agent",
+        4,
+        2,
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "agent",
+      "statement": "Victor has exactly 3 agents nearby.",
+      "parts": [
+        18,
+        "agent",
+        5,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "agent",
+      "statement": "Eden and Naomi share the same number of double-agents nearby.",
+      "parts": [
+        14,
+        "double-agent",
+        1,
+        3,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 3 agents below Damian, exactly one agent also neighbor Riley.",
+      "parts": [
+        22,
+        "agent",
+        1,
+        2,
+        4,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "agent",
+      "statement": "Of the 5 agents neighboring Julia, exactly 2 agents also neighbor Victor.",
+      "parts": [
+        23,
+        "agent",
+        3,
+        1,
+        5,
+        2,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "agent",
+      "statement": "Eden has exactly one double-agent nearby.",
+      "parts": [
+        18,
+        "double-agent",
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "double-agent",
+      "statement": "There are exactly 0 double-agents to the right of Julia.",
+      "parts": [
+        10,
+        "double-agent",
+        3,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "agent",
+      "statement": "Of the one double-agent neighboring Kaden, exactly one double-agent also neighbor me.",
+      "parts": [
+        23,
+        "double-agent",
+        3,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "agent",
+      "statement": "Of the 5 agents neighboring Henry, exactly one agent also neighbor Reese.",
+      "parts": [
+        23,
+        "agent",
+        2,
+        3,
+        4,
+        1,
+        1,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "agent",
+      "statement": "Damian and Reese share the same number of agents nearby.",
+      "parts": [
+        14,
+        "agent",
+        1,
+        2,
+        4,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "double-agent"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "double-agent",
+      "statement": "Emmett has fewer agents nearby than Julia.",
+      "parts": [
+        16,
+        "agent",
+        2,
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A spy team is compromised—one of you works for the other side. Trust no one.",
+  "publishedAt": "2026-10-18T00:00:00Z"
+}
