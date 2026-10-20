@@ -1,0 +1,596 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "villager",
+    "zombie"
+  ],
+  "characters": [
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Colin",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Garrett",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Gia",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Greta",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "haunted_guilt"
+    },
+    {
+      "name": "Ivy",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Nova",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Oliver",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Porter",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Russell",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 2,
+      "role": "villager",
+      "statement": "There is exactly one zombie to the right of Holden.",
+      "parts": [
+        10,
+        "zombie",
+        3,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Of the one zombie below Gia, exactly one zombie also neighbor Nova.",
+      "parts": [
+        22,
+        "zombie",
+        2,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 3 zombies neighboring Grace, exactly 2 zombies also neighbor Holden.",
+      "parts": [
+        23,
+        "zombie",
+        2,
+        3,
+        3,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the 2 villagers neighboring Chase, exactly one villager also neighbor Garrett.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "villager",
+      "statement": "There is exactly one villager above Nova.",
+      "parts": [
+        7,
+        "villager",
+        4,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "zombie",
+      "statement": "Of the one villager neighboring Colin, exactly one villager also neighbor Gia.",
+      "parts": [
+        23,
+        "villager",
+        1,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "zombie",
+      "statement": "Column 2 are home to exactly 3 villagers.",
+      "parts": [
+        2,
+        "villager",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "villager",
+      "statement": "Of the 2 villagers neighboring Nova, exactly one villager also neighbor Serena.",
+      "parts": [
+        23,
+        "villager",
+        4,
+        2,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "zombie",
+      "statement": "There is exactly one villager below Ivy.",
+      "parts": [
+        8,
+        "villager",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "villager",
+      "statement": "Row 4 is home to exactly one villager.",
+      "parts": [
+        1,
+        "villager",
+        4,
+        1
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Among the 4 people whose names come after Nova alphabetically, exactly 2 zombies are among them.",
+      "parts": [
+        25,
+        "zombie",
+        4,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Of the 3 zombies below Garrett, exactly 2 zombies also neighbor Russell.",
+      "parts": [
+        22,
+        "zombie",
+        2,
+        1,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Between Celeste and Porter, there are exactly 0 villagers.",
+      "parts": [
+        11,
+        "villager",
+        1,
+        1,
+        5,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "zombie"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "zombie",
+      "statement": "Among the 8 people whose names come before Ivy alphabetically, exactly 3 villagers are among them.",
+      "parts": [
+        24,
+        "villager",
+        3,
+        3,
+        3,
+        8
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "villager"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "villager",
+      "statement": "Of the 2 zombies to the left of Grace, exactly 2 zombies also neighbor Greta.",
+      "parts": [
+        19,
+        "zombie",
+        2,
+        3,
+        3,
+        1,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A mysterious zombie infection spreads quietly. Some villagers are already turned.",
+  "publishedAt": "2026-10-20T00:00:00Z"
+}
