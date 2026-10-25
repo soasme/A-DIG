@@ -1,0 +1,636 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "monk",
+    "demon-in-disguise"
+  ],
+  "characters": [
+    {
+      "name": "April",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Arthur",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Felix",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Julian",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Kirk",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Lena",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Reid",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Roman",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Ruby",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Sophia",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Vanessa",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Violet",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Wren",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "ruthless_pragmatism"
+    },
+    {
+      "name": "Zeke",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "forbidden_curiosity"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 1,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 monks below me, exactly 2 monks also neighbor Reid.",
+      "parts": [
+        22,
+        "monk",
+        1,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Between Gemma and Ruby, there are exactly 0 monks.",
+      "parts": [
+        11,
+        "monk",
+        2,
+        1,
+        4,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Between me and Violet, there is exactly one monk.",
+      "parts": [
+        11,
+        "monk",
+        3,
+        1,
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "monk",
+      "statement": "There are exactly 2 monks below Gemma.",
+      "parts": [
+        8,
+        "monk",
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "monk",
+      "statement": "There is exactly one monk above Roman.",
+      "parts": [
+        7,
+        "monk",
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "monk",
+      "statement": "Of the 2 monks to the right of Gemma, exactly 2 monks also neighbor Roman.",
+      "parts": [
+        20,
+        "monk",
+        2,
+        1,
+        3,
+        3,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "monk",
+      "statement": "Of the 3 monks neighboring Lena, exactly one monk also neighbor Ruby.",
+      "parts": [
+        23,
+        "monk",
+        3,
+        1,
+        4,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the one monk above Violet, exactly one monk also neighbor Wren.",
+      "parts": [
+        21,
+        "monk",
+        5,
+        1,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 demon-in-disguises below Roman, exactly one demon-in-disguise also neighbor Zeke.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        3,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 demon-in-disguises below Felix, exactly one demon-in-disguise also neighbor Zeke.",
+      "parts": [
+        22,
+        "demon-in-disguise",
+        1,
+        3,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "monk",
+      "statement": "Arthur has fewer monks nearby than Wren.",
+      "parts": [
+        16,
+        "monk",
+        1,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "monk"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "monk",
+      "statement": "Among the 6 people whose names come after Roman alphabetically, exactly 3 demon-in-disguises are among them.",
+      "parts": [
+        25,
+        "demon-in-disguise",
+        3,
+        3,
+        3,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Among the 9 people whose names come after Kirk alphabetically, exactly 5 demon-in-disguises are among them.",
+      "parts": [
+        25,
+        "demon-in-disguise",
+        2,
+        3,
+        5,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Kirk has fewer monks nearby than Wren.",
+      "parts": [
+        16,
+        "monk",
+        2,
+        3,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "demon-in-disguise"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "demon-in-disguise",
+      "statement": "Of the 2 monks above Wren, exactly one monk also neighbor Zeke.",
+      "parts": [
+        21,
+        "monk",
+        5,
+        2,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Demons infiltrate the monastery wearing human forms. Reveal which monks are corrupted.",
+  "publishedAt": "2026-10-25T00:00:00Z"
+}
