@@ -1,0 +1,626 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "crew member",
+    "alien-impostor"
+  ],
+  "characters": [
+    {
+      "name": "Clara",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Grace",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Mitchell",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Oliver",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Oscar",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Quinn",
+      "gender": "male",
+      "row": 4,
+      "column": 1,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "tragic_melancholy"
+    },
+    {
+      "name": "Tessa",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "lonely_wanderer_spirit"
+    },
+    {
+      "name": "Uma",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Wesley",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "defiant_rebellion"
+    },
+    {
+      "name": "Whitney",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "reckless_bravery"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Naomi is one of the 4 crew members surrounding me.",
+      "parts": [
+        17,
+        "crew member",
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Of the 2 alien-impostors below Clara, exactly 2 alien-impostors also neighbor Serena.",
+      "parts": [
+        22,
+        "alien-impostor",
+        1,
+        1,
+        4,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Between Grace and Serena, there are exactly 2 crew members.",
+      "parts": [
+        11,
+        "crew member",
+        1,
+        2,
+        4,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "crew member",
+      "statement": "Preston and Whitney share the same number of alien-impostors nearby.",
+      "parts": [
+        14,
+        "alien-impostor",
+        3,
+        3,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Of the 2 alien-impostors to the right of Uma, exactly one alien-impostor also neighbor Whitney.",
+      "parts": [
+        20,
+        "alien-impostor",
+        5,
+        1,
+        5,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the 2 crew members below Grace, exactly one crew member also neighbor Naomi.",
+      "parts": [
+        22,
+        "crew member",
+        1,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Quinn is one of the 3 alien-impostors surrounding Uma.",
+      "parts": [
+        17,
+        "alien-impostor",
+        4,
+        1,
+        5,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Of the 3 alien-impostors neighboring Preston, exactly 2 alien-impostors also neighbor Wesley.",
+      "parts": [
+        23,
+        "alien-impostor",
+        3,
+        3,
+        5,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "alien-impostor",
+      "statement": "Of the one alien-impostor neighboring Clara, exactly one alien-impostor also neighbor Naomi.",
+      "parts": [
+        23,
+        "alien-impostor",
+        1,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "alien-impostor",
+      "statement": "Clara and Tessa share the same number of crew members nearby.",
+      "parts": [
+        14,
+        "crew member",
+        1,
+        1,
+        4,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Kevin has more alien-impostors nearby than Odette.",
+      "parts": [
+        15,
+        "alien-impostor",
+        1,
+        3,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "crew member",
+      "statement": "Of the 5 alien-impostors neighboring Oscar, exactly 2 alien-impostors also neighbor Quinn.",
+      "parts": [
+        23,
+        "alien-impostor",
+        3,
+        2,
+        4,
+        1,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "There are exactly 3 crew members below row 2.",
+      "parts": [
+        4,
+        "crew member",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "crew member"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "crew member",
+      "statement": "Among the 12 people whose names come before me alphabetically, exactly 5 crew members are among them.",
+      "parts": [
+        24,
+        "crew member",
+        5,
+        1,
+        5,
+        12
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "alien-impostor"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "alien-impostor",
+      "statement": "Grace has fewer alien-impostors nearby than Wesley.",
+      "parts": [
+        16,
+        "alien-impostor",
+        1,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Alien creatures has copied some crew members aboard your ship. Identify the impostors.",
+  "publishedAt": "2026-11-05T00:00:00Z"
+}
