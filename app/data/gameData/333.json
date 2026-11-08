@@ -1,0 +1,605 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "student",
+    "witch-masquerader"
+  ],
+  "characters": [
+    {
+      "name": "Adam",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Alice",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "cold_calculation"
+    },
+    {
+      "name": "Chase",
+      "gender": "male",
+      "row": 2,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Daphne",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Eden",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Harvey",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Hazel",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Ingrid",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Isaac",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Penelope",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Peter",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "hopeful_idealism"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Of the 2 witch-masqueraders below Chase, exactly one witch-masquerader also neighbor Penelope.",
+      "parts": [
+        22,
+        "witch-masquerader",
+        2,
+        2,
+        5,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Of the 4 witch-masqueraders neighboring Celeste, exactly 2 witch-masqueraders also neighbor Ingrid.",
+      "parts": [
+        23,
+        "witch-masquerader",
+        2,
+        1,
+        4,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Of the 5 witch-masqueraders neighboring Chase, exactly 2 witch-masqueraders also neighbor Ingrid.",
+      "parts": [
+        23,
+        "witch-masquerader",
+        2,
+        2,
+        4,
+        2,
+        2,
+        5
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "student",
+      "statement": "Hazel and Vance share the same number of students nearby.",
+      "parts": [
+        14,
+        "student",
+        4,
+        1,
+        5,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "There are exactly 0 students below Isaac.",
+      "parts": [
+        8,
+        "student",
+        4,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "There is exactly one student below Caleb.",
+      "parts": [
+        8,
+        "student",
+        1,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Of the 2 students neighboring Alice, exactly 2 students also neighbor Chase.",
+      "parts": [
+        23,
+        "student",
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "There is exactly one student to the left of Daphne.",
+      "parts": [
+        9,
+        "student",
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "student",
+      "statement": "There are exactly 2 witch-masqueraders below Adam.",
+      "parts": [
+        8,
+        "witch-masquerader",
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "student",
+      "statement": "There are exactly 0 students above Emma.",
+      "parts": [
+        7,
+        "student",
+        3,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Adam and Celeste share the same number of students nearby.",
+      "parts": [
+        14,
+        "student",
+        1,
+        1,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "student",
+      "statement": "Celeste has more students nearby than Harvey.",
+      "parts": [
+        15,
+        "student",
+        2,
+        1,
+        3,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Among the 11 people whose names come before Isaac alphabetically, exactly 7 witch-masqueraders are among them.",
+      "parts": [
+        24,
+        "witch-masquerader",
+        4,
+        3,
+        7,
+        11
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Of the one student below Emma, exactly one student also neighbor Ingrid.",
+      "parts": [
+        22,
+        "student",
+        3,
+        2,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "student",
+      "statement": "Of the 2 witch-masqueraders below Daphne, exactly one witch-masquerader also neighbor Harvey.",
+      "parts": [
+        22,
+        "witch-masquerader",
+        2,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A magic academy hides a witch posing as a student. Their aura feels… wrong.",
+  "publishedAt": "2026-11-08T00:00:00Z"
+}
