@@ -1,0 +1,687 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "prisoner",
+    "identity thief"
+  ],
+  "characters": [
+    {
+      "name": "Chloe",
+      "gender": "female",
+      "row": 1,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Dean",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Derek",
+      "gender": "male",
+      "row": 1,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Elias",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "fierce_loyalty"
+    },
+    {
+      "name": "Harper",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "deceptive_charm"
+    },
+    {
+      "name": "Keira",
+      "gender": "female",
+      "row": 3,
+      "column": 1,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Kyle",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Micah",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Ophelia",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "playful_mischief"
+    },
+    {
+      "name": "Piper",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Preston",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "shadowed_past"
+    },
+    {
+      "name": "Sienna",
+      "gender": "female",
+      "row": 5,
+      "column": 1,
+      "characteristic": "mercurial_mood"
+    },
+    {
+      "name": "Tanner",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Zuri",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 2,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Freya is one of the 4 prisoners surrounding me.",
+      "parts": [
+        17,
+        "prisoner",
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "There is exactly one prisoner below Ophelia.",
+      "parts": [
+        8,
+        "prisoner",
+        4,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the one prisoner to the left of Piper, exactly one prisoner also neighbor me.",
+      "parts": [
+        19,
+        "prisoner",
+        4,
+        2,
+        5,
+        1,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the one identity thief neighboring Keira, exactly one identity thief also neighbor Micah.",
+      "parts": [
+        23,
+        "identity thief",
+        3,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the 4 prisoners neighboring Harper, exactly 2 prisoners also neighbor Micah.",
+      "parts": [
+        23,
+        "prisoner",
+        2,
+        3,
+        3,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Of the 4 prisoners below Chloe, exactly 2 prisoners also neighbor Freya.",
+      "parts": [
+        22,
+        "prisoner",
+        1,
+        1,
+        2,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "Of the one identity thief to the right of Piper, exactly one identity thief also neighbor Tanner.",
+      "parts": [
+        20,
+        "identity thief",
+        4,
+        2,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "There is exactly one prisoner to the right of Keira.",
+      "parts": [
+        10,
+        "prisoner",
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Of the 4 identity thiefs neighboring Kyle, exactly 2 identity thiefs also neighbor Tanner.",
+      "parts": [
+        23,
+        "identity thief",
+        3,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "identity thief",
+      "statement": "Of the one identity thief below Dean, exactly one identity thief also neighbor Kyle.",
+      "parts": [
+        22,
+        "identity thief",
+        1,
+        2,
+        3,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Among the 9 people whose names come after Harper alphabetically, exactly 5 prisoners are among them.",
+      "parts": [
+        25,
+        "prisoner",
+        2,
+        3,
+        5,
+        9
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "identity thief"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "identity thief",
+      "statement": "Among the 13 people whose names come after Dean alphabetically, exactly 5 identity thiefs are among them.",
+      "parts": [
+        25,
+        "identity thief",
+        1,
+        2,
+        5,
+        13
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 4,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "prisoner",
+      "statement": "Harper and Kyle share the same number of prisoners nearby.",
+      "parts": [
+        14,
+        "prisoner",
+        2,
+        3,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "prisoner",
+      "statement": "Among the 7 people whose names come before Kyle alphabetically, exactly one identity thief is among them.",
+      "parts": [
+        24,
+        "identity thief",
+        3,
+        2,
+        1,
+        7
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        },
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 3
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "prisoner"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "prisoner",
+      "statement": "I have fewer identity thiefs nearby than Derek.",
+      "parts": [
+        16,
+        "identity thief",
+        1,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "Inside a high-security prison, someone isn’t who they claim to be. Spot the impersonator.",
+  "publishedAt": "2026-11-11T00:00:00Z"
+}
