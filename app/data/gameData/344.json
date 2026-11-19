@@ -1,0 +1,546 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "student",
+    "witch-masquerader"
+  ],
+  "characters": [
+    {
+      "name": "Austin",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Dahlia",
+      "gender": "female",
+      "row": 1,
+      "column": 2,
+      "characteristic": "brooding_silence"
+    },
+    {
+      "name": "Emma",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Freya",
+      "gender": "female",
+      "row": 2,
+      "column": 1,
+      "characteristic": "forbidden_curiosity"
+    },
+    {
+      "name": "Gemma",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Hailey",
+      "gender": "female",
+      "row": 2,
+      "column": 3,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Holden",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Naomi",
+      "gender": "female",
+      "row": 3,
+      "column": 2,
+      "characteristic": "vengeful_obsession"
+    },
+    {
+      "name": "Noah",
+      "gender": "male",
+      "row": 3,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Nora",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "scheming_cunning"
+    },
+    {
+      "name": "Spencer",
+      "gender": "male",
+      "row": 4,
+      "column": 3,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Uriel",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "righteous_fury"
+    },
+    {
+      "name": "Vance",
+      "gender": "male",
+      "row": 5,
+      "column": 2,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Vincent",
+      "gender": "male",
+      "row": 5,
+      "column": 3,
+      "characteristic": "vengeful_obsession"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 3,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Between Holden and me, there is exactly one student.",
+      "parts": [
+        11,
+        "student",
+        3,
+        1,
+        3,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "student",
+      "statement": "Of the one student to the right of Serena, exactly one student also neighbor Vance.",
+      "parts": [
+        20,
+        "student",
+        4,
+        2,
+        5,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "student",
+      "statement": "Dahlia is one of the 3 students surrounding Freya.",
+      "parts": [
+        17,
+        "student",
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "student",
+      "statement": "There are exactly 0 witch-masqueraders to the left of Emma.",
+      "parts": [
+        9,
+        "witch-masquerader",
+        1,
+        3,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "student"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "student",
+      "statement": "Of the one witch-masquerader above Naomi, exactly one witch-masquerader also neighbor Noah.",
+      "parts": [
+        21,
+        "witch-masquerader",
+        3,
+        2,
+        3,
+        3,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Of the 2 witch-masqueraders to the right of Freya, exactly one witch-masquerader also neighbor Holden.",
+      "parts": [
+        20,
+        "witch-masquerader",
+        2,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Austin and Emma share the same number of witch-masqueraders nearby.",
+      "parts": [
+        14,
+        "witch-masquerader",
+        1,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Of the 4 witch-masqueraders neighboring Dahlia, exactly 2 witch-masqueraders also neighbor Emma.",
+      "parts": [
+        23,
+        "witch-masquerader",
+        1,
+        2,
+        1,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "There are exactly 3 students above row 4.",
+      "parts": [
+        3,
+        "student",
+        4,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "There is exactly one student above Uriel.",
+      "parts": [
+        7,
+        "student",
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Dahlia and Naomi share the same number of students nearby.",
+      "parts": [
+        14,
+        "student",
+        1,
+        2,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "Column 2 are home to exactly 3 witch-masqueraders.",
+      "parts": [
+        2,
+        "witch-masquerader",
+        2,
+        3
+      ],
+      "referencedCells": [],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "witch-masquerader",
+      "statement": "There are exactly 0 students to the right of Uriel.",
+      "parts": [
+        10,
+        "student",
+        5,
+        1,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "witch-masquerader",
+      "statement": "Serena has exactly 6 witch-masqueraders nearby.",
+      "parts": [
+        18,
+        "witch-masquerader",
+        4,
+        2,
+        6
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "witch-masquerader"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "witch-masquerader",
+      "statement": "Dahlia has fewer students nearby than Freya.",
+      "parts": [
+        16,
+        "student",
+        1,
+        2,
+        2,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A magic academy hides a witch posing as a student. Their aura feels… wrong.",
+  "publishedAt": "2026-11-19T00:00:00Z"
+}
