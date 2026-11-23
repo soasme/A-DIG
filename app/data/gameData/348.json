@@ -1,0 +1,560 @@
+{
+  "row": 5,
+  "column": 3,
+  "roles": [
+    "detective",
+    "killer"
+  ],
+  "characters": [
+    {
+      "name": "Blake",
+      "gender": "male",
+      "row": 1,
+      "column": 1,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Caleb",
+      "gender": "male",
+      "row": 1,
+      "column": 2,
+      "characteristic": "warmhearted_compassion"
+    },
+    {
+      "name": "Celeste",
+      "gender": "female",
+      "row": 1,
+      "column": 3,
+      "characteristic": "noble_self_sacrifice"
+    },
+    {
+      "name": "Dominic",
+      "gender": "male",
+      "row": 2,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Hailey",
+      "gender": "female",
+      "row": 2,
+      "column": 2,
+      "characteristic": "serene_detachment"
+    },
+    {
+      "name": "Keegan",
+      "gender": "male",
+      "row": 2,
+      "column": 3,
+      "characteristic": "gentle_naivety"
+    },
+    {
+      "name": "Kevin",
+      "gender": "male",
+      "row": 3,
+      "column": 1,
+      "characteristic": "chaotic_impulsiveness"
+    },
+    {
+      "name": "Kirk",
+      "gender": "male",
+      "row": 3,
+      "column": 2,
+      "characteristic": "unyielding_ambition"
+    },
+    {
+      "name": "Leah",
+      "gender": "female",
+      "row": 3,
+      "column": 3,
+      "characteristic": "stoic_endurance"
+    },
+    {
+      "name": "Molly",
+      "gender": "female",
+      "row": 4,
+      "column": 1,
+      "characteristic": "unstoppable_zeal"
+    },
+    {
+      "name": "Odette",
+      "gender": "female",
+      "row": 4,
+      "column": 2,
+      "characteristic": "relentless_perfectionism"
+    },
+    {
+      "name": "Serena",
+      "gender": "female",
+      "row": 4,
+      "column": 3,
+      "characteristic": "iron_willpower"
+    },
+    {
+      "name": "Victor",
+      "gender": "male",
+      "row": 5,
+      "column": 1,
+      "characteristic": "unyielding_principle"
+    },
+    {
+      "name": "Yara",
+      "gender": "female",
+      "row": 5,
+      "column": 2,
+      "characteristic": "reckless_bravery"
+    },
+    {
+      "name": "Zara",
+      "gender": "female",
+      "row": 5,
+      "column": 3,
+      "characteristic": "brooding_silence"
+    }
+  ],
+  "puzzle": [
+    {
+      "row": 4,
+      "column": 2,
+      "role": "detective",
+      "statement": "There is exactly one detective above Keegan.",
+      "parts": [
+        7,
+        "detective",
+        2,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "role": "detective",
+      "statement": "Of the 3 killers neighboring Kirk, exactly one killer also neighbor Victor.",
+      "parts": [
+        23,
+        "killer",
+        3,
+        2,
+        5,
+        1,
+        1,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "role": "killer",
+      "statement": "Between Hailey and Yara, there are exactly 2 detectives.",
+      "parts": [
+        11,
+        "detective",
+        2,
+        2,
+        5,
+        2,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "role": "detective",
+      "statement": "Blake is one of the 3 killers surrounding Hailey.",
+      "parts": [
+        17,
+        "killer",
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "role": "killer",
+      "statement": "Of the one killer to the right of Molly, exactly one killer also neighbor Odette.",
+      "parts": [
+        20,
+        "killer",
+        4,
+        1,
+        4,
+        2,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 4,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "role": "killer",
+      "statement": "There are exactly 0 killers to the left of Hailey.",
+      "parts": [
+        9,
+        "killer",
+        2,
+        2,
+        0
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "role": "detective",
+      "statement": "Of the 4 detectives neighboring Kevin, exactly 2 detectives also neighbor Serena.",
+      "parts": [
+        23,
+        "detective",
+        3,
+        1,
+        4,
+        3,
+        2,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 1
+        },
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "role": "detective",
+      "statement": "Of the 4 detectives neighboring Leah, exactly one detective also neighbor Victor.",
+      "parts": [
+        23,
+        "detective",
+        3,
+        3,
+        5,
+        1,
+        1,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 3,
+          "column": 3
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 2,
+          "column": 3,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "role": "detective",
+      "statement": "There are exactly 2 killers above Zara.",
+      "parts": [
+        7,
+        "killer",
+        5,
+        3,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 3
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "role": "killer",
+      "statement": "Of the 4 detectives below Caleb, exactly 3 detectives also neighbor Kevin.",
+      "parts": [
+        22,
+        "detective",
+        1,
+        2,
+        3,
+        1,
+        3,
+        4
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 2
+        },
+        {
+          "row": 3,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 2,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "role": "detective",
+      "statement": "There is exactly one detective to the right of Victor.",
+      "parts": [
+        10,
+        "detective",
+        5,
+        1,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 3,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "role": "killer",
+      "statement": "Blake and Victor share the same number of killers nearby.",
+      "parts": [
+        14,
+        "killer",
+        1,
+        1,
+        5,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 1,
+          "column": 1
+        },
+        {
+          "row": 5,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 1,
+          "column": 2,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "role": "killer",
+      "statement": "Dominic has exactly 2 killers nearby.",
+      "parts": [
+        18,
+        "killer",
+        2,
+        1,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 1
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 3,
+          "column": 1,
+          "role": "detective"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "role": "detective",
+      "statement": "Hailey has fewer killers nearby than Yara.",
+      "parts": [
+        16,
+        "killer",
+        2,
+        2,
+        5,
+        2
+      ],
+      "referencedCells": [
+        {
+          "row": 2,
+          "column": 2
+        },
+        {
+          "row": 5,
+          "column": 2
+        }
+      ],
+      "deductableCells": [
+        {
+          "row": 5,
+          "column": 1,
+          "role": "killer"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "role": "killer",
+      "statement": "There is exactly one killer below Serena.",
+      "parts": [
+        8,
+        "killer",
+        4,
+        3,
+        1
+      ],
+      "referencedCells": [
+        {
+          "row": 4,
+          "column": 3
+        }
+      ],
+      "deductableCells": []
+    }
+  ],
+  "gameSetting": "A disguise master roams the city pretending to be innocent citizens. Unmask them.",
+  "publishedAt": "2026-11-23T00:00:00Z"
+}
